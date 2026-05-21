@@ -16,7 +16,9 @@
       --line: #d8e1ee;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -28,7 +30,7 @@
     .topbar {
       background: var(--navy);
       color: white;
-      padding: 18px 32px;
+      padding: 18px 32px 12px;
     }
 
     .brand {
@@ -44,21 +46,21 @@
     }
 
     .nav {
-  background: var(--navy);
-  padding: 0 32px 16px;
-}
+      background: var(--navy);
+      padding: 0 32px 16px;
+    }
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 18px;
-  font-size: 14px;
-  opacity: 0.95;
-}
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 18px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
 
-.nav a:hover {
-  text-decoration: underline;
-}
+    .nav a:hover {
+      text-decoration: underline;
+    }
 
     .wrap {
       max-width: 1200px;
@@ -101,20 +103,43 @@
       border: 1px solid var(--line);
     }
 
-    .tableau-wrapper {
+    .placeholder {
       margin-top: 24px;
-      background: white;
+      background: #f8fbff;
+      border: 2px dashed #c7d6ea;
       border-radius: 18px;
-      overflow: hidden;
+      padding: 48px 24px;
+      text-align: center;
     }
 
-    .tableauPlaceholder {
-      width: 100% !important;
+    .placeholder h2 {
+      margin-top: 0;
+      color: var(--navy);
     }
 
-    .tableauViz {
-      width: 100% !important;
-      min-height: 900px !important;
+    .placeholder p {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .wrap {
+        padding: 18px 12px 40px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .topbar,
+      .nav {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .nav a {
+        display: inline-block;
+        margin: 0 14px 8px 0;
+      }
     }
   </style>
 </head>
@@ -124,6 +149,13 @@
   <div class="topbar">
     <div class="brand">OCDE Data Hub</div>
     <div class="sub">Student Academics</div>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="college-career.html">College & Career</a>
+    <a href="academics.html">Academics</a>
   </div>
 
   <main class="wrap">
@@ -145,10 +177,12 @@
         View Data Notes
       </a>
 
-      <div class="tableau-wrapper">
+      <div class="placeholder">
+        <h2>Dashboard Coming Soon</h2>
 
-        <!-- PASTE ACADEMICS TABLEAU EMBED CODE HERE -->
-
+        <p>
+          The Student Academics dashboard is currently under development.
+        </p>
       </div>
 
     </section>
