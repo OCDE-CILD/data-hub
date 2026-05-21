@@ -16,7 +16,9 @@
       --line: #d8e1ee;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -121,6 +123,13 @@
       min-height: 900px !important;
     }
 
+    footer {
+      margin-top: 30px;
+      padding: 20px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     @media (max-width: 900px) {
       .wrap {
         padding: 18px 12px 40px;
@@ -146,19 +155,19 @@
 
 <body>
   <div class="topbar">
-    <p class="brand">OCDE Data Hub</p>
-    <p class="sub">Attendance & Engagement</p>
+    <div class="brand">OCDE Data Hub</div>
+    <div class="sub">Attendance & Engagement</div>
   </div>
 
-<div class="nav">
-  <a href="index.html">Home</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="college-career.html">College & Career</a>
-  <a href="academics.html">Academics</a>
-  <a href="english-learners.html">English Learners</a>
-  <a href="differentiated-assistance.html">Differentiated Assistance</a>
-  <a href="spotlight.html">Spotlight</a>
-</div>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="college-career.html">College & Career</a>
+    <a href="academics.html">Academics</a>
+    <a href="english-learners.html">English Learners</a>
+    <a href="differentiated-assistance.html">Differentiated Assistance</a>
+    <a href="spotlight.html">Spotlight</a>
+  </div>
 
   <main class="wrap">
     <section class="panel">
@@ -209,6 +218,10 @@
           vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
       </div>
+
+      <footer>
+        Orange County Department of Education
+      </footer>
     </section>
   </main>
 </body>
