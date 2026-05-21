@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Attendance & Engagement | OCDE Data Hub</title>
+
   <style>
     :root {
       --navy: #0b2e59;
@@ -16,6 +17,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -26,75 +28,58 @@
     .topbar {
       background: var(--navy);
       color: white;
-      padding: 18px 32px;
+      padding: 18px 32px 12px;
     }
 
-    .topbar .brand {
+    .brand {
       font-size: 28px;
       font-weight: 700;
       margin: 0;
     }
 
-    .topbar .sub {
-      margin: 6px 0 0;
+    .sub {
+      margin-top: 6px;
       color: rgba(255,255,255,0.82);
       font-size: 14px;
     }
 
     .nav {
-  background: var(--navy);
-  padding: 0 32px 16px;
-}
+      background: var(--navy);
+      padding: 0 32px 16px;
+    }
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 18px;
-  font-size: 14px;
-  opacity: 0.95;
-}
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 18px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
 
-.nav a:hover {
-  text-decoration: underline;
-}
-
-    .nav {
-  background: var(--navy);
-  padding: 0 32px 16px;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 18px;
-  font-size: 14px;
-  opacity: 0.95;
-}
-
-.nav a:hover {
-  text-decoration: underline;
-}
+    .nav a:hover {
+      text-decoration: underline;
+    }
 
     .wrap {
-      max-width: 1200px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: 28px 20px 56px;
     }
 
     .panel {
-      background: var(--card);
+      background: white;
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 22px;
       box-shadow: 0 8px 24px rgba(16, 35, 62, 0.05);
     }
 
-    .panel h1 {
+    h1 {
       margin: 0 0 10px;
       font-size: 36px;
     }
 
-    .panel p {
+    p {
       margin: 0 0 16px;
       color: var(--muted);
       line-height: 1.5;
@@ -119,7 +104,7 @@
     }
 
     .tableau-wrapper {
-      margin-top: 20px;
+      margin-top: 24px;
       background: white;
       border-radius: 18px;
       padding: 16px;
@@ -135,13 +120,34 @@
       width: 100% !important;
       min-height: 900px !important;
     }
+
+    @media (max-width: 900px) {
+      .wrap {
+        padding: 18px 12px 40px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .topbar,
+      .nav {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .nav a {
+        display: inline-block;
+        margin: 0 14px 8px 0;
+      }
+    }
   </style>
 </head>
-  
+
 <body>
   <div class="topbar">
     <p class="brand">OCDE Data Hub</p>
-    <p class="sub">College & Career</p>
+    <p class="sub">Attendance & Engagement</p>
   </div>
 
   <div class="nav">
@@ -152,7 +158,6 @@
   </div>
 
   <main class="wrap">
-    
     <section class="panel">
       <h1>Chronic Absenteeism Dashboard</h1>
       <p>
@@ -163,7 +168,43 @@
       <a class="button secondary" href="#">View Data Notes</a>
 
       <div class="tableau-wrapper">
-        <!-- PASTE THE TABLEAU EMBED CODE HERE -->
+        <div class="tableauPlaceholder" id="viz1779402584296" style="position: relative">
+          <noscript>
+            <a href="#">
+              <img
+                alt="Dashboard 1"
+                src="https://public.tableau.com/static/images/Ch/ChronicAbsenteeismDashboard-OC/Dashboard1/1_rss.png"
+                style="border: none"
+              />
+            </a>
+          </noscript>
+
+          <object class="tableauViz" style="display:none;">
+            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+            <param name="embed_code_version" value="3" />
+            <param name="site_root" value="" />
+            <param name="name" value="ChronicAbsenteeismDashboard-OC/Dashboard1" />
+            <param name="tabs" value="no" />
+            <param name="toolbar" value="yes" />
+            <param name="static_image" value="https://public.tableau.com/static/images/Ch/ChronicAbsenteeismDashboard-OC/Dashboard1/1.png" />
+            <param name="animate_transition" value="yes" />
+            <param name="display_static_image" value="yes" />
+            <param name="display_spinner" value="yes" />
+            <param name="display_overlay" value="yes" />
+            <param name="display_count" value="yes" />
+            <param name="language" value="en-US" />
+          </object>
+        </div>
+
+        <script type="text/javascript">
+          var divElement = document.getElementById('viz1779402584296');
+          var vizElement = divElement.getElementsByTagName('object')[0];
+          vizElement.style.width = '100%';
+          vizElement.style.height = '927px';
+          var scriptElement = document.createElement('script');
+          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+          vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
       </div>
     </section>
   </main>
