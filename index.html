@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Attendance & Engagement | OCDE Data Hub</title>
+  <title>OCDE Data Hub</title>
   <style>
     :root {
       --navy: #0b2e59;
@@ -60,9 +60,69 @@
     }
 
     .wrap {
-      max-width: 1600px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 28px 20px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #fff, #f8fbff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: 0 10px 30px rgba(16, 35, 62, 0.06);
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      margin: 0 0 10px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat .n {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .stat .l {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .section-title {
+      margin: 34px 0 14px;
+      font-size: 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
     }
 
     .panel {
@@ -73,12 +133,12 @@
       box-shadow: 0 8px 24px rgba(16, 35, 62, 0.05);
     }
 
-    h1 {
+    .panel h2 {
       margin: 0 0 10px;
-      font-size: 36px;
+      font-size: 22px;
     }
 
-    p {
+    .panel p {
       margin: 0 0 16px;
       color: var(--muted);
       line-height: 1.5;
@@ -102,38 +162,44 @@
       border: 1px solid var(--line);
     }
 
-    .tableau-wrapper {
-      margin-top: 24px;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
       background: white;
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 8px 24px rgba(16,35,62,0.08);
-      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
     }
 
-    .tableauPlaceholder {
-      width: 100% !important;
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
     }
 
-    .tableauViz {
-      width: 100% !important;
-      min-height: 900px !important;
+    .card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 20px 0 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     @media (max-width: 900px) {
-      .wrap {
-        padding: 18px 12px 40px;
-      }
-
-      h1 {
-        font-size: 30px;
-      }
-
-      .topbar, .nav {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
+      .stats, .grid, .cards { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 34px; }
+      .hero { padding: 24px; }
+      .topbar, .nav { padding-left: 16px; padding-right: 16px; }
       .nav a {
         display: inline-block;
         margin: 0 14px 8px 0;
@@ -144,7 +210,7 @@
 <body>
   <div class="topbar">
     <p class="brand">OCDE Data Hub</p>
-    <p class="sub">Attendance & Engagement</p>
+    <p class="sub">District dashboards, trends, and resources in one place.</p>
   </div>
 
   <div class="nav">
@@ -155,53 +221,75 @@
   </div>
 
   <main class="wrap">
-    <section class="panel">
-      <h1>Chronic Absenteeism Dashboard</h1>
+    <section class="hero">
+      <h1>Modern access to district data</h1>
       <p>
-        Explore attendance patterns, subgroup trends, and year-over-year chronic absenteeism rates.
+        Explore Tableau dashboards through a cleaner, more flexible portal designed for quick navigation,
+        easier discovery, and a more polished user experience.
       </p>
 
-      <a class="button" href="index.html">Back to Home</a>
-      <a class="button secondary" href="#">View Data Notes</a>
-
-      <div class="tableau-wrapper">
-        <div class='tableauPlaceholder' id='viz1779402584296' style='position: relative'>
-          <noscript>
-            <a href='#'>
-              <img alt='Dashboard 1'
-                   src='https://public.tableau.com/static/images/Ch/ChronicAbsenteeismDashboard-OC/Dashboard1/1_rss.png'
-                   style='border: none' />
-            </a>
-          </noscript>
-
-          <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='' />
-            <param name='name' value='ChronicAbsenteeismDashboard-OC/Dashboard1' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https://public.tableau.com/static/images/Ch/ChronicAbsenteeismDashboard-OC/Dashboard1/1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en-US' />
-          </object>
+      <div class="stats">
+        <div class="stat">
+          <div class="n">32</div>
+          <div class="l">Dashboards available</div>
         </div>
-
-        <script type='text/javascript'>
-          var divElement = document.getElementById('viz1779402584296');
-          var vizElement = divElement.getElementsByTagName('object')[0];
-          vizElement.style.width = '100%';
-          vizElement.style.height = '927px';
-          var scriptElement = document.createElement('script');
-          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-          vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+        <div class="stat">
+          <div class="n">255</div>
+          <div class="l">Students in sample view</div>
+        </div>
+        <div class="stat">
+          <div class="n">87%</div>
+          <div class="l">Prepared / on-track metric</div>
+        </div>
+        <div class="stat">
+          <div class="n">4</div>
+          <div class="l">Major topic areas</div>
+        </div>
       </div>
     </section>
+
+    <h2 class="section-title">Featured dashboard</h2>
+    <section class="grid">
+      <div class="panel">
+        <h2>Attendance & Engagement</h2>
+        <p>
+          Explore chronic absenteeism trends, subgroup comparisons, and year-over-year reporting.
+        </p>
+        <a class="button" href="attendance.html">Open Dashboard</a>
+        <a class="button secondary" href="#">View Data Notes</a>
+      </div>
+
+      <div class="panel">
+        <h2>Quick links</h2>
+        <p>Use this column for supporting resources and common destinations.</p>
+        <a class="button secondary" href="#">Data Dictionary</a>
+        <a class="button secondary" href="#">Methodology</a>
+        <a class="button secondary" href="#">Downloads</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">Dashboard categories</h2>
+    <section class="cards">
+      <div class="card">
+        <h3>Attendance & Engagement</h3>
+        <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
+        <a href="attendance.html" class="button">Open</a>
+      </div>
+      <div class="card">
+        <h3>Student Academics</h3>
+        <p>Performance, assessment, and progress reporting.</p>
+        <a href="academics.html" class="button secondary">Coming Soon</a>
+      </div>
+      <div class="card">
+        <h3>College & Career</h3>
+        <p>Preparedness, FAFSA, and pathway indicators.</p>
+        <a href="college-career.html" class="button">Open</a>
+      </div>
+    </section>
+
+    <footer>
+      OCDE Data Hub • Built with GitHub Pages
+    </footer>
   </main>
 </body>
 </html>
