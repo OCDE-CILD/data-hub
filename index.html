@@ -15,7 +15,9 @@
       --line: #d8e1ee;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -24,23 +26,24 @@
       color: var(--text);
     }
 
-.topbar {
-  background: var(--navy);
-  color: white;
-  padding: 18px 32px 12px;
-}
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 18px 32px 12px;
+    }
 
-.brand {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-}
+    .brand {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+    }
 
-.sub {
-  margin-top: 6px;
-  color: rgba(255,255,255,0.82);
-  font-size: 14px;
-}
+    .sub {
+      margin-top: 6px;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+    }
+
     .nav {
       background: var(--navy);
       padding: 0 32px 16px;
@@ -174,10 +177,23 @@
     }
 
     @media (max-width: 900px) {
-      .grid, .cards { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 34px; }
-      .hero { padding: 24px; }
-      .topbar, .nav { padding-left: 16px; padding-right: 16px; }
+      .grid, .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .topbar, .nav {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
       .nav a {
         display: inline-block;
         margin: 0 14px 8px 0;
@@ -187,8 +203,8 @@
 </head>
 <body>
   <div class="topbar">
-    <p class="brand">OCDE Data Hub</p>
-    <p class="sub">District dashboards, trends, and resources in one place.</p>
+    <div class="brand">OCDE Data Hub</div>
+    <div class="sub">District dashboards, trends, and resources in one place.</div>
   </div>
 
   <div class="nav">
@@ -232,43 +248,43 @@
     </section>
 
     <h2 class="section-title">Dashboard categories</h2>
-<section class="cards">
-  <div class="card">
-    <h3>Attendance & Engagement</h3>
-    <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
-    <a href="attendance.html" class="button">Open</a>
-  </div>
+    <section class="cards">
+      <div class="card">
+        <h3>Attendance & Engagement</h3>
+        <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
+        <a href="attendance.html" class="button">Open</a>
+      </div>
 
-  <div class="card">
-    <h3>Student Academics</h3>
-    <p>Performance, assessment, and progress reporting.</p>
-    <a href="academics.html" class="button secondary">Coming Soon</a>
-  </div>
+      <div class="card">
+        <h3>Student Academics</h3>
+        <p>Performance, assessment, and progress reporting.</p>
+        <a href="academics.html" class="button secondary">Coming Soon</a>
+      </div>
 
-  <div class="card">
-    <h3>College & Career</h3>
-    <p>Preparedness, FAFSA, and pathway indicators.</p>
-    <a href="college-career.html" class="button">Open</a>
-  </div>
+      <div class="card">
+        <h3>College & Career</h3>
+        <p>Preparedness, FAFSA, and pathway indicators.</p>
+        <a href="college-career.html" class="button">Open</a>
+      </div>
 
-  <div class="card">
-    <h3>English Learners</h3>
-    <p>EL progress, reclassification, and language development reporting.</p>
-    <a href="english-learners.html" class="button secondary">Coming Soon</a>
-  </div>
+      <div class="card">
+        <h3>English Learners</h3>
+        <p>EL progress, reclassification, and language development reporting.</p>
+        <a href="english-learners.html" class="button secondary">Coming Soon</a>
+      </div>
 
-  <div class="card">
-    <h3>Differentiated Assistance</h3>
-    <p>Support planning, priority metrics, and district improvement views.</p>
-    <a href="differentiated-assistance.html" class="button secondary">Coming Soon</a>
-  </div>
+      <div class="card">
+        <h3>Differentiated Assistance</h3>
+        <p>Support planning, priority metrics, and district improvement views.</p>
+        <a href="differentiated-assistance.html" class="button">Open</a>
+      </div>
 
-  <div class="card">
-    <h3>Spotlight</h3>
-    <p>Featured dashboards, updates, and stories worth highlighting.</p>
-    <a href="spotlight.html" class="button secondary">Coming Soon</a>
-  </div>
-</section>
+      <div class="card">
+        <h3>Spotlight</h3>
+        <p>Featured dashboards, updates, and stories worth highlighting.</p>
+        <a href="spotlight.html" class="button secondary">Coming Soon</a>
+      </div>
+    </section>
 
     <footer>
       Orange County Department of Education
