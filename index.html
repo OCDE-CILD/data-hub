@@ -30,14 +30,14 @@
       padding: 18px 32px 12px;
     }
 
-    .topbar .brand {
+    .brand {
       font-size: 28px;
       font-weight: 700;
       margin: 0;
     }
 
-    .topbar .sub {
-      margin: 6px 0 0;
+    .sub {
+      margin-top: 6px;
       color: rgba(255,255,255,0.82);
       font-size: 14px;
     }
@@ -83,35 +83,7 @@
       margin: 0;
       font-size: 18px;
       color: var(--muted);
-      max-width: 760px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .stat .n {
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .stat .l {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.35;
+      max-width: 780px;
     }
 
     .section-title {
@@ -174,6 +146,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 18px;
+      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
     }
 
     .card h3 {
@@ -188,6 +161,12 @@
       line-height: 1.45;
     }
 
+    .meta {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
     footer {
       margin-top: 30px;
       padding: 20px 0 0;
@@ -196,7 +175,7 @@
     }
 
     @media (max-width: 900px) {
-      .stats, .grid, .cards { grid-template-columns: 1fr; }
+      .grid, .cards { grid-template-columns: 1fr; }
       .hero h1 { font-size: 34px; }
       .hero { padding: 24px; }
       .topbar, .nav { padding-left: 16px; padding-right: 16px; }
@@ -227,25 +206,6 @@
         Explore Tableau dashboards through a cleaner, more flexible portal designed for quick navigation,
         easier discovery, and a more polished user experience.
       </p>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="n">32</div>
-          <div class="l">Dashboards available</div>
-        </div>
-        <div class="stat">
-          <div class="n">255</div>
-          <div class="l">Students in sample view</div>
-        </div>
-        <div class="stat">
-          <div class="n">87%</div>
-          <div class="l">Prepared / on-track metric</div>
-        </div>
-        <div class="stat">
-          <div class="n">4</div>
-          <div class="l">Major topic areas</div>
-        </div>
-      </div>
     </section>
 
     <h2 class="section-title">Featured dashboard</h2>
@@ -257,6 +217,7 @@
         </p>
         <a class="button" href="attendance.html">Open Dashboard</a>
         <a class="button secondary" href="#">View Data Notes</a>
+        <div class="meta">Updated regularly • Tableau Public</div>
       </div>
 
       <div class="panel">
@@ -275,11 +236,13 @@
         <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
         <a href="attendance.html" class="button">Open</a>
       </div>
+
       <div class="card">
         <h3>Student Academics</h3>
         <p>Performance, assessment, and progress reporting.</p>
         <a href="academics.html" class="button secondary">Coming Soon</a>
       </div>
+
       <div class="card">
         <h3>College & Career</h3>
         <p>Preparedness, FAFSA, and pathway indicators.</p>
