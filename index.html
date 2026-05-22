@@ -94,21 +94,122 @@
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
+      flex: 1 1 auto;
     }
 
-    .nav a {
+    .nav a,
+    .nav-trigger {
       color: white;
       text-decoration: none;
       font-size: 14px;
       opacity: 0.96;
       white-space: nowrap;
-      padding-bottom: 2px;
+      padding: 10px 0 8px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
     }
 
-    .nav a:hover {
+    .nav a:hover,
+    .nav-trigger:hover {
       text-decoration: underline;
+    }
+
+    .nav a.active {
+      border-bottom: 3px solid rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 240px;
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 14px 30px rgba(16, 35, 62, 0.14);
+      padding: 8px;
+      display: none;
+      z-index: 20;
+    }
+
+    .nav-menu:hover .dropdown,
+    .nav-menu:focus-within .dropdown {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: normal;
+    }
+
+    .dropdown a:hover {
+      background: #f3f7fd;
+      text-decoration: none;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .search-action {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .search-action:hover {
+      text-decoration: underline;
+    }
+
+    .district-control {
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+    }
+
+    .district-control select {
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+      outline: none;
+      min-width: 160px;
+      appearance: none;
+      padding-right: 18px;
+      cursor: pointer;
+    }
+
+    .district-control option {
+      color: var(--text);
     }
 
     .content {
@@ -685,6 +786,17 @@
       font-size: 14px;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
     @media (max-width: 1180px) {
       .hero-grid,
       .shell-grid,
@@ -775,15 +887,63 @@
           </div>
         </div>
 
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="attendance.html">Attendance</a>
-          <a href="college-career.html">College &amp; Career</a>
-          <a href="academics.html">Academics</a>
-          <a href="english-learners.html">English Learners</a>
-          <a href="differentiated-assistance.html">Differentiated Assistance</a>
-          <a href="spotlight.html">Spotlight</a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html" class="active">Home</a>
+
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Dashboards ▾</button>
+            <div class="dropdown">
+              <a href="attendance.html">Attendance &amp; Engagement</a>
+              <a href="college-career.html">College &amp; Career</a>
+              <a href="academics.html">Academics</a>
+              <a href="english-learners.html">English Learners</a>
+              <a href="differentiated-assistance.html">Differentiated Assistance</a>
+              <a href="spotlight.html">Spotlight</a>
+            </div>
+          </div>
+
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Students ▾</button>
+            <div class="dropdown">
+              <a href="#">Overview</a>
+              <a href="#">Student Groups</a>
+              <a href="#">Subgroups</a>
+            </div>
+          </div>
+
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Resources ▾</button>
+            <div class="dropdown">
+              <a href="#">Data Dictionary</a>
+              <a href="#">Methodology &amp; Notes</a>
+              <a href="#">Downloads</a>
+              <a href="#">Request Data</a>
+            </div>
+          </div>
+
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">About ▾</button>
+            <div class="dropdown">
+              <a href="#">Purpose</a>
+              <a href="#">Data Refresh</a>
+              <a href="#">FAQ</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
         </nav>
+
+        <div class="top-actions">
+          <a class="search-action" href="#" aria-label="Search dashboards">🔍 Search</a>
+          <label class="district-control">
+            <span class="sr-only">Select District</span>
+            <select id="districtSelect" aria-label="Select District">
+              <option value="all">Select District</option>
+              <option value="capo">Capistrano Unified</option>
+              <option value="irvine">Irvine Unified</option>
+              <option value="orange">Orange Unified</option>
+            </select>
+          </label>
+        </div>
       </div>
     </header>
 
@@ -844,12 +1004,8 @@
         <section class="search-strip">
           <div class="search-row">
             <input type="text" placeholder="Search dashboards..." />
-            <select>
+            <select id="schoolSelect" aria-label="Select School">
               <option>All Schools</option>
-              <option>District</option>
-              <option>School A</option>
-              <option>School B</option>
-              <option>School C</option>
             </select>
             <select>
               <option>2024-25</option>
@@ -1113,5 +1269,56 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    const districtSelect = document.getElementById('districtSelect');
+    const schoolSelect = document.getElementById('schoolSelect');
+
+    const districtSchools = {
+      all: [
+        'All Schools',
+        'Capistrano Unified',
+        'Irvine Unified',
+        'Orange Unified'
+      ],
+      capo: [
+        'All Schools',
+        'Aliso Niguel High',
+        'Capistrano Valley High',
+        'Dana Hills High',
+        'San Clemente High'
+      ],
+      irvine: [
+        'All Schools',
+        'Irvine High',
+        'Northwood High',
+        'University High',
+        'Woodbridge High'
+      ],
+      orange: [
+        'All Schools',
+        'Orange High',
+        'El Modena High',
+        'Villa Park High',
+        'Santiago High'
+      ]
+    };
+
+    function populateSchools(districtKey) {
+      const options = districtSchools[districtKey] || districtSchools.all;
+      schoolSelect.innerHTML = '';
+      options.forEach((label) => {
+        const opt = document.createElement('option');
+        opt.textContent = label;
+        schoolSelect.appendChild(opt);
+      });
+    }
+
+    districtSelect.addEventListener('change', (e) => {
+      populateSchools(e.target.value);
+    });
+
+    populateSchools(districtSelect.value);
+  </script>
 </body>
 </html>
