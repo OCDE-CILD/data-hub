@@ -1,98 +1,1509 @@
-.shell-panel {
-  padding: 12px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCDE Data Hub</title>
+  <style>
+    :root {
+      --navy: #0b2f5b;
+      --blue: #135ad6;
+      --blue-2: #0f4fbf;
+      --bg: #f4f8fd;
+      --text: #10233e;
+      --muted: #5b6b84;
+      --line: #d8e2ef;
+      --shadow: 0 10px 28px rgba(16, 35, 62, 0.06);
+      --shadow-soft: 0 8px 20px rgba(16, 35, 62, 0.04);
+    }
 
-.featured-header {
-  padding: 10px 12px 0;
-}
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
 
-.featured-body {
-  padding: 0 12px 10px;
-}
+    body {
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
 
-.feature-preview {
-  padding: 8px;
-  border-bottom: 1px solid #e5edf7;
-}
+    a { color: inherit; }
 
-.spotlight-panel {
-  padding: 12px;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  height: 100%;
-}
+    .app-shell {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
 
-.right-rail {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
-  grid-row: 1 / span 2;
-  height: 100%;
-}
+    .topbar {
+      flex: 0 0 auto;
+      background: linear-gradient(180deg, #0a2b57 0%, #092748 100%);
+      color: #fff;
+      padding: 14px 22px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.11);
+      box-shadow: 0 4px 18px rgba(6, 20, 43, 0.22);
+    }
 
-.all-dashboards-shell {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  height: 100%;
-}
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-width: 0;
+    }
 
-.all-dashboards {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  align-items: stretch;
-  flex: 1 1 auto;
-  height: 100%;
-}
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
 
-.dash-card {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 224px;
-  height: 100%;
-}
+    .brand-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
 
-.dash-preview {
-  padding: 8px 10px 8px;
-  display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  min-height: 112px;
-  flex: 0 0 auto;
-}
+    .brand-copy { min-width: 0; }
 
-.dash-meta-wrap {
-  padding: 0 10px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 auto;
-  min-height: 0;
-}
+    .brand {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+    }
 
-.link-item {
-  padding: 5px 8px 4px;
-  display: grid;
-  grid-template-columns: 16px 1fr;
-  gap: 7px;
-  align-items: start;
-}
+    .sub {
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.16em;
+      white-space: nowrap;
+    }
 
-.update-item strong,
-.link-item strong {
-  margin-bottom: 3px;
-  font-size: 10px;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
-.update-item span,
-.link-item span {
-  font-size: 8px;
-}
+    .nav a,
+    .nav-trigger {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 9px 0 7px;
+      opacity: 0.96;
+      line-height: 1;
+    }
+
+    .nav a.active { border-bottom: 3px solid rgba(255,255,255,0.96); }
+    .nav a:hover,
+    .nav-trigger:hover { text-decoration: underline; }
+
+    .nav-menu {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 240px;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 14px 30px rgba(16, 35, 62, 0.14);
+      padding: 8px;
+      display: none;
+      z-index: 20;
+    }
+
+    .nav-menu:hover .dropdown,
+    .nav-menu:focus-within .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: normal;
+      font-weight: 500;
+    }
+
+    .dropdown a:hover {
+      background: #f3f7fd;
+      text-decoration: none;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .search-action {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .search-action:hover { text-decoration: underline; }
+
+    .district-control {
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 10px;
+      padding: 9px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+
+    .district-control svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      color: rgba(255,255,255,0.96);
+    }
+
+    .district-control select {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      min-width: 150px;
+      appearance: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .district-control option { color: var(--text); }
+
+    .content {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 12px 18px 18px;
+      background:
+        radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.07), transparent 28%),
+        radial-gradient(circle at 92% 16%, rgba(183, 213, 255, 0.16) 0 3px, transparent 4px) 0 0 / 22px 22px,
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+    }
+
+    .wrap {
+      max-width: 1420px;
+      margin: 0 auto;
+    }
+
+    .hero-band {
+      padding: 2px 0 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1.45fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 10px 4px 0;
+      max-width: 680px;
+    }
+
+    .hero-copy h1 {
+      font-size: 42px;
+      line-height: 1.04;
+      margin: 0 0 12px;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .demo-note {
+      margin-top: 14px;
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #2b5fae;
+      background: #eaf2ff;
+      border-radius: 999px;
+      padding: 7px 10px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi {
+      background: rgba(255,255,255,0.98);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 13px 11px;
+      box-shadow: 0 8px 22px rgba(16, 35, 62, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 122px;
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .kpi-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      flex: 0 0 auto;
+    }
+
+    .kpi-icon.blue { background: linear-gradient(180deg, #6fa7ff, #2462d4); }
+    .kpi-icon.green { background: linear-gradient(180deg, #89cf87, #2e8d39); }
+    .kpi-icon.purple { background: linear-gradient(180deg, #c2a9ff, #7a46e8); }
+    .kpi-icon.orange { background: linear-gradient(180deg, #ffbf7e, #ef7a1c); }
+
+    .kpi-value {
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 4px;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      line-height: 1.2;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .kpi-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .search-strip {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.965);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field { min-width: 0; }
+
+    .field-label {
+      display: block;
+      margin: 0 0 6px 2px;
+      font-size: 12px;
+      color: #3e4e66;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .search-input-wrap { position: relative; }
+
+    .search-input-wrap .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7d8ba3;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .search-row input,
+    .search-row select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 13px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      min-width: 0;
+      height: 42px;
+    }
+
+    .search-input-wrap input { padding-left: 41px; }
+
+    .search-row input:focus,
+    .search-row select:focus {
+      border-color: #a7c3ea;
+      box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.08);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(180deg, var(--blue), var(--blue-2));
+      color: #fff;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 8px 16px rgba(19, 90, 214, 0.16);
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .button.small { padding: 11px 15px; font-size: 14px; }
+    .button.compact { padding: 10px 14px; }
+    .button.full { width: 100%; }
+    .button.ghost {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid #cfd9e7;
+      box-shadow: none;
+    }
+
+    .section-shell {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr) 240px;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .left-stack {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .spotlight-panel {
+      padding: 14px;
+      min-height: 0;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .spotlight-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 2px;
+    }
+
+    .spotlight-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      color: #2b5fae;
+      background: #eaf2ff;
+      border-radius: 999px;
+      padding: 5px 9px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .spotlight-title {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .spotlight-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .spotlight-link {
+      color: #1e4fa5;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spotlight-link:hover { text-decoration: underline; }
+
+    .middle-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .shell-panel {
+      padding: 12px;
+      min-width: 0;
+      background: rgba(255,255,255,0.965);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .shell-title {
+      margin: 0 0 9px;
+      font-size: 17px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .topic-list,
+    .updates-list,
+    .links-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .topic-item,
+    .update-item,
+    .link-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff, #f9fbff);
+    }
+
+    .topic-item {
+      display: grid;
+      grid-template-columns: 28px 1fr 12px;
+      gap: 6px;
+      align-items: center;
+      padding: 6px 7px;
+    }
+
+    .topic-item:hover,
+    .update-item:hover,
+    .link-item:hover { background: #f5f9ff; }
+
+    .topic-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .topic-blue { background: linear-gradient(180deg, #5b93f8, #1d4ed8); }
+    .topic-green { background: linear-gradient(180deg, #5fd08f, #16803c); }
+    .topic-purple { background: linear-gradient(180deg, #b394ff, #7c3aed); }
+    .topic-teal { background: linear-gradient(180deg, #41d6cc, #0f766e); }
+    .topic-orange { background: linear-gradient(180deg, #ffa353, #ea580c); }
+    .topic-gold { background: linear-gradient(180deg, #ffd05b, #d97706); }
+
+    .topic-text strong,
+    .update-item strong,
+    .link-item strong {
+      display: block;
+      font-size: 11px;
+      line-height: 1.05;
+      margin-bottom: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .topic-text span,
+    .update-item span,
+    .link-item span {
+      display: block;
+      font-size: 9px;
+      line-height: 1.15;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .topic-arrow {
+      color: #94a3b8;
+      font-size: 16px;
+      text-align: right;
+      line-height: 1;
+    }
+
+    .featured-wrap {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .featured-header {
+      padding: 12px 12px 0;
+    }
+
+    .featured-body {
+      padding: 0 12px 12px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .feature-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff, #f9fcff);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+      min-width: 0;
+    }
+
+    .feature-card.primary {
+      border-color: #bfd3f2;
+      box-shadow: 0 10px 26px rgba(16, 35, 62, 0.05);
+    }
+
+    .feature-preview {
+      padding: 10px;
+      border-bottom: 1px solid #e5edf7;
+    }
+
+    .preview-top {
+      height: 30px;
+      border-radius: 9px 9px 0 0;
+      background: linear-gradient(90deg, #0b6bd6, #1971d4);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.25fr 0.75fr;
+      gap: 8px;
+      height: 175px;
+    }
+
+    .preview-box {
+      border: 1px solid #d7e5f7;
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .donut {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 2px auto 0;
+      background: conic-gradient(#5ec16b 0 82%, #ef4444 82% 88%, #f59e0b 88% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "255\ATotal Students";
+      white-space: pre;
+      position: absolute;
+      inset: 15px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.05;
+      box-shadow: inset 0 0 0 1px #eef3fa;
+    }
+
+    .mini-line {
+      height: 100%;
+      background:
+        linear-gradient(180deg, rgba(11,94,215,0.04), rgba(11,94,215,0.01)),
+        #fff;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .mini-line::before {
+      content: "";
+      position: absolute;
+      inset: 18px 12px 34px 12px;
+      background:
+        linear-gradient(135deg, transparent 0 24%, #3b82f6 24% 27%, transparent 27% 41%, #22c55e 41% 44%, transparent 44% 60%, #f97316 60% 63%, transparent 63% 100%);
+      opacity: 0.95;
+      clip-path: polygon(0 70%, 20% 50%, 40% 35%, 60% 45%, 80% 30%, 100% 55%, 100% 100%, 0 100%);
+    }
+
+    .bars {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      align-items: end;
+      height: 100%;
+    }
+
+    .bars span {
+      display: block;
+      background: linear-gradient(180deg, #8dd087, #4caf50);
+      border-radius: 7px 7px 0 0;
+      height: 60%;
+    }
+
+    .bars span:nth-child(1) { height: 44%; }
+    .bars span:nth-child(2) { height: 68%; }
+    .bars span:nth-child(3) { height: 50%; }
+    .bars span:nth-child(4) { height: 76%; }
+    .bars span:nth-child(5) { height: 60%; }
+
+    .feature-meta {
+      padding: 11px 12px 12px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 auto;
+    }
+
+    .feature-meta h3 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-meta p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.38;
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+
+    .feature-updated {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      padding-top: 8px;
+    }
+
+    .right-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .right-rail .spotlight-panel {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .updates-list,
+    .links-list { gap: 7px; }
+
+    .update-item,
+    .link-item {
+      padding: 8px 8px 7px;
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 7px;
+      align-items: start;
+    }
+
+    .update-icon,
+    .link-icon {
+      width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+      color: #6d7d96;
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 2px;
+      flex: 0 0 auto;
+    }
+
+    .update-item strong,
+    .link-item strong { margin-bottom: 3px; font-size: 11px; }
+    .update-item span,
+    .link-item span { font-size: 9px; }
+
+    .all-dashboards-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .all-dashboards-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 2px;
+    }
+
+    .view-all-link {
+      color: #1e4fa5;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .view-all-link:hover { text-decoration: underline; }
+
+    .all-dashboards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .dash-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 224px;
+      background: rgba(255,255,255,0.965);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .dash-card:hover {
+      transform: translateY(-1px);
+      border-color: #bcd0ea;
+      box-shadow: 0 10px 22px rgba(16, 35, 62, 0.07);
+    }
+
+    .dash-preview {
+      height: 124px;
+      padding: 10px 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .dash-mini {
+      flex: 1 1 auto;
+      height: 34px;
+      border: 1px solid #d7e5f7;
+      border-radius: 11px;
+      background:
+        linear-gradient(180deg, #fff, #f9fcff),
+        repeating-linear-gradient(90deg, rgba(19,90,214,0.08) 0 6px, transparent 6px 12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-mini::before {
+      content: "";
+      position: absolute;
+      inset: 7px 8px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(19,90,214,0.18) 0 18%, rgba(19,90,214,0.02) 18% 100%);
+      clip-path: polygon(0 68%, 18% 40%, 36% 58%, 54% 28%, 72% 52%, 88% 30%, 100% 48%, 100% 100%, 0 100%);
+      opacity: 0.95;
+    }
+
+    .dash-meta-wrap {
+      padding: 0 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 auto;
+    }
+
+    .dash-head {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .dash-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex: 0 0 auto;
+    }
+
+    .dash-blue { background: linear-gradient(180deg, #5b93f8, #1d4ed8); }
+    .dash-green { background: linear-gradient(180deg, #5fd08f, #16803c); }
+    .dash-purple { background: linear-gradient(180deg, #b394ff, #7c3aed); }
+    .dash-teal { background: linear-gradient(180deg, #41d6cc, #0f766e); }
+    .dash-orange { background: linear-gradient(180deg, #ffa353, #ea580c); }
+    .dash-gold { background: linear-gradient(180deg, #ffd05b, #d97706); }
+
+    .dash-head h3 {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dash-head p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.18;
+      min-height: 24px;
+    }
+
+    .dash-foot {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-height: 18px;
+    }
+
+    .dash-meta {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.2;
+      text-align: right;
+      width: 100%;
+    }
+
+    .pager-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 0;
+    }
+
+    .pager-dots span {
+      display: inline-block;
+      border-radius: 999px;
+      background: #c9d3e4;
+    }
+
+    .pager-dots span:nth-child(1) { width: 11px; height: 11px; opacity: 0.95; }
+    .pager-dots span:nth-child(2) { width: 8px; height: 8px; opacity: 0.75; }
+    .pager-dots span:nth-child(3) { width: 10px; height: 10px; opacity: 0.62; }
+    .pager-dots span.active { background: var(--navy); }
+
+    .footer-copy {
+      margin: 8px 2px 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .bottombar {
+      flex: 0 0 auto;
+      background: linear-gradient(180deg, #0a2b57 0%, #092748 100%);
+      color: #fff;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 22px;
+    }
+
+    .bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 13px;
+      min-width: 0;
+    }
+
+    .bottom-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .bottom-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .bottom-center,
+    .bottom-right { color: rgba(255,255,255,0.88); white-space: nowrap; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 1240px) {
+      .hero-grid,
+      .section-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .all-dashboards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bottom-inner { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 760px) {
+      .content { padding: 12px 12px 16px; }
+      .topbar, .bottombar { padding-left: 14px; padding-right: 14px; }
+      .topbar-inner { flex-wrap: wrap; }
+      .nav { justify-content: flex-start; flex-wrap: wrap; gap: 14px; }
+      .hero-copy h1 { font-size: 33px; }
+      .kpi-grid,
+      .search-row,
+      .all-dashboards { grid-template-columns: 1fr; }
+      .search-row .button { width: 100%; }
+      .preview-grid { grid-template-columns: 1fr; height: auto; }
+      .preview-box { min-height: 116px; }
+      .bars { height: 116px; }
+      .bottom-center,
+      .bottom-right { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <path d="M10.5 4a6.5 6.5 0 104.12 11.55l4.91 4.9 1.41-1.41-4.9-4.91A6.5 6.5 0 0010.5 4zm0 2a4.5 4.5 0 110 9 4.5 4.5 0 010-9z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24">
+      <path d="M4 5h16l-6 7v5l-4 2v-7L4 5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-building" viewBox="0 0 24 24">
+      <path d="M4 20h16M7 20V7h10v13M9 20v-3m6 3v-3M9 9h2m2 0h2m-6 3h2m2 0h2m-6 3h2m2 0h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 7V5h6v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M9 12a4 4 0 014-4h3a4 4 0 010 8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 12a4 4 0 01-4 4H8a4 4 0 010-8h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 4h7l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M3 10l9-5 9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 12v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M21 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><path d="M6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm11 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM6.5 11.5c-2.4 0-4.5 1.9-4.5 4.3V18h6v-2.2c0-1 .3-1.9.8-2.7-.6-1-1.3-1.6-2.3-1.6zm11 0c-1 0-1.8.6-2.3 1.6.5.8.8 1.7.8 2.7V18h6v-2.2c0-2.4-2.1-4.3-4.5-4.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-trend" viewBox="0 0 24 24"><path d="M4 16l6-6 4 4 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-block">
+          <img src="ocde-logo.png" alt="OCDE logo" class="brand-logo" />
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Data. Insights. Student Success.</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html" class="active">Home</a>
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Dashboards ▾</button>
+            <div class="dropdown">
+              <a href="attendance.html">Attendance &amp; Engagement</a>
+              <a href="college-career.html">College &amp; Career</a>
+              <a href="academics.html">Student Academics</a>
+              <a href="english-learners.html">English Learners</a>
+              <a href="differentiated-assistance.html">Differentiated Assistance</a>
+              <a href="spotlight.html">Spotlight</a>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Students ▾</button>
+            <div class="dropdown">
+              <a href="#">Overview</a>
+              <a href="#">Student Groups</a>
+              <a href="#">Subgroups</a>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">Resources ▾</button>
+            <div class="dropdown">
+              <a href="#">Data Dictionary</a>
+              <a href="#">Methodology &amp; Notes</a>
+              <a href="#">Downloads</a>
+              <a href="#">Request Data</a>
+            </div>
+          </div>
+          <div class="nav-menu">
+            <button class="nav-trigger" type="button">About ▾</button>
+            <div class="dropdown">
+              <a href="#">Purpose</a>
+              <a href="#">Data Refresh</a>
+              <a href="#">FAQ</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="top-actions">
+          <a class="search-action" href="#" aria-label="Search dashboards">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            Search
+          </a>
+          <label class="district-control">
+            <svg aria-hidden="true"><use href="#i-building"></use></svg>
+            <span class="sr-only">Select School</span>
+            <select id="districtSelect" aria-label="Select School">
+              <option value="all">Select School</option>
+              <option value="anaheim-elementary">Anaheim Elementary</option>
+              <option value="anaheim-union-high">Anaheim Union High</option>
+              <option value="brea-olinda-unified">Brea Olinda Unified</option>
+              <option value="buena-park">Buena Park</option>
+              <option value="capistrano-unified">Capistrano Unified</option>
+              <option value="centralia-elementary">Centralia Elementary</option>
+              <option value="cypress">Cypress</option>
+              <option value="fountain-valley">Fountain Valley</option>
+              <option value="fullerton-joint-union-high">Fullerton Joint Union High</option>
+              <option value="fullerton">Fullerton</option>
+              <option value="garden-grove-unified">Garden Grove Unified</option>
+              <option value="huntington-beach-city">Huntington Beach City</option>
+              <option value="huntington-beach-union-high">Huntington Beach Union High</option>
+              <option value="irvine-unified">Irvine Unified</option>
+              <option value="la-habra-city">La Habra City</option>
+              <option value="laguna-beach-unified">Laguna Beach Unified</option>
+              <option value="los-alamitos-unified">Los Alamitos Unified</option>
+              <option value="lowell-joint">Lowell Joint</option>
+              <option value="magnolia">Magnolia</option>
+              <option value="newport-mesa-unified">Newport-Mesa Unified</option>
+              <option value="ocean-view">Ocean View</option>
+              <option value="orange-unified">Orange Unified</option>
+              <option value="placentia-yorba-linda-unified">Placentia-Yorba Linda Unified</option>
+              <option value="saddleback-valley-unified">Saddleback Valley Unified</option>
+              <option value="santa-ana-unified">Santa Ana Unified</option>
+              <option value="savanna">Savanna</option>
+              <option value="tustin-unified">Tustin Unified</option>
+              <option value="westminster">Westminster</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrap">
+        <section class="hero-band">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1>Welcome to OCDE Data Hub</h1>
+              <p>Your source for data and insights on student success. Explore dashboards, trends, and resources that support data-informed decisions.</p>
+              <span class="demo-note">Illustrative metrics shown for prototype review</span>
+            </div>
+            <div class="kpi-grid" aria-label="Key performance indicators">
+              <div class="kpi">
+                <div class="kpi-top"><div class="kpi-icon blue"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div></div>
+                <div class="kpi-value">255</div>
+                <div class="kpi-label">Total Students</div>
+                <div class="kpi-sub">(Selected Filters)</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div></div>
+                <div class="kpi-value">87%</div>
+                <div class="kpi-label">College/Career Prepared</div>
+                <div class="kpi-sub">Prototype metric</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-top"><div class="kpi-icon purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div></div>
+                <div class="kpi-value">2,482</div>
+                <div class="kpi-label">Graduates</div>
+                <div class="kpi-sub">(4-Year Total)</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-top"><div class="kpi-icon orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div>
+                <div class="kpi-value">32</div>
+                <div class="kpi-label">Data Dashboards Available</div>
+                <div class="kpi-sub">Across topic areas</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="search-strip">
+          <div class="search-row">
+            <div class="field">
+              <label class="field-label" for="dashboardSearch">Search dashboards</label>
+              <div class="search-input-wrap">
+                <span class="search-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+                <input id="dashboardSearch" type="text" placeholder="Search dashboards..." />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="schoolSelect">School</label>
+              <select id="schoolSelect" aria-label="Select School"></select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="yearSelect">School Year</label>
+              <select id="yearSelect" aria-label="School Year">
+                <option>2025-26</option>
+                <option>2024-25</option>
+                <option>2023-24</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="groupSelect">Student Group</label>
+              <select id="groupSelect" aria-label="Student Group">
+                <option>All Students</option>
+                <option>English Learners</option>
+                <option>Students with Disabilities</option>
+                <option>Socioeconomically Disadvantaged</option>
+              </select>
+            </div>
+            <button class="button small" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>
+              Apply Filters
+            </button>
+          </div>
+        </section>
+
+        <section class="section-shell">
+          <aside class="left-stack">
+            <aside class="shell-panel">
+              <h2 class="shell-title">Explore by Topic</h2>
+              <div class="topic-list">
+                <div class="topic-item"><div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div class="topic-text"><strong>Attendance &amp; Engagement</strong><span>6 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+                <div class="topic-item"><div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div class="topic-text"><strong>College &amp; Career</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+                <div class="topic-item"><div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div class="topic-text"><strong>Student Academics</strong><span>8 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+                <div class="topic-item"><div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div><div class="topic-text"><strong>English Learners</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+                <div class="topic-item"><div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div class="topic-text"><strong>Special Populations</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+                <div class="topic-item"><div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><div class="topic-text"><strong>Spotlight</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              </div>
+              <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>View All Dashboards</a></div>
+            </aside>
+
+            <aside class="shell-panel">
+              <h2 class="shell-title">Quick Links</h2>
+              <div class="links-list">
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
+              </div>
+            </aside>
+          </aside>
+
+          <div class="middle-stack">
+            <section class="shell-panel featured-wrap" style="margin-top:0;">
+              <div class="featured-header">
+                <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboards</h2>
+              </div>
+              <div class="featured-body">
+                <div class="featured-grid">
+                  <article class="feature-card primary">
+                    <div class="feature-preview" aria-label="Featured dashboard preview: CTE Program Participation">
+                      <div class="preview-top">CTE Program Participation</div>
+                      <div class="preview-grid">
+                        <div class="preview-box"><div class="donut"></div></div>
+                        <div class="preview-box"><div class="mini-line"></div></div>
+                        <div class="preview-box"><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+                      </div>
+                    </div>
+                    <div class="feature-meta">
+                      <h3>CTE Program Participation</h3>
+                      <p>Explore enrollment, pathway participation, and completion across career technical education programs.</p>
+                      <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 24, 2026</div>
+                    </div>
+                  </article>
+
+                  <article class="feature-card">
+                    <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
+                      <div class="preview-top">College/Career Preparedness</div>
+                      <div class="preview-grid">
+                        <div class="preview-box"><div class="donut"></div></div>
+                        <div class="preview-box"><div class="mini-line"></div></div>
+                        <div class="preview-box"><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+                      </div>
+                    </div>
+                    <div class="feature-meta">
+                      <h3>College/Career Preparedness</h3>
+                      <p>Explore preparedness metrics across student groups and over time.</p>
+                      <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <section class="all-dashboards-shell" style="margin-top:-2px;">
+              <div class="all-dashboards">
+                <a class="dash-card" href="attendance.html" aria-label="Open Attendance Overview dashboard">
+                  <div class="dash-preview" style="height:112px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="18" fill="#5fd08f" opacity="0.18"/>
+                      <g transform="translate(36 42) scale(1.1)" fill="#16803c"><use href="#i-people"></use></g>
+                      <path d="M124 82L144 62L165 70L188 50L210 55L232 36L256 42L286 30" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="dash-meta-wrap">
+                    <div class="dash-head">
+                      <h3>Attendance Overview</h3>
+                      <p>Attendance rates, trends, and chronic absenteeism.</p>
+                    </div>
+                    <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div></div>
+                  </div>
+                </a>
+
+                <a class="dash-card" href="#" aria-label="Open CAASPP Performance dashboard">
+                  <div class="dash-preview" style="height:112px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="18" fill="#5b93f8" opacity="0.18"/>
+                      <g transform="translate(36 42) scale(1.1)" fill="#1d4ed8"><use href="#i-doc"></use></g>
+                      <path d="M124 78L144 72L166 56L186 60L208 44L232 48L254 39L286 33" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="dash-meta-wrap">
+                    <div class="dash-head">
+                      <h3>CAASPP Performance</h3>
+                      <p>Student performance on state assessments.</p>
+                    </div>
+                    <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div></div>
+                  </div>
+                </a>
+
+                <a class="dash-card" href="#" aria-label="Open FAFSA Completion dashboard">
+                  <div class="dash-preview" style="height:112px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="18" fill="#b394ff" opacity="0.18"/>
+                      <g transform="translate(36 42) scale(1.1)" fill="#7c3aed"><use href="#i-graduation"></use></g>
+                      <path d="M124 84L144 74L166 78L188 58L208 54L232 41L254 45L286 38" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="dash-meta-wrap">
+                    <div class="dash-head">
+                      <h3>FAFSA Completion</h3>
+                      <p>FAFSA completion rates and trends.</p>
+                    </div>
+                    <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div></div>
+                  </div>
+                </a>
+
+                <a class="dash-card" href="#" aria-label="Open Graduation Rate Trends dashboard">
+                  <div class="dash-preview" style="height:112px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="18" fill="#ffa353" opacity="0.18"/>
+                      <g transform="translate(36 42) scale(1.1)" fill="#ea580c"><use href="#i-arrow-trend"></use></g>
+                      <path d="M124 82L144 66L166 70L190 58L210 62L232 46L254 40L286 30" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="dash-meta-wrap">
+                    <div class="dash-head">
+                      <h3>Graduation Rate Trends</h3>
+                      <p>Graduation trends by cohort and subgroup.</p>
+                    </div>
+                    <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div></div>
+                  </div>
+                </a>
+              </div>
+              <div class="all-dashboards-footer">
+                <a class="view-all-link" href="#">View All</a>
+              </div>
+              <div class="pager-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+            </section>
+          </div>
+
+          <div class="right-rail">
+            <aside class="spotlight-panel">
+              <span class="spotlight-tag">Data Spotlight</span>
+              <h3 class="spotlight-title">New dashboards and insights continue to expand across OCDE.</h3>
+              <p class="spotlight-copy">Use this space to highlight a featured insight, county trend, or recently added data resource that supports the dashboard ecosystem.</p>
+            </aside>
+            <div class="spotlight-footer">
+              <a class="view-all-link" href="#">View Spotlight →</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bottombar">
+      <div class="bottom-inner">
+        <div class="bottom-left">
+          <img src="ocde-logo.png" alt="OCDE logo" class="bottom-logo" />
+          <span>Orange County Department of Education</span>
+        </div>
+        <div class="bottom-center">Data is updated regularly. Please review data notes for details.</div>
+        <div class="bottom-right">Questions? Contact our Data Team</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const districtSelect = document.getElementById('districtSelect');
+    const schoolSelect = document.getElementById('schoolSelect');
+    const districtSchoolMap = {
+      all: ['All Schools'],
+      'anaheim-elementary': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'anaheim-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'brea-olinda-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'buena-park': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'capistrano-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'centralia-elementary': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      cypress: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'fountain-valley': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'fullerton-joint-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      fullerton: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'garden-grove-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'huntington-beach-city': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'huntington-beach-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'irvine-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'la-habra-city': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'laguna-beach-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'los-alamitos-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'lowell-joint': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      magnolia: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'newport-mesa-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'ocean-view': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'orange-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'placentia-yorba-linda-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'saddleback-valley-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'santa-ana-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      savanna: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      'tustin-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
+      westminster: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C']
+    };
+
+    function populateSchools(districtKey) {
+      const options = districtSchoolMap[districtKey] || districtSchoolMap.all;
+      schoolSelect.innerHTML = '';
+      options.forEach((label) => {
+        const opt = document.createElement('option');
+        opt.textContent = label;
+        schoolSelect.appendChild(opt);
+      });
+    }
+
+    districtSelect.addEventListener('change', (e) => {
+      populateSchools(e.target.value);
+    });
+
+    populateSchools(districtSelect.value);
+  </script>
+</body>
+</html>
