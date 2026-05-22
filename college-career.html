@@ -108,6 +108,7 @@
       background: white;
       border-radius: 18px;
       overflow: hidden;
+      width: 100%;
     }
 
     .tableauPlaceholder {
@@ -201,14 +202,23 @@
         </div>
 
         <script type="text/javascript">
-          var divElement = document.getElementById('viz1779402164761');
-          var vizElement = divElement.getElementsByTagName('object')[0];
-          vizElement.style.width = '100%';
-          vizElement.style.height = '900px';
-          var scriptElement = document.createElement('script');
-          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-          vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+  window.addEventListener('load', function () {
+    var divElement = document.getElementById('viz1779402164761');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+
+    var width = divElement.offsetWidth;
+    if (width < 960) {
+      width = 960;
+    }
+
+    vizElement.style.width = width + 'px';
+    vizElement.style.height = Math.round(width * 0.68) + 'px';
+
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  });
+</script>
       </div>
     </section>
   </main>
