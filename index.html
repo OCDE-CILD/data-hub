@@ -13,6 +13,12 @@
       --text: #10233e;
       --muted: #5b6b84;
       --line: #d8e1ee;
+      --soft: #f8fbff;
+      --green: #2f855a;
+      --teal: #0f766e;
+      --purple: #6d28d9;
+      --orange: #ea580c;
+      --gold: #d97706;
     }
 
     * {
@@ -62,44 +68,136 @@
     }
 
     .wrap {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 28px 20px 56px;
+      padding: 24px 20px 48px;
     }
 
-    .portal-hero {
-      background: linear-gradient(180deg, #fff, #f8fbff);
+    .hero-band {
+      background: linear-gradient(180deg, #ffffff, #f7fbff);
       border: 1px solid var(--line);
       border-radius: 20px;
-      padding: 18px;
       box-shadow: 0 10px 30px rgba(16, 35, 62, 0.06);
+      padding: 20px;
     }
 
-    .portal-grid {
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.5fr 0.9fr;
-      gap: 16px;
+      grid-template-columns: 1.1fr 1.6fr;
+      gap: 18px;
       align-items: stretch;
     }
 
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.05);
+    .hero-copy {
+      padding: 8px 4px 0;
     }
 
-    .command-title {
+    .hero-copy h1 {
+      font-size: 48px;
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .demo-note {
+      margin-top: 18px;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2858a6;
+      background: #eaf2ff;
+      border-radius: 999px;
+      padding: 7px 11px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 14px;
+      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 132px;
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .kpi-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
       font-size: 18px;
       font-weight: 700;
-      margin: 0 0 12px;
+      color: white;
+      flex: 0 0 auto;
+    }
+
+    .kpi-icon.blue { background: linear-gradient(180deg, #2f7de1, #165bb7); }
+    .kpi-icon.green { background: linear-gradient(180deg, #6bbf59, #2f7d32); }
+    .kpi-icon.purple { background: linear-gradient(180deg, #a78bfa, #6d28d9); }
+    .kpi-icon.orange { background: linear-gradient(180deg, #fdba74, #ea580c); }
+
+    .kpi-value {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .kpi-label {
+      font-size: 14px;
+      line-height: 1.35;
       color: var(--text);
+      font-weight: 700;
+    }
+
+    .kpi-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .search-strip {
+      margin-top: 14px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
+      padding: 16px;
     }
 
     .search-row {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr auto;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
       gap: 10px;
       align-items: center;
     }
@@ -110,7 +208,7 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 12px 14px;
-      font-size: 15px;
+      font-size: 14px;
       background: white;
       color: var(--text);
       outline: none;
@@ -128,13 +226,11 @@
       background: var(--blue);
       color: white;
       text-decoration: none;
-      padding: 12px 16px;
+      padding: 11px 16px;
       border-radius: 10px;
       font-weight: 700;
       border: none;
       cursor: pointer;
-      margin-right: 10px;
-      margin-top: 8px;
       white-space: nowrap;
     }
 
@@ -145,54 +241,99 @@
     }
 
     .button.small {
-      padding: 10px 14px;
+      padding: 11px 15px;
       font-size: 14px;
-      margin-top: 0;
     }
 
-    .featured-card {
-      margin-top: 14px;
+    .shell-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr) 320px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .shell-panel {
+      background: white;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: linear-gradient(180deg, #ffffff, #f9fcff);
+      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
+      padding: 16px;
+    }
+
+    .shell-title {
+      margin: 0 0 12px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .topic-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .topic-item {
+      display: grid;
+      grid-template-columns: 40px 1fr 18px;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f9fbff);
+    }
+
+    .topic-item:hover {
+      background: #f5f9ff;
+    }
+
+    .topic-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .topic-blue { background: linear-gradient(180deg, #3b82f6, #1d4ed8); }
+    .topic-green { background: linear-gradient(180deg, #34d399, #15803d); }
+    .topic-purple { background: linear-gradient(180deg, #a78bfa, #7c3aed); }
+    .topic-teal { background: linear-gradient(180deg, #2dd4bf, #0f766e); }
+    .topic-orange { background: linear-gradient(180deg, #fb923c, #ea580c); }
+    .topic-gold { background: linear-gradient(180deg, #fbbf24, #d97706); }
+
+    .topic-text strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .topic-text span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .topic-arrow {
+      color: #94a3b8;
+      font-size: 20px;
+      text-align: right;
+    }
+
+    .featured-wrap {
+      padding: 0;
       overflow: hidden;
     }
 
-    .featured-inner {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 14px;
-      padding: 16px;
-      align-items: center;
+    .featured-header {
+      padding: 16px 16px 0;
     }
 
-    .mini-chart {
-      width: 96px;
-      height: 96px;
-      border-radius: 16px;
-      background:
-        linear-gradient(180deg, rgba(11,94,215,0.12), rgba(11,94,215,0.02)),
-        white;
-      border: 1px solid var(--line);
-      padding: 10px;
-      display: flex;
-      align-items: end;
-      gap: 5px;
-    }
-
-    .bar {
-      width: 12px;
-      border-radius: 8px 8px 0 0;
-      background: #b9d4f4;
-    }
-
-    .bar.b1 { height: 18px; }
-    .bar.b2 { height: 36px; }
-    .bar.b3 { height: 58px; }
-    .bar.b4 { height: 28px; }
-    .bar.b5 { height: 72px; }
-
-    .featured-copy .eyebrow {
+    .featured-badge {
       display: inline-block;
       font-size: 12px;
       font-weight: 700;
@@ -200,21 +341,135 @@
       background: #eaf2ff;
       border-radius: 999px;
       padding: 6px 10px;
-      margin-bottom: 8px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    .featured-copy h3 {
-      margin: 0 0 6px;
-      font-size: 22px;
+    .featured-body {
+      display: grid;
+      grid-template-columns: 1.25fr 0.8fr;
+      gap: 16px;
+      padding: 0 16px 16px;
+      align-items: start;
+    }
+
+    .dashboard-preview {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff, #f9fcff);
+      padding: 12px;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .preview-top {
+      height: 40px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(90deg, #0b6bd6, #1971d4);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.2fr 0.75fr;
+      gap: 8px;
+      height: 230px;
+    }
+
+    .preview-box {
+      border: 1px solid #d7e5f7;
+      border-radius: 12px;
+      background: white;
+      padding: 10px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .donut {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: conic-gradient(#5ec16b 0 82%, #ef4444 82% 88%, #f59e0b 88% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "255\ATotal Students";
+      white-space: pre;
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      background: white;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .mini-line {
+      height: 100%;
+      background:
+        linear-gradient(180deg, rgba(11,94,215,0.04), rgba(11,94,215,0.01)),
+        white;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-line::before {
+      content: "";
+      position: absolute;
+      inset: 20px 14px 38px 14px;
+      background:
+        linear-gradient(135deg, transparent 0 24%, #3b82f6 24% 27%, transparent 27% 41%, #22c55e 41% 44%, transparent 44% 60%, #f97316 60% 63%, transparent 63% 100%);
+      opacity: 0.95;
+      clip-path: polygon(0 70%, 20% 50%, 40% 35%, 60% 45%, 80% 30%, 100% 55%, 100% 100%, 0 100%);
+    }
+
+    .bars {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-items: end;
+      height: 100%;
+    }
+
+    .bars span {
+      display: block;
+      background: linear-gradient(180deg, #88c67f, #4caf50);
+      border-radius: 8px 8px 0 0;
+      height: 60%;
+    }
+
+    .bars span:nth-child(1) { height: 45%; }
+    .bars span:nth-child(2) { height: 70%; }
+    .bars span:nth-child(3) { height: 50%; }
+    .bars span:nth-child(4) { height: 78%; }
+    .bars span:nth-child(5) { height: 64%; }
+
+    .featured-meta h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
       line-height: 1.15;
     }
 
-    .featured-copy p {
-      margin: 0 0 12px;
+    .featured-meta p {
+      margin: 0 0 14px;
       color: var(--muted);
-      line-height: 1.4;
+      line-height: 1.45;
       font-size: 14px;
     }
 
@@ -223,65 +478,50 @@
       gap: 10px;
       flex-wrap: wrap;
       align-items: center;
-    }
-
-    .featured-note {
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .insight-box {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, #f8fcff, #ffffff);
-      padding: 18px;
-      height: 100%;
-    }
-
-    .insight-box h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
-    }
-
-    .insight-box p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 14px;
-    }
-
-    .insight-metric {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
       margin-top: 12px;
     }
 
-    .metric {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 6px 18px rgba(16, 35, 62, 0.04);
-    }
-
-    .metric .value {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .metric .label {
+    .featured-note {
+      margin-top: 12px;
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.35;
+    }
+
+    .updates-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .update-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: linear-gradient(180deg, #ffffff, #f9fcff);
+    }
+
+    .update-item strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .update-item span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .update-actions {
+      margin-top: 10px;
+    }
+
+    .update-actions .button {
+      width: 100%;
+      text-align: center;
     }
 
     .section-title {
-      margin: 28px 0 14px;
+      margin: 26px 0 12px;
       font-size: 22px;
     }
 
@@ -289,7 +529,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .card {
@@ -300,33 +540,55 @@
       box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
     }
 
-    .card h3 {
-      margin: 0 0 8px;
+    .dash-head {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .dash-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .dash-blue { background: linear-gradient(180deg, #3b82f6, #1d4ed8); }
+    .dash-green { background: linear-gradient(180deg, #34d399, #15803d); }
+    .dash-purple { background: linear-gradient(180deg, #a78bfa, #7c3aed); }
+    .dash-teal { background: linear-gradient(180deg, #2dd4bf, #0f766e); }
+    .dash-orange { background: linear-gradient(180deg, #fb923c, #ea580c); }
+    .dash-gold { background: linear-gradient(180deg, #fbbf24, #d97706); }
+
+    .dash-head h3 {
+      margin: 0;
       font-size: 17px;
       line-height: 1.2;
     }
 
-    .card p {
-      margin: 0 0 12px;
+    .dash-head p {
+      margin: 4px 0 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
-    .card img {
-      display: block;
-      width: 100%;
-      height: 78px;
-      object-fit: cover;
-      object-position: top;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      margin: 8px 0 10px;
+    .dash-foot {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .meta {
-      margin-top: 12px;
-      font-size: 13px;
+    .dash-meta {
+      font-size: 12px;
       color: var(--muted);
     }
 
@@ -337,27 +599,39 @@
       font-size: 14px;
     }
 
-    @media (max-width: 1100px) {
-      .portal-grid {
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .shell-grid,
+      .featured-body {
         grid-template-columns: 1fr;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .search-row {
         grid-template-columns: 1fr 1fr;
       }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 760px) {
+      .hero-copy h1 {
+        font-size: 36px;
+      }
+
+      .kpi-grid,
+      .search-row,
       .cards {
         grid-template-columns: 1fr;
       }
 
-      .search-row {
-        grid-template-columns: 1fr;
-      }
-
       .wrap {
-        padding: 18px 12px 40px;
+        padding: 18px 12px 36px;
       }
 
       .topbar,
@@ -371,13 +645,21 @@
         margin: 0 14px 8px 0;
       }
 
-      .featured-inner {
-        grid-template-columns: 1fr;
+      .shell-panel {
+        padding: 14px;
       }
 
-      .mini-chart {
-        width: 100%;
-        height: 72px;
+      .preview-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .preview-box {
+        min-height: 120px;
+      }
+
+      .bars {
+        height: 120px;
       }
     }
   </style>
@@ -399,122 +681,306 @@
   </div>
 
   <main class="wrap">
-    <section class="portal-hero">
-      <div class="portal-grid">
-        <div class="panel">
-          <div class="command-title">Search dashboards</div>
-          <div class="search-row">
-            <input type="text" placeholder="Search dashboards..." />
-            <select>
-              <option>All Schools</option>
-              <option>District</option>
-              <option>School A</option>
-              <option>School B</option>
-              <option>School C</option>
-            </select>
-            <select>
-              <option>2024-25</option>
-              <option>2023-24</option>
-              <option>2022-23</option>
-            </select>
-            <button class="button small" type="button">Search</button>
-          </div>
-
-          <div class="featured-card">
-            <div class="featured-inner">
-              <div class="mini-chart" aria-hidden="true">
-                <div class="bar b1"></div>
-                <div class="bar b2"></div>
-                <div class="bar b3"></div>
-                <div class="bar b4"></div>
-                <div class="bar b5"></div>
-              </div>
-
-              <div class="featured-copy">
-                <div class="eyebrow">Featured Dashboard</div>
-                <h3>Attendance &amp; Engagement Dashboard</h3>
-                <p>
-                  Explore chronic absenteeism trends and year-over-year insights across student groups.
-                </p>
-
-                <div class="featured-actions">
-                  <a class="button" href="attendance.html">View dashboard</a>
-                  <a class="button secondary" href="#">View notes</a>
-                </div>
-
-                <div class="featured-note">
-                  Updated regularly • Tableau Public
-                </div>
-              </div>
-            </div>
-          </div>
+    <section class="hero-band">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Welcome to OCDE Data Hub</h1>
+          <p>
+            Your source for data and insights on student success.
+            Explore dashboards, trends, and resources that support
+            data-informed decisions.
+          </p>
+          <span class="demo-note">Illustrative metrics shown for prototype review</span>
         </div>
 
-        <div class="panel">
-          <h2 style="margin: 0 0 8px;">District Highlights</h2>
-          <p style="margin-bottom: 16px;">
-            A quick orientation panel for users who want to jump right into key reporting themes.
-          </p>
-
-          <div class="insight-metric">
-            <div class="metric">
-              <div class="value">2.1%</div>
-              <div class="label">Decrease in chronic absenteeism vs. prior year</div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-top">
+              <div class="kpi-icon blue">👥</div>
             </div>
+            <div class="kpi-value">255</div>
+            <div class="kpi-label">Total Students</div>
+            <div class="kpi-sub">(Selected Filters)</div>
+          </div>
 
-            <div class="metric">
-              <div class="value">8%</div>
-              <div class="label">Increase in FAFSA completion vs. prior year</div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <div class="kpi-icon green">✓</div>
             </div>
+            <div class="kpi-value">87%</div>
+            <div class="kpi-label">College/Career Prepared</div>
+            <div class="kpi-sub">Prototype metric</div>
+          </div>
 
-            <div class="metric">
-              <div class="value">3</div>
-              <div class="label">Dashboards updated this week</div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <div class="kpi-icon purple">🎓</div>
             </div>
+            <div class="kpi-value">2,482</div>
+            <div class="kpi-label">Graduates</div>
+            <div class="kpi-sub">(4-Year Total)</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-top">
+              <div class="kpi-icon orange">↗</div>
+            </div>
+            <div class="kpi-value">32</div>
+            <div class="kpi-label">Data Dashboards Available</div>
+            <div class="kpi-sub">Across topic areas</div>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="search-strip">
+      <div class="search-row">
+        <input type="text" placeholder="Search dashboards..." />
+        <select>
+          <option>All Schools</option>
+          <option>District</option>
+          <option>School A</option>
+          <option>School B</option>
+          <option>School C</option>
+        </select>
+        <select>
+          <option>2024-25</option>
+          <option>2023-24</option>
+          <option>2022-23</option>
+        </select>
+        <select>
+          <option>All Students</option>
+          <option>English Learners</option>
+          <option>Students with Disabilities</option>
+          <option>Socioeconomically Disadvantaged</option>
+        </select>
+        <button class="button small" type="button">Apply Filters</button>
+      </div>
+    </section>
+
+    <section class="shell-grid">
+      <aside class="shell-panel">
+        <h2 class="shell-title">Explore by Topic</h2>
+        <div class="topic-list">
+          <div class="topic-item">
+            <div class="topic-icon topic-blue">🎓</div>
+            <div class="topic-text">
+              <strong>College &amp; Career</strong>
+              <span>5 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+
+          <div class="topic-item">
+            <div class="topic-icon topic-green">👥</div>
+            <div class="topic-text">
+              <strong>Attendance &amp; Engagement</strong>
+              <span>6 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+
+          <div class="topic-item">
+            <div class="topic-icon topic-purple">📘</div>
+            <div class="topic-text">
+              <strong>Student Academics</strong>
+              <span>8 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+
+          <div class="topic-item">
+            <div class="topic-icon topic-teal">🌐</div>
+            <div class="topic-text">
+              <strong>English Learners</strong>
+              <span>4 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+
+          <div class="topic-item">
+            <div class="topic-icon topic-orange">🏛️</div>
+            <div class="topic-text">
+              <strong>Differentiated Assistance</strong>
+              <span>4 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+
+          <div class="topic-item">
+            <div class="topic-icon topic-gold">⭐</div>
+            <div class="topic-text">
+              <strong>Spotlight</strong>
+              <span>5 dashboards</span>
+            </div>
+            <div class="topic-arrow">›</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <a class="button" href="#">View All Dashboards</a>
+        </div>
+      </aside>
+
+      <section class="shell-panel featured-wrap">
+        <div class="featured-header">
+          <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboard</h2>
+          <span class="featured-badge">Attendance &amp; Engagement</span>
+        </div>
+
+        <div class="featured-body">
+          <div class="dashboard-preview">
+            <div class="preview-top">College/Career Preparedness Dashboard</div>
+            <div class="preview-grid">
+              <div class="preview-box">
+                <div class="donut"></div>
+              </div>
+              <div class="preview-box">
+                <div class="mini-line"></div>
+              </div>
+              <div class="preview-box">
+                <div class="bars">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="featured-meta">
+            <h3>Attendance &amp; Engagement Dashboard</h3>
+            <p>
+              Explore chronic absenteeism trends and year-over-year insights across student groups.
+            </p>
+
+            <div class="featured-actions">
+              <a class="button" href="attendance.html">View dashboard</a>
+              <a class="button secondary" href="#">View notes</a>
+            </div>
+
+            <div class="featured-note">Updated regularly • Tableau Public</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="shell-panel">
+        <h2 class="shell-title">Recently Updated</h2>
+        <div class="updates-list">
+          <div class="update-item">
+            <strong>College/Career Preparedness</strong>
+            <span>May 23, 2025</span>
+          </div>
+
+          <div class="update-item">
+            <strong>EL Progress Dashboard</strong>
+            <span>May 22, 2025</span>
+          </div>
+
+          <div class="update-item">
+            <strong>Graduation Rate Trends</strong>
+            <span>May 21, 2025</span>
+          </div>
+
+          <div class="update-item">
+            <strong>Attendance Overview</strong>
+            <span>May 21, 2025</span>
+          </div>
+
+          <div class="update-item">
+            <strong>CAASPP Performance</strong>
+            <span>May 22, 2025</span>
+          </div>
+        </div>
+
+        <div class="update-actions">
+          <a class="button secondary" href="#">View All Updates</a>
+        </div>
+      </aside>
+    </section>
+
     <h2 class="section-title">Dashboard categories</h2>
     <section class="cards">
       <div class="card">
-        <h3>Attendance &amp; Engagement</h3>
-        <img src="attendance-preview.png" alt="Attendance preview">
-        <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
-        <a href="attendance.html" class="button">Open</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-green">👥</div>
+          <div>
+            <h3>Attendance &amp; Engagement</h3>
+            <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Updated: May 21, 2025</div>
+          <a href="attendance.html" class="button">Open</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Student Academics</h3>
-        <p>Performance, assessment, and progress reporting.</p>
-        <a href="academics.html" class="button secondary">Coming Soon</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-purple">📘</div>
+          <div>
+            <h3>Student Academics</h3>
+            <p>Performance, assessment, and progress reporting.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Coming soon</div>
+          <a href="academics.html" class="button secondary">Coming Soon</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>College &amp; Career</h3>
-        <img src="college-preview.png" alt="College career preview">
-        <p>Preparedness, FAFSA, and pathway indicators.</p>
-        <a href="college-career.html" class="button">Open</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-blue">🎓</div>
+          <div>
+            <h3>College &amp; Career</h3>
+            <p>Preparedness, FAFSA, and pathway indicators.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Updated: May 23, 2025</div>
+          <a href="college-career.html" class="button">Open</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>English Learners</h3>
-        <p>EL progress, reclassification, and language development reporting.</p>
-        <a href="english-learners.html" class="button secondary">Coming Soon</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-teal">🌐</div>
+          <div>
+            <h3>English Learners</h3>
+            <p>EL progress, reclassification, and language development reporting.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Coming soon</div>
+          <a href="english-learners.html" class="button secondary">Coming Soon</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Differentiated Assistance</h3>
-        <img src="diff-assist-preview.png" alt="Differentiated Assistance preview">
-        <p>Support planning, priority metrics, and district improvement views.</p>
-        <a href="differentiated-assistance.html" class="button">Open</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-orange">🏛️</div>
+          <div>
+            <h3>Differentiated Assistance</h3>
+            <p>Support planning, priority metrics, and district improvement views.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Updated: May 20, 2025</div>
+          <a href="differentiated-assistance.html" class="button">Open</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Spotlight</h3>
-        <p>Featured dashboards, updates, and stories worth highlighting.</p>
-        <a href="spotlight.html" class="button secondary">Coming Soon</a>
+        <div class="dash-head">
+          <div class="dash-icon dash-gold">⭐</div>
+          <div>
+            <h3>Spotlight</h3>
+            <p>Featured dashboards, updates, and stories worth highlighting.</p>
+          </div>
+        </div>
+        <div class="dash-foot">
+          <div class="dash-meta">Coming soon</div>
+          <a href="spotlight.html" class="button secondary">Coming Soon</a>
+        </div>
       </div>
     </section>
 
