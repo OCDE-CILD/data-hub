@@ -449,6 +449,10 @@
 
     .spotlight-panel {
       padding: 14px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background: linear-gradient(180deg, #ffffff, #f8fbff);
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -748,55 +752,45 @@
     .feature-meta {
       padding: 11px 12px 12px;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 auto;
     }
 
     .feature-meta h3 {
-      margin: 0 0 8px;
+      margin: 0;
       font-size: 19px;
       line-height: 1.12;
       letter-spacing: -0.02em;
     }
 
     .feature-meta p {
-      margin: 0 0 11px;
+      margin: 0;
       color: var(--muted);
       line-height: 1.38;
       font-size: 13px;
+      flex: 0 0 auto;
     }
 
     .feature-updated {
+      margin-top: auto;
       display: flex;
+      justify-content: flex-end;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 11px;
+      gap: 6px;
       color: var(--muted);
       font-size: 12px;
+      padding-top: 8px;
     }
 
-    .featured-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+    
 
-    .feature-link {
-      color: #1e4fa5;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 1.2;
-    }
+    
 
-    .feature-link.secondary {
-      color: var(--muted);
-      font-weight: 600;
-    }
+    
 
-    .feature-link:hover { text-decoration: underline; }
-
-    .featured-note { font-size: 11px; color: var(--muted); }
+    
 
     .right-rail {
       display: grid;
@@ -1321,7 +1315,6 @@
             <section class="shell-panel featured-wrap">
               <div class="featured-header">
                 <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboards</h2>
-                <span class="featured-badge">Selected Tableau dashboards</span>
               </div>
               <div class="featured-body">
                 <div class="featured-grid">
@@ -1337,7 +1330,7 @@
                     <div class="feature-meta">
                       <h3>CTE Program Participation</h3>
                       <p>Explore enrollment, pathway participation, and completion across career technical education programs.</p>
-                      <div class="feature-updated" style="justify-content:flex-end;margin-top:12px;"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 24, 2026</div>
+                      <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 24, 2026</div>
                       
                     </div>
                   </article>
@@ -1354,12 +1347,7 @@
                     <div class="feature-meta">
                       <h3>College/Career Preparedness</h3>
                       <p>Explore preparedness metrics across student groups and over time.</p>
-                      <div class="feature-updated" style="justify-content:flex-end;margin-top:12px;"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
-                      <div class="featured-actions">
-                        <a class="feature-link" href="college-career.html">Open Dashboard ↗</a>
-                        <a class="feature-link secondary" href="#">View Data Notes</a>
-                      </div>
-                      <div class="featured-note">Updated regularly • Tableau Public</div>
+                      <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
                     </div>
                   </article>
                 </div>
@@ -1369,56 +1357,92 @@
             <section class="all-dashboards-shell">
               <div class="all-dashboards">
                 <a class="dash-card" href="attendance.html" aria-label="Open Attendance Overview dashboard">
-                  <div class="dash-preview">
-                    <div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
-                    <div class="dash-mini"></div>
+                  <div class="dash-preview" style="height:104px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="20" fill="#5fd08f" opacity="0.14"/>
+                      <circle cx="56" cy="60" r="24" fill="none" stroke="#5fd08f" stroke-width="4" opacity="0.32"/>
+                      <g transform="translate(40 44) scale(0.95)" fill="none" stroke="#16803c" stroke-width="1.8"><use href="#i-people"></use></g>
+                      <path d="M120 82L142 63L162 70L184 50L205 55L228 36L252 42L284 30" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M120 82L142 63L162 70L184 50L205 55L228 36L252 42L284 30V94H120Z" fill="#135ad6" opacity="0.08"/>
+                    </svg>
                   </div>
                   <div class="dash-meta-wrap">
                     <div class="dash-head">
-                      <h3>Attendance Overview</h3>
-                      <p>Attendance rates, trends, and chronic absenteeism.</p>
+                      <div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
+                      <div>
+                        <h3>Attendance Overview</h3>
+                        <p>Attendance rates, trends, and chronic absenteeism.</p>
+                      </div>
                     </div>
                     <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div></div>
                   </div>
                 </a>
 
                 <a class="dash-card" href="#" aria-label="Open CAASPP Performance dashboard">
-                  <div class="dash-preview">
-                    <div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                    <div class="dash-mini"></div>
+                  <div class="dash-preview" style="height:104px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="20" fill="#5b93f8" opacity="0.14"/>
+                      <circle cx="56" cy="60" r="24" fill="none" stroke="#5b93f8" stroke-width="4" opacity="0.32"/>
+                      <g transform="translate(40 44) scale(0.95)" fill="none" stroke="#1d4ed8" stroke-width="1.8"><use href="#i-doc"></use></g>
+                      <path d="M120 76L142 72L164 56L185 60L208 44L231 48L253 39L284 33" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M120 76L142 72L164 56L185 60L208 44L231 48L253 39L284 33V94H120Z" fill="#135ad6" opacity="0.08"/>
+                    </svg>
                   </div>
                   <div class="dash-meta-wrap">
                     <div class="dash-head">
-                      <h3>CAASPP Performance</h3>
-                      <p>Student performance on state assessments.</p>
+                      <div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
+                      <div>
+                        <h3>CAASPP Performance</h3>
+                        <p>Student performance on state assessments.</p>
+                      </div>
                     </div>
                     <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div></div>
                   </div>
                 </a>
 
                 <a class="dash-card" href="#" aria-label="Open FAFSA Completion dashboard">
-                  <div class="dash-preview">
-                    <div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
-                    <div class="dash-mini"></div>
+                  <div class="dash-preview" style="height:104px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="20" fill="#b394ff" opacity="0.14"/>
+                      <circle cx="56" cy="60" r="24" fill="none" stroke="#b394ff" stroke-width="4" opacity="0.32"/>
+                      <g transform="translate(40 44) scale(0.95)" fill="none" stroke="#7c3aed" stroke-width="1.8"><use href="#i-graduation"></use></g>
+                      <path d="M120 84L142 74L164 78L186 58L208 54L230 41L252 45L284 38" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M120 84L142 74L164 78L186 58L208 54L230 41L252 45L284 38V94H120Z" fill="#135ad6" opacity="0.08"/>
+                    </svg>
                   </div>
                   <div class="dash-meta-wrap">
                     <div class="dash-head">
-                      <h3>FAFSA Completion</h3>
-                      <p>FAFSA completion rates and trends.</p>
+                      <div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
+                      <div>
+                        <h3>FAFSA Completion</h3>
+                        <p>FAFSA completion rates and trends.</p>
+                      </div>
                     </div>
                     <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div></div>
                   </div>
                 </a>
 
                 <a class="dash-card" href="#" aria-label="Open Graduation Rate Trends dashboard">
-                  <div class="dash-preview">
-                    <div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div>
-                    <div class="dash-mini"></div>
+                  <div class="dash-preview" style="height:104px;padding:8px;">
+                    <svg style="width:100%;height:100%;display:block;" viewBox="0 0 320 120" role="img" aria-hidden="true">
+                      <rect x="1" y="1" width="318" height="118" rx="18" fill="#fff" stroke="#d8e2ef"/>
+                      <rect x="12" y="18" width="88" height="84" rx="20" fill="#ffa353" opacity="0.14"/>
+                      <circle cx="56" cy="60" r="24" fill="none" stroke="#ffa353" stroke-width="4" opacity="0.32"/>
+                      <g transform="translate(40 44) scale(0.95)" fill="none" stroke="#ea580c" stroke-width="1.8"><use href="#i-arrow-trend"></use></g>
+                      <path d="M120 82L142 66L164 70L188 58L208 62L230 46L252 40L284 30" fill="none" stroke="#135ad6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M120 82L142 66L164 70L188 58L208 62L230 46L252 40L284 30V94H120Z" fill="#135ad6" opacity="0.08"/>
+                    </svg>
                   </div>
                   <div class="dash-meta-wrap">
                     <div class="dash-head">
-                      <h3>Graduation Rate Trends</h3>
-                      <p>Graduation trends by cohort and subgroup.</p>
+                      <div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div>
+                      <div>
+                        <h3>Graduation Rate Trends</h3>
+                        <p>Graduation trends by cohort and subgroup.</p>
+                      </div>
                     </div>
                     <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div></div>
                   </div>
@@ -1453,7 +1477,6 @@
                 <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
                 <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
                 <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
-                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Request Data</strong><span>Submit a request</span></div></div>
                 <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
               </div>
             </aside>
