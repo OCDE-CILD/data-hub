@@ -13,6 +13,8 @@
       --text: #10233e;
       --muted: #5b6b84;
       --line: #d8e1ee;
+      --soft: #f8fbff;
+      --good: #2e8b57;
     }
 
     * {
@@ -67,36 +69,19 @@
       padding: 28px 20px 56px;
     }
 
-    .hero {
+    .portal-hero {
       background: linear-gradient(180deg, #fff, #f8fbff);
       border: 1px solid var(--line);
       border-radius: 20px;
-      padding: 34px;
+      padding: 22px;
       box-shadow: 0 10px 30px rgba(16, 35, 62, 0.06);
     }
 
-    .hero h1 {
-      font-size: 44px;
-      margin: 0 0 10px;
-      line-height: 1.1;
-    }
-
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 780px;
-    }
-
-    .section-title {
-      margin: 34px 0 14px;
-      font-size: 22px;
-    }
-
-    .grid {
+    .portal-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
+      grid-template-columns: 1.25fr 1fr 0.8fr;
+      gap: 16px;
+      align-items: stretch;
     }
 
     .panel {
@@ -118,6 +103,38 @@
       line-height: 1.5;
     }
 
+    .command-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-row input,
+    .search-row select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 14px;
+      font-size: 15px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    .search-row input:focus,
+    .search-row select:focus {
+      border-color: #a7c3ea;
+      box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.08);
+    }
+
     .button {
       display: inline-block;
       background: var(--blue);
@@ -126,14 +143,155 @@
       padding: 12px 16px;
       border-radius: 10px;
       font-weight: 700;
+      border: none;
+      cursor: pointer;
       margin-right: 10px;
       margin-top: 8px;
+      white-space: nowrap;
     }
 
     .button.secondary {
       background: white;
       color: var(--navy);
       border: 1px solid var(--line);
+    }
+
+    .button.small {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+
+    .featured-card {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #f9fcff);
+      overflow: hidden;
+    }
+
+    .featured-inner {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding: 18px;
+      align-items: center;
+    }
+
+    .mini-chart {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(11,94,215,0.12), rgba(11,94,215,0.02)),
+        white;
+      border: 1px solid var(--line);
+      padding: 10px;
+      display: flex;
+      align-items: end;
+      gap: 6px;
+    }
+
+    .bar {
+      width: 16px;
+      border-radius: 8px 8px 0 0;
+      background: #b9d4f4;
+    }
+
+    .bar.b1 { height: 28px; }
+    .bar.b2 { height: 52px; }
+    .bar.b3 { height: 74px; }
+    .bar.b4 { height: 38px; }
+    .bar.b5 { height: 88px; }
+
+    .featured-copy .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2858a6;
+      background: #eaf2ff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .featured-copy h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .featured-copy p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .featured-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .featured-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .insight-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fcff, #ffffff);
+      padding: 18px;
+      height: 100%;
+    }
+
+    .insight-box h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .insight-box p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .insight-metric {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .metric {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(16, 35, 62, 0.04);
+    }
+
+    .metric .value {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric .label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .section-title {
+      margin: 34px 0 14px;
+      font-size: 22px;
     }
 
     .cards {
@@ -176,8 +334,22 @@
       font-size: 14px;
     }
 
+    @media (max-width: 1100px) {
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
-      .grid, .cards {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .search-row {
         grid-template-columns: 1fr;
       }
 
@@ -185,11 +357,16 @@
         font-size: 34px;
       }
 
-      .hero {
-        padding: 24px;
+      .portal-hero {
+        padding: 16px;
       }
 
-      .topbar, .nav {
+      .wrap {
+        padding: 18px 12px 40px;
+      }
+
+      .topbar,
+      .nav {
         padding-left: 16px;
         padding-right: 16px;
       }
@@ -197,6 +374,15 @@
       .nav a {
         display: inline-block;
         margin: 0 14px 8px 0;
+      }
+
+      .featured-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-chart {
+        width: 100%;
+        height: 90px;
       }
     }
   </style>
@@ -218,39 +404,102 @@
   </div>
 
   <main class="wrap">
-    <section class="hero">
-      <h1>OCDE Data Dashboard Portal</h1>
-      <p>
-        Explore district dashboards and reporting resources across attendance,
-        academics, college readiness, and student outcomes.
-      </p>
-    </section>
+    <section class="portal-hero">
+      <div class="portal-grid">
+        <div class="panel">
+          <div class="command-title">Search dashboards</div>
+          <div class="search-row">
+            <input type="text" placeholder="Search dashboards..." />
+            <select>
+              <option>All Schools</option>
+              <option>District</option>
+              <option>School A</option>
+              <option>School B</option>
+              <option>School C</option>
+            </select>
+            <select>
+              <option>2024-25</option>
+              <option>2023-24</option>
+              <option>2022-23</option>
+            </select>
+            <button class="button small" type="button">Search</button>
+          </div>
 
-    <h2 class="section-title">Featured dashboard</h2>
-    <section class="grid">
-      <div class="panel">
-        <h2>Attendance & Engagement</h2>
-        <p>
-          Explore chronic absenteeism trends, subgroup comparisons, and year-over-year reporting.
-        </p>
-        <a class="button" href="attendance.html">Open Dashboard</a>
-        <a class="button secondary" href="#">View Data Notes</a>
-        <div class="meta">Updated regularly • Tableau Public</div>
-      </div>
+          <div class="featured-card">
+            <div class="featured-inner">
+              <div class="mini-chart" aria-hidden="true">
+                <div class="bar b1"></div>
+                <div class="bar b2"></div>
+                <div class="bar b3"></div>
+                <div class="bar b4"></div>
+                <div class="bar b5"></div>
+              </div>
 
-      <div class="panel">
-        <h2>Quick links</h2>
-        <p>Use this column for supporting resources and common destinations.</p>
-        <a class="button secondary" href="#">Data Dictionary</a>
-        <a class="button secondary" href="#">Methodology</a>
-        <a class="button secondary" href="#">Downloads</a>
+              <div class="featured-copy">
+                <div class="eyebrow">Featured Dashboard</div>
+                <h3>Attendance &amp; Engagement Dashboard</h3>
+                <p>
+                  Explore chronic absenteeism trends and year-over-year insights across student groups.
+                </p>
+
+                <div class="featured-actions">
+                  <a class="button" href="attendance.html">View dashboard</a>
+                  <a class="button secondary" href="#">View notes</a>
+                </div>
+
+                <div class="featured-note">
+                  Updated regularly • Tableau Public
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 style="margin-bottom: 8px;">District Highlights</h2>
+          <p style="margin-bottom: 16px;">
+            A quick orientation panel for users who want to jump right into key reporting themes.
+          </p>
+
+          <div class="insight-metric">
+            <div class="metric">
+              <div class="value">2.1%</div>
+              <div class="label">Decrease in chronic absenteeism vs. prior year</div>
+            </div>
+
+            <div class="metric">
+              <div class="value">8%</div>
+              <div class="label">Increase in FAFSA completion vs. prior year</div>
+            </div>
+
+            <div class="metric">
+              <div class="value">3</div>
+              <div class="label">Dashboards updated this week</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-box">
+          <h3>Quick access</h3>
+          <p>
+            Use the portal to browse dashboards by topic, jump to a featured report,
+            or explore the sections below.
+          </p>
+
+          <a class="button" href="attendance.html">Open attendance</a>
+          <a class="button secondary" href="college-career.html">Open college &amp; career</a>
+
+          <div class="meta" style="margin-top: 16px;">
+            Designed for staff and stakeholders
+          </div>
+        </div>
       </div>
     </section>
 
     <h2 class="section-title">Dashboard categories</h2>
     <section class="cards">
       <div class="card">
-        <h3>Attendance & Engagement</h3>
+        <h3>Attendance &amp; Engagement</h3>
         <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
         <a href="attendance.html" class="button">Open</a>
       </div>
@@ -262,7 +511,7 @@
       </div>
 
       <div class="card">
-        <h3>College & Career</h3>
+        <h3>College &amp; Career</h3>
         <p>Preparedness, FAFSA, and pathway indicators.</p>
         <a href="college-career.html" class="button">Open</a>
       </div>
