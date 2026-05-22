@@ -19,11 +19,7 @@
     }
 
     * { box-sizing: border-box; }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+    html, body { height: 100%; margin: 0; }
 
     body {
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
@@ -73,9 +69,7 @@
       flex: 0 0 auto;
     }
 
-    .brand-copy {
-      min-width: 0;
-    }
+    .brand-copy { min-width: 0; }
 
     .brand {
       margin: 0;
@@ -124,9 +118,7 @@
     }
 
     .nav a:hover,
-    .nav-trigger:hover {
-      text-decoration: underline;
-    }
+    .nav-trigger:hover { text-decoration: underline; }
 
     .nav-menu {
       position: relative;
@@ -150,9 +142,7 @@
     }
 
     .nav-menu:hover .dropdown,
-    .nav-menu:focus-within .dropdown {
-      display: block;
-    }
+    .nav-menu:focus-within .dropdown { display: block; }
 
     .dropdown a {
       display: block;
@@ -188,9 +178,7 @@
       font-weight: 600;
     }
 
-    .search-action:hover {
-      text-decoration: underline;
-    }
+    .search-action:hover { text-decoration: underline; }
 
     .district-control {
       border: 1px solid rgba(255,255,255,0.28);
@@ -224,14 +212,12 @@
       padding: 0;
     }
 
-    .district-control option {
-      color: var(--text);
-    }
+    .district-control option { color: var(--text); }
 
     .content {
       flex: 1 1 auto;
       overflow-y: auto;
-      padding: 14px 18px 18px;
+      padding: 12px 18px 18px;
       background:
         radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.07), transparent 28%),
         radial-gradient(circle at 92% 16%, rgba(183, 213, 255, 0.16) 0 3px, transparent 4px) 0 0 / 22px 22px,
@@ -245,8 +231,6 @@
 
     .hero-band {
       padding: 2px 0 0;
-      position: relative;
-      overflow: hidden;
       background: transparent;
       border: 0;
       box-shadow: none;
@@ -374,9 +358,7 @@
       align-items: end;
     }
 
-    .field {
-      min-width: 0;
-    }
+    .field { min-width: 0; }
 
     .field-label {
       display: block;
@@ -387,9 +369,7 @@
       line-height: 1;
     }
 
-    .search-input-wrap {
-      position: relative;
-    }
+    .search-input-wrap { position: relative; }
 
     .search-input-wrap .search-icon {
       position: absolute;
@@ -415,9 +395,7 @@
       height: 42px;
     }
 
-    .search-input-wrap input {
-      padding-left: 41px;
-    }
+    .search-input-wrap input { padding-left: 41px; }
 
     .search-row input:focus,
     .search-row select:focus {
@@ -501,26 +479,24 @@
 
     .topic-item {
       display: grid;
-      grid-template-columns: 30px 1fr 12px;
-      gap: 7px;
+      grid-template-columns: 28px 1fr 12px;
+      gap: 6px;
       align-items: center;
-      padding: 7px;
+      padding: 6px 7px;
     }
 
     .topic-item:hover,
     .update-item:hover,
-    .link-item:hover {
-      background: #f5f9ff;
-    }
+    .link-item:hover { background: #f5f9ff; }
 
     .topic-icon {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 9px;
       display: grid;
       place-items: center;
       color: #fff;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       flex: 0 0 auto;
     }
@@ -536,9 +512,9 @@
     .update-item strong,
     .link-item strong {
       display: block;
-      font-size: 12px;
-      line-height: 1.08;
-      margin-bottom: 2px;
+      font-size: 11px;
+      line-height: 1.05;
+      margin-bottom: 1px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -548,8 +524,8 @@
     .update-item span,
     .link-item span {
       display: block;
-      font-size: 10px;
-      line-height: 1.2;
+      font-size: 9px;
+      line-height: 1.15;
       color: var(--muted);
       margin-top: 1px;
     }
@@ -566,9 +542,7 @@
       overflow: hidden;
     }
 
-    .featured-header {
-      padding: 12px 12px 0;
-    }
+    .featured-header { padding: 12px 12px 0; }
 
     .featured-badge {
       display: inline-block;
@@ -701,9 +675,7 @@
     .bars span:nth-child(4) { height: 76%; }
     .bars span:nth-child(5) { height: 60%; }
 
-    .featured-meta {
-      min-width: 0;
-    }
+    .featured-meta { min-width: 0; }
 
     .featured-meta h3 {
       margin: 0 0 8px;
@@ -741,16 +713,14 @@
       color: var(--muted);
     }
 
-    .sidebar-stack {
+    .right-rail {
       display: grid;
       gap: 12px;
       align-content: start;
     }
 
     .updates-list,
-    .links-list {
-      gap: 7px;
-    }
+    .links-list { gap: 7px; }
 
     .update-item,
     .link-item {
@@ -781,13 +751,27 @@
     }
 
     .update-item span,
-    .link-item span {
-      font-size: 9px;
-    }
+    .link-item span { font-size: 9px; }
 
     .update-actions,
-    .links-actions {
-      margin-top: 2px;
+    .links-actions { margin-top: 2px; }
+
+    .dashboard-band {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr) 240px;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .all-dashboards-shell {
+      grid-column: 2 / 4;
+      margin-top: 0;
+    }
+
+    .quick-links-separate {
+      grid-column: 3 / 4;
+      margin-top: 14px;
     }
 
     .section-header-row {
@@ -824,7 +808,7 @@
     .card {
       padding: 10px;
       min-width: 0;
-      min-height: 146px;
+      min-height: 132px;
       background: rgba(255,255,255,0.965);
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -905,16 +889,14 @@
       box-shadow: none;
     }
 
-    .view-link:hover {
-      text-decoration: underline;
-    }
+    .view-link:hover { text-decoration: underline; }
 
     .pager-dots {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
-      margin: 10px 0 0;
+      margin: 8px 0 0;
     }
 
     .pager-dots span {
@@ -923,27 +905,10 @@
       background: #c9d3e4;
     }
 
-    .pager-dots span:nth-child(1) {
-      width: 11px;
-      height: 11px;
-      opacity: 0.95;
-    }
-
-    .pager-dots span:nth-child(2) {
-      width: 8px;
-      height: 8px;
-      opacity: 0.75;
-    }
-
-    .pager-dots span:nth-child(3) {
-      width: 10px;
-      height: 10px;
-      opacity: 0.62;
-    }
-
-    .pager-dots span.active {
-      background: var(--navy);
-    }
+    .pager-dots span:nth-child(1) { width: 11px; height: 11px; opacity: 0.95; }
+    .pager-dots span:nth-child(2) { width: 8px; height: 8px; opacity: 0.75; }
+    .pager-dots span:nth-child(3) { width: 10px; height: 10px; opacity: 0.62; }
+    .pager-dots span.active { background: var(--navy); }
 
     .footer-copy {
       margin: 8px 2px 0;
@@ -1009,8 +974,14 @@
     @media (max-width: 1240px) {
       .hero-grid,
       .section-shell,
-      .featured-body {
+      .featured-body,
+      .dashboard-band {
         grid-template-columns: 1fr;
+      }
+
+      .all-dashboards-shell,
+      .quick-links-separate {
+        grid-column: auto;
       }
 
       .all-dashboards {
@@ -1025,63 +996,24 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .bottom-inner {
-        flex-wrap: wrap;
-      }
+      .bottom-inner { flex-wrap: wrap; }
     }
 
     @media (max-width: 760px) {
-      .content {
-        padding: 12px 12px 16px;
-      }
-
-      .topbar,
-      .bottombar {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      .topbar-inner {
-        flex-wrap: wrap;
-      }
-
-      .nav {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .hero-copy h1 {
-        font-size: 33px;
-      }
-
+      .content { padding: 12px 12px 16px; }
+      .topbar, .bottombar { padding-left: 14px; padding-right: 14px; }
+      .topbar-inner { flex-wrap: wrap; }
+      .nav { justify-content: flex-start; flex-wrap: wrap; gap: 14px; }
+      .hero-copy h1 { font-size: 33px; }
       .kpi-grid,
       .search-row,
-      .all-dashboards {
-        grid-template-columns: 1fr;
-      }
-
-      .search-row .button {
-        width: 100%;
-      }
-
-      .preview-grid {
-        grid-template-columns: 1fr;
-        height: auto;
-      }
-
-      .preview-box {
-        min-height: 116px;
-      }
-
-      .bars {
-        height: 116px;
-      }
-
+      .all-dashboards { grid-template-columns: 1fr; }
+      .search-row .button { width: 100%; }
+      .preview-grid { grid-template-columns: 1fr; height: auto; }
+      .preview-box { min-height: 116px; }
+      .bars { height: 116px; }
       .bottom-center,
-      .bottom-right {
-        white-space: normal;
-      }
+      .bottom-right { white-space: normal; }
     }
   </style>
 </head>
@@ -1097,43 +1029,15 @@
       <path d="M4 20h16M7 20V7h10v13M9 20v-3m6 3v-3M9 9h2m2 0h2m-6 3h2m2 0h2m-6 3h2m2 0h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M9 7V5h6v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-    <symbol id="i-chevron-right" viewBox="0 0 24 24">
-      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-link" viewBox="0 0 24 24">
-      <path d="M9 12a4 4 0 014-4h3a4 4 0 010 8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M15 12a4 4 0 01-4 4H8a4 4 0 010-8h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-doc" viewBox="0 0 24 24">
-      <path d="M7 4h7l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M14 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-grid" viewBox="0 0 24 24">
-      <rect x="4" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <rect x="14" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <rect x="4" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <rect x="14" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    </symbol>
-    <symbol id="i-graduation" viewBox="0 0 24 24">
-      <path d="M3 10l9-5 9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M7 12v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M21 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-people" viewBox="0 0 24 24">
-      <path d="M6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm11 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM6.5 11.5c-2.4 0-4.5 1.9-4.5 4.3V18h6v-2.2c0-1 .3-1.9.8-2.7-.6-1-1.3-1.6-2.3-1.6zm11 0c-1 0-1.8.6-2.3 1.6.5.8.8 1.7.8 2.7V18h6v-2.2c0-2.4-2.1-4.3-4.5-4.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-check" viewBox="0 0 24 24">
-      <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-arrow-trend" viewBox="0 0 24 24">
-      <path d="M4 16l6-6 4 4 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M16 8h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M9 12a4 4 0 014-4h3a4 4 0 010 8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 12a4 4 0 01-4 4H8a4 4 0 010-8h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 4h7l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M3 10l9-5 9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 12v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M21 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><path d="M6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm11 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM6.5 11.5c-2.4 0-4.5 1.9-4.5 4.3V18h6v-2.2c0-1 .3-1.9.8-2.7-.6-1-1.3-1.6-2.3-1.6zm11 0c-1 0-1.8.6-2.3 1.6.5.8.8 1.7.8 2.7V18h6v-2.2c0-2.4-2.1-4.3-4.5-4.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-trend" viewBox="0 0 24 24"><path d="M4 16l6-6 4 4 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <div class="app-shell">
@@ -1146,92 +1050,16 @@
             <div class="sub">Data. Insights. Student Success.</div>
           </div>
         </div>
-
         <nav class="nav" aria-label="Primary navigation">
           <a href="index.html" class="active">Home</a>
-
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Dashboards ▾</button>
-            <div class="dropdown">
-              <a href="attendance.html">Attendance &amp; Engagement</a>
-              <a href="college-career.html">College &amp; Career</a>
-              <a href="academics.html">Student Academics</a>
-              <a href="english-learners.html">English Learners</a>
-              <a href="differentiated-assistance.html">Differentiated Assistance</a>
-              <a href="spotlight.html">Spotlight</a>
-            </div>
-          </div>
-
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Students ▾</button>
-            <div class="dropdown">
-              <a href="#">Overview</a>
-              <a href="#">Student Groups</a>
-              <a href="#">Subgroups</a>
-            </div>
-          </div>
-
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Resources ▾</button>
-            <div class="dropdown">
-              <a href="#">Data Dictionary</a>
-              <a href="#">Methodology &amp; Notes</a>
-              <a href="#">Downloads</a>
-              <a href="#">Request Data</a>
-            </div>
-          </div>
-
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">About ▾</button>
-            <div class="dropdown">
-              <a href="#">Purpose</a>
-              <a href="#">Data Refresh</a>
-              <a href="#">FAQ</a>
-              <a href="#">Contact</a>
-            </div>
-          </div>
+          <div class="nav-menu"><button class="nav-trigger" type="button">Dashboards ▾</button><div class="dropdown"><a href="attendance.html">Attendance &amp; Engagement</a><a href="college-career.html">College &amp; Career</a><a href="academics.html">Student Academics</a><a href="english-learners.html">English Learners</a><a href="differentiated-assistance.html">Differentiated Assistance</a><a href="spotlight.html">Spotlight</a></div></div>
+          <div class="nav-menu"><button class="nav-trigger" type="button">Students ▾</button><div class="dropdown"><a href="#">Overview</a><a href="#">Student Groups</a><a href="#">Subgroups</a></div></div>
+          <div class="nav-menu"><button class="nav-trigger" type="button">Resources ▾</button><div class="dropdown"><a href="#">Data Dictionary</a><a href="#">Methodology &amp; Notes</a><a href="#">Downloads</a><a href="#">Request Data</a></div></div>
+          <div class="nav-menu"><button class="nav-trigger" type="button">About ▾</button><div class="dropdown"><a href="#">Purpose</a><a href="#">Data Refresh</a><a href="#">FAQ</a><a href="#">Contact</a></div></div>
         </nav>
-
         <div class="top-actions">
-          <a class="search-action" href="#" aria-label="Search dashboards">
-            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
-            Search
-          </a>
-          <label class="district-control">
-            <svg aria-hidden="true"><use href="#i-building"></use></svg>
-            <span class="sr-only">Select School</span>
-            <select id="districtSelect" aria-label="Select School">
-              <option value="all">Select School</option>
-              <option value="anaheim-elementary">Anaheim Elementary</option>
-              <option value="anaheim-union-high">Anaheim Union High</option>
-              <option value="brea-olinda-unified">Brea Olinda Unified</option>
-              <option value="buena-park">Buena Park</option>
-              <option value="capistrano-unified">Capistrano Unified</option>
-              <option value="centralia-elementary">Centralia Elementary</option>
-              <option value="cypress">Cypress</option>
-              <option value="fountain-valley">Fountain Valley</option>
-              <option value="fullerton-joint-union-high">Fullerton Joint Union High</option>
-              <option value="fullerton">Fullerton</option>
-              <option value="garden-grove-unified">Garden Grove Unified</option>
-              <option value="huntington-beach-city">Huntington Beach City</option>
-              <option value="huntington-beach-union-high">Huntington Beach Union High</option>
-              <option value="irvine-unified">Irvine Unified</option>
-              <option value="la-habra-city">La Habra City</option>
-              <option value="laguna-beach-unified">Laguna Beach Unified</option>
-              <option value="los-alamitos-unified">Los Alamitos Unified</option>
-              <option value="lowell-joint">Lowell Joint</option>
-              <option value="magnolia">Magnolia</option>
-              <option value="newport-mesa-unified">Newport-Mesa Unified</option>
-              <option value="ocean-view">Ocean View</option>
-              <option value="orange-unified">Orange Unified</option>
-              <option value="placentia-yorba-linda-unified">Placentia-Yorba Linda Unified</option>
-              <option value="saddleback-valley-unified">Saddleback Valley Unified</option>
-              <option value="santa-ana-unified">Santa Ana Unified</option>
-              <option value="savanna">Savanna</option>
-              <option value="tustin-unified">Tustin Unified</option>
-              <option value="westminster">Westminster</option>
-            </select>
-          </label>
+          <a class="search-action" href="#" aria-label="Search dashboards"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Search</a>
+          <label class="district-control"><svg aria-hidden="true"><use href="#i-building"></use></svg><span class="sr-only">Select School</span><select id="districtSelect" aria-label="Select School"><option value="all">Select School</option><option value="anaheim-elementary">Anaheim Elementary</option><option value="anaheim-union-high">Anaheim Union High</option><option value="brea-olinda-unified">Brea Olinda Unified</option><option value="buena-park">Buena Park</option><option value="capistrano-unified">Capistrano Unified</option><option value="centralia-elementary">Centralia Elementary</option><option value="cypress">Cypress</option><option value="fountain-valley">Fountain Valley</option><option value="fullerton-joint-union-high">Fullerton Joint Union High</option><option value="fullerton">Fullerton</option><option value="garden-grove-unified">Garden Grove Unified</option><option value="huntington-beach-city">Huntington Beach City</option><option value="huntington-beach-union-high">Huntington Beach Union High</option><option value="irvine-unified">Irvine Unified</option><option value="la-habra-city">La Habra City</option><option value="laguna-beach-unified">Laguna Beach Unified</option><option value="los-alamitos-unified">Los Alamitos Unified</option><option value="lowell-joint">Lowell Joint</option><option value="magnolia">Magnolia</option><option value="newport-mesa-unified">Newport-Mesa Unified</option><option value="ocean-view">Ocean View</option><option value="orange-unified">Orange Unified</option><option value="placentia-yorba-linda-unified">Placentia-Yorba Linda Unified</option><option value="saddleback-valley-unified">Saddleback Valley Unified</option><option value="santa-ana-unified">Santa Ana Unified</option><option value="savanna">Savanna</option><option value="tustin-unified">Tustin Unified</option><option value="westminster">Westminster</option></select></label>
         </div>
       </div>
     </header>
@@ -1242,84 +1070,25 @@
           <div class="hero-grid">
             <div class="hero-copy">
               <h1>Welcome to OCDE Data Hub</h1>
-              <p>
-                Your source for data and insights on student success.
-                Explore dashboards, trends, and resources that support
-                data-informed decisions.
-              </p>
+              <p>Your source for data and insights on student success. Explore dashboards, trends, and resources that support data-informed decisions.</p>
               <span class="demo-note">Illustrative metrics shown for prototype review</span>
             </div>
-
             <div class="kpi-grid" aria-label="Key performance indicators">
-              <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon blue"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div></div>
-                <div class="kpi-value">255</div>
-                <div class="kpi-label">Total Students</div>
-                <div class="kpi-sub">(Selected Filters)</div>
-              </div>
-
-              <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div></div>
-                <div class="kpi-value">87%</div>
-                <div class="kpi-label">College/Career Prepared</div>
-                <div class="kpi-sub">Prototype metric</div>
-              </div>
-
-              <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div></div>
-                <div class="kpi-value">2,482</div>
-                <div class="kpi-label">Graduates</div>
-                <div class="kpi-sub">(4-Year Total)</div>
-              </div>
-
-              <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div>
-                <div class="kpi-value">32</div>
-                <div class="kpi-label">Data Dashboards Available</div>
-                <div class="kpi-sub">Across topic areas</div>
-              </div>
+              <div class="kpi"><div class="kpi-top"><div class="kpi-icon blue"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div></div><div class="kpi-value">255</div><div class="kpi-label">Total Students</div><div class="kpi-sub">(Selected Filters)</div></div>
+              <div class="kpi"><div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div></div><div class="kpi-value">87%</div><div class="kpi-label">College/Career Prepared</div><div class="kpi-sub">Prototype metric</div></div>
+              <div class="kpi"><div class="kpi-top"><div class="kpi-icon purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div></div><div class="kpi-value">2,482</div><div class="kpi-label">Graduates</div><div class="kpi-sub">(4-Year Total)</div></div>
+              <div class="kpi"><div class="kpi-top"><div class="kpi-icon orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div><div class="kpi-value">32</div><div class="kpi-label">Data Dashboards Available</div><div class="kpi-sub">Across topic areas</div></div>
             </div>
           </div>
         </section>
 
         <section class="search-strip">
           <div class="search-row">
-            <div class="field">
-              <label class="field-label" for="dashboardSearch">Search dashboards</label>
-              <div class="search-input-wrap">
-                <span class="search-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
-                <input id="dashboardSearch" type="text" placeholder="Search dashboards..." />
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="schoolSelect">School</label>
-              <select id="schoolSelect" aria-label="Select School"></select>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="yearSelect">School Year</label>
-              <select id="yearSelect" aria-label="School Year">
-                <option>2025-26</option>
-                <option>2024-25</option>
-                <option>2023-24</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="groupSelect">Student Group</label>
-              <select id="groupSelect" aria-label="Student Group">
-                <option>All Students</option>
-                <option>English Learners</option>
-                <option>Students with Disabilities</option>
-                <option>Socioeconomically Disadvantaged</option>
-              </select>
-            </div>
-
-            <button class="button small" type="button">
-              <svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>
-              Apply Filters
-            </button>
+            <div class="field"><label class="field-label" for="dashboardSearch">Search dashboards</label><div class="search-input-wrap"><span class="search-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span><input id="dashboardSearch" type="text" placeholder="Search dashboards..." /></div></div>
+            <div class="field"><label class="field-label" for="schoolSelect">School</label><select id="schoolSelect" aria-label="Select School"></select></div>
+            <div class="field"><label class="field-label" for="yearSelect">School Year</label><select id="yearSelect" aria-label="School Year"><option>2025-26</option><option>2024-25</option><option>2023-24</option></select></div>
+            <div class="field"><label class="field-label" for="groupSelect">Student Group</label><select id="groupSelect" aria-label="Student Group"><option>All Students</option><option>English Learners</option><option>Students with Disabilities</option><option>Socioeconomically Disadvantaged</option></select></div>
+            <button class="button small" type="button"><svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>Apply Filters</button>
           </div>
         </section>
 
@@ -1327,282 +1096,99 @@
           <aside class="shell-panel">
             <h2 class="shell-title">Explore by Topic</h2>
             <div class="topic-list">
-              <div class="topic-item">
-                <div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
-                <div class="topic-text">
-                  <strong>Attendance &amp; Engagement</strong>
-                  <span>6 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
-
-              <div class="topic-item">
-                <div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
-                <div class="topic-text">
-                  <strong>College &amp; Career</strong>
-                  <span>5 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
-
-              <div class="topic-item">
-                <div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                <div class="topic-text">
-                  <strong>Student Academics</strong>
-                  <span>8 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
-
-              <div class="topic-item">
-                <div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div>
-                <div class="topic-text">
-                  <strong>English Learners</strong>
-                  <span>4 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
-
-              <div class="topic-item">
-                <div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div>
-                <div class="topic-text">
-                  <strong>Special Populations</strong>
-                  <span>4 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
-
-              <div class="topic-item">
-                <div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div>
-                <div class="topic-text">
-                  <strong>Spotlight</strong>
-                  <span>5 dashboards</span>
-                </div>
-                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-              </div>
+              <div class="topic-item"><div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div class="topic-text"><strong>Attendance &amp; Engagement</strong><span>6 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div class="topic-text"><strong>College &amp; Career</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div class="topic-text"><strong>Student Academics</strong><span>8 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div><div class="topic-text"><strong>English Learners</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div class="topic-text"><strong>Special Populations</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><div class="topic-text"><strong>Spotlight</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
             </div>
-
-            <div style="margin-top:10px;">
-              <a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> View All Dashboards</a>
-            </div>
+            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>View All Dashboards</a></div>
           </aside>
 
           <section class="shell-panel featured-wrap">
-            <div class="featured-header">
-              <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboard</h2>
-              <span class="featured-badge">Attendance &amp; Engagement</span>
-            </div>
-
+            <div class="featured-header"><h2 class="shell-title" style="margin-bottom:0;">Featured Dashboard</h2><span class="featured-badge">Attendance &amp; Engagement</span></div>
             <div class="featured-body">
               <div class="dashboard-preview" aria-label="Featured dashboard preview">
                 <div class="preview-top">College/Career Preparedness Dashboard</div>
                 <div class="preview-grid">
-                  <div class="preview-box">
-                    <div class="donut"></div>
-                  </div>
-                  <div class="preview-box">
-                    <div class="mini-line"></div>
-                  </div>
-                  <div class="preview-box">
-                    <div class="bars">
-                      <span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                  </div>
+                  <div class="preview-box"><div class="donut"></div></div>
+                  <div class="preview-box"><div class="mini-line"></div></div>
+                  <div class="preview-box"><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div>
                 </div>
               </div>
-
               <div class="featured-meta">
                 <h3>College/Career Preparedness Dashboard</h3>
-                <p>
-                  Explore preparedness metrics across student groups and over time.
-                </p>
-                <div class="featured-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Updated: May 23, 2026</div>
-                <div class="featured-actions">
-                  <a class="button" href="college-career.html">Open Dashboard ↗</a>
-                  <a class="button secondary" href="#">View Data Notes</a>
-                  <a class="button ghost" href="#">Download PDF</a>
-                </div>
+                <p>Explore preparedness metrics across student groups and over time.</p>
+                <div class="featured-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
+                <div class="featured-actions"><a class="button" href="college-career.html">Open Dashboard ↗</a><a class="button secondary" href="#">View Data Notes</a><a class="button ghost" href="#">Download PDF</a></div>
                 <div class="featured-note">Updated regularly • Tableau Public</div>
               </div>
             </div>
           </section>
 
-          <div class="sidebar-stack">
+          <div class="right-rail">
             <aside class="shell-panel">
               <h2 class="shell-title">Recently Updated</h2>
               <div class="updates-list">
-                <div class="update-item">
-                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>College/Career Preparedness</strong>
-                    <span>May 23, 2026</span>
-                  </div>
-                </div>
-
-                <div class="update-item">
-                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>EL Progress Dashboard</strong>
-                    <span>May 22, 2026</span>
-                  </div>
-                </div>
-
-                <div class="update-item">
-                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>CAASPP Performance</strong>
-                    <span>May 22, 2026</span>
-                  </div>
-                </div>
-
-                <div class="update-item">
-                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>Graduation Rate Trends</strong>
-                    <span>May 21, 2026</span>
-                  </div>
-                </div>
-
-                <div class="update-item">
-                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>Attendance Overview</strong>
-                    <span>May 21, 2026</span>
-                  </div>
-                </div>
+                <div class="update-item"><div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>College/Career Preparedness</strong><span>May 23, 2026</span></div></div>
+                <div class="update-item"><div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>EL Progress Dashboard</strong><span>May 22, 2026</span></div></div>
+                <div class="update-item"><div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>CAASPP Performance</strong><span>May 22, 2026</span></div></div>
+                <div class="update-item"><div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Graduation Rate Trends</strong><span>May 21, 2026</span></div></div>
+                <div class="update-item"><div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Attendance Overview</strong><span>May 21, 2026</span></div></div>
               </div>
-
-              <div class="update-actions" style="margin-top:10px;">
-                <a class="button secondary full compact" href="#">View All Updates</a>
-              </div>
-            </aside>
-
-            <aside class="shell-panel">
-              <h2 class="shell-title">Quick Links</h2>
-              <div class="links-list">
-                <div class="link-item">
-                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
-                  <div>
-                    <strong>Data Dictionary</strong>
-                    <span>Definitions and fields</span>
-                  </div>
-                </div>
-
-                <div class="link-item">
-                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>Methodology &amp; Notes</strong>
-                    <span>Context and caveats</span>
-                  </div>
-                </div>
-
-                <div class="link-item">
-                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>Reports &amp; Downloads</strong>
-                    <span>Files and exports</span>
-                  </div>
-                </div>
-
-                <div class="link-item">
-                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-                  <div>
-                    <strong>Request Data</strong>
-                    <span>Submit a request</span>
-                  </div>
-                </div>
-
-                <div class="link-item">
-                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
-                  <div>
-                    <strong>Contact Us</strong>
-                    <span>Reach the data team</span>
-                  </div>
-                </div>
-              </div>
+              <div class="update-actions" style="margin-top:10px;"><a class="button secondary full compact" href="#">View All Updates</a></div>
             </aside>
           </div>
         </section>
 
-        <div class="section-header-row">
-          <h2 class="section-title">All Dashboards</h2>
-          <a class="view-all-link" href="#">View All</a>
+        <div class="dashboard-band">
+          <div class="all-dashboards-shell">
+            <div class="section-header-row">
+              <h2 class="section-title">All Dashboards</h2>
+              <a class="view-all-link" href="#">View All</a>
+            </div>
+            <section class="all-dashboards">
+              <div class="card">
+                <div class="dash-head"><div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div><h3>Attendance Overview</h3><p>Attendance rates, trends, and chronic absenteeism.</p></div></div>
+                <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div><a href="attendance.html" class="view-link">View Dashboard →</a></div>
+              </div>
+              <div class="card">
+                <div class="dash-head"><div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><h3>CAASPP Performance</h3><p>Student performance on state assessments.</p></div></div>
+                <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+              </div>
+              <div class="card">
+                <div class="dash-head"><div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div><h3>FAFSA Completion</h3><p>FAFSA completion rates and trends.</p></div></div>
+                <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+              </div>
+              <div class="card">
+                <div class="dash-head"><div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div><h3>CTE Program Participation</h3><p>CTE enrollment and pathway participation.</p></div></div>
+                <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+              </div>
+            </section>
+            <div class="pager-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+            <p class="footer-copy">Orange County Department of Education</p>
+          </div>
         </div>
 
-        <section class="all-dashboards">
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
-              <div>
-                <h3>Attendance Overview</h3>
-                <p>Attendance rates, trends, and chronic absenteeism.</p>
-              </div>
+        <div class="quick-links-separate">
+          <aside class="shell-panel">
+            <h2 class="shell-title">Quick Links</h2>
+            <div class="links-list">
+              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
+              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
+              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
+              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Request Data</strong><span>Submit a request</span></div></div>
+              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
             </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 21, 2026</div>
-              <a href="attendance.html" class="view-link">View Dashboard →</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
-              <div>
-                <h3>CAASPP Performance</h3>
-                <p>Student performance on state assessments.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 22, 2026</div>
-              <a href="#" class="view-link">View Dashboard →</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
-              <div>
-                <h3>FAFSA Completion</h3>
-                <p>FAFSA completion rates and trends.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 20, 2026</div>
-              <a href="#" class="view-link">View Dashboard →</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div>
-              <div>
-                <h3>CTE Program Participation</h3>
-                <p>CTE enrollment and pathway participation.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 19, 2026</div>
-              <a href="#" class="view-link">View Dashboard →</a>
-            </div>
-          </div>
-        </section>
-
-        <div class="pager-dots" aria-hidden="true">
-          <span class="active"></span>
-          <span></span>
-          <span></span>
+          </aside>
         </div>
-
-        <p class="footer-copy">Orange County Department of Education</p>
       </div>
     </main>
 
     <footer class="bottombar">
       <div class="bottom-inner">
-        <div class="bottom-left">
-          <img src="ocde-logo.png" alt="OCDE logo" class="bottom-logo" />
-          <span>Orange County Department of Education</span>
-        </div>
+        <div class="bottom-left"><img src="ocde-logo.png" alt="OCDE logo" class="bottom-logo" /><span>Orange County Department of Education</span></div>
         <div class="bottom-center">Data is updated regularly. Please review data notes for details.</div>
         <div class="bottom-right">Questions? Contact our Data Team</div>
       </div>
@@ -1612,7 +1198,6 @@
   <script>
     const districtSelect = document.getElementById('districtSelect');
     const schoolSelect = document.getElementById('schoolSelect');
-
     const districtSchoolMap = {
       all: ['All Schools'],
       'anaheim-elementary': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
