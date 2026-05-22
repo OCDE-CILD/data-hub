@@ -17,6 +17,7 @@
       --line: #d8e2ef;
       --soft: #edf3fb;
       --shadow: 0 10px 28px rgba(16, 35, 62, 0.06);
+      --shadow-soft: 0 8px 20px rgba(16, 35, 62, 0.04);
       --green: #1f8a4c;
       --teal: #0f766e;
       --purple: #6d28d9;
@@ -38,11 +39,13 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow: hidden;
     }
+
+    a { color: inherit; }
 
     .app-shell {
       height: 100vh;
@@ -89,16 +92,21 @@
 
     .brand {
       margin: 0;
-      font-size: 30px;
+      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+      font-size: 29px;
       line-height: 1;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
     }
 
     .sub {
-      margin-top: 5px;
-      font-size: 14px;
+      margin-top: 4px;
+      font-size: 12px;
       color: rgba(255,255,255,0.9);
+      letter-spacing: 0.16em;
+      text-transform: none;
+      white-space: nowrap;
     }
 
     .nav {
@@ -201,13 +209,21 @@
     .district-control {
       border: 1px solid rgba(255,255,255,0.28);
       border-radius: 10px;
-      padding: 10px 12px;
+      padding: 9px 12px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: rgba(255,255,255,0.05);
       color: #fff;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+
+    .district-control svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      color: rgba(255,255,255,0.96);
     }
 
     .district-control select {
@@ -216,9 +232,10 @@
       color: #fff;
       font-size: 14px;
       outline: none;
-      min-width: 170px;
+      min-width: 150px;
       appearance: none;
       cursor: pointer;
+      padding: 0;
     }
 
     .district-control option {
@@ -231,7 +248,7 @@
       padding: 18px 18px 20px;
       background:
         radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.07), transparent 28%),
-        radial-gradient(circle at 92% 16%, rgba(106, 164, 255, 0.12), transparent 18%),
+        radial-gradient(circle at 92% 16%, rgba(183, 213, 255, 0.16) 0 3px, transparent 4px) 0 0 / 22px 22px,
         linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
     }
 
@@ -244,7 +261,7 @@
     .search-strip,
     .shell-panel,
     .card {
-      background: rgba(255,255,255,0.96);
+      background: rgba(255,255,255,0.965);
       border: 1px solid var(--line);
       border-radius: 18px;
       box-shadow: var(--shadow);
@@ -254,6 +271,8 @@
       padding: 18px;
       position: relative;
       overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(244,250,255,0.93));
     }
 
     .hero-band::after {
@@ -262,9 +281,9 @@
       inset: 0;
       background:
         linear-gradient(125deg, rgba(224, 236, 255, 0.7), transparent 46%),
-        radial-gradient(circle at 98% 18%, rgba(183, 213, 255, 0.62) 0 3px, transparent 4px) 0 0 / 22px 22px;
+        radial-gradient(circle at 98% 18%, rgba(183, 213, 255, 0.38) 0 3px, transparent 4px) 0 0 / 22px 22px;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.75;
       mix-blend-mode: multiply;
     }
 
@@ -278,7 +297,7 @@
     }
 
     .hero-copy {
-      padding: 10px 4px 2px;
+      padding: 8px 4px 2px;
       max-width: 680px;
     }
 
@@ -532,6 +551,7 @@
       color: #fff;
       font-size: 16px;
       font-weight: 700;
+      flex: 0 0 auto;
     }
 
     .topic-blue { background: linear-gradient(180deg, #5b93f8, #1d4ed8); }
@@ -546,17 +566,21 @@
     .link-item strong {
       display: block;
       font-size: 13px;
-      line-height: 1.15;
+      line-height: 1.08;
       margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .topic-text span,
     .update-item span,
     .link-item span {
       display: block;
-      font-size: 12px;
-      line-height: 1.25;
+      font-size: 11px;
+      line-height: 1.2;
       color: var(--muted);
+      margin-top: 2px;
     }
 
     .topic-arrow {
@@ -750,6 +774,7 @@
       padding: 14px;
       display: grid;
       gap: 12px;
+      align-content: start;
     }
 
     .updates-list,
@@ -859,8 +884,11 @@
     .dash-head h3 {
       margin: 0;
       font-size: 15px;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .dash-head p {
@@ -868,6 +896,7 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.25;
+      min-height: 30px;
     }
 
     .dash-foot {
@@ -885,19 +914,55 @@
       line-height: 1.2;
     }
 
+    .view-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #1e4fa5;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+      padding: 0;
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .view-link:hover {
+      text-decoration: underline;
+    }
+
     .pager-dots {
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 8px;
       margin: 10px 0 0;
     }
 
     .pager-dots span {
+      display: inline-block;
+      border-radius: 999px;
+      background: #c9d3e4;
+    }
+
+    .pager-dots span:nth-child(1) {
+      width: 11px;
+      height: 11px;
+      opacity: 0.95;
+    }
+
+    .pager-dots span:nth-child(2) {
+      width: 8px;
+      height: 8px;
+      opacity: 0.75;
+    }
+
+    .pager-dots span:nth-child(3) {
       width: 10px;
       height: 10px;
-      border-radius: 50%;
-      background: #c9d3e4;
-      display: inline-block;
+      opacity: 0.62;
     }
 
     .pager-dots span.active {
@@ -956,6 +1021,13 @@
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
       border: 0;
+    }
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      flex: 0 0 auto;
     }
 
     @media (max-width: 1240px) {
@@ -1038,6 +1110,56 @@
   </style>
 </head>
 <body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <path d="M10.5 4a6.5 6.5 0 104.12 11.55l4.91 4.9 1.41-1.41-4.9-4.91A6.5 6.5 0 0010.5 4zm0 2a4.5 4.5 0 110 9 4.5 4.5 0 010-9z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24">
+      <path d="M4 5h16l-6 7v5l-4 2v-7L4 5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-building" viewBox="0 0 24 24">
+      <path d="M4 20h16M7 20V7h10v13M9 20v-3m6 3v-3M9 9h2m2 0h2m-6 3h2m2 0h2m-6 3h2m2 0h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 7V5h6v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24">
+      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24">
+      <path d="M9 12a4 4 0 014-4h3a4 4 0 010 8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 12a4 4 0 01-4 4H8a4 4 0 010-8h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24">
+      <path d="M7 4h7l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M14 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <rect x="14" y="4" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <rect x="4" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <rect x="14" y="14" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24">
+      <path d="M3 10l9-5 9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M7 12v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M21 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-people" viewBox="0 0 24 24">
+      <path d="M6.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm11 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM6.5 11.5c-2.4 0-4.5 1.9-4.5 4.3V18h6v-2.2c0-1 .3-1.9.8-2.7-.6-1-1.3-1.6-2.3-1.6zm11 0c-1 0-1.8.6-2.3 1.6.5.8.8 1.7.8 2.7V18h6v-2.2c0-2.4-2.1-4.3-4.5-4.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-arrow-trend" viewBox="0 0 24 24">
+      <path d="M4 16l6-6 4 4 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 8h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
@@ -1095,8 +1217,12 @@
         </nav>
 
         <div class="top-actions">
-          <a class="search-action" href="#" aria-label="Search dashboards">🔍 Search</a>
+          <a class="search-action" href="#" aria-label="Search dashboards">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            Search
+          </a>
           <label class="district-control">
+            <svg aria-hidden="true"><use href="#i-building"></use></svg>
             <span class="sr-only">Select School</span>
             <select id="districtSelect" aria-label="Select School">
               <option value="all">Select School</option>
@@ -1148,30 +1274,30 @@
               <span class="demo-note">Illustrative metrics shown for prototype review</span>
             </div>
 
-            <div class="kpi-grid">
+            <div class="kpi-grid" aria-label="Key performance indicators">
               <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon blue">👥</div></div>
+                <div class="kpi-top"><div class="kpi-icon blue"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div></div>
                 <div class="kpi-value">255</div>
                 <div class="kpi-label">Total Students</div>
                 <div class="kpi-sub">(Selected Filters)</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon green">✓</div></div>
+                <div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div></div>
                 <div class="kpi-value">87%</div>
                 <div class="kpi-label">College/Career Prepared</div>
                 <div class="kpi-sub">Prototype metric</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon purple">🎓</div></div>
+                <div class="kpi-top"><div class="kpi-icon purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div></div>
                 <div class="kpi-value">2,482</div>
                 <div class="kpi-label">Graduates</div>
                 <div class="kpi-sub">(4-Year Total)</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon orange">↗</div></div>
+                <div class="kpi-top"><div class="kpi-icon orange"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div>
                 <div class="kpi-value">32</div>
                 <div class="kpi-label">Data Dashboards Available</div>
                 <div class="kpi-sub">Across topic areas</div>
@@ -1185,7 +1311,7 @@
             <div class="field">
               <label class="field-label" for="dashboardSearch">Search dashboards</label>
               <div class="search-input-wrap">
-                <span class="search-icon">⌕</span>
+                <span class="search-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
                 <input id="dashboardSearch" type="text" placeholder="Search dashboards..." />
               </div>
             </div>
@@ -1214,7 +1340,10 @@
               </select>
             </div>
 
-            <button class="button small" type="button">☑ Apply Filters</button>
+            <button class="button small" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>
+              Apply Filters
+            </button>
           </div>
         </section>
 
@@ -1223,62 +1352,62 @@
             <h2 class="shell-title">Explore by Topic</h2>
             <div class="topic-list">
               <div class="topic-item">
-                <div class="topic-icon topic-green">👥</div>
+                <div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
                 <div class="topic-text">
                   <strong>Attendance &amp; Engagement</strong>
                   <span>6 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
 
               <div class="topic-item">
-                <div class="topic-icon topic-blue">🎓</div>
+                <div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
                 <div class="topic-text">
                   <strong>College &amp; Career</strong>
                   <span>5 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
 
               <div class="topic-item">
-                <div class="topic-icon topic-purple">📘</div>
+                <div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                 <div class="topic-text">
                   <strong>Student Academics</strong>
                   <span>8 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
 
               <div class="topic-item">
-                <div class="topic-icon topic-teal">🌐</div>
+                <div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div>
                 <div class="topic-text">
                   <strong>English Learners</strong>
                   <span>4 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
 
               <div class="topic-item">
-                <div class="topic-icon topic-orange">🏛️</div>
+                <div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div>
                 <div class="topic-text">
-                  <strong>Differentiated Assistance</strong>
+                  <strong>Special Populations</strong>
                   <span>4 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
 
               <div class="topic-item">
-                <div class="topic-icon topic-gold">⭐</div>
+                <div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div>
                 <div class="topic-text">
                   <strong>Spotlight</strong>
                   <span>5 dashboards</span>
                 </div>
-                <div class="topic-arrow">›</div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </div>
             </div>
 
             <div style="margin-top:10px;">
-              <a class="button full compact" href="#">View All Dashboards</a>
+              <a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> View All Dashboards</a>
             </div>
           </aside>
 
@@ -1311,7 +1440,7 @@
                 <p>
                   Explore preparedness metrics across student groups and over time.
                 </p>
-                <div class="featured-updated">◔ Updated: May 23, 2026</div>
+                <div class="featured-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Updated: May 23, 2026</div>
                 <div class="featured-actions">
                   <a class="button" href="college-career.html">Open Dashboard ↗</a>
                   <a class="button secondary" href="#">View Data Notes</a>
@@ -1327,7 +1456,7 @@
               <h2 class="shell-title">Recently Updated</h2>
               <div class="updates-list">
                 <div class="update-item">
-                  <div class="update-icon">▣</div>
+                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>College/Career Preparedness</strong>
                     <span>May 23, 2026</span>
@@ -1335,7 +1464,7 @@
                 </div>
 
                 <div class="update-item">
-                  <div class="update-icon">▣</div>
+                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>EL Progress Dashboard</strong>
                     <span>May 22, 2026</span>
@@ -1343,7 +1472,7 @@
                 </div>
 
                 <div class="update-item">
-                  <div class="update-icon">▣</div>
+                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>CAASPP Performance</strong>
                     <span>May 22, 2026</span>
@@ -1351,7 +1480,7 @@
                 </div>
 
                 <div class="update-item">
-                  <div class="update-icon">▣</div>
+                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>Graduation Rate Trends</strong>
                     <span>May 21, 2026</span>
@@ -1359,7 +1488,7 @@
                 </div>
 
                 <div class="update-item">
-                  <div class="update-icon">▣</div>
+                  <div class="update-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>Attendance Overview</strong>
                     <span>May 21, 2026</span>
@@ -1372,11 +1501,11 @@
               </div>
             </div>
 
-            <div>
-              <h2 class="shell-title">Quick Links</h2>
+            <div class="shell-panel" style="padding:12px; margin:0; box-shadow:none; background:transparent; border:1px solid var(--line);">
+              <h2 class="shell-title" style="margin-bottom:10px;">Quick Links</h2>
               <div class="links-list">
                 <div class="link-item">
-                  <div class="link-icon">▣</div>
+                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
                   <div>
                     <strong>Data Dictionary</strong>
                     <span>Definitions and fields</span>
@@ -1384,7 +1513,7 @@
                 </div>
 
                 <div class="link-item">
-                  <div class="link-icon">▣</div>
+                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>Methodology &amp; Notes</strong>
                     <span>Context and caveats</span>
@@ -1392,7 +1521,7 @@
                 </div>
 
                 <div class="link-item">
-                  <div class="link-icon">▣</div>
+                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>Reports &amp; Downloads</strong>
                     <span>Files and exports</span>
@@ -1400,7 +1529,7 @@
                 </div>
 
                 <div class="link-item">
-                  <div class="link-icon">▣</div>
+                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                   <div>
                     <strong>Request Data</strong>
                     <span>Submit a request</span>
@@ -1408,7 +1537,7 @@
                 </div>
 
                 <div class="link-item">
-                  <div class="link-icon">▣</div>
+                  <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
                   <div>
                     <strong>Contact Us</strong>
                     <span>Reach the data team</span>
@@ -1427,7 +1556,7 @@
         <section class="all-dashboards">
           <div class="card">
             <div class="dash-head">
-              <div class="dash-icon dash-green">👥</div>
+              <div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div>
               <div>
                 <h3>Attendance Overview</h3>
                 <p>Attendance rates, trends, and chronic absenteeism.</p>
@@ -1435,49 +1564,49 @@
             </div>
             <div class="dash-foot">
               <div class="dash-meta">Updated: May 21, 2026</div>
-              <a href="attendance.html" class="button compact">View Dashboard →</a>
+              <a href="attendance.html" class="view-link">View Dashboard →</a>
             </div>
           </div>
 
           <div class="card">
             <div class="dash-head">
-              <div class="dash-icon dash-blue">🎓</div>
+              <div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
               <div>
-                <h3>College &amp; Career</h3>
-                <p>Preparedness, FAFSA, and pathway indicators.</p>
+                <h3>CAASPP Performance</h3>
+                <p>Student performance on state assessments.</p>
               </div>
             </div>
             <div class="dash-foot">
-              <div class="dash-meta">Updated: May 23, 2026</div>
-              <a href="college-career.html" class="button compact">View Dashboard →</a>
+              <div class="dash-meta">Updated: May 22, 2026</div>
+              <a href="#" class="view-link">View Dashboard →</a>
             </div>
           </div>
 
           <div class="card">
             <div class="dash-head">
-              <div class="dash-icon dash-purple">📘</div>
+              <div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
               <div>
-                <h3>Student Academics</h3>
-                <p>Performance, assessment, and progress reporting.</p>
+                <h3>FAFSA Completion</h3>
+                <p>FAFSA completion rates and trends.</p>
               </div>
             </div>
             <div class="dash-foot">
-              <div class="dash-meta">Coming soon</div>
-              <a href="academics.html" class="button secondary compact">Coming Soon</a>
+              <div class="dash-meta">Updated: May 20, 2026</div>
+              <a href="#" class="view-link">View Dashboard →</a>
             </div>
           </div>
 
           <div class="card">
             <div class="dash-head">
-              <div class="dash-icon dash-teal">🌐</div>
+              <div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div>
               <div>
-                <h3>English Learners</h3>
-                <p>EL progress, reclassification, and language development.</p>
+                <h3>CTE Program Participation</h3>
+                <p>CTE enrollment and pathway participation.</p>
               </div>
             </div>
             <div class="dash-foot">
-              <div class="dash-meta">Coming soon</div>
-              <a href="english-learners.html" class="button secondary compact">Coming Soon</a>
+              <div class="dash-meta">Updated: May 19, 2026</div>
+              <a href="#" class="view-link">View Dashboard →</a>
             </div>
           </div>
         </section>
