@@ -6,26 +6,33 @@
   <title>OCDE Data Hub</title>
   <style>
     :root {
-      --navy: #0b2e59;
-      --blue: #0b5ed7;
-      --bg: #f4f7fb;
+      --navy: #0b2f5b;
+      --navy-2: #0a3a78;
+      --blue: #135ad6;
+      --blue-2: #0f4fbf;
+      --bg: #f4f8fd;
       --card: #ffffff;
       --text: #10233e;
       --muted: #5b6b84;
-      --line: #d8e1ee;
-      --green: #2f855a;
+      --line: #d8e2ef;
+      --soft: #edf3fb;
+      --shadow: 0 10px 28px rgba(16, 35, 62, 0.06);
+      --green: #1f8a4c;
       --teal: #0f766e;
       --purple: #6d28d9;
       --orange: #ea580c;
       --gold: #d97706;
+      --icon-blue: #2f72d8;
+      --icon-green: #3aa653;
+      --icon-purple: #8a62e6;
+      --icon-teal: #1aa6a1;
+      --icon-orange: #ef7b22;
+      --icon-gold: #e0a116;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       height: 100%;
       margin: 0;
     }
@@ -41,34 +48,37 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
     .topbar {
       flex: 0 0 auto;
-      background: var(--navy);
-      color: white;
-      padding: 16px 28px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(180deg, #0a2b57 0%, #092748 100%);
+      color: #fff;
+      padding: 14px 22px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.11);
+      box-shadow: 0 4px 18px rgba(6, 20, 43, 0.22);
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
+      gap: 18px;
+      min-width: 0;
     }
 
     .brand-block {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       min-width: 0;
+      flex: 0 0 auto;
     }
 
     .brand-logo {
-      width: 66px;
-      height: 66px;
+      width: 60px;
+      height: 60px;
       object-fit: contain;
       flex: 0 0 auto;
     }
@@ -78,49 +88,50 @@
     }
 
     .brand {
-      font-size: 34px;
-      font-weight: 800;
-      line-height: 1.02;
       margin: 0;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
     }
 
     .sub {
-      margin-top: 4px;
-      color: rgba(255, 255, 255, 0.88);
+      margin-top: 5px;
       font-size: 14px;
+      color: rgba(255,255,255,0.9);
     }
 
     .nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      gap: 18px;
       flex: 1 1 auto;
+      min-width: 0;
     }
 
     .nav a,
     .nav-trigger {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 14px;
-      opacity: 0.96;
+      font-weight: 600;
       white-space: nowrap;
-      padding: 10px 0 8px;
-      border: 0;
       background: transparent;
+      border: 0;
       cursor: pointer;
-      font: inherit;
+      padding: 9px 0 7px;
+      opacity: 0.96;
+      line-height: 1;
+    }
+
+    .nav a.active {
+      border-bottom: 3px solid rgba(255,255,255,0.96);
     }
 
     .nav a:hover,
     .nav-trigger:hover {
       text-decoration: underline;
-    }
-
-    .nav a.active {
-      border-bottom: 3px solid rgba(255, 255, 255, 0.95);
-      text-decoration: none;
     }
 
     .nav-menu {
@@ -134,7 +145,7 @@
       top: calc(100% + 10px);
       left: 0;
       min-width: 240px;
-      background: white;
+      background: #fff;
       color: var(--text);
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -157,6 +168,7 @@
       text-decoration: none;
       font-size: 14px;
       white-space: normal;
+      font-weight: 500;
     }
 
     .dropdown a:hover {
@@ -172,13 +184,14 @@
     }
 
     .search-action {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 14px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
+      font-weight: 600;
     }
 
     .search-action:hover {
@@ -186,25 +199,25 @@
     }
 
     .district-control {
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255,255,255,0.28);
       border-radius: 10px;
       padding: 10px 12px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      color: white;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .district-control select {
       border: 0;
       background: transparent;
-      color: white;
+      color: #fff;
       font-size: 14px;
       outline: none;
-      min-width: 190px;
+      min-width: 170px;
       appearance: none;
-      padding-right: 18px;
       cursor: pointer;
     }
 
@@ -215,55 +228,81 @@
     .content {
       flex: 1 1 auto;
       overflow-y: auto;
-      padding: 20px 20px 24px;
-      background: var(--bg);
+      padding: 18px 18px 20px;
+      background:
+        radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.07), transparent 28%),
+        radial-gradient(circle at 92% 16%, rgba(106, 164, 255, 0.12), transparent 18%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
     }
 
     .wrap {
-      max-width: 1440px;
+      max-width: 1420px;
       margin: 0 auto;
     }
 
-    .hero-band {
-      background: linear-gradient(180deg, #ffffff, #f7fbff);
+    .hero-band,
+    .search-strip,
+    .shell-panel,
+    .card {
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(16, 35, 62, 0.06);
-      padding: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-band {
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(125deg, rgba(224, 236, 255, 0.7), transparent 46%),
+        radial-gradient(circle at 98% 18%, rgba(183, 213, 255, 0.62) 0 3px, transparent 4px) 0 0 / 22px 22px;
+      pointer-events: none;
+      opacity: 0.55;
+      mix-blend-mode: multiply;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1.1fr 1.6fr;
-      gap: 18px;
+      grid-template-columns: 1.15fr 1.45fr;
+      gap: 16px;
       align-items: stretch;
     }
 
     .hero-copy {
-      padding: 8px 4px 0;
+      padding: 10px 4px 2px;
+      max-width: 680px;
     }
 
     .hero-copy h1 {
-      font-size: 48px;
-      line-height: 1.05;
+      font-size: 44px;
+      line-height: 1.04;
       margin: 0 0 12px;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
     }
 
     .hero-copy p {
       margin: 0;
       max-width: 560px;
       color: var(--muted);
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.45;
     }
 
     .demo-note {
-      margin-top: 18px;
+      margin-top: 16px;
       display: inline-block;
       font-size: 12px;
       font-weight: 700;
-      color: #2858a6;
+      color: #2b5fae;
       background: #eaf2ff;
       border-radius: 999px;
       padding: 7px 11px;
@@ -274,58 +313,58 @@
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .kpi {
-      background: white;
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px 14px;
-      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 8px 22px rgba(16, 35, 62, 0.04);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 132px;
+      min-height: 128px;
     }
 
     .kpi-top {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .kpi-icon {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 700;
-      color: white;
+      color: #fff;
       flex: 0 0 auto;
     }
 
-    .kpi-icon.blue { background: linear-gradient(180deg, #2f7de1, #165bb7); }
-    .kpi-icon.green { background: linear-gradient(180deg, #6bbf59, #2f7d32); }
-    .kpi-icon.purple { background: linear-gradient(180deg, #a78bfa, #6d28d9); }
-    .kpi-icon.orange { background: linear-gradient(180deg, #fdba74, #ea580c); }
+    .kpi-icon.blue { background: linear-gradient(180deg, #6fa7ff, #2462d4); }
+    .kpi-icon.green { background: linear-gradient(180deg, #89cf87, #2e8d39); }
+    .kpi-icon.purple { background: linear-gradient(180deg, #c2a9ff, #7a46e8); }
+    .kpi-icon.orange { background: linear-gradient(180deg, #ffbf7e, #ef7a1c); }
 
     .kpi-value {
-      font-size: 34px;
+      font-size: 32px;
       line-height: 1;
       font-weight: 800;
       color: var(--navy);
-      margin-top: 6px;
-      margin-bottom: 4px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      letter-spacing: -0.03em;
     }
 
     .kpi-label {
       font-size: 14px;
-      line-height: 1.35;
+      line-height: 1.25;
       color: var(--text);
       font-weight: 700;
     }
@@ -333,37 +372,65 @@
     .kpi-sub {
       margin-top: 4px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.3;
     }
 
     .search-strip {
       margin-top: 14px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
-      padding: 16px;
+      padding: 14px;
     }
 
     .search-row {
       display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+      grid-template-columns: 1.25fr 1fr 1fr 1fr auto;
       gap: 10px;
-      align-items: center;
+      align-items: end;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field-label {
+      display: block;
+      margin: 0 0 6px 2px;
+      font-size: 12px;
+      color: #3e4e66;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .search-input-wrap {
+      position: relative;
+    }
+
+    .search-input-wrap .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7d8ba3;
+      font-size: 16px;
+      pointer-events: none;
     }
 
     .search-row input,
     .search-row select {
       width: 100%;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 10px;
+      padding: 11px 13px;
       font-size: 14px;
-      background: white;
+      background: #fff;
       color: var(--text);
       outline: none;
       min-width: 0;
+      height: 42px;
+    }
+
+    .search-input-wrap input {
+      padding-left: 41px;
     }
 
     .search-row input:focus,
@@ -373,9 +440,12 @@
     }
 
     .button {
-      display: inline-block;
-      background: var(--blue);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(180deg, var(--blue), var(--blue-2));
+      color: #fff;
       text-decoration: none;
       padding: 11px 16px;
       border-radius: 10px;
@@ -383,96 +453,117 @@
       border: none;
       cursor: pointer;
       white-space: nowrap;
+      box-shadow: 0 8px 16px rgba(19, 90, 214, 0.16);
     }
 
     .button.secondary {
-      background: white;
+      background: #fff;
       color: var(--navy);
       border: 1px solid var(--line);
+      box-shadow: none;
     }
 
-    .button.small {
-      padding: 11px 15px;
-      font-size: 14px;
+    .button.small { padding: 11px 15px; font-size: 14px; }
+    .button.compact { padding: 10px 14px; }
+    .button.full { width: 100%; }
+
+    .button.ghost {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid #cfd9e7;
+      box-shadow: none;
     }
 
-    .shell-grid {
-      margin-top: 18px;
+    .section-shell {
+      margin-top: 14px;
       display: grid;
-      grid-template-columns: 250px minmax(0, 1fr) 320px;
-      gap: 16px;
+      grid-template-columns: 220px minmax(0, 1fr) 240px;
+      gap: 12px;
       align-items: start;
     }
 
     .shell-panel {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
-      padding: 16px;
+      padding: 14px;
+      min-width: 0;
     }
 
     .shell-title {
-      margin: 0 0 12px;
-      font-size: 20px;
+      margin: 0 0 10px;
+      font-size: 18px;
       line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
-    .topic-list {
+    .topic-list,
+    .updates-list,
+    .links-list {
       display: grid;
-      gap: 10px;
+      gap: 8px;
+    }
+
+    .topic-item,
+    .update-item,
+    .link-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #f9fbff);
     }
 
     .topic-item {
       display: grid;
-      grid-template-columns: 40px 1fr 18px;
-      gap: 10px;
+      grid-template-columns: 34px 1fr 14px;
+      gap: 8px;
       align-items: center;
-      padding: 10px 10px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff, #f9fbff);
+      padding: 8px;
     }
 
-    .topic-item:hover {
+    .topic-item:hover,
+    .update-item:hover,
+    .link-item:hover {
       background: #f5f9ff;
     }
 
     .topic-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      color: white;
-      font-size: 18px;
+      color: #fff;
+      font-size: 16px;
       font-weight: 700;
     }
 
-    .topic-blue { background: linear-gradient(180deg, #3b82f6, #1d4ed8); }
-    .topic-green { background: linear-gradient(180deg, #34d399, #15803d); }
-    .topic-purple { background: linear-gradient(180deg, #a78bfa, #7c3aed); }
-    .topic-teal { background: linear-gradient(180deg, #2dd4bf, #0f766e); }
-    .topic-orange { background: linear-gradient(180deg, #fb923c, #ea580c); }
-    .topic-gold { background: linear-gradient(180deg, #fbbf24, #d97706); }
+    .topic-blue { background: linear-gradient(180deg, #5b93f8, #1d4ed8); }
+    .topic-green { background: linear-gradient(180deg, #5fd08f, #16803c); }
+    .topic-purple { background: linear-gradient(180deg, #b394ff, #7c3aed); }
+    .topic-teal { background: linear-gradient(180deg, #41d6cc, #0f766e); }
+    .topic-orange { background: linear-gradient(180deg, #ffa353, #ea580c); }
+    .topic-gold { background: linear-gradient(180deg, #ffd05b, #d97706); }
 
-    .topic-text strong {
+    .topic-text strong,
+    .update-item strong,
+    .link-item strong {
       display: block;
-      font-size: 14px;
-      line-height: 1.25;
+      font-size: 13px;
+      line-height: 1.15;
       margin-bottom: 2px;
     }
 
-    .topic-text span {
+    .topic-text span,
+    .update-item span,
+    .link-item span {
       display: block;
       font-size: 12px;
+      line-height: 1.25;
       color: var(--muted);
     }
 
     .topic-arrow {
       color: #94a3b8;
-      font-size: 20px;
+      font-size: 18px;
       text-align: right;
+      line-height: 1;
     }
 
     .featured-wrap {
@@ -481,75 +572,77 @@
     }
 
     .featured-header {
-      padding: 16px 16px 0;
+      padding: 14px 14px 0;
     }
 
     .featured-badge {
       display: inline-block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      color: #2858a6;
+      color: #2b5fae;
       background: #eaf2ff;
       border-radius: 999px;
       padding: 6px 10px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .featured-body {
       display: grid;
-      grid-template-columns: 1.25fr 0.8fr;
-      gap: 16px;
-      padding: 0 16px 16px;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 14px;
+      padding: 0 14px 14px;
       align-items: start;
     }
 
     .dashboard-preview {
       border: 1px solid var(--line);
-      border-radius: 16px;
-      background: linear-gradient(180deg, #ffffff, #f9fcff);
-      padding: 12px;
-      min-height: 300px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #f9fcff);
+      padding: 10px;
+      min-height: 245px;
       overflow: hidden;
     }
 
     .preview-top {
-      height: 40px;
-      border-radius: 10px 10px 0 0;
+      height: 32px;
+      border-radius: 9px 9px 0 0;
       background: linear-gradient(90deg, #0b6bd6, #1971d4);
       margin-bottom: 10px;
       display: flex;
       align-items: center;
       padding: 0 10px;
-      color: white;
-      font-size: 12px;
+      color: #fff;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.02em;
     }
 
     .preview-grid {
       display: grid;
-      grid-template-columns: 0.95fr 1.2fr 0.75fr;
+      grid-template-columns: 0.95fr 1.25fr 0.75fr;
       gap: 8px;
-      height: 230px;
+      height: 188px;
     }
 
     .preview-box {
       border: 1px solid #d7e5f7;
       border-radius: 12px;
-      background: white;
+      background: #fff;
       padding: 10px;
       display: grid;
       align-content: start;
       gap: 8px;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .donut {
-      width: 110px;
-      height: 110px;
+      width: 102px;
+      height: 102px;
       border-radius: 50%;
-      margin: 0 auto;
+      margin: 2px auto 0;
       background: conic-gradient(#5ec16b 0 82%, #ef4444 82% 88%, #f59e0b 88% 100%);
       position: relative;
     }
@@ -560,30 +653,32 @@
       position: absolute;
       inset: 16px;
       border-radius: 50%;
-      background: white;
+      background: #fff;
       display: grid;
       place-items: center;
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.1;
+      line-height: 1.05;
+      box-shadow: inset 0 0 0 1px #eef3fa;
     }
 
     .mini-line {
       height: 100%;
       background:
         linear-gradient(180deg, rgba(11,94,215,0.04), rgba(11,94,215,0.01)),
-        white;
+        #fff;
       border-radius: 12px;
       position: relative;
       overflow: hidden;
+      min-height: 0;
     }
 
     .mini-line::before {
       content: "";
       position: absolute;
-      inset: 20px 14px 38px 14px;
+      inset: 18px 12px 34px 12px;
       background:
         linear-gradient(135deg, transparent 0 24%, #3b82f6 24% 27%, transparent 27% 41%, #22c55e 41% 44%, transparent 44% 60%, #f97316 60% 63%, transparent 63% 100%);
       opacity: 0.95;
@@ -593,170 +688,243 @@
     .bars {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
+      gap: 6px;
       align-items: end;
       height: 100%;
     }
 
     .bars span {
       display: block;
-      background: linear-gradient(180deg, #88c67f, #4caf50);
-      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, #8dd087, #4caf50);
+      border-radius: 7px 7px 0 0;
       height: 60%;
     }
 
-    .bars span:nth-child(1) { height: 45%; }
-    .bars span:nth-child(2) { height: 70%; }
+    .bars span:nth-child(1) { height: 44%; }
+    .bars span:nth-child(2) { height: 68%; }
     .bars span:nth-child(3) { height: 50%; }
-    .bars span:nth-child(4) { height: 78%; }
-    .bars span:nth-child(5) { height: 64%; }
+    .bars span:nth-child(4) { height: 76%; }
+    .bars span:nth-child(5) { height: 60%; }
+
+    .featured-meta {
+      min-width: 0;
+    }
 
     .featured-meta h3 {
       margin: 0 0 8px;
-      font-size: 24px;
-      line-height: 1.15;
+      font-size: 22px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
     }
 
     .featured-meta p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.4;
       font-size: 14px;
+    }
+
+    .featured-updated {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .featured-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       align-items: center;
-      margin-top: 12px;
+      margin-bottom: 10px;
     }
 
     .featured-note {
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .updates-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .update-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      background: linear-gradient(180deg, #ffffff, #f9fcff);
-    }
-
-    .update-item strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .update-item span {
-      display: block;
       font-size: 12px;
       color: var(--muted);
     }
 
-    .update-actions {
-      margin-top: 10px;
+    .sidebar-card {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
     }
 
-    .update-actions .button {
-      width: 100%;
-      text-align: center;
+    .updates-list,
+    .links-list {
+      gap: 8px;
+    }
+
+    .update-item,
+    .link-item {
+      padding: 10px 10px 9px;
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .update-icon,
+    .link-icon {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      color: #6d7d96;
+      font-size: 14px;
+      line-height: 1;
+      margin-top: 2px;
+      flex: 0 0 auto;
+    }
+
+    .update-item strong,
+    .link-item strong {
+      margin-bottom: 4px;
+    }
+
+    .update-item span,
+    .link-item span {
+      font-size: 11px;
+    }
+
+    .update-actions,
+    .links-actions {
+      margin-top: 2px;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 16px 2px 10px;
     }
 
     .section-title {
-      margin: 26px 0 12px;
-      font-size: 22px;
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
-    .cards {
+    .view-all-link {
+      color: #1e4fa5;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .view-all-link:hover { text-decoration: underline; }
+
+    .all-dashboards {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
+      padding: 12px;
+      min-width: 0;
     }
 
     .dash-head {
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 10px;
+      grid-template-columns: 38px 1fr;
+      gap: 9px;
       align-items: start;
       margin-bottom: 8px;
     }
 
     .dash-icon {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
-      color: white;
+      color: #fff;
       display: grid;
       place-items: center;
-      font-size: 18px;
+      font-size: 17px;
+      flex: 0 0 auto;
     }
 
-    .dash-blue { background: linear-gradient(180deg, #3b82f6, #1d4ed8); }
-    .dash-green { background: linear-gradient(180deg, #34d399, #15803d); }
-    .dash-purple { background: linear-gradient(180deg, #a78bfa, #7c3aed); }
-    .dash-teal { background: linear-gradient(180deg, #2dd4bf, #0f766e); }
-    .dash-orange { background: linear-gradient(180deg, #fb923c, #ea580c); }
-    .dash-gold { background: linear-gradient(180deg, #fbbf24, #d97706); }
+    .dash-blue { background: linear-gradient(180deg, #5b93f8, #1d4ed8); }
+    .dash-green { background: linear-gradient(180deg, #5fd08f, #16803c); }
+    .dash-purple { background: linear-gradient(180deg, #b394ff, #7c3aed); }
+    .dash-teal { background: linear-gradient(180deg, #41d6cc, #0f766e); }
+    .dash-orange { background: linear-gradient(180deg, #ffa353, #ea580c); }
+    .dash-gold { background: linear-gradient(180deg, #ffd05b, #d97706); }
 
     .dash-head h3 {
       margin: 0;
-      font-size: 17px;
-      line-height: 1.2;
+      font-size: 15px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
     .dash-head p {
-      margin: 4px 0 0;
+      margin: 3px 0 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
+      font-size: 12px;
+      line-height: 1.25;
     }
 
     .dash-foot {
-      margin-top: 10px;
+      margin-top: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .dash-meta {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    .pager-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+
+    .pager-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c9d3e4;
+      display: inline-block;
+    }
+
+    .pager-dots span.active {
+      background: var(--navy);
+    }
+
+    .footer-copy {
+      margin: 8px 2px 0;
       font-size: 12px;
       color: var(--muted);
     }
 
     .bottombar {
       flex: 0 0 auto;
-      background: var(--navy);
-      color: white;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 10px 24px;
+      background: linear-gradient(180deg, #0a2b57 0%, #092748 100%);
+      color: #fff;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 22px;
     }
 
     .bottom-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       font-size: 13px;
+      min-width: 0;
     }
 
     .bottom-left {
@@ -775,7 +943,7 @@
 
     .bottom-center,
     .bottom-right {
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255,255,255,0.88);
       white-space: nowrap;
     }
 
@@ -790,11 +958,15 @@
       border: 0;
     }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1240px) {
       .hero-grid,
-      .shell-grid,
+      .section-shell,
       .featured-body {
         grid-template-columns: 1fr;
+      }
+
+      .all-dashboards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .kpi-grid {
@@ -805,47 +977,44 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .bottom-inner {
         flex-wrap: wrap;
       }
     }
 
     @media (max-width: 760px) {
-      .hero-copy h1 {
-        font-size: 36px;
-      }
-
-      .kpi-grid,
-      .search-row,
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
       .content {
-        padding: 18px 12px 20px;
+        padding: 14px 12px 18px;
       }
 
       .topbar,
       .bottombar {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .topbar-inner {
+        flex-wrap: wrap;
       }
 
       .nav {
         justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 14px;
       }
 
-      .nav a {
-        display: inline-block;
-        margin: 0 14px 8px 0;
+      .hero-copy h1 {
+        font-size: 34px;
       }
 
-      .shell-panel {
-        padding: 14px;
+      .kpi-grid,
+      .search-row,
+      .all-dashboards {
+        grid-template-columns: 1fr;
+      }
+
+      .search-row .button {
+        width: 100%;
       }
 
       .preview-grid {
@@ -854,11 +1023,11 @@
       }
 
       .preview-box {
-        min-height: 120px;
+        min-height: 116px;
       }
 
       .bars {
-        height: 120px;
+        height: 116px;
       }
 
       .bottom-center,
@@ -888,7 +1057,7 @@
             <div class="dropdown">
               <a href="attendance.html">Attendance &amp; Engagement</a>
               <a href="college-career.html">College &amp; Career</a>
-              <a href="academics.html">Academics</a>
+              <a href="academics.html">Student Academics</a>
               <a href="english-learners.html">English Learners</a>
               <a href="differentiated-assistance.html">Differentiated Assistance</a>
               <a href="spotlight.html">Spotlight</a>
@@ -928,9 +1097,9 @@
         <div class="top-actions">
           <a class="search-action" href="#" aria-label="Search dashboards">🔍 Search</a>
           <label class="district-control">
-            <span class="sr-only">Select District</span>
-            <select id="districtSelect" aria-label="Select District">
-              <option value="all">Select District</option>
+            <span class="sr-only">Select School</span>
+            <select id="districtSelect" aria-label="Select School">
+              <option value="all">Select School</option>
               <option value="anaheim-elementary">Anaheim Elementary</option>
               <option value="anaheim-union-high">Anaheim Union High</option>
               <option value="brea-olinda-unified">Brea Olinda Unified</option>
@@ -981,36 +1150,28 @@
 
             <div class="kpi-grid">
               <div class="kpi">
-                <div class="kpi-top">
-                  <div class="kpi-icon blue">👥</div>
-                </div>
+                <div class="kpi-top"><div class="kpi-icon blue">👥</div></div>
                 <div class="kpi-value">255</div>
                 <div class="kpi-label">Total Students</div>
                 <div class="kpi-sub">(Selected Filters)</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top">
-                  <div class="kpi-icon green">✓</div>
-                </div>
+                <div class="kpi-top"><div class="kpi-icon green">✓</div></div>
                 <div class="kpi-value">87%</div>
                 <div class="kpi-label">College/Career Prepared</div>
                 <div class="kpi-sub">Prototype metric</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top">
-                  <div class="kpi-icon purple">🎓</div>
-                </div>
+                <div class="kpi-top"><div class="kpi-icon purple">🎓</div></div>
                 <div class="kpi-value">2,482</div>
                 <div class="kpi-label">Graduates</div>
                 <div class="kpi-sub">(4-Year Total)</div>
               </div>
 
               <div class="kpi">
-                <div class="kpi-top">
-                  <div class="kpi-icon orange">↗</div>
-                </div>
+                <div class="kpi-top"><div class="kpi-icon orange">↗</div></div>
                 <div class="kpi-value">32</div>
                 <div class="kpi-label">Data Dashboards Available</div>
                 <div class="kpi-sub">Across topic areas</div>
@@ -1021,43 +1182,60 @@
 
         <section class="search-strip">
           <div class="search-row">
-            <input type="text" placeholder="Search dashboards..." />
-            <select id="schoolSelect" aria-label="Select School">
-              <option>All Schools</option>
-            </select>
-            <select>
-              <option>2024-25</option>
-              <option>2023-24</option>
-              <option>2022-23</option>
-            </select>
-            <select>
-              <option>All Students</option>
-              <option>English Learners</option>
-              <option>Students with Disabilities</option>
-              <option>Socioeconomically Disadvantaged</option>
-            </select>
-            <button class="button small" type="button">Apply Filters</button>
+            <div class="field">
+              <label class="field-label" for="dashboardSearch">Search dashboards</label>
+              <div class="search-input-wrap">
+                <span class="search-icon">⌕</span>
+                <input id="dashboardSearch" type="text" placeholder="Search dashboards..." />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="schoolSelect">School</label>
+              <select id="schoolSelect" aria-label="Select School"></select>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="yearSelect">School Year</label>
+              <select id="yearSelect" aria-label="School Year">
+                <option>2025-26</option>
+                <option>2024-25</option>
+                <option>2023-24</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="groupSelect">Student Group</label>
+              <select id="groupSelect" aria-label="Student Group">
+                <option>All Students</option>
+                <option>English Learners</option>
+                <option>Students with Disabilities</option>
+                <option>Socioeconomically Disadvantaged</option>
+              </select>
+            </div>
+
+            <button class="button small" type="button">☑ Apply Filters</button>
           </div>
         </section>
 
-        <section class="shell-grid">
+        <section class="section-shell">
           <aside class="shell-panel">
             <h2 class="shell-title">Explore by Topic</h2>
             <div class="topic-list">
-              <div class="topic-item">
-                <div class="topic-icon topic-blue">🎓</div>
-                <div class="topic-text">
-                  <strong>College &amp; Career</strong>
-                  <span>5 dashboards</span>
-                </div>
-                <div class="topic-arrow">›</div>
-              </div>
-
               <div class="topic-item">
                 <div class="topic-icon topic-green">👥</div>
                 <div class="topic-text">
                   <strong>Attendance &amp; Engagement</strong>
                   <span>6 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-blue">🎓</div>
+                <div class="topic-text">
+                  <strong>College &amp; Career</strong>
+                  <span>5 dashboards</span>
                 </div>
                 <div class="topic-arrow">›</div>
               </div>
@@ -1099,8 +1277,8 @@
               </div>
             </div>
 
-            <div style="margin-top:14px;">
-              <a class="button" href="#">View All Dashboards</a>
+            <div style="margin-top:10px;">
+              <a class="button full compact" href="#">View All Dashboards</a>
             </div>
           </aside>
 
@@ -1111,7 +1289,7 @@
             </div>
 
             <div class="featured-body">
-              <div class="dashboard-preview">
+              <div class="dashboard-preview" aria-label="Featured dashboard preview">
                 <div class="preview-top">College/Career Preparedness Dashboard</div>
                 <div class="preview-grid">
                   <div class="preview-box">
@@ -1129,69 +1307,149 @@
               </div>
 
               <div class="featured-meta">
-                <h3>Attendance &amp; Engagement Dashboard</h3>
+                <h3>College/Career Preparedness Dashboard</h3>
                 <p>
-                  Explore chronic absenteeism trends and year-over-year insights across student groups.
+                  Explore preparedness metrics across student groups and over time.
                 </p>
-
+                <div class="featured-updated">◔ Updated: May 23, 2026</div>
                 <div class="featured-actions">
-                  <a class="button" href="attendance.html">View dashboard</a>
-                  <a class="button secondary" href="#">View notes</a>
+                  <a class="button" href="college-career.html">Open Dashboard ↗</a>
+                  <a class="button secondary" href="#">View Data Notes</a>
+                  <a class="button ghost" href="#">Download PDF</a>
                 </div>
-
                 <div class="featured-note">Updated regularly • Tableau Public</div>
               </div>
             </div>
           </section>
 
-          <aside class="shell-panel">
-            <h2 class="shell-title">Recently Updated</h2>
-            <div class="updates-list">
-              <div class="update-item">
-                <strong>College/Career Preparedness</strong>
-                <span>May 23, 2025</span>
+          <aside class="shell-panel sidebar-card">
+            <div>
+              <h2 class="shell-title">Recently Updated</h2>
+              <div class="updates-list">
+                <div class="update-item">
+                  <div class="update-icon">▣</div>
+                  <div>
+                    <strong>College/Career Preparedness</strong>
+                    <span>May 23, 2026</span>
+                  </div>
+                </div>
+
+                <div class="update-item">
+                  <div class="update-icon">▣</div>
+                  <div>
+                    <strong>EL Progress Dashboard</strong>
+                    <span>May 22, 2026</span>
+                  </div>
+                </div>
+
+                <div class="update-item">
+                  <div class="update-icon">▣</div>
+                  <div>
+                    <strong>CAASPP Performance</strong>
+                    <span>May 22, 2026</span>
+                  </div>
+                </div>
+
+                <div class="update-item">
+                  <div class="update-icon">▣</div>
+                  <div>
+                    <strong>Graduation Rate Trends</strong>
+                    <span>May 21, 2026</span>
+                  </div>
+                </div>
+
+                <div class="update-item">
+                  <div class="update-icon">▣</div>
+                  <div>
+                    <strong>Attendance Overview</strong>
+                    <span>May 21, 2026</span>
+                  </div>
+                </div>
               </div>
 
-              <div class="update-item">
-                <strong>EL Progress Dashboard</strong>
-                <span>May 22, 2025</span>
-              </div>
-
-              <div class="update-item">
-                <strong>Graduation Rate Trends</strong>
-                <span>May 21, 2025</span>
-              </div>
-
-              <div class="update-item">
-                <strong>Attendance Overview</strong>
-                <span>May 21, 2025</span>
-              </div>
-
-              <div class="update-item">
-                <strong>CAASPP Performance</strong>
-                <span>May 22, 2025</span>
+              <div class="update-actions" style="margin-top:10px;">
+                <a class="button secondary full compact" href="#">View All Updates</a>
               </div>
             </div>
 
-            <div class="update-actions">
-              <a class="button secondary" href="#">View All Updates</a>
+            <div>
+              <h2 class="shell-title">Quick Links</h2>
+              <div class="links-list">
+                <div class="link-item">
+                  <div class="link-icon">▣</div>
+                  <div>
+                    <strong>Data Dictionary</strong>
+                    <span>Definitions and fields</span>
+                  </div>
+                </div>
+
+                <div class="link-item">
+                  <div class="link-icon">▣</div>
+                  <div>
+                    <strong>Methodology &amp; Notes</strong>
+                    <span>Context and caveats</span>
+                  </div>
+                </div>
+
+                <div class="link-item">
+                  <div class="link-icon">▣</div>
+                  <div>
+                    <strong>Reports &amp; Downloads</strong>
+                    <span>Files and exports</span>
+                  </div>
+                </div>
+
+                <div class="link-item">
+                  <div class="link-icon">▣</div>
+                  <div>
+                    <strong>Request Data</strong>
+                    <span>Submit a request</span>
+                  </div>
+                </div>
+
+                <div class="link-item">
+                  <div class="link-icon">▣</div>
+                  <div>
+                    <strong>Contact Us</strong>
+                    <span>Reach the data team</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </aside>
         </section>
 
-        <h2 class="section-title">Dashboard categories</h2>
-        <section class="cards">
+        <div class="section-header-row">
+          <h2 class="section-title">All Dashboards</h2>
+          <a class="view-all-link" href="#">View All</a>
+        </div>
+
+        <section class="all-dashboards">
           <div class="card">
             <div class="dash-head">
               <div class="dash-icon dash-green">👥</div>
               <div>
-                <h3>Attendance &amp; Engagement</h3>
-                <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
+                <h3>Attendance Overview</h3>
+                <p>Attendance rates, trends, and chronic absenteeism.</p>
               </div>
             </div>
             <div class="dash-foot">
-              <div class="dash-meta">Updated: May 21, 2025</div>
-              <a href="attendance.html" class="button">Open</a>
+              <div class="dash-meta">Updated: May 21, 2026</div>
+              <a href="attendance.html" class="button compact">View Dashboard →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-blue">🎓</div>
+              <div>
+                <h3>College &amp; Career</h3>
+                <p>Preparedness, FAFSA, and pathway indicators.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Updated: May 23, 2026</div>
+              <a href="college-career.html" class="button compact">View Dashboard →</a>
             </div>
           </div>
 
@@ -1205,21 +1463,7 @@
             </div>
             <div class="dash-foot">
               <div class="dash-meta">Coming soon</div>
-              <a href="academics.html" class="button secondary">Coming Soon</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-blue">🎓</div>
-              <div>
-                <h3>College &amp; Career</h3>
-                <p>Preparedness, FAFSA, and pathway indicators.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 23, 2025</div>
-              <a href="college-career.html" class="button">Open</a>
+              <a href="academics.html" class="button secondary compact">Coming Soon</a>
             </div>
           </div>
 
@@ -1228,47 +1472,23 @@
               <div class="dash-icon dash-teal">🌐</div>
               <div>
                 <h3>English Learners</h3>
-                <p>EL progress, reclassification, and language development reporting.</p>
+                <p>EL progress, reclassification, and language development.</p>
               </div>
             </div>
             <div class="dash-foot">
               <div class="dash-meta">Coming soon</div>
-              <a href="english-learners.html" class="button secondary">Coming Soon</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-orange">🏛️</div>
-              <div>
-                <h3>Differentiated Assistance</h3>
-                <p>Support planning, priority metrics, and district improvement views.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Updated: May 20, 2025</div>
-              <a href="differentiated-assistance.html" class="button">Open</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="dash-head">
-              <div class="dash-icon dash-gold">⭐</div>
-              <div>
-                <h3>Spotlight</h3>
-                <p>Featured dashboards, updates, and stories worth highlighting.</p>
-              </div>
-            </div>
-            <div class="dash-foot">
-              <div class="dash-meta">Coming soon</div>
-              <a href="spotlight.html" class="button secondary">Coming Soon</a>
+              <a href="english-learners.html" class="button secondary compact">Coming Soon</a>
             </div>
           </div>
         </section>
 
-        <footer>
-          Orange County Department of Education
-        </footer>
+        <div class="pager-dots" aria-hidden="true">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <p class="footer-copy">Orange County Department of Education</p>
       </div>
     </main>
 
@@ -1278,12 +1498,8 @@
           <img src="ocde-logo.png" alt="OCDE logo" class="bottom-logo" />
           <span>Orange County Department of Education</span>
         </div>
-        <div class="bottom-center">
-          Data is updated regularly. Please review notes for details.
-        </div>
-        <div class="bottom-right">
-          Questions? Contact our Data Team
-        </div>
+        <div class="bottom-center">Data is updated regularly. Please review data notes for details.</div>
+        <div class="bottom-right">Questions? Contact our Data Team</div>
       </div>
     </footer>
   </div>
