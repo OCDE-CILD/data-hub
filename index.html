@@ -13,8 +13,6 @@
       --text: #10233e;
       --muted: #5b6b84;
       --line: #d8e1ee;
-      --soft: #f8fbff;
-      --good: #2e8b57;
     }
 
     * {
@@ -73,13 +71,13 @@
       background: linear-gradient(180deg, #fff, #f8fbff);
       border: 1px solid var(--line);
       border-radius: 20px;
-      padding: 22px;
+      padding: 18px;
       box-shadow: 0 10px 30px rgba(16, 35, 62, 0.06);
     }
 
     .portal-grid {
       display: grid;
-      grid-template-columns: 1.25fr 1fr 0.8fr;
+      grid-template-columns: 1.5fr 0.9fr;
       gap: 16px;
       align-items: stretch;
     }
@@ -88,19 +86,8 @@
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 22px;
+      padding: 18px;
       box-shadow: 0 8px 24px rgba(16, 35, 62, 0.05);
-    }
-
-    .panel h2 {
-      margin: 0 0 10px;
-      font-size: 22px;
-    }
-
-    .panel p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.5;
     }
 
     .command-title {
@@ -122,11 +109,12 @@
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 14px 14px;
+      padding: 12px 14px;
       font-size: 15px;
       background: white;
       color: var(--text);
       outline: none;
+      min-width: 0;
     }
 
     .search-row input:focus,
@@ -159,10 +147,11 @@
     .button.small {
       padding: 10px 14px;
       font-size: 14px;
+      margin-top: 0;
     }
 
     .featured-card {
-      margin-top: 16px;
+      margin-top: 14px;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: linear-gradient(180deg, #ffffff, #f9fcff);
@@ -171,15 +160,15 @@
 
     .featured-inner {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 16px;
-      padding: 18px;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      padding: 16px;
       align-items: center;
     }
 
     .mini-chart {
-      width: 120px;
-      height: 120px;
+      width: 96px;
+      height: 96px;
       border-radius: 16px;
       background:
         linear-gradient(180deg, rgba(11,94,215,0.12), rgba(11,94,215,0.02)),
@@ -188,20 +177,20 @@
       padding: 10px;
       display: flex;
       align-items: end;
-      gap: 6px;
+      gap: 5px;
     }
 
     .bar {
-      width: 16px;
+      width: 12px;
       border-radius: 8px 8px 0 0;
       background: #b9d4f4;
     }
 
-    .bar.b1 { height: 28px; }
-    .bar.b2 { height: 52px; }
-    .bar.b3 { height: 74px; }
-    .bar.b4 { height: 38px; }
-    .bar.b5 { height: 88px; }
+    .bar.b1 { height: 18px; }
+    .bar.b2 { height: 36px; }
+    .bar.b3 { height: 58px; }
+    .bar.b4 { height: 28px; }
+    .bar.b5 { height: 72px; }
 
     .featured-copy .eyebrow {
       display: inline-block;
@@ -211,20 +200,22 @@
       background: #eaf2ff;
       border-radius: 999px;
       padding: 6px 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
 
     .featured-copy h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.15;
     }
 
     .featured-copy p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.4;
+      font-size: 14px;
     }
 
     .featured-actions {
@@ -235,7 +226,7 @@
     }
 
     .featured-note {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 13px;
       color: var(--muted);
     }
@@ -276,7 +267,7 @@
     }
 
     .metric .value {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 800;
       color: var(--navy);
       line-height: 1;
@@ -290,7 +281,7 @@
     }
 
     .section-title {
-      margin: 34px 0 14px;
+      margin: 28px 0 14px;
       font-size: 22px;
     }
 
@@ -305,20 +296,32 @@
       background: white;
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 18px;
+      padding: 14px;
       box-shadow: 0 8px 24px rgba(16, 35, 62, 0.04);
     }
 
     .card h3 {
       margin: 0 0 8px;
-      font-size: 18px;
+      font-size: 17px;
+      line-height: 1.2;
     }
 
     .card p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 78px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      margin: 8px 0 10px;
     }
 
     .meta {
@@ -328,8 +331,8 @@
     }
 
     footer {
-      margin-top: 30px;
-      padding: 20px 0 0;
+      margin-top: 24px;
+      padding: 18px 0 0;
       color: var(--muted);
       font-size: 14px;
     }
@@ -353,14 +356,6 @@
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 34px;
-      }
-
-      .portal-hero {
-        padding: 16px;
-      }
-
       .wrap {
         padding: 18px 12px 40px;
       }
@@ -382,7 +377,7 @@
 
       .mini-chart {
         width: 100%;
-        height: 90px;
+        height: 72px;
       }
     }
   </style>
@@ -405,112 +400,87 @@
 
   <main class="wrap">
     <section class="portal-hero">
-  <div class="portal-grid">
-    <div class="panel">
-      <div class="command-title">Search dashboards</div>
-      <div class="search-row">
-        <input type="text" placeholder="Search dashboards..." />
-        <select>
-          <option>All Schools</option>
-          <option>District</option>
-          <option>School A</option>
-          <option>School B</option>
-          <option>School C</option>
-        </select>
-        <select>
-          <option>2024-25</option>
-          <option>2023-24</option>
-          <option>2022-23</option>
-        </select>
-        <button class="button small" type="button">Search</button>
-      </div>
-
-      <div class="featured-card">
-        <div class="featured-inner">
-          <div class="mini-chart" aria-hidden="true">
-            <div class="bar b1"></div>
-            <div class="bar b2"></div>
-            <div class="bar b3"></div>
-            <div class="bar b4"></div>
-            <div class="bar b5"></div>
+      <div class="portal-grid">
+        <div class="panel">
+          <div class="command-title">Search dashboards</div>
+          <div class="search-row">
+            <input type="text" placeholder="Search dashboards..." />
+            <select>
+              <option>All Schools</option>
+              <option>District</option>
+              <option>School A</option>
+              <option>School B</option>
+              <option>School C</option>
+            </select>
+            <select>
+              <option>2024-25</option>
+              <option>2023-24</option>
+              <option>2022-23</option>
+            </select>
+            <button class="button small" type="button">Search</button>
           </div>
 
-          <div class="featured-copy">
-            <div class="eyebrow">Featured Dashboard</div>
-            <h3>Attendance &amp; Engagement Dashboard</h3>
-            <p>
-              Explore chronic absenteeism trends and year-over-year insights across student groups.
-            </p>
+          <div class="featured-card">
+            <div class="featured-inner">
+              <div class="mini-chart" aria-hidden="true">
+                <div class="bar b1"></div>
+                <div class="bar b2"></div>
+                <div class="bar b3"></div>
+                <div class="bar b4"></div>
+                <div class="bar b5"></div>
+              </div>
 
-            <div class="featured-actions">
-              <a class="button" href="attendance.html">View dashboard</a>
-              <a class="button secondary" href="#">View notes</a>
+              <div class="featured-copy">
+                <div class="eyebrow">Featured Dashboard</div>
+                <h3>Attendance &amp; Engagement Dashboard</h3>
+                <p>
+                  Explore chronic absenteeism trends and year-over-year insights across student groups.
+                </p>
+
+                <div class="featured-actions">
+                  <a class="button" href="attendance.html">View dashboard</a>
+                  <a class="button secondary" href="#">View notes</a>
+                </div>
+
+                <div class="featured-note">
+                  Updated regularly • Tableau Public
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 style="margin: 0 0 8px;">District Highlights</h2>
+          <p style="margin-bottom: 16px;">
+            A quick orientation panel for users who want to jump right into key reporting themes.
+          </p>
+
+          <div class="insight-metric">
+            <div class="metric">
+              <div class="value">2.1%</div>
+              <div class="label">Decrease in chronic absenteeism vs. prior year</div>
             </div>
 
-            <div class="featured-note">
-              Updated regularly • Tableau Public
+            <div class="metric">
+              <div class="value">8%</div>
+              <div class="label">Increase in FAFSA completion vs. prior year</div>
+            </div>
+
+            <div class="metric">
+              <div class="value">3</div>
+              <div class="label">Dashboards updated this week</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="panel">
-      <h2 style="margin-bottom: 8px;">District Highlights</h2>
-      <p style="margin-bottom: 16px;">
-        A quick orientation panel for users who want to jump right into key reporting themes.
-      </p>
-
-      <div class="insight-metric">
-        <div class="metric">
-          <div class="value">2.1%</div>
-          <div class="label">Decrease in chronic absenteeism vs. prior year</div>
-        </div>
-
-        <div class="metric">
-          <div class="value">8%</div>
-          <div class="label">Increase in FAFSA completion vs. prior year</div>
-        </div>
-
-        <div class="metric">
-          <div class="value">3</div>
-          <div class="label">Dashboards updated this week</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <h3>Quick access</h3>
-      <p>
-        Use the portal to browse dashboards by topic, jump to a featured report,
-        or explore the sections below.
-      </p>
-
-      <a class="button" href="attendance.html">Open attendance</a>
-      <a class="button secondary" href="college-career.html">Open college &amp; career</a>
-
-      <div class="meta" style="margin-top: 16px;">
-        Designed for staff and stakeholders
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <h2 class="section-title">Dashboard categories</h2>
     <section class="cards">
       <div class="card">
         <h3>Attendance &amp; Engagement</h3>
-        <img src="attendance-preview.png"
-             style="
-               width:100%;
-               height:120px;
-               object-fit:cover;
-               object-position:top;
-               border-radius:12px;
-               margin:10px 0 14px;
-               border:1px solid #d8e1ee;
-             "
-               alt="Attendance preview">
+        <img src="attendance-preview.png" alt="Attendance preview">
         <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
         <a href="attendance.html" class="button">Open</a>
       </div>
@@ -523,17 +493,7 @@
 
       <div class="card">
         <h3>College &amp; Career</h3>
-        <img src="college-preview.png"
-           style="
-             width:100%;
-             height:120px;
-             object-fit:cover;
-             object-position:top;
-             border-radius:12px;
-             margin:10px 0 14px;
-             border:1px solid #d8e1ee;
-           "
-             alt="College-Career preview">
+        <img src="college-preview.png" alt="College career preview">
         <p>Preparedness, FAFSA, and pathway indicators.</p>
         <a href="college-career.html" class="button">Open</a>
       </div>
@@ -546,17 +506,7 @@
 
       <div class="card">
         <h3>Differentiated Assistance</h3>
-        <img src="diff-assist-preview.png.png"
-           style="
-             width:100%;
-             height:120px;
-             object-fit:cover;
-             object-position:top;
-             border-radius:12px;
-             margin:10px 0 14px;
-             border:1px solid #d8e1ee;
-           "
-           alt="Differntiated Assistance">
+        <img src="diff-assist-preview.png" alt="Differentiated Assistance preview">
         <p>Support planning, priority metrics, and district improvement views.</p>
         <a href="differentiated-assistance.html" class="button">Open</a>
       </div>
