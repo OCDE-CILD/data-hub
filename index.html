@@ -7,7 +7,6 @@
   <style>
     :root {
       --navy: #0b2f5b;
-      --navy-2: #0a3a78;
       --blue: #135ad6;
       --blue-2: #0f4fbf;
       --bg: #f4f8fd;
@@ -113,10 +112,7 @@
       line-height: 1;
     }
 
-    .nav a.active {
-      border-bottom: 3px solid rgba(255,255,255,0.96);
-    }
-
+    .nav a.active { border-bottom: 3px solid rgba(255,255,255,0.96); }
     .nav a:hover,
     .nav-trigger:hover { text-decoration: underline; }
 
@@ -430,7 +426,6 @@
     .button.small { padding: 11px 15px; font-size: 14px; }
     .button.compact { padding: 10px 14px; }
     .button.full { width: 100%; }
-
     .button.ghost {
       background: #fff;
       color: var(--navy);
@@ -441,7 +436,7 @@
     .section-shell {
       margin-top: 12px;
       display: grid;
-      grid-template-columns: 220px minmax(0, 1fr) 240px;
+      grid-template-columns: 240px minmax(0, 1fr) 240px;
       gap: 12px;
       align-items: start;
     }
@@ -559,10 +554,11 @@
 
     .featured-body {
       display: grid;
-      grid-template-columns: 1.25fr 0.85fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 12px;
       padding: 0 12px 12px;
       align-items: start;
+      min-height: 248px;
     }
 
     .dashboard-preview {
@@ -708,10 +704,7 @@
       margin-bottom: 8px;
     }
 
-    .featured-note {
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .featured-note { font-size: 11px; color: var(--muted); }
 
     .right-rail {
       display: grid;
@@ -745,59 +738,23 @@
     }
 
     .update-item strong,
-    .link-item strong {
-      margin-bottom: 3px;
-      font-size: 11px;
-    }
-
+    .link-item strong { margin-bottom: 3px; font-size: 11px; }
     .update-item span,
     .link-item span { font-size: 9px; }
 
-    .update-actions,
-    .links-actions { margin-top: 2px; }
-
-    .dashboard-band {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr) 240px;
-      gap: 12px;
-      align-items: start;
-    }
-
     .all-dashboards-shell {
-      grid-column: 2 / 4;
-      margin-top: 0;
+      max-width: 860px;
+      margin: 10px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .quick-links-separate {
-      grid-column: 3 / 4;
-      margin-top: 14px;
-    }
-
-    .section-header-row {
+    .all-dashboards-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 10px 2px 8px;
+      justify-content: flex-end;
     }
-
-    .section-title {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    .view-all-link {
-      color: #1e4fa5;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .view-all-link:hover { text-decoration: underline; }
 
     .all-dashboards {
       display: grid;
@@ -808,7 +765,8 @@
     .card {
       padding: 10px;
       min-width: 0;
-      min-height: 132px;
+      min-height: 122px;
+      aspect-ratio: 1.22 / 1;
       background: rgba(255,255,255,0.965);
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -843,8 +801,8 @@
 
     .dash-head h3 {
       margin: 0;
-      font-size: 14px;
-      line-height: 1.05;
+      font-size: 13px;
+      line-height: 1.04;
       letter-spacing: -0.02em;
       white-space: nowrap;
       overflow: hidden;
@@ -854,9 +812,9 @@
     .dash-head p {
       margin: 3px 0 0;
       color: var(--muted);
-      font-size: 11px;
-      line-height: 1.22;
-      min-height: 28px;
+      font-size: 10px;
+      line-height: 1.18;
+      min-height: 24px;
     }
 
     .dash-foot {
@@ -869,7 +827,7 @@
     }
 
     .dash-meta {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--muted);
       line-height: 1.2;
     }
@@ -881,7 +839,7 @@
       color: #1e4fa5;
       text-decoration: none;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11px;
       white-space: nowrap;
       padding: 0;
       background: none;
@@ -896,7 +854,7 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
-      margin: 8px 0 0;
+      margin: 4px 0 0;
     }
 
     .pager-dots span {
@@ -948,10 +906,7 @@
     }
 
     .bottom-center,
-    .bottom-right {
-      color: rgba(255,255,255,0.88);
-      white-space: nowrap;
-    }
+    .bottom-right { color: rgba(255,255,255,0.88); white-space: nowrap; }
 
     .sr-only {
       position: absolute;
@@ -973,15 +928,8 @@
 
     @media (max-width: 1240px) {
       .hero-grid,
-      .section-shell,
-      .featured-body,
-      .dashboard-band {
+      .section-shell {
         grid-template-columns: 1fr;
-      }
-
-      .all-dashboards-shell,
-      .quick-links-separate {
-        grid-column: auto;
       }
 
       .all-dashboards {
@@ -1139,50 +1087,45 @@
               </div>
               <div class="update-actions" style="margin-top:10px;"><a class="button secondary full compact" href="#">View All Updates</a></div>
             </aside>
+
+            <aside class="shell-panel">
+              <h2 class="shell-title">Quick Links</h2>
+              <div class="links-list">
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Request Data</strong><span>Submit a request</span></div></div>
+                <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
+              </div>
+            </aside>
           </div>
         </section>
 
-        <div class="dashboard-band">
-          <div class="all-dashboards-shell">
-            <div class="section-header-row">
-              <h2 class="section-title">All Dashboards</h2>
-              <a class="view-all-link" href="#">View All</a>
-            </div>
-            <section class="all-dashboards">
-              <div class="card">
-                <div class="dash-head"><div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div><h3>Attendance Overview</h3><p>Attendance rates, trends, and chronic absenteeism.</p></div></div>
-                <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div><a href="attendance.html" class="view-link">View Dashboard →</a></div>
-              </div>
-              <div class="card">
-                <div class="dash-head"><div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><h3>CAASPP Performance</h3><p>Student performance on state assessments.</p></div></div>
-                <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
-              </div>
-              <div class="card">
-                <div class="dash-head"><div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div><h3>FAFSA Completion</h3><p>FAFSA completion rates and trends.</p></div></div>
-                <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
-              </div>
-              <div class="card">
-                <div class="dash-head"><div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div><h3>CTE Program Participation</h3><p>CTE enrollment and pathway participation.</p></div></div>
-                <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
-              </div>
-            </section>
-            <div class="pager-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
-            <p class="footer-copy">Orange County Department of Education</p>
+        <section class="all-dashboards-shell">
+          <div class="all-dashboards-header">
+            <a class="view-all-link" href="#">View All</a>
           </div>
-        </div>
-
-        <div class="quick-links-separate">
-          <aside class="shell-panel">
-            <h2 class="shell-title">Quick Links</h2>
-            <div class="links-list">
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Request Data</strong><span>Submit a request</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
+          <div class="all-dashboards">
+            <div class="card">
+              <div class="dash-head"><div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div><h3>Attendance Overview</h3><p>Attendance rates, trends, and chronic absenteeism.</p></div></div>
+              <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div><a href="attendance.html" class="view-link">View Dashboard →</a></div>
             </div>
-          </aside>
-        </div>
+            <div class="card">
+              <div class="dash-head"><div class="dash-icon dash-blue"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><h3>CAASPP Performance</h3><p>Student performance on state assessments.</p></div></div>
+              <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+            </div>
+            <div class="card">
+              <div class="dash-head"><div class="dash-icon dash-purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div><h3>FAFSA Completion</h3><p>FAFSA completion rates and trends.</p></div></div>
+              <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+            </div>
+            <div class="card">
+              <div class="dash-head"><div class="dash-icon dash-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div><h3>CTE Program Participation</h3><p>CTE enrollment and pathway participation.</p></div></div>
+              <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
+            </div>
+          </div>
+          <div class="pager-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+          <p class="footer-copy">Orange County Department of Education</p>
+        </section>
       </div>
     </main>
 
