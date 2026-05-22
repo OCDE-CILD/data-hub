@@ -13,7 +13,6 @@
       --text: #10233e;
       --muted: #5b6b84;
       --line: #d8e1ee;
-      --soft: #f8fbff;
       --green: #2f855a;
       --teal: #0f766e;
       --purple: #6d28d9;
@@ -25,52 +24,102 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
+      height: 100%;
       margin: 0;
+    }
+
+    body {
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
+      overflow: hidden;
+    }
+
+    .app-shell {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .topbar {
+      flex: 0 0 auto;
       background: var(--navy);
       color: white;
-      padding: 18px 32px 12px;
+      padding: 14px 28px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .brand-copy {
+      min-width: 0;
     }
 
     .brand {
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.05;
       margin: 0;
     }
 
     .sub {
-      margin-top: 6px;
-      color: rgba(255,255,255,0.82);
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.86);
       font-size: 14px;
     }
 
     .nav {
-      background: var(--navy);
-      padding: 0 32px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     .nav a {
       color: white;
       text-decoration: none;
-      margin-right: 18px;
       font-size: 14px;
       opacity: 0.95;
+      white-space: nowrap;
     }
 
     .nav a:hover {
       text-decoration: underline;
     }
 
+    .content {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 22px 20px 26px;
+      background: var(--bg);
+    }
+
     .wrap {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 24px 20px 48px;
     }
 
     .hero-band {
@@ -630,11 +679,15 @@
         grid-template-columns: 1fr;
       }
 
-      .wrap {
-        padding: 18px 12px 36px;
+      .content {
+        padding: 18px 12px 24px;
       }
 
-      .topbar,
+      .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
       .nav {
         padding-left: 16px;
         padding-right: 16px;
@@ -665,328 +718,339 @@
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="brand">OCDE Data Hub</div>
-    <div class="sub">District dashboards, trends, and resources in one place.</div>
-  </div>
-
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="attendance.html">Attendance</a>
-    <a href="college-career.html">College & Career</a>
-    <a href="academics.html">Academics</a>
-    <a href="english-learners.html">English Learners</a>
-    <a href="differentiated-assistance.html">Differentiated Assistance</a>
-    <a href="spotlight.html">Spotlight</a>
-  </div>
-
-  <main class="wrap">
-    <section class="hero-band">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1>Welcome to OCDE Data Hub</h1>
-          <p>
-            Your source for data and insights on student success.
-            Explore dashboards, trends, and resources that support
-            data-informed decisions.
-          </p>
-          <span class="demo-note">Illustrative metrics shown for prototype review</span>
-        </div>
-
-        <div class="kpi-grid">
-          <div class="kpi">
-            <div class="kpi-top">
-              <div class="kpi-icon blue">👥</div>
-            </div>
-            <div class="kpi-value">255</div>
-            <div class="kpi-label">Total Students</div>
-            <div class="kpi-sub">(Selected Filters)</div>
-          </div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <div class="kpi-icon green">✓</div>
-            </div>
-            <div class="kpi-value">87%</div>
-            <div class="kpi-label">College/Career Prepared</div>
-            <div class="kpi-sub">Prototype metric</div>
-          </div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <div class="kpi-icon purple">🎓</div>
-            </div>
-            <div class="kpi-value">2,482</div>
-            <div class="kpi-label">Graduates</div>
-            <div class="kpi-sub">(4-Year Total)</div>
-          </div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <div class="kpi-icon orange">↗</div>
-            </div>
-            <div class="kpi-value">32</div>
-            <div class="kpi-label">Data Dashboards Available</div>
-            <div class="kpi-sub">Across topic areas</div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-block">
+          <img src="ocde-logo.png" alt="OCDE logo" class="brand-logo" />
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Data. Insights. Student Success.</div>
           </div>
         </div>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="attendance.html">Attendance</a>
+          <a href="college-career.html">College &amp; Career</a>
+          <a href="academics.html">Academics</a>
+          <a href="english-learners.html">English Learners</a>
+          <a href="differentiated-assistance.html">Differentiated Assistance</a>
+          <a href="spotlight.html">Spotlight</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="search-strip">
-      <div class="search-row">
-        <input type="text" placeholder="Search dashboards..." />
-        <select>
-          <option>All Schools</option>
-          <option>District</option>
-          <option>School A</option>
-          <option>School B</option>
-          <option>School C</option>
-        </select>
-        <select>
-          <option>2024-25</option>
-          <option>2023-24</option>
-          <option>2022-23</option>
-        </select>
-        <select>
-          <option>All Students</option>
-          <option>English Learners</option>
-          <option>Students with Disabilities</option>
-          <option>Socioeconomically Disadvantaged</option>
-        </select>
-        <button class="button small" type="button">Apply Filters</button>
-      </div>
-    </section>
-
-    <section class="shell-grid">
-      <aside class="shell-panel">
-        <h2 class="shell-title">Explore by Topic</h2>
-        <div class="topic-list">
-          <div class="topic-item">
-            <div class="topic-icon topic-blue">🎓</div>
-            <div class="topic-text">
-              <strong>College &amp; Career</strong>
-              <span>5 dashboards</span>
+    <main class="content">
+      <div class="wrap">
+        <section class="hero-band">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1>Welcome to OCDE Data Hub</h1>
+              <p>
+                Your source for data and insights on student success.
+                Explore dashboards, trends, and resources that support
+                data-informed decisions.
+              </p>
+              <span class="demo-note">Illustrative metrics shown for prototype review</span>
             </div>
-            <div class="topic-arrow">›</div>
-          </div>
 
-          <div class="topic-item">
-            <div class="topic-icon topic-green">👥</div>
-            <div class="topic-text">
-              <strong>Attendance &amp; Engagement</strong>
-              <span>6 dashboards</span>
-            </div>
-            <div class="topic-arrow">›</div>
-          </div>
-
-          <div class="topic-item">
-            <div class="topic-icon topic-purple">📘</div>
-            <div class="topic-text">
-              <strong>Student Academics</strong>
-              <span>8 dashboards</span>
-            </div>
-            <div class="topic-arrow">›</div>
-          </div>
-
-          <div class="topic-item">
-            <div class="topic-icon topic-teal">🌐</div>
-            <div class="topic-text">
-              <strong>English Learners</strong>
-              <span>4 dashboards</span>
-            </div>
-            <div class="topic-arrow">›</div>
-          </div>
-
-          <div class="topic-item">
-            <div class="topic-icon topic-orange">🏛️</div>
-            <div class="topic-text">
-              <strong>Differentiated Assistance</strong>
-              <span>4 dashboards</span>
-            </div>
-            <div class="topic-arrow">›</div>
-          </div>
-
-          <div class="topic-item">
-            <div class="topic-icon topic-gold">⭐</div>
-            <div class="topic-text">
-              <strong>Spotlight</strong>
-              <span>5 dashboards</span>
-            </div>
-            <div class="topic-arrow">›</div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px;">
-          <a class="button" href="#">View All Dashboards</a>
-        </div>
-      </aside>
-
-      <section class="shell-panel featured-wrap">
-        <div class="featured-header">
-          <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboard</h2>
-          <span class="featured-badge">Attendance &amp; Engagement</span>
-        </div>
-
-        <div class="featured-body">
-          <div class="dashboard-preview">
-            <div class="preview-top">College/Career Preparedness Dashboard</div>
-            <div class="preview-grid">
-              <div class="preview-box">
-                <div class="donut"></div>
+            <div class="kpi-grid">
+              <div class="kpi">
+                <div class="kpi-top">
+                  <div class="kpi-icon blue">👥</div>
+                </div>
+                <div class="kpi-value">255</div>
+                <div class="kpi-label">Total Students</div>
+                <div class="kpi-sub">(Selected Filters)</div>
               </div>
-              <div class="preview-box">
-                <div class="mini-line"></div>
+
+              <div class="kpi">
+                <div class="kpi-top">
+                  <div class="kpi-icon green">✓</div>
+                </div>
+                <div class="kpi-value">87%</div>
+                <div class="kpi-label">College/Career Prepared</div>
+                <div class="kpi-sub">Prototype metric</div>
               </div>
-              <div class="preview-box">
-                <div class="bars">
-                  <span></span><span></span><span></span><span></span><span></span>
+
+              <div class="kpi">
+                <div class="kpi-top">
+                  <div class="kpi-icon purple">🎓</div>
+                </div>
+                <div class="kpi-value">2,482</div>
+                <div class="kpi-label">Graduates</div>
+                <div class="kpi-sub">(4-Year Total)</div>
+              </div>
+
+              <div class="kpi">
+                <div class="kpi-top">
+                  <div class="kpi-icon orange">↗</div>
+                </div>
+                <div class="kpi-value">32</div>
+                <div class="kpi-label">Data Dashboards Available</div>
+                <div class="kpi-sub">Across topic areas</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="search-strip">
+          <div class="search-row">
+            <input type="text" placeholder="Search dashboards..." />
+            <select>
+              <option>All Schools</option>
+              <option>District</option>
+              <option>School A</option>
+              <option>School B</option>
+              <option>School C</option>
+            </select>
+            <select>
+              <option>2024-25</option>
+              <option>2023-24</option>
+              <option>2022-23</option>
+            </select>
+            <select>
+              <option>All Students</option>
+              <option>English Learners</option>
+              <option>Students with Disabilities</option>
+              <option>Socioeconomically Disadvantaged</option>
+            </select>
+            <button class="button small" type="button">Apply Filters</button>
+          </div>
+        </section>
+
+        <section class="shell-grid">
+          <aside class="shell-panel">
+            <h2 class="shell-title">Explore by Topic</h2>
+            <div class="topic-list">
+              <div class="topic-item">
+                <div class="topic-icon topic-blue">🎓</div>
+                <div class="topic-text">
+                  <strong>College &amp; Career</strong>
+                  <span>5 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-green">👥</div>
+                <div class="topic-text">
+                  <strong>Attendance &amp; Engagement</strong>
+                  <span>6 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-purple">📘</div>
+                <div class="topic-text">
+                  <strong>Student Academics</strong>
+                  <span>8 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-teal">🌐</div>
+                <div class="topic-text">
+                  <strong>English Learners</strong>
+                  <span>4 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-orange">🏛️</div>
+                <div class="topic-text">
+                  <strong>Differentiated Assistance</strong>
+                  <span>4 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+
+              <div class="topic-item">
+                <div class="topic-icon topic-gold">⭐</div>
+                <div class="topic-text">
+                  <strong>Spotlight</strong>
+                  <span>5 dashboards</span>
+                </div>
+                <div class="topic-arrow">›</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <a class="button" href="#">View All Dashboards</a>
+            </div>
+          </aside>
+
+          <section class="shell-panel featured-wrap">
+            <div class="featured-header">
+              <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboard</h2>
+              <span class="featured-badge">Attendance &amp; Engagement</span>
+            </div>
+
+            <div class="featured-body">
+              <div class="dashboard-preview">
+                <div class="preview-top">College/Career Preparedness Dashboard</div>
+                <div class="preview-grid">
+                  <div class="preview-box">
+                    <div class="donut"></div>
+                  </div>
+                  <div class="preview-box">
+                    <div class="mini-line"></div>
+                  </div>
+                  <div class="preview-box">
+                    <div class="bars">
+                      <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div class="featured-meta">
+                <h3>Attendance &amp; Engagement Dashboard</h3>
+                <p>
+                  Explore chronic absenteeism trends and year-over-year insights across student groups.
+                </p>
+
+                <div class="featured-actions">
+                  <a class="button" href="attendance.html">View dashboard</a>
+                  <a class="button secondary" href="#">View notes</a>
+                </div>
+
+                <div class="featured-note">Updated regularly • Tableau Public</div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="shell-panel">
+            <h2 class="shell-title">Recently Updated</h2>
+            <div class="updates-list">
+              <div class="update-item">
+                <strong>College/Career Preparedness</strong>
+                <span>May 23, 2025</span>
+              </div>
+
+              <div class="update-item">
+                <strong>EL Progress Dashboard</strong>
+                <span>May 22, 2025</span>
+              </div>
+
+              <div class="update-item">
+                <strong>Graduation Rate Trends</strong>
+                <span>May 21, 2025</span>
+              </div>
+
+              <div class="update-item">
+                <strong>Attendance Overview</strong>
+                <span>May 21, 2025</span>
+              </div>
+
+              <div class="update-item">
+                <strong>CAASPP Performance</strong>
+                <span>May 22, 2025</span>
+              </div>
+            </div>
+
+            <div class="update-actions">
+              <a class="button secondary" href="#">View All Updates</a>
+            </div>
+          </aside>
+        </section>
+
+        <h2 class="section-title">Dashboard categories</h2>
+        <section class="cards">
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-green">👥</div>
+              <div>
+                <h3>Attendance &amp; Engagement</h3>
+                <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Updated: May 21, 2025</div>
+              <a href="attendance.html" class="button">Open</a>
             </div>
           </div>
 
-          <div class="featured-meta">
-            <h3>Attendance &amp; Engagement Dashboard</h3>
-            <p>
-              Explore chronic absenteeism trends and year-over-year insights across student groups.
-            </p>
-
-            <div class="featured-actions">
-              <a class="button" href="attendance.html">View dashboard</a>
-              <a class="button secondary" href="#">View notes</a>
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-purple">📘</div>
+              <div>
+                <h3>Student Academics</h3>
+                <p>Performance, assessment, and progress reporting.</p>
+              </div>
             </div>
-
-            <div class="featured-note">Updated regularly • Tableau Public</div>
-          </div>
-        </div>
-      </section>
-
-      <aside class="shell-panel">
-        <h2 class="shell-title">Recently Updated</h2>
-        <div class="updates-list">
-          <div class="update-item">
-            <strong>College/Career Preparedness</strong>
-            <span>May 23, 2025</span>
+            <div class="dash-foot">
+              <div class="dash-meta">Coming soon</div>
+              <a href="academics.html" class="button secondary">Coming Soon</a>
+            </div>
           </div>
 
-          <div class="update-item">
-            <strong>EL Progress Dashboard</strong>
-            <span>May 22, 2025</span>
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-blue">🎓</div>
+              <div>
+                <h3>College &amp; Career</h3>
+                <p>Preparedness, FAFSA, and pathway indicators.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Updated: May 23, 2025</div>
+              <a href="college-career.html" class="button">Open</a>
+            </div>
           </div>
 
-          <div class="update-item">
-            <strong>Graduation Rate Trends</strong>
-            <span>May 21, 2025</span>
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-teal">🌐</div>
+              <div>
+                <h3>English Learners</h3>
+                <p>EL progress, reclassification, and language development reporting.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Coming soon</div>
+              <a href="english-learners.html" class="button secondary">Coming Soon</a>
+            </div>
           </div>
 
-          <div class="update-item">
-            <strong>Attendance Overview</strong>
-            <span>May 21, 2025</span>
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-orange">🏛️</div>
+              <div>
+                <h3>Differentiated Assistance</h3>
+                <p>Support planning, priority metrics, and district improvement views.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Updated: May 20, 2025</div>
+              <a href="differentiated-assistance.html" class="button">Open</a>
+            </div>
           </div>
 
-          <div class="update-item">
-            <strong>CAASPP Performance</strong>
-            <span>May 22, 2025</span>
+          <div class="card">
+            <div class="dash-head">
+              <div class="dash-icon dash-gold">⭐</div>
+              <div>
+                <h3>Spotlight</h3>
+                <p>Featured dashboards, updates, and stories worth highlighting.</p>
+              </div>
+            </div>
+            <div class="dash-foot">
+              <div class="dash-meta">Coming soon</div>
+              <a href="spotlight.html" class="button secondary">Coming Soon</a>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div class="update-actions">
-          <a class="button secondary" href="#">View All Updates</a>
-        </div>
-      </aside>
-    </section>
-
-    <h2 class="section-title">Dashboard categories</h2>
-    <section class="cards">
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-green">👥</div>
-          <div>
-            <h3>Attendance &amp; Engagement</h3>
-            <p>Chronic absenteeism, attendance patterns, and subgroup trends.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Updated: May 21, 2025</div>
-          <a href="attendance.html" class="button">Open</a>
-        </div>
+        <footer>
+          Orange County Department of Education
+        </footer>
       </div>
-
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-purple">📘</div>
-          <div>
-            <h3>Student Academics</h3>
-            <p>Performance, assessment, and progress reporting.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Coming soon</div>
-          <a href="academics.html" class="button secondary">Coming Soon</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-blue">🎓</div>
-          <div>
-            <h3>College &amp; Career</h3>
-            <p>Preparedness, FAFSA, and pathway indicators.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Updated: May 23, 2025</div>
-          <a href="college-career.html" class="button">Open</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-teal">🌐</div>
-          <div>
-            <h3>English Learners</h3>
-            <p>EL progress, reclassification, and language development reporting.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Coming soon</div>
-          <a href="english-learners.html" class="button secondary">Coming Soon</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-orange">🏛️</div>
-          <div>
-            <h3>Differentiated Assistance</h3>
-            <p>Support planning, priority metrics, and district improvement views.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Updated: May 20, 2025</div>
-          <a href="differentiated-assistance.html" class="button">Open</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dash-head">
-          <div class="dash-icon dash-gold">⭐</div>
-          <div>
-            <h3>Spotlight</h3>
-            <p>Featured dashboards, updates, and stories worth highlighting.</p>
-          </div>
-        </div>
-        <div class="dash-foot">
-          <div class="dash-meta">Coming soon</div>
-          <a href="spotlight.html" class="button secondary">Coming Soon</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      Orange County Department of Education
-    </footer>
-  </main>
+    </main>
+  </div>
 </body>
 </html>
