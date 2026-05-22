@@ -722,11 +722,26 @@
 
     .featured-actions {
       display: flex;
-      gap: 8px;
+      gap: 16px;
       flex-wrap: wrap;
       align-items: center;
       margin-bottom: 8px;
     }
+
+    .feature-link {
+      color: #1e4fa5;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .feature-link.secondary {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .feature-link:hover { text-decoration: underline; }
 
     .featured-note { font-size: 11px; color: var(--muted); }
 
@@ -772,17 +787,10 @@
       gap: 8px;
     }
 
-    .all-dashboards-header {
+    .all-dashboards-footer {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .all-dashboards-header h2 {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      justify-content: flex-end;
+      margin-top: 2px;
     }
 
     .view-all-link {
@@ -1237,8 +1245,8 @@
                       <p>Explore enrollment, pathway participation, and completion across career technical education programs.</p>
                       <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 24, 2026</div>
                       <div class="featured-actions">
-                        <a class="button" href="#">Open Dashboard ↗</a>
-                        <a class="button secondary" href="#">View Data Notes</a>
+                        <a class="feature-link" href="#">Open Dashboard ↗</a>
+                        <a class="feature-link secondary" href="#">View Data Notes</a>
                       </div>
                       <div class="featured-note">Updated regularly • Tableau Public</div>
                     </div>
@@ -1258,8 +1266,8 @@
                       <p>Explore preparedness metrics across student groups and over time.</p>
                       <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
                       <div class="featured-actions">
-                        <a class="button" href="college-career.html">Open Dashboard ↗</a>
-                        <a class="button secondary" href="#">View Data Notes</a>
+                        <a class="feature-link" href="college-career.html">Open Dashboard ↗</a>
+                        <a class="feature-link secondary" href="#">View Data Notes</a>
                       </div>
                       <div class="featured-note">Updated regularly • Tableau Public</div>
                     </div>
@@ -1269,10 +1277,6 @@
             </section>
 
             <section class="all-dashboards-shell">
-              <div class="all-dashboards-header">
-                <h2>All Dashboards</h2>
-                <a class="view-all-link" href="#">View All</a>
-              </div>
               <div class="all-dashboards">
                 <div class="card">
                   <div class="dash-head"><div class="dash-icon dash-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div><h3>Attendance Overview</h3><p>Attendance rates, trends, and chronic absenteeism.</p></div></div>
@@ -1291,8 +1295,11 @@
                   <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div><a href="#" class="view-link">View Dashboard →</a></div>
                 </div>
               </div>
+              <div class="all-dashboards-footer">
+                <a class="view-all-link" href="#">View All</a>
+              </div>
               <div class="pager-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
-              <p class="footer-copy">Orange County Department of Education</p>
+
             </section>
           </div>
 
@@ -1322,7 +1329,7 @@
           </div>
         </section>
 
-        <footer class="footer-copy" style="margin-top:12px;">Orange County Department of Education</footer>
+        
       </div>
     </main>
 
@@ -1330,7 +1337,6 @@
       <div class="bottom-inner">
         <div class="bottom-left">
           <img src="ocde-logo.png" alt="OCDE logo" class="bottom-logo" />
-          <span>Orange County Department of Education</span>
         </div>
         <div class="bottom-center">Data is updated regularly. Please review data notes for details.</div>
         <div class="bottom-right">Questions? Contact our Data Team</div>
