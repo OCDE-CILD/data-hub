@@ -632,186 +632,25 @@
       box-shadow: 0 10px 26px rgba(16, 35, 62, 0.05);
     }
 
-    .chart-legend {
-      margin-top: 8px;
-      display: grid;
-      gap: 4px;
-      font-size: 9px;
-      line-height: 1.1;
-      color: var(--muted);
-    }
-    
-    .chart-legend div {
+    .feature-link {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      flex-direction: column;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
     }
     
-    .legend-swatch {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      flex: 0 0 auto;
-    }
-    
-    .legend-blue { background: #3b82f6; }
-    .legend-green { background: #22c55e; }
-    .legend-orange { background: #f97316; }
-    .legend-red { background: #ef4444; }
-    
-    .bar-blue { background: linear-gradient(90deg, #1d4ed8, #60a5fa); }
-    .bar-green { background: linear-gradient(90deg, #16a34a, #86efac); }
-    .bar-orange { background: linear-gradient(90deg, #f97316, #fdba74); }
-
     .feature-preview {
       padding: 8px;
       border-bottom: 1px solid #e5edf7;
     }
-    .preview-top {
-      height: 30px;
-      border-radius: 9px 9px 0 0;
-      background: linear-gradient(90deg, #0b6bd6, #1971d4);
-      margin-bottom: 9px;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .cte-preview,
-    .college-preview {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr 0.95fr;
-      gap: 8px;
+    
+    .feature-preview img {
+      width: 100%;
       height: 175px;
-    }
-
-    .preview-box {
-      border: 1px solid #d7e5f7;
+      object-fit: cover;
+      display: block;
       border-radius: 12px;
-      background: #fff;
-      padding: 10px;
-      display: grid;
-      align-content: start;
-      gap: 8px;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .donut {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      margin: 2px auto 0;
-      background: conic-gradient(#5ec16b 0 82%, #ef4444 82% 88%, #f59e0b 88% 100%);
-      position: relative;
-    }
-
-    .donut::after {
-      content: "255\ATotal Students";
-      white-space: pre;
-      position: absolute;
-      inset: 15px;
-      border-radius: 50%;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.05;
-      box-shadow: inset 0 0 0 1px #eef3fa;
-    }
-
-    .mini-line {
-      height: 100%;
-      background:
-        linear-gradient(180deg, rgba(11,94,215,0.04), rgba(11,94,215,0.01)),
-        #fff;
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden;
-      min-height: 0;
-    }
-
-    .mini-line::before {
-      content: "";
-      position: absolute;
-      inset: 18px 12px 34px 12px;
-      background:
-        linear-gradient(135deg, transparent 0 24%, #3b82f6 24% 27%, transparent 27% 41%, #22c55e 41% 44%, transparent 44% 60%, #f97316 60% 63%, transparent 63% 100%);
-      opacity: 0.95;
-      clip-path: polygon(0 70%, 20% 50%, 40% 35%, 60% 45%, 80% 30%, 100% 55%, 100% 100%, 0 100%);
-    }
-
-    .bars {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
-      align-items: end;
-      height: 100%;
-    }
-
-    .bars span {
-      display: block;
-      background: linear-gradient(180deg, #8dd087, #4caf50);
-      border-radius: 7px 7px 0 0;
-      height: 60%;
-    }
-
-    .bars span:nth-child(1) { height: 44%; }
-    .bars span:nth-child(2) { height: 68%; }
-    .bars span:nth-child(3) { height: 50%; }
-    .bars span:nth-child(4) { height: 76%; }
-    .bars span:nth-child(5) { height: 60%; }
-
-    .pathway-bars {
-      display: grid;
-      gap: 8px;
-      margin-top: 2px;
-    }
-    
-    .pathway-bars span {
-      display: block;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #1d4ed8, #60a5fa);
-      opacity: 0.95;
-    }
-    
-    .pathway-bars span:nth-child(2) { width: 86%; }
-    .pathway-bars span:nth-child(3) { width: 72%; background: linear-gradient(90deg, #16a34a, #86efac); }
-    .pathway-bars span:nth-child(4) { width: 54%; background: linear-gradient(90deg, #f97316, #fdba74); }
-    
-    .kpi-stack {
-      display: grid;
-      gap: 8px;
-    }
-    
-    .kpi-mini {
-      border: 1px solid #d7e5f7;
-      border-radius: 10px;
-      background: #fff;
-      padding: 8px 9px;
-    }
-    
-    .kpi-mini strong {
-      display: block;
-      font-size: 12px;
-      line-height: 1;
-      color: var(--navy);
-      margin-bottom: 2px;
-    }
-    
-    .kpi-mini span {
-      display: block;
-      font-size: 9px;
-      color: var(--muted);
-      line-height: 1.2;
     }
     
     .feature-meta {
@@ -1436,112 +1275,50 @@
             <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>View All Dashboards</a></div>
           </aside>
 
-          <section class="shell-panel featured-wrap">
-            <div class="featured-header">
-              <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboards</h2>
+        <section class="shell-panel featured-wrap">
+          <div class="featured-header">
+            <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboards</h2>
+          </div>
+        
+          <div class="featured-body">
+            <div class="featured-grid">
+              <article class="feature-card primary">
+                <a class="feature-link" href="cte-program-participation.html" aria-label="Open CTE Program Participation dashboard">
+                  <div class="feature-preview">
+                    <img src="images/cte-program-participation.png" alt="CTE Program Participation dashboard preview">
+                  </div>
+                </a>
+        
+                <div class="feature-meta">
+                  <h3>CTE Program Participation</h3>
+                  <p>Explore enrollment, pathway participation, and completion across career technical education programs.</p>
+                  <div class="feature-updated">
+                    <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+                    Updated: May 24, 2026
+                  </div>
+                </div>
+              </article>
+        
+              <article class="feature-card">
+                <a class="feature-link" href="college-career.html" aria-label="Open College/Career Preparedness dashboard">
+                  <div class="feature-preview">
+                    <img src="images/college-career-preparedness.png" alt="College/Career Preparedness dashboard preview">
+                  </div>
+                </a>
+        
+                <div class="feature-meta">
+                  <h3>College/Career Preparedness</h3>
+                  <p>Explore preparedness metrics across student groups and over time.</p>
+                  <div class="feature-updated">
+                    <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+                    Updated: May 23, 2026
+                  </div>
+                </div>
+              </article>
             </div>
-            <div class="featured-body">
-              <div class="featured-grid">
-                <article class="feature-card primary">
-                  <div class="feature-preview" aria-label="Featured dashboard preview: CTE Program Participation">
-                    <div class="preview-top">CTE Program Participation</div>
-                    <div class="cte-preview">
-                    <div class="preview-box">
-                      <div class="donut"></div>
-                      <div class="chart-legend">
-                        <div><span class="legend-swatch legend-green"></span>Primary</div>
-                        <div><span class="legend-swatch legend-red"></span>Secondary</div>
-                        <div><span class="legend-swatch legend-orange"></span>Other</div>
-                      </div>
-                    </div>
-                  
-                      <div class="preview-box">
-                        <div class="pathway-bars">
-                          <span class="bar-blue" style="width: 92%;"></span>
-                          <span class="bar-green" style="width: 86%;"></span>
-                          <span class="bar-orange" style="width: 72%;"></span>
-                        </div>
-                        <div class="chart-legend">
-                          <div><span class="legend-swatch legend-blue"></span>Enrollment</div>
-                          <div><span class="legend-swatch legend-green"></span>Participation</div>
-                          <div><span class="legend-swatch legend-orange"></span>Completion</div>
-                        </div>
-                      </div>
-                  
-                      <div class="preview-box">
-                        <div class="kpi-stack">
-                          <div class="kpi-mini">
-                            <strong>255</strong>
-                            <span>Total students</span>
-                          </div>
-                          <div class="kpi-mini">
-                            <strong>82%</strong>
-                            <span>Participation</span>
-                          </div>
-                          <div class="kpi-mini">
-                            <strong>63%</strong>
-                            <span>Completion</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="feature-meta">
-                    <h3>CTE Program Participation</h3>
-                    <p>Explore enrollment, pathway participation, and completion across career technical education programs.</p>
-                    <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 24, 2026</div>
-                  </div>
-                </article>
-
-                <article class="feature-card">
-                 <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
-                  <div class="preview-top">College/Career Preparedness</div>
-                  <div class="college-preview">
-                    <div class="preview-box">
-                      <div class="donut"></div>
-                      <div class="chart-legend">
-                        <div><span class="legend-swatch legend-green"></span>Primary</div>
-                        <div><span class="legend-swatch legend-red"></span>Secondary</div>
-                        <div><span class="legend-swatch legend-orange"></span>Other</div>
-                      </div>
-                    </div>
-                
-                    <div class="preview-box">
-                      <div class="mini-line"></div>
-                      <div class="chart-legend">
-                        <div><span class="legend-swatch legend-blue"></span>Trend over time</div>
-                        <div><span class="legend-swatch legend-green"></span>Improvement</div>
-                        <div><span class="legend-swatch legend-orange"></span>Goal line</div>
-                      </div>
-                    </div>
-                
-                    <div class="preview-box">
-                      <div class="kpi-stack">
-                        <div class="kpi-mini">
-                          <strong>87%</strong>
-                          <span>Prepared overall</span>
-                        </div>
-                        <div class="kpi-mini">
-                          <strong>68%</strong>
-                          <span>College ready</span>
-                        </div>
-                        <div class="kpi-mini">
-                          <strong>54%</strong>
-                          <span>Career ready</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>                  <div class="feature-meta">
-                    <h3>College/Career Preparedness</h3>
-                    <p>Explore preparedness metrics across student groups and over time.</p>
-                    <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-
+          </div>
+        </section>
+          
           <aside class="right-rail">
             <div class="spotlight-panel">
               <span class="spotlight-tag">Data Spotlight</span>
