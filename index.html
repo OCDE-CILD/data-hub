@@ -484,6 +484,17 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       background: linear-gradient(180deg, #fff, #f9fbff);
+      display: grid;
+      grid-template-columns: 16px 1fr 12px;
+      gap: 7px;
+      align-items: center;
+      padding: 6px 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .link-copy {
+      min-width: 0;
     }
 
     .topic-item {
@@ -521,7 +532,7 @@
     .update-item strong,
     .link-item strong {
       display: block;
-      font-size: 10px;
+      font-size: 11px;
       line-height: 1.05;
       margin-bottom: 1px;
       white-space: nowrap;
@@ -533,7 +544,7 @@
     .update-item span,
     .link-item span {
       display: block;
-      font-size: 8px;
+      font-size: 9px;
       line-height: 1.15;
       color: var(--muted);
       margin-top: 1px;
@@ -1335,10 +1346,41 @@
           <aside class="shell-panel quick-links-panel">
             <h2 class="shell-title">Quick Links</h2>
             <div class="links-list">
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Data Dictionary</strong><span>Definitions and fields</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Methodology &amp; Notes</strong><span>Context and caveats</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div><strong>Reports &amp; Downloads</strong><span>Files and exports</span></div></div>
-              <div class="link-item"><div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div><div><strong>Contact Us</strong><span>Reach the data team</span></div></div>
+              <a class="link-item" href="#">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Data Dictionary</strong>
+                  <span>Definitions and fields</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+          
+              <a class="link-item" href="#">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Methodology &amp; Notes</strong>
+                  <span>Context and caveats</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+          
+              <a class="link-item" href="#">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Reports &amp; Downloads</strong>
+                  <span>Files and exports</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+          
+              <a class="link-item" href="#">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Contact Us</strong>
+                  <span>Reach the data team</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
             </div>
           </aside>
 
