@@ -894,21 +894,28 @@
     }
 
     .dash-preview {
-      grid-template-columns: 66px minmax(0, 1fr);
+      padding: 10px 10px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 72px;
+      flex: 0 0 auto;
     }
     
     .dash-swatch {
       width: 60px;
       height: 60px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      border: 1px solid transparent;
+      flex: 0 0 auto;
     }
     
     .dash-swatch svg {
       width: 34px;
       height: 34px;
-    }
-
-    .dash-meta-wrap {
-      padding-top: 6px;
+      display: block;
     }
 
     .dash-blue   { background: #e9f1ff; color: #1d4ed8; border-color: #d7e5fb; }
