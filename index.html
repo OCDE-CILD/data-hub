@@ -663,25 +663,9 @@
     .bar-green { background: linear-gradient(90deg, #16a34a, #86efac); }
     .bar-orange { background: linear-gradient(90deg, #f97316, #fdba74); }
 
-    .feature-link {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      text-decoration: none;
-      color: inherit;
-    }
-    
     .feature-preview {
       padding: 8px;
       border-bottom: 1px solid #e5edf7;
-    }
-
-    .feature-preview img {
-      width: 100%;
-      height: 175px;
-      object-fit: cover;
-      display: block;
-      border-radius: 12px;
     }
     .preview-top {
       height: 30px;
@@ -1509,19 +1493,18 @@
                   </div>
                 </article>
 
-              <article class="feature-card">
-                <a href="attendance.html" class="feature-link" aria-label="Open Attendance Overview dashboard">
-                  <div class="feature-preview">
-                    <img src="images/attendance-thumb.png" alt="Attendance Overview dashboard preview">
-                  </div>
-              
-                  <div class="feature-meta">
-                    <h3>Attendance Overview</h3>
-                    <p>Attendance rates, trends, and chronic absenteeism.</p>
-                    <div class="feature-updated">Updated: May 21, 2026</div>
-                  </div>
-                </a>
-              </article>
+                <article class="feature-card">
+                 <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
+                  <div class="preview-top">College/Career Preparedness</div>
+                  <div class="college-preview">
+                    <div class="preview-box">
+                      <div class="donut"></div>
+                      <div class="chart-legend">
+                        <div><span class="legend-swatch legend-green"></span>Primary</div>
+                        <div><span class="legend-swatch legend-red"></span>Secondary</div>
+                        <div><span class="legend-swatch legend-orange"></span>Other</div>
+                      </div>
+                    </div>
                 
                     <div class="preview-box">
                       <div class="mini-line"></div>
