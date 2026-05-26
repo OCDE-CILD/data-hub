@@ -654,6 +654,37 @@
       flex: 0 0 auto;
     }
     
+    .legend-blue { background: #3b82f6; }
+    .legend-green { background: #22c55e; }
+    .legend-orange { background: #f97316; }
+    .legend-red { background: #ef4444; }
+    
+    .bar-blue { background: linear-gradient(90deg, #1d4ed8, #60a5fa); }
+    .bar-green { background: linear-gradient(90deg, #16a34a, #86efac); }
+    .bar-orange { background: linear-gradient(90deg, #f97316, #fdba74); }
+
+    .chart-legend {
+      margin-top: 8px;
+      display: grid;
+      gap: 4px;
+      font-size: 9px;
+      line-height: 1.1;
+      color: var(--muted);
+    }
+    
+    .chart-legend div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .legend-swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+    
     .legend-green { background: #5ec16b; }
     .legend-red { background: #ef4444; }
     .legend-orange { background: #f59e0b; }
@@ -1442,16 +1473,25 @@
                   <div class="feature-preview" aria-label="Featured dashboard preview: CTE Program Participation">
                     <div class="preview-top">CTE Program Participation</div>
                     <div class="cte-preview">
-                      <div class="preview-box">
-                        <div class="donut"></div>
+                    <div class="preview-box">
+                      <div class="donut"></div>
+                      <div class="chart-legend">
+                        <div><span class="legend-swatch legend-green"></span>Primary</div>
+                        <div><span class="legend-swatch legend-red"></span>Secondary</div>
+                        <div><span class="legend-swatch legend-orange"></span>Other</div>
                       </div>
+                    </div>
                   
                       <div class="preview-box">
                         <div class="pathway-bars">
-                          <span style="width: 92%;"></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
+                          <span class="bar-blue" style="width: 92%;"></span>
+                          <span class="bar-green" style="width: 86%;"></span>
+                          <span class="bar-orange" style="width: 72%;"></span>
+                        </div>
+                        <div class="chart-legend">
+                          <div><span class="legend-swatch legend-blue"></span>Enrollment</div>
+                          <div><span class="legend-swatch legend-green"></span>Participation</div>
+                          <div><span class="legend-swatch legend-orange"></span>Completion</div>
                         </div>
                         <div class="chart-legend">
                           <div><span class="legend-swatch legend-blue"></span> Enrollment</div>
@@ -1491,10 +1531,19 @@
                   <div class="college-preview">
                     <div class="preview-box">
                       <div class="donut"></div>
+                      <div class="chart-legend">
+                        <div><span class="legend-swatch legend-green"></span>Primary</div>
+                        <div><span class="legend-swatch legend-red"></span>Secondary</div>
+                        <div><span class="legend-swatch legend-orange"></span>Other</div>
+                      </div>
                     </div>
                 
                     <div class="preview-box">
                       <div class="mini-line"></div>
+                      <div class="chart-legend">
+                        <div><span class="legend-swatch legend-blue"></span>Trend over time</div>
+                        <div><span class="legend-swatch legend-green"></span>Improvement</div>
+                      </div>
                     </div>
                 
                     <div class="preview-box">
