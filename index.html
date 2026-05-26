@@ -973,6 +973,27 @@
       width: 100%;
     }
 
+    .dash-stat-row {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .dash-stat {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+    
+    .dash-stat-label {
+      font-size: 11px;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
     .pager-dots {
       display: flex;
       justify-content: center;
@@ -1437,13 +1458,21 @@
                 <div class="dash-preview">
                   <div class="dash-swatch dash-green"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-people"></use></svg></div>
                 </div>
-                <div class="dash-meta-wrap">
-                  <div class="dash-head">
-                    <h3>Attendance Overview</h3>
-                    <p>Attendance rates, trends, and chronic absenteeism.</p>
+                  <div class="dash-meta-wrap">
+                    <div class="dash-head">
+                      <h3>Attendance Overview</h3>
+                      <p>Attendance rates, trends, and chronic absenteeism.</p>
+                    </div>
+                  
+                    <div class="dash-stat-row">
+                      <div class="dash-stat">92%</div>
+                      <div class="dash-stat-label">Current Attendance Rate</div>
+                    </div>
+                  
+                    <div class="dash-foot">
+                      <div class="dash-meta">Updated: May 21, 2026</div>
+                    </div>
                   </div>
-                  <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div></div>
-                </div>
               </a>
 
               <a class="dash-card" href="#" aria-label="Open CAASPP Performance dashboard">
@@ -1451,11 +1480,18 @@
                   <div class="dash-swatch dash-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-doc"></use></svg></div>
                 </div>
                 <div class="dash-meta-wrap">
-                  <div class="dash-head">
-                    <h3>CAASPP Performance</h3>
-                    <p>Student performance on state assessments.</p>
-                  </div>
-                  <div class="dash-foot"><div class="dash-meta">Updated: May 22, 2026</div></div>
+                <div class="dash-head">
+                  <h3>CAASPP Performance</h3>
+                  <p>Student performance on state assessments.</p>
+                </div>
+                
+                <div class="dash-stat-row">
+                  <div class="dash-stat">68%</div>
+                  <div class="dash-stat-label">Met Standard</div>
+                </div>
+                
+                <div class="dash-foot">
+                  <div class="dash-meta">Updated: May 22, 2026</div>
                 </div>
               </a>
 
@@ -1464,11 +1500,18 @@
                   <div class="dash-swatch dash-teal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"></use></svg></div>
                 </div>
                 <div class="dash-meta-wrap">
-                  <div class="dash-head">
-                    <h3>English Learners</h3>
-                    <p>English learner reclassification, progress, and trends.</p>
-                  </div>
-                  <div class="dash-foot"><div class="dash-meta">Updated: May 20, 2026</div></div>
+                <div class="dash-head">
+                  <h3>English Learners</h3>
+                  <p>English learner reclassification, progress, and trends.</p>
+                </div>
+                
+                <div class="dash-stat-row">
+                  <div class="dash-stat">14%</div>
+                  <div class="dash-stat-label">Reclassified</div>
+                </div>
+                
+                <div class="dash-foot">
+                  <div class="dash-meta">Updated: May 20, 2026</div>
                 </div>
               </a>
 
@@ -1477,12 +1520,11 @@
                   <div class="dash-swatch dash-orange"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-graduation"></use></svg></div>
                 </div>
                 <div class="dash-meta-wrap">
-                  <div class="dash-head">
-                    <h3>Graduation Rate Trends</h3>
-                    <p>Graduation trends by cohort and subgroup.</p>
-                  </div>
-                  <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div></div>
+                <div class="dash-head">
+                  <h3>Graduation Rate Trends</h3>
+                  <p>Graduation trends by cohort and subgroup.</p>
                 </div>
+                <div class="dash-foot"><div class="dash-meta">Updated: May 19, 2026</div></div>
               </a>
             </div>
             <div class="all-dashboards-footer">
