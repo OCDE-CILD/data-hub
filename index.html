@@ -657,6 +657,14 @@
       height: 175px;
     }
 
+    .cte-preview,
+    .college-preview {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 0.95fr;
+      gap: 8px;
+      height: 175px;
+    }
+
     .preview-box {
       border: 1px solid #d7e5f7;
       border-radius: 12px;
@@ -1413,10 +1421,11 @@
                 <article class="feature-card primary">
                   <div class="feature-preview" aria-label="Featured dashboard preview: CTE Program Participation">
                     <div class="preview-top">CTE Program Participation</div>
-                    <div class="preview-grid">
+                    <div class="cte-preview">
                       <div class="preview-box">
                         <div class="donut"></div>
                       </div>
+                  
                       <div class="preview-box">
                         <div class="pathway-bars">
                           <span style="width: 92%;"></span>
@@ -1425,9 +1434,21 @@
                           <span></span>
                         </div>
                       </div>
+                  
                       <div class="preview-box">
-                        <div class="bars">
-                          <span></span><span></span><span></span><span></span><span></span>
+                        <div class="kpi-stack">
+                          <div class="kpi-mini">
+                            <strong>255</strong>
+                            <span>Total students</span>
+                          </div>
+                          <div class="kpi-mini">
+                            <strong>82%</strong>
+                            <span>Participation</span>
+                          </div>
+                          <div class="kpi-mini">
+                            <strong>63%</strong>
+                            <span>Completion</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1440,34 +1461,35 @@
                 </article>
 
                 <article class="feature-card">
-                  <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
-                    <div class="preview-top">College/Career Preparedness</div>
-                    <div class="preview-grid">
-                      <div class="preview-box">
-                        <div class="donut"></div>
-                      </div>
-                      <div class="preview-box">
-                        <div class="mini-line"></div>
-                      </div>
-                      <div class="preview-box">
-                        <div class="kpi-stack">
-                          <div class="kpi-mini">
-                            <strong>87%</strong>
-                            <span>Prepared overall</span>
-                          </div>
-                          <div class="kpi-mini">
-                            <strong>68%</strong>
-                            <span>College ready</span>
-                          </div>
-                          <div class="kpi-mini">
-                            <strong>54%</strong>
-                            <span>Career ready</span>
-                          </div>
+                 <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
+                  <div class="preview-top">College/Career Preparedness</div>
+                  <div class="college-preview">
+                    <div class="preview-box">
+                      <div class="donut"></div>
+                    </div>
+                
+                    <div class="preview-box">
+                      <div class="mini-line"></div>
+                    </div>
+                
+                    <div class="preview-box">
+                      <div class="kpi-stack">
+                        <div class="kpi-mini">
+                          <strong>87%</strong>
+                          <span>Prepared overall</span>
+                        </div>
+                        <div class="kpi-mini">
+                          <strong>68%</strong>
+                          <span>College ready</span>
+                        </div>
+                        <div class="kpi-mini">
+                          <strong>54%</strong>
+                          <span>Career ready</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="feature-meta">
+                </div>                  <div class="feature-meta">
                     <h3>College/Career Preparedness</h3>
                     <p>Explore preparedness metrics across student groups and over time.</p>
                     <div class="feature-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Updated: May 23, 2026</div>
