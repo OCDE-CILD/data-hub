@@ -957,6 +957,25 @@
       min-height: 24px;
     }
 
+    .dash-stat {
+  margin-top: 8px;
+}
+
+    .dash-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+    
+    .dash-stat-label {
+      margin-top: 3px;
+      font-size: 10px;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
     .dash-foot {
       margin-top: auto;
       display: flex;
@@ -1442,8 +1461,15 @@
                     <h3>Attendance Overview</h3>
                     <p>Attendance rates, trends, and chronic absenteeism.</p>
                   </div>
-                  <div class="dash-foot"><div class="dash-meta">Updated: May 21, 2026</div></div>
-                </div>
+                  
+                  <div class="dash-stat">
+                    <div class="dash-stat-value">92%</div>
+                    <div class="dash-stat-label">Current attendance rate</div>
+                  </div>
+                  
+                  <div class="dash-foot">
+                    <div class="dash-meta">Updated: May 21, 2026</div>
+                  </div>
               </a>
 
               <a class="dash-card" href="#" aria-label="Open CAASPP Performance dashboard">
