@@ -652,7 +652,7 @@
 
     .preview-grid {
       display: grid;
-      grid-template-columns: 0.95fr 1.25fr 0.75fr;
+      grid-template-columns: 1fr 1.15fr 0.85fr;
       gap: 8px;
       height: 175px;
     }
@@ -739,16 +739,16 @@
 
     .pathway-bars {
       display: grid;
-      gap: 8px;
-      margin-top: 2px;
+      gap: 10px;
+      margin-top: 6px;
+      align-content: start;
     }
     
     .pathway-bars span {
       display: block;
-      height: 10px;
+      height: 12px;
       border-radius: 999px;
       background: linear-gradient(90deg, #1d4ed8, #60a5fa);
-      opacity: 0.95;
     }
     
     .pathway-bars span:nth-child(2) { width: 86%; }
@@ -757,14 +757,16 @@
     
     .kpi-stack {
       display: grid;
-      gap: 8px;
+      gap: 10px;
+      height: 100%;
+      align-content: center;
     }
     
     .kpi-mini {
       border: 1px solid #d7e5f7;
       border-radius: 10px;
       background: #fff;
-      padding: 8px 9px;
+      padding: 10px 10px;
     }
     
     .kpi-mini strong {
