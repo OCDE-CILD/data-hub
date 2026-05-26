@@ -737,6 +737,51 @@
     .bars span:nth-child(4) { height: 76%; }
     .bars span:nth-child(5) { height: 60%; }
 
+    .pathway-bars {
+      display: grid;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    
+    .pathway-bars span {
+      display: block;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #1d4ed8, #60a5fa);
+      opacity: 0.95;
+    }
+    
+    .pathway-bars span:nth-child(2) { width: 86%; }
+    .pathway-bars span:nth-child(3) { width: 72%; background: linear-gradient(90deg, #16a34a, #86efac); }
+    .pathway-bars span:nth-child(4) { width: 54%; background: linear-gradient(90deg, #f97316, #fdba74); }
+    
+    .kpi-stack {
+      display: grid;
+      gap: 8px;
+    }
+    
+    .kpi-mini {
+      border: 1px solid #d7e5f7;
+      border-radius: 10px;
+      background: #fff;
+      padding: 8px 9px;
+    }
+    
+    .kpi-mini strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    
+    .kpi-mini span {
+      display: block;
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+    
     .feature-meta {
       padding: 11px 12px 12px;
       min-width: 0;
@@ -1369,9 +1414,22 @@
                   <div class="feature-preview" aria-label="Featured dashboard preview: CTE Program Participation">
                     <div class="preview-top">CTE Program Participation</div>
                     <div class="preview-grid">
-                      <div class="preview-box"><div class="donut"></div></div>
-                      <div class="preview-box"><div class="mini-line"></div></div>
-                      <div class="preview-box"><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+                      <div class="preview-box">
+                        <div class="donut"></div>
+                      </div>
+                      <div class="preview-box">
+                        <div class="pathway-bars">
+                          <span style="width: 92%;"></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                      <div class="preview-box">
+                        <div class="bars">
+                          <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="feature-meta">
@@ -1385,9 +1443,28 @@
                   <div class="feature-preview" aria-label="Featured dashboard preview: College Career Preparedness Dashboard">
                     <div class="preview-top">College/Career Preparedness</div>
                     <div class="preview-grid">
-                      <div class="preview-box"><div class="donut"></div></div>
-                      <div class="preview-box"><div class="mini-line"></div></div>
-                      <div class="preview-box"><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+                      <div class="preview-box">
+                        <div class="donut"></div>
+                      </div>
+                      <div class="preview-box">
+                        <div class="mini-line"></div>
+                      </div>
+                      <div class="preview-box">
+                        <div class="kpi-stack">
+                          <div class="kpi-mini">
+                            <strong>87%</strong>
+                            <span>Prepared overall</span>
+                          </div>
+                          <div class="kpi-mini">
+                            <strong>68%</strong>
+                            <span>College ready</span>
+                          </div>
+                          <div class="kpi-mini">
+                            <strong>54%</strong>
+                            <span>Career ready</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="feature-meta">
