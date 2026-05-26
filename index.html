@@ -894,30 +894,21 @@
     }
 
     .dash-preview {
-      padding: 14px 14px 4px;
-      display: flex;
-      align-items: flex-start;
-      min-height: auto;
-      flex: 0 0 auto;
+      grid-template-columns: 66px minmax(0, 1fr);
     }
-
+    
     .dash-swatch {
-      width: 64px;
-      height: 64px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      border: 1px solid transparent;
-      flex: 0 0 auto;
-      align-self: start;
+      width: 60px;
+      height: 60px;
+    }
+    
+    .dash-swatch svg {
+      width: 34px;
+      height: 34px;
     }
 
-    .dash-swatch svg {
-      width: 46px;
-      height: 46px;
-      display: block;
-      stroke: currentColor;
-      fill: none;
+    .dash-meta-wrap {
+      padding-top: 6px;
     }
 
     .dash-blue   { background: #e9f1ff; color: #1d4ed8; border-color: #d7e5fb; }
@@ -1148,6 +1139,11 @@
       <path d="M12 6.4v2.8M10.8 8.2h2.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M16.8 15.2h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M12 4c2.8 2.3 4.4 5.1 4.4 8s-1.6 5.7-4.4 8c-2.8-2.3-4.4-5.1-4.4-8S9.2 6.3 12 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </svg>
 
   <div class="app-shell">
@@ -1328,11 +1324,11 @@
               <div class="topic-item"><div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div class="topic-text"><strong>Attendance &amp; Engagement</strong><span>6 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
               <div class="topic-item"><div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div class="topic-text"><strong>College &amp; Career</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
               <div class="topic-item"><div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div class="topic-text"><strong>Student Academics</strong><span>8 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <div class="topic-item"><div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div><div class="topic-text"><strong>English Learners</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
+              <div class="topic-item"><div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></div><div class="topic-text"><strong>English Learners</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
               <div class="topic-item"><div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div class="topic-text"><strong>Special Populations</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
               <div class="topic-item"><div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><div class="topic-text"><strong>Spotlight</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
             </div>
-            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>View All Dashboards</a></div>
+            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>View All Dashboards</a></div>
           </aside>
 
           <section class="shell-panel featured-wrap">
@@ -1458,7 +1454,7 @@
 
               <a class="dash-card" href="#" aria-label="Open English Learners dashboard">
                 <div class="dash-preview">
-                  <div class="dash-swatch dash-teal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-grid"></use></svg></div>
+                  <div class="dash-swatch dash-teal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"></use></svg></div>
                 </div>
                 <div class="dash-meta-wrap">
                   <div class="dash-head">
