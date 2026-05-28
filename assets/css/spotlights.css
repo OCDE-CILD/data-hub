@@ -48,7 +48,7 @@
 
 .spotlight-slide--enter {
   transform: translateX(100%);
-  opacity: 1;
+  opacity: 0.15;
   z-index: 2;
 }
 
