@@ -36,6 +36,8 @@
   function normalizeItems(payload) {
     if (Array.isArray(payload)) return payload;
     if (payload && Array.isArray(payload.items)) return payload.items;
+    if (payload && Array.isArray(payload.spotlights)) return payload.spotlights;
+    if (payload && Array.isArray(payload.data)) return payload.data;
     return [];
   }
 
@@ -216,9 +218,19 @@
       const payload = await response.json();
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
-      if (previewTarget) {
-        startCarousel(previewTarget, activeItems.slice(0, 3));
+    if (previewTarget) {
+      const previewItems = activeItems.slice(0, 3);
+    
+      if (previewItems.length) {
+        startCarousel(previewTarget, previewItems);
+      } else {
+        previewTarget.innerHTML = `
+          <div class="spotlight-empty">
+            No active spotlight items are available right now.
+          </div>
+        `;
       }
+    }
 
       if (listTarget) {
         renderList(listTarget, activeItems);
