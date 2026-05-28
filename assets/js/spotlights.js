@@ -4,8 +4,8 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
-  const PAUSE_MS = 5200;
-  const SLIDE_MS = 2400;
+  const PAUSE_MS = 5000;
+  const SLIDE_MS = 2600;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -134,11 +134,9 @@
   }
 
   function renderCarousel(target, currentItem, nextItem) {
-    if (!target || !currentItem) return;
-
     target.innerHTML = `
       <div class="spotlight-viewport">
-        <div class="spotlight-track">
+        <div class="spotlight-carousel">
           <div class="spotlight-slot spotlight-slot--current">
             ${renderHomeCard(currentItem)}
           </div>
@@ -159,26 +157,25 @@
 
     if (items.length === 1 || reduceMotion) return;
 
-    const track = target.querySelector('.spotlight-track');
+    const carousel = target.querySelector('.spotlight-carousel');
     const currentSlot = target.querySelector('.spotlight-slot--current');
     const nextSlot = target.querySelector('.spotlight-slot--next');
 
-    if (!track || !currentSlot || !nextSlot) return;
+    if (!carousel || !currentSlot || !nextSlot) return;
 
     let index = 0;
-    let locked = false;
+    let animating = false;
 
-    function resetTrackInstantly() {
-      track.style.transition = 'none';
-      track.classList.remove('is-sliding');
-      track.style.transform = 'translateX(0)';
-      track.getBoundingClientRect();
-      track.style.transition = '';
+    function resetNextSlotInstantly() {
+      nextSlot.style.transition = 'none';
+      nextSlot.style.transform = 'translateX(100%)';
+      nextSlot.getBoundingClientRect();
+      nextSlot.style.transition = '';
     }
 
     function advance() {
-      if (locked) return;
-      locked = true;
+      if (animating) return;
+      animating = true;
 
       const nextIndex = (index + 1) % items.length;
       const afterNextIndex = (index + 2) % items.length;
@@ -186,18 +183,24 @@
       nextSlot.innerHTML = renderHomeCard(items[nextIndex]);
 
       requestAnimationFrame(() => {
-        track.classList.add('is-sliding');
+        carousel.classList.add('is-animating');
       });
 
-      window.setTimeout(() => {
-        index = nextIndex;
+      const onTransitionEnd = (event) => {
+        if (event.propertyName !== 'transform') return;
 
+        nextSlot.removeEventListener('transitionend', onTransitionEnd);
+
+        index = nextIndex;
         currentSlot.innerHTML = renderHomeCard(items[index]);
         nextSlot.innerHTML = renderHomeCard(items[afterNextIndex]);
 
-        resetTrackInstantly();
-        locked = false;
-      }, SLIDE_MS);
+        carousel.classList.remove('is-animating');
+        resetNextSlotInstantly();
+        animating = false;
+      };
+
+      nextSlot.addEventListener('transitionend', onTransitionEnd);
     }
 
     window.setInterval(advance, PAUSE_MS);
