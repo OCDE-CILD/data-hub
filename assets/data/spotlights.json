@@ -1,1 +1,63 @@
-spotlights.json
+{
+  "version": 1,
+  "updated": "2026-05-28",
+  "items": [
+    {
+      "id": "attendance-trends-q4",
+      "title": "Attendance Trends: Q4 Pulse Check",
+      "summary": "District-level attendance moved slightly upward in Q4, with the strongest gains in elementary grades.",
+      "detail": "This spotlight summarizes the latest attendance movement across the district. It highlights grade-band shifts, identifies schools with notable gains, and points to the next actions for follow-up. Use the full page for the narrative, links, and supporting context.",
+      "priority": 1,
+      "publish_date": "2026-05-15",
+      "expiration_date": "2026-06-30",
+      "status": "active",
+      "pinned": true,
+      "category": "Attendance",
+      "audience": "District leaders",
+      "link_url": "/data-hub/pages/attendance.html",
+      "link_label": "View attendance dashboard",
+      "action_text": "Open report",
+      "image": "",
+      "created_at": "2026-05-15T08:00:00Z",
+      "updated_at": "2026-05-28T08:00:00Z"
+    },
+    {
+      "id": "math-growth-midyear",
+      "title": "Math Growth: Midyear Check-In",
+      "summary": "A midyear look at math growth shows a few schools outperforming the county-wide baseline.",
+      "detail": "This item is intended to hold the longer narrative that appears on the full Spotlight page. It can include methodology notes, subgroup detail, and call-to-action language.",
+      "priority": 2,
+      "publish_date": "2026-05-20",
+      "expiration_date": "2026-07-15",
+      "status": "active",
+      "pinned": false,
+      "category": "Academics",
+      "audience": "School administrators",
+      "link_url": "/data-hub/pages/academics.html",
+      "link_label": "View academics dashboard",
+      "action_text": "Read more",
+      "image": "",
+      "created_at": "2026-05-20T08:00:00Z",
+      "updated_at": "2026-05-28T08:00:00Z"
+    },
+    {
+      "id": "graduate-profile-update",
+      "title": "Graduate Profile: College & Career Snapshot",
+      "summary": "College and career indicators continue to improve, especially where dual enrollment participation is highest.",
+      "detail": "A longer version can explain the metric definition, the current trend, and which supporting actions are most relevant for site teams.",
+      "priority": 3,
+      "publish_date": "2026-05-22",
+      "expiration_date": "2026-08-01",
+      "status": "active",
+      "pinned": false,
+      "category": "College & Career",
+      "audience": "Counselors",
+      "link_url": "/data-hub/pages/college-career.html",
+      "link_label": "View college & career dashboard",
+      "action_text": "See details",
+      "image": "",
+      "created_at": "2026-05-22T08:00:00Z",
+      "updated_at": "2026-05-28T08:00:00Z"
+    }
+  ]
+}
