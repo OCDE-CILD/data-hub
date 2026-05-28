@@ -36,6 +36,16 @@ body.home-page .bottom-inner {
   margin: 0;
 }
 
+body.home-page .topbar {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+body.home-page .bottombar {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 html,
 body {
   height: 100%;
