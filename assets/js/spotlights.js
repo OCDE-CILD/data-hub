@@ -142,7 +142,7 @@
 
   function renderAnimatedPreview(target, currentItem, nextItem) {
     if (!target || !currentItem || !nextItem) return;
-
+  
     target.innerHTML = `
       <div class="spotlight-viewport spotlight-viewport--animating">
         <div class="spotlight-slide spotlight-slide--leave">
@@ -153,15 +153,15 @@
         </div>
       </div>
     `;
-
+  
     requestAnimationFrame(() => {
       const viewport = target.querySelector('.spotlight-viewport');
       if (viewport) viewport.classList.add('is-animating');
     });
-
+  
     window.setTimeout(() => {
       renderSteadyPreview(target, nextItem);
-    }, 1100);
+    }, 3200);
   }
 
   function initRotation(target, items) {
@@ -192,7 +192,7 @@
 
       renderAnimatedPreview(target, currentItem, nextItem);
       currentIndex = nextIndex;
-    }, 9000);
+    }, 14000);
   }
 
   async function init() {
