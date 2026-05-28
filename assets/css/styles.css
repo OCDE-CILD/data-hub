@@ -1311,7 +1311,7 @@ textarea {
 
 .dash-stat-value {
   white-space: nowrap;
-  font-size: 28px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 800;
   color: var(--navy);
