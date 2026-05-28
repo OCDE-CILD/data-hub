@@ -478,9 +478,27 @@ textarea {
 .content {
   flex: 1 1 auto;
   background:
-    radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.07), transparent 28%),
-    radial-gradient(circle at 92% 16%, rgba(183, 213, 255, 0.16) 0 3px, transparent 4px) 0 0 / 22px 22px,
-    linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+    linear-gradient(180deg, #f8fbff 0%, #f3f8fe 100%),
+  
+    radial-gradient(
+      ellipse at top left,
+      rgba(90, 150, 255, 0.10),
+      transparent 55%
+    ),
+  
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(120, 190, 255, 0.08),
+      transparent 60%
+    ),
+  
+    repeating-linear-gradient(
+      -18deg,
+      rgba(140,170,255,0.035) 0px,
+      rgba(140,170,255,0.035) 2px,
+      transparent 2px,
+      transparent 34px
+    );
 }
 
 .topbar + .content {
