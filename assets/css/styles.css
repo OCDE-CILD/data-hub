@@ -46,11 +46,6 @@ body.home-page .bottombar {
   padding-right: 16px;
 }
 
-body.home-page .content {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 body.home-page .wrap {
   max-width: 1320px;
 }
