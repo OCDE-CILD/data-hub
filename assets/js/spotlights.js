@@ -161,7 +161,7 @@
 
     window.setTimeout(() => {
       renderSteadyPreview(target, nextItem);
-    }, 480);
+    }, 1100);
   }
 
   function initRotation(target, items) {
