@@ -1103,8 +1103,8 @@ textarea {
 
 .spotlight-panel {
   padding: 12px;
-  min-height: 600px;
-  max-height: 600px;
+  min-height: 700px;
+  max-height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
