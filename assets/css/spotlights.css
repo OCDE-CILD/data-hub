@@ -37,7 +37,7 @@
 .spotlight-stage {
   position: relative;
   flex: 1 1 auto;
-  min-height: 320px;
+  min-height: 340px;
   overflow: hidden;
 }
 
@@ -70,7 +70,7 @@
 .spotlight-slot--next {
   transform: translateX(100%);
   z-index: 2;
-  transition: transform 2600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 2400ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
