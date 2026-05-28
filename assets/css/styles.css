@@ -46,6 +46,120 @@ body.home-page .bottombar {
   padding-right: 16px;
 }
 
+body.home-page .content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+body.home-page .wrap {
+  max-width: 1320px;
+}
+
+body.home-page .hero-band {
+  padding-top: 0;
+}
+
+body.home-page .hero-grid {
+  gap: 12px;
+}
+
+body.home-page .hero-copy h1 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+body.home-page .hero-copy p {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+body.home-page .demo-note {
+  margin-top: 10px;
+}
+
+body.home-page .kpi {
+  min-height: 108px;
+  padding: 10px 11px 9px;
+}
+
+body.home-page .kpi-value {
+  font-size: 27px;
+}
+
+body.home-page .section-shell {
+  margin-top: 10px;
+  gap: 10px;
+}
+
+body.home-page .shell-panel {
+  padding: 10px;
+}
+
+body.home-page .featured-header {
+  padding: 12px 10px 8px;
+}
+
+body.home-page .featured-body {
+  padding: 0 10px 8px;
+}
+
+body.home-page .feature-card {
+  min-height: 210px;
+}
+
+body.home-page .feature-preview img {
+  height: 142px;
+}
+
+body.home-page .spotlight-panel {
+  min-height: 500px;
+  max-height: 500px;
+}
+
+body.home-page .dash-card {
+  min-height: 155px;
+}
+
+body.home-page .dash-preview {
+  min-height: 52px;
+}
+
+body.home-page .all-dashboards-footer,
+body.home-page .spotlight-footer {
+  margin-top: 0;
+}
+
+body.home-page .pager-dots {
+  margin-top: 0;
+}
+
+@media (max-height: 900px) {
+  body.home-page .hero-copy h1 {
+    font-size: 32px;
+  }
+
+  body.home-page .hero-copy p {
+    font-size: 14px;
+  }
+
+  body.home-page .kpi {
+    min-height: 100px;
+  }
+
+  body.home-page .spotlight-panel {
+    min-height: 470px;
+    max-height: 470px;
+  }
+
+  body.home-page .feature-card {
+    min-height: 200px;
+  }
+
+  body.home-page .dash-card {
+    min-height: 145px;
+  }
+}
+
 html,
 body {
   height: 100%;
