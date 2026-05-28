@@ -4,6 +4,9 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
+  const ROTATION_PAUSE_MS = 5500;
+  const SLIDE_MS = 2000;
+
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -69,18 +72,14 @@
   }
 
   function renderHomeCard(item) {
-    const title = escapeHtml(item.title || '');
-    const summary = escapeHtml(getSummary(item));
-    const expires = formatDate(item.expiration_date);
-
     return `
       <article class="spotlight-card">
         <div class="spotlight-card__body">
-          <h3 class="spotlight-card__title">${title}</h3>
-          <p class="spotlight-card__summary">${summary}</p>
+          <h3 class="spotlight-card__title">${escapeHtml(item.title || '')}</h3>
+          <p class="spotlight-card__summary">${escapeHtml(getSummary(item))}</p>
           ${
-            expires
-              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
+            formatDate(item.expiration_date)
+              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(formatDate(item.expiration_date))}</div>`
               : ''
           }
         </div>
@@ -130,69 +129,82 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function renderSteadyPreview(target, item) {
-    if (!target || !item) return;
+  function buildCarousel(target, currentItem, nextItem) {
+    if (!target || !currentItem) return;
+
+    const nextMarkup = nextItem ? renderHomeCard(nextItem) : renderHomeCard(currentItem);
 
     target.innerHTML = `
       <div class="spotlight-viewport">
-        ${renderHomeCard(item)}
+        <div class="spotlight-track">
+          <div class="spotlight-slot spotlight-slot--current">
+            ${renderHomeCard(currentItem)}
+          </div>
+          <div class="spotlight-slot spotlight-slot--next">
+            ${nextMarkup}
+          </div>
+        </div>
       </div>
     `;
   }
 
-  function renderAnimatedPreview(target, currentItem, nextItem) {
-    if (!target || !currentItem || !nextItem) return;
-  
-    target.innerHTML = `
-      <div class="spotlight-viewport spotlight-viewport--animating">
-        <div class="spotlight-slide spotlight-slide--leave">
-          ${renderHomeCard(currentItem)}
-        </div>
-        <div class="spotlight-slide spotlight-slide--enter">
-          ${renderHomeCard(nextItem)}
-        </div>
-      </div>
-    `;
-  
-    requestAnimationFrame(() => {
-      const viewport = target.querySelector('.spotlight-viewport');
-      if (viewport) viewport.classList.add('is-animating');
-    });
-  
-    window.setTimeout(() => {
-      renderSteadyPreview(target, nextItem);
-    }, 3200);
-  }
+  function startCarousel(target, items) {
+    if (!target || !items.length) return;
 
-  function initRotation(target, items) {
-    if (!target || items.length === 0) return;
-
-    let currentIndex = 0;
-    let paused = false;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
+    let locked = false;
 
-    renderSteadyPreview(target, items[currentIndex]);
+    buildCarousel(target, items[0], items[1] || items[0]);
 
     if (items.length === 1 || reduceMotion) return;
 
-    target.addEventListener('mouseenter', () => {
-      paused = true;
-    });
+    const advance = () => {
+      if (locked) return;
+      locked = true;
 
-    target.addEventListener('mouseleave', () => {
-      paused = false;
-    });
+      const viewport = target.querySelector('.spotlight-viewport');
+      const track = target.querySelector('.spotlight-track');
+      const currentSlot = target.querySelector('.spotlight-slot--current');
+      const nextSlot = target.querySelector('.spotlight-slot--next');
 
-    window.setInterval(() => {
-      if (paused) return;
+      if (!viewport || !track || !currentSlot || !nextSlot) {
+        locked = false;
+        return;
+      }
 
-      const currentItem = items[currentIndex];
-      const nextIndex = (currentIndex + 1) % items.length;
-      const nextItem = items[nextIndex];
+      const nextIndex = (index + 1) % items.length;
+      const afterNextIndex = (index + 2) % items.length;
 
-      renderAnimatedPreview(target, currentItem, nextItem);
-      currentIndex = nextIndex;
-    }, 14000);
+      nextSlot.innerHTML = renderHomeCard(items[nextIndex]);
+
+      requestAnimationFrame(() => {
+        track.classList.add('is-sliding');
+      });
+
+      const onTransitionEnd = (event) => {
+        if (event.propertyName !== 'transform') return;
+
+        track.removeEventListener('transitionend', onTransitionEnd);
+
+        index = nextIndex;
+
+        currentSlot.innerHTML = renderHomeCard(items[index]);
+        nextSlot.innerHTML = renderHomeCard(items[afterNextIndex]);
+
+        track.classList.remove('is-sliding');
+        track.classList.add('is-resetting');
+
+        requestAnimationFrame(() => {
+          track.classList.remove('is-resetting');
+          locked = false;
+        });
+      };
+
+      track.addEventListener('transitionend', onTransitionEnd);
+    };
+
+    window.setInterval(advance, ROTATION_PAUSE_MS);
   }
 
   async function init() {
@@ -211,7 +223,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        initRotation(previewTarget, activeItems.slice(0, 3));
+        startCarousel(previewTarget, activeItems.slice(0, 3));
       }
 
       if (listTarget) {
