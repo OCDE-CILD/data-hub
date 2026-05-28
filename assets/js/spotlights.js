@@ -4,8 +4,8 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
-  const ROTATION_PAUSE_MS = 5500;
-  const SLIDE_MS = 2000;
+  const PAUSE_MS = 5200;
+  const SLIDE_MS = 2400;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -20,6 +20,10 @@
     return typeof value === 'string' && !Number.isNaN(Date.parse(value));
   }
 
+  function toDate(value) {
+    return isValidDate(value) ? new Date(value) : null;
+  }
+
   function formatDate(value) {
     if (!isValidDate(value)) return '';
     return new Intl.DateTimeFormat('en-US', {
@@ -27,10 +31,6 @@
       day: 'numeric',
       year: 'numeric',
     }).format(new Date(value));
-  }
-
-  function toDate(value) {
-    return isValidDate(value) ? new Date(value) : null;
   }
 
   function normalizeItems(payload) {
@@ -72,14 +72,18 @@
   }
 
   function renderHomeCard(item) {
+    const title = escapeHtml(item.title || '');
+    const summary = escapeHtml(getSummary(item));
+    const expires = formatDate(item.expiration_date);
+
     return `
       <article class="spotlight-card">
         <div class="spotlight-card__body">
-          <h3 class="spotlight-card__title">${escapeHtml(item.title || '')}</h3>
-          <p class="spotlight-card__summary">${escapeHtml(getSummary(item))}</p>
+          <h3 class="spotlight-card__title">${title}</h3>
+          <p class="spotlight-card__summary">${summary}</p>
           ${
-            formatDate(item.expiration_date)
-              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(formatDate(item.expiration_date))}</div>`
+            expires
+              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
               : ''
           }
         </div>
@@ -129,10 +133,8 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function buildCarousel(target, currentItem, nextItem) {
+  function renderCarousel(target, currentItem, nextItem) {
     if (!target || !currentItem) return;
-
-    const nextMarkup = nextItem ? renderHomeCard(nextItem) : renderHomeCard(currentItem);
 
     target.innerHTML = `
       <div class="spotlight-viewport">
@@ -141,7 +143,7 @@
             ${renderHomeCard(currentItem)}
           </div>
           <div class="spotlight-slot spotlight-slot--next">
-            ${nextMarkup}
+            ${renderHomeCard(nextItem || currentItem)}
           </div>
         </div>
       </div>
@@ -152,26 +154,31 @@
     if (!target || !items.length) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let index = 0;
-    let locked = false;
 
-    buildCarousel(target, items[0], items[1] || items[0]);
+    renderCarousel(target, items[0], items[1] || items[0]);
 
     if (items.length === 1 || reduceMotion) return;
 
-    const advance = () => {
+    const track = target.querySelector('.spotlight-track');
+    const currentSlot = target.querySelector('.spotlight-slot--current');
+    const nextSlot = target.querySelector('.spotlight-slot--next');
+
+    if (!track || !currentSlot || !nextSlot) return;
+
+    let index = 0;
+    let locked = false;
+
+    function resetTrackInstantly() {
+      track.style.transition = 'none';
+      track.classList.remove('is-sliding');
+      track.style.transform = 'translateX(0)';
+      track.getBoundingClientRect();
+      track.style.transition = '';
+    }
+
+    function advance() {
       if (locked) return;
       locked = true;
-
-      const viewport = target.querySelector('.spotlight-viewport');
-      const track = target.querySelector('.spotlight-track');
-      const currentSlot = target.querySelector('.spotlight-slot--current');
-      const nextSlot = target.querySelector('.spotlight-slot--next');
-
-      if (!viewport || !track || !currentSlot || !nextSlot) {
-        locked = false;
-        return;
-      }
 
       const nextIndex = (index + 1) % items.length;
       const afterNextIndex = (index + 2) % items.length;
@@ -182,29 +189,18 @@
         track.classList.add('is-sliding');
       });
 
-      const onTransitionEnd = (event) => {
-        if (event.propertyName !== 'transform') return;
-
-        track.removeEventListener('transitionend', onTransitionEnd);
-
+      window.setTimeout(() => {
         index = nextIndex;
 
         currentSlot.innerHTML = renderHomeCard(items[index]);
         nextSlot.innerHTML = renderHomeCard(items[afterNextIndex]);
 
-        track.classList.remove('is-sliding');
-        track.classList.add('is-resetting');
+        resetTrackInstantly();
+        locked = false;
+      }, SLIDE_MS);
+    }
 
-        requestAnimationFrame(() => {
-          track.classList.remove('is-resetting');
-          locked = false;
-        });
-      };
-
-      track.addEventListener('transitionend', onTransitionEnd);
-    };
-
-    window.setInterval(advance, ROTATION_PAUSE_MS);
+    window.setInterval(advance, PAUSE_MS);
   }
 
   async function init() {
