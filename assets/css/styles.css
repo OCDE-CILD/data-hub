@@ -141,11 +141,6 @@ body.home-page .pager-dots {
     min-height: 100px;
   }
 
-  body.home-page .spotlight-panel {
-    min-height: 470px;
-    max-height: 470px;
-  }
-
   body.home-page .feature-card {
     min-height: 200px;
   }
@@ -1103,8 +1098,8 @@ textarea {
 
 .spotlight-panel {
   padding: 12px;
-  min-height: 700px;
-  max-height: 700px;
+  min-height: 600px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
