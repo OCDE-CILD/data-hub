@@ -5,7 +5,7 @@
     : '/data-hub/assets/data/spotlights.json';
 
   const PAUSE_MS = 6000;
-  const SLIDE_MS = 2400;
+  const SLIDE_MS = 1800;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -135,70 +135,56 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function renderCarousel(target, currentItem, nextItem) {
+  function renderPreviewFrame(target, currentItem, incomingItem) {
     target.innerHTML = `
-      <div class="spotlight-viewport">
-        <div class="spotlight-carousel">
-          <div class="spotlight-slot spotlight-slot--current">
-            ${renderHomeCard(currentItem)}
-          </div>
-          <div class="spotlight-slot spotlight-slot--next">
-            ${renderHomeCard(nextItem || currentItem)}
-          </div>
-        </div>
+      <div class="spotlight-frame">
+        <article class="spotlight-card spotlight-card--current">
+          ${renderHomeCard(currentItem)}
+        </article>
+
+        <article class="spotlight-card spotlight-card--incoming">
+          ${renderHomeCard(incomingItem || currentItem)}
+        </article>
       </div>
     `;
   }
 
-  function startCarousel(target, items) {
+  function startPreview(target, items) {
     if (!target || !items.length) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    renderCarousel(target, items[0], items[1] || items[0]);
+    renderPreviewFrame(target, items[0], items[1] || items[0]);
 
     if (items.length === 1 || reduceMotion) return;
-
-    const carousel = target.querySelector('.spotlight-carousel');
-    const currentSlot = target.querySelector('.spotlight-slot--current');
-    const nextSlot = target.querySelector('.spotlight-slot--next');
-
-    if (!carousel || !currentSlot || !nextSlot) return;
 
     let index = 0;
     let animating = false;
 
-    function resetNextSlotInstantly() {
-      nextSlot.style.transition = 'none';
-      nextSlot.style.transform = 'translateX(100%)';
-      nextSlot.getBoundingClientRect();
-      nextSlot.style.transition = '';
-    }
-
-    function advance() {
+    const advance = () => {
       if (animating) return;
       animating = true;
 
       const nextIndex = (index + 1) % items.length;
       const afterNextIndex = (index + 2) % items.length;
 
-      nextSlot.innerHTML = renderHomeCard(items[nextIndex]);
+      const frame = target.querySelector('.spotlight-frame');
+      const incoming = target.querySelector('.spotlight-card--incoming');
 
-      requestAnimationFrame(() => {
-        carousel.classList.add('is-animating');
-      });
+      if (!frame || !incoming) {
+        animating = false;
+        return;
+      }
+
+      incoming.innerHTML = renderHomeCard(items[nextIndex]);
+      frame.classList.add('is-animating');
 
       window.setTimeout(() => {
         index = nextIndex;
-
-        currentSlot.innerHTML = renderHomeCard(items[index]);
-        nextSlot.innerHTML = renderHomeCard(items[afterNextIndex]);
-
-        carousel.classList.remove('is-animating');
-        resetNextSlotInstantly();
+        renderPreviewFrame(target, items[index], items[afterNextIndex]);
         animating = false;
       }, SLIDE_MS);
-    }
+    };
 
     window.setInterval(advance, PAUSE_MS);
   }
@@ -218,19 +204,9 @@
       const payload = await response.json();
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
-    if (previewTarget) {
-      const previewItems = activeItems.slice(0, 3);
-    
-      if (previewItems.length) {
-        startCarousel(previewTarget, previewItems);
-      } else {
-        previewTarget.innerHTML = `
-          <div class="spotlight-empty">
-            No active spotlight items are available right now.
-          </div>
-        `;
+      if (previewTarget) {
+        startPreview(previewTarget, activeItems.slice(0, 3));
       }
-    }
 
       if (listTarget) {
         renderList(listTarget, activeItems);
