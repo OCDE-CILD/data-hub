@@ -475,31 +475,37 @@ textarea {
 }
 
 /* Shared content area */
-.content {
+body.home-page .content {
+  position: relative;
+  overflow: hidden;
   flex: 1 1 auto;
+  background: linear-gradient(180deg, #f8fbff 0%, #f3f8fe 100%);
+}
+
+body.home-page .content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background:
-    linear-gradient(180deg, #f8fbff 0%, #f3f8fe 100%),
-  
-    radial-gradient(
-      ellipse at top left,
-      rgba(90,150,255,0.08),
-      transparent 55%
-    ),
-  
-    radial-gradient(
-      ellipse at bottom right,
-      rgba(120,190,255,0.06),
-      transparent 60%
-    ),
-  
+    radial-gradient(ellipse at 12% 22%, rgba(90,150,255,0.10) 0%, rgba(90,150,255,0.10) 6%, transparent 38%),
+    radial-gradient(ellipse at 88% 18%, rgba(120,190,255,0.08) 0%, rgba(120,190,255,0.08) 6%, transparent 36%),
+    radial-gradient(ellipse at 20% 82%, rgba(90,150,255,0.07) 0%, rgba(90,150,255,0.07) 7%, transparent 42%),
+    radial-gradient(ellipse at 82% 78%, rgba(120,190,255,0.06) 0%, rgba(120,190,255,0.06) 7%, transparent 42%),
     repeating-linear-gradient(
       -12deg,
-      rgba(140,170,255,0.025) 0px,
-      rgba(140,170,255,0.025) 2px,
+      rgba(140,170,255,0.05) 0px,
+      rgba(140,170,255,0.05) 2px,
       transparent 2px,
-      transparent 42px
+      transparent 58px
     );
-  }
+  z-index: 0;
+}
+
+body.home-page .content > * {
+  position: relative;
+  z-index: 1;
+}
 
 .topbar + .content {
   overflow-y: auto;
