@@ -5,7 +5,7 @@
     : '/data-hub/assets/data/spotlights.json';
 
   const PAUSE_MS = 6000;
-  const FADE_MS = 900;
+  const FADE_MS = 1800;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -79,17 +79,15 @@
     const expires = formatDate(item.expiration_date);
 
     return `
-      <article class="spotlight-card">
-        <div class="spotlight-card__body">
-          <h3 class="spotlight-card__title">${title}</h3>
-          <p class="spotlight-card__summary">${summary}</p>
-          ${
-            expires
-              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
-              : ''
-          }
-        </div>
-      </article>
+      <div class="spotlight-card__body">
+        <h3 class="spotlight-card__title">${title}</h3>
+        <p class="spotlight-card__summary">${summary}</p>
+        ${
+          expires
+            ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
+            : ''
+        }
+      </div>
     `;
   }
 
@@ -135,10 +133,15 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function renderPreview(target, item) {
+  function renderPreviewFrame(target, currentItem, incomingItem) {
     target.innerHTML = `
       <div class="spotlight-frame">
-        ${renderPreviewMarkup(item)}
+        <article class="spotlight-card spotlight-card--current">
+          ${renderPreviewMarkup(currentItem)}
+        </article>
+        <article class="spotlight-card spotlight-card--incoming">
+          ${renderPreviewMarkup(incomingItem || currentItem)}
+        </article>
       </div>
     `;
   }
@@ -149,29 +152,34 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let index = 0;
-    renderPreview(target, items[index]);
+    let animating = false;
+
+    renderPreviewFrame(target, items[0], items[1] || items[0]);
 
     if (items.length === 1 || reduceMotion) return;
 
     const tick = () => {
+      if (animating) return;
+      animating = true;
+
       const nextIndex = (index + 1) % items.length;
-      const currentFrame = target.querySelector('.spotlight-frame');
+      const afterNextIndex = (index + 2) % items.length;
 
-      if (!currentFrame) return;
+      const frame = target.querySelector('.spotlight-frame');
+      const incoming = target.querySelector('.spotlight-card--incoming');
 
-      currentFrame.classList.add('is-fading-out');
+      if (!frame || !incoming) {
+        animating = false;
+        return;
+      }
+
+      incoming.innerHTML = renderPreviewMarkup(items[nextIndex]);
+      frame.classList.add('is-transitioning');
 
       window.setTimeout(() => {
         index = nextIndex;
-        renderPreview(target, items[index]);
-
-        const newFrame = target.querySelector('.spotlight-frame');
-        if (newFrame) {
-          newFrame.classList.add('is-fading-in');
-          requestAnimationFrame(() => {
-            newFrame.classList.remove('is-fading-in');
-          });
-        }
+        renderPreviewFrame(target, items[index], items[afterNextIndex]);
+        animating = false;
       }, FADE_MS);
     };
 
