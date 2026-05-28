@@ -17,6 +17,14 @@
   box-sizing: border-box;
 }
 
+body.home-page {
+  overflow: hidden;
+}
+
+body.home-page .app-shell {
+  height: 100vh;
+}
+
 html,
 body {
   height: 100%;
