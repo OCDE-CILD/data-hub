@@ -25,6 +25,17 @@ body.home-page .app-shell {
   height: 100vh;
 }
 
+body.home-page .wrap {
+  max-width: 1420px;
+}
+
+body.home-page .topbar-inner,
+body.home-page .bottom-inner {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+}
+
 html,
 body {
   height: 100%;
