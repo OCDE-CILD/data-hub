@@ -1088,7 +1088,7 @@ textarea {
 .right-rail {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 9px;
   min-width: 0;
   grid-row: 1 / span 2;
   align-self: start;
