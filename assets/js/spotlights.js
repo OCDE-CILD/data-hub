@@ -4,10 +4,6 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
-  const SPOTLIGHT_PAGE_URL = '/data-hub/pages/spotlight.html';
-  const ROTATION_MS = 9000;
-  const TRANSITION_MS = 480;
-
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -72,7 +68,7 @@
     return item.summary || item.detail || '';
   }
 
-  function renderPreviewCard(item) {
+  function renderHomeCard(item) {
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
     const expires = formatDate(item.expiration_date);
@@ -82,7 +78,6 @@
         <div class="spotlight-card__body">
           <h3 class="spotlight-card__title">${title}</h3>
           <p class="spotlight-card__summary">${summary}</p>
-
           ${
             expires
               ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
@@ -140,7 +135,7 @@
 
     target.innerHTML = `
       <div class="spotlight-viewport">
-        ${renderPreviewCard(item)}
+        ${renderHomeCard(item)}
       </div>
     `;
   }
@@ -151,10 +146,10 @@
     target.innerHTML = `
       <div class="spotlight-viewport spotlight-viewport--animating">
         <div class="spotlight-slide spotlight-slide--leave">
-          ${renderPreviewCard(currentItem)}
+          ${renderHomeCard(currentItem)}
         </div>
         <div class="spotlight-slide spotlight-slide--enter">
-          ${renderPreviewCard(nextItem)}
+          ${renderHomeCard(nextItem)}
         </div>
       </div>
     `;
@@ -166,10 +161,10 @@
 
     window.setTimeout(() => {
       renderSteadyPreview(target, nextItem);
-    }, TRANSITION_MS);
+    }, 480);
   }
 
-  function initPreviewRotation(target, items) {
+  function initRotation(target, items) {
     if (!target || items.length === 0) return;
 
     let currentIndex = 0;
@@ -197,7 +192,7 @@
 
       renderAnimatedPreview(target, currentItem, nextItem);
       currentIndex = nextIndex;
-    }, ROTATION_MS);
+    }, 9000);
   }
 
   async function init() {
@@ -216,7 +211,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        initPreviewRotation(previewTarget, activeItems.slice(0, 3));
+        initRotation(previewTarget, activeItems.slice(0, 3));
       }
 
       if (listTarget) {
