@@ -55,38 +55,67 @@
     }).format(new Date(value));
   }
 
-  function renderPreview(target, item, allItems) {
-    if (!target || !item) return;
-
-    const initials = (item.category || 'Spotlight')
+  function getInitials(item) {
+    const source = item.category || item.title || 'DS';
+    return source
       .split(/\s+/)
       .map((part) => part[0])
       .join('')
       .slice(0, 2)
       .toUpperCase();
+  }
 
-    target.innerHTML = `
-      <article class="spotlight-preview-card spotlight-fade-in" aria-live="polite">
+  function renderPreviewCard(item, totalCount, isNext = false) {
+    if (!item) return '';
+
+    return `
+      <article class="spotlight-preview-card ${isNext ? 'spotlight-preview-card--next' : ''}">
         <div class="spotlight-preview-header">
           <span class="spotlight-badge">Data Spotlight</span>
           ${item.category ? `<span class="spotlight-chip">${escapeHtml(item.category)}</span>` : ''}
         </div>
+
         <div class="spotlight-preview-body">
-          <div class="spotlight-icon" aria-hidden="true">${escapeHtml(initials)}</div>
+          <div class="spotlight-icon" aria-hidden="true">${escapeHtml(getInitials(item))}</div>
+
           <div class="spotlight-copy">
             <h3 class="spotlight-title">${escapeHtml(item.title)}</h3>
-            <p class="spotlight-summary">${escapeHtml(item.summary)}</p>
+            <p class="spotlight-summary">${escapeHtml(item.summary || item.detail || '')}</p>
+
             <div class="spotlight-meta">
               ${item.audience ? `<span>${escapeHtml(item.audience)}</span>` : ''}
               ${formatDate(item.expiration_date) ? `<span>Expires ${escapeHtml(formatDate(item.expiration_date))}</span>` : ''}
             </div>
           </div>
         </div>
+
         <div class="spotlight-preview-footer">
-          ${item.link_url ? `<a class="spotlight-action" href="${escapeHtml(item.link_url)}">${escapeHtml(item.action_text || 'View more')}</a>` : ''}
-          <span class="spotlight-count">${allItems.length} active item${allItems.length === 1 ? '' : 's'}</span>
+          ${item.link_url ? `<a class="spotlight-action" href="${escapeHtml(item.link_url)}">${escapeHtml(item.action_text || item.link_label || 'View more')}</a>` : ''}
+          <span class="spotlight-count">${totalCount} active item${totalCount === 1 ? '' : 's'}</span>
         </div>
       </article>
+    `;
+  }
+
+  function renderPreview(target, item, allItems, nextItem = null) {
+    if (!target || !item) return;
+
+    const totalCount = allItems.length;
+    target.innerHTML = `
+      <div class="spotlight-current">
+        ${renderPreviewCard(item, totalCount, false)}
+      </div>
+      ${
+        nextItem
+          ? `
+            <div class="spotlight-divider"></div>
+            <div class="spotlight-next-label">Next up</div>
+            <div class="spotlight-next">
+              ${renderPreviewCard(nextItem, totalCount, true)}
+            </div>
+          `
+          : ''
+      }
     `;
   }
 
@@ -109,7 +138,7 @@
             </div>
             ${formatDate(item.publish_date) ? `<div class="spotlight-dates">Published ${escapeHtml(formatDate(item.publish_date))}</div>` : ''}
           </div>
-          <p class="spotlight-summary">${escapeHtml(item.detail || item.summary)}</p>
+          <p class="spotlight-summary">${escapeHtml(item.detail || item.summary || '')}</p>
           <div class="spotlight-item-footer">
             <div class="spotlight-meta">
               ${item.audience ? `<span>${escapeHtml(item.audience)}</span>` : ''}
@@ -122,6 +151,16 @@
     }).join('');
   }
 
+  function fadeSwap(target, currentItem, nextItem, allItems) {
+    if (!target || !currentItem || !nextItem) return;
+
+    target.classList.add('spotlight-is-fading');
+    window.setTimeout(() => {
+      renderPreview(target, nextItem, allItems, allItems[(allItems.indexOf(nextItem) + 1) % allItems.length]);
+      target.classList.remove('spotlight-is-fading');
+    }, 250);
+  }
+
   function startRotation(target, items) {
     if (!target || items.length < 2) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -129,16 +168,16 @@
 
     let index = 0;
     window.setInterval(() => {
+      const current = items[index];
       index = (index + 1) % items.length;
-      target.classList.remove('spotlight-fade-in');
-      void target.offsetWidth;
-      renderPreview(target, items[index], items);
-      target.classList.add('spotlight-fade-in');
+      const next = items[index];
+      fadeSwap(target, current, next, items);
     }, 9000);
   }
 
   async function init() {
-    const previewTarget = document.querySelector('[data-spotlight-preview]') || document.querySelector('#spotlightPreview') || document.querySelector('.spotlight-panel');
+    const previewTarget = document.querySelector('#spotlight-preview');
+    const nextTarget = document.querySelector('#spotlight-next');
     const listTarget = document.querySelector('[data-spotlight-list]') || document.querySelector('#spotlightList');
 
     if (!previewTarget && !listTarget) return;
@@ -152,8 +191,17 @@
       const activeItems = sortItems(allItems.filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        renderPreview(previewTarget, activeItems[0] || allItems[0] || null, activeItems);
+        const first = activeItems[0] || null;
+        const second = activeItems[1] || null;
+        renderPreview(previewTarget, first, activeItems, second);
         startRotation(previewTarget, activeItems.slice(0, 3));
+      }
+
+      if (nextTarget) {
+        const nextItem = activeItems[1] || activeItems[0] || null;
+        nextTarget.innerHTML = nextItem
+          ? `<div class="spotlight-next-teaser"><strong>Next up:</strong> ${escapeHtml(nextItem.title)}</div>`
+          : '';
       }
 
       if (listTarget) {
@@ -163,6 +211,9 @@
       console.error(error);
       if (previewTarget) {
         previewTarget.innerHTML = '<div class="spotlight-empty">Spotlight content could not be loaded.</div>';
+      }
+      if (nextTarget) {
+        nextTarget.innerHTML = '';
       }
       if (listTarget) {
         listTarget.innerHTML = '<div class="spotlight-empty">Spotlight content could not be loaded.</div>';
