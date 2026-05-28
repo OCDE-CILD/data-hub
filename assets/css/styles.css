@@ -107,8 +107,8 @@ body.home-page .feature-preview img {
 }
 
 body.home-page .spotlight-panel {
-  min-height: 575px;
-  max-height: 575px;
+  min-height: 550px;
+  max-height: 550px;
 }
 
 body.home-page .dash-card {
