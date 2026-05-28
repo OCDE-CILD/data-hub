@@ -242,19 +242,19 @@ textarea {
   align-items: center;
 }
 
+.nav-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
 .dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% - 2px);
   left: 0;
-  min-width: 240px;
-  background: #fff;
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 14px 30px rgba(16, 35, 62, 0.14);
-  padding: 8px;
-  display: none;
-  z-index: 20;
+  ...
 }
 
 .nav-menu:hover .dropdown,
