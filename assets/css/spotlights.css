@@ -41,55 +41,53 @@
   overflow: hidden;
 }
 
-.spotlight-viewport {
+.spotlight-frame {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.spotlight-carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.spotlight-slot {
+.spotlight-frame .spotlight-card {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.spotlight-slot--current {
-  transform: translateX(0);
-  z-index: 1;
-}
-
-.spotlight-slot--next {
-  transform: translateX(100%);
-  z-index: 2;
-  transition: transform 2400ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.spotlight-carousel.is-animating .spotlight-slot--next {
-  transform: translateX(0);
-}
-
-.spotlight-card {
-  height: 100%;
-  min-height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
   gap: 12px;
   padding: 16px 14px 14px;
   background: #ffffff;
   border: 1px solid #d8e2ef;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(16, 35, 62, 0.04);
+  transition:
+    transform 1800ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1800ms ease;
+  will-change: transform, opacity;
+}
+
+.spotlight-card--current {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+.spotlight-card--incoming {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 2;
+}
+
+.spotlight-frame.is-animating .spotlight-card--current {
+  opacity: 1;
+}
+
+.spotlight-frame.is-animating .spotlight-card--incoming {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .spotlight-card__body {
@@ -120,8 +118,8 @@
   font-size: 14px;
   line-height: 1.45;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -193,8 +191,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotlight-slot--next {
+  .spotlight-frame .spotlight-card {
     transition: none;
+  }
+
+  .spotlight-card--incoming {
     transform: none;
+    opacity: 1;
   }
 }
