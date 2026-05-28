@@ -5,7 +5,7 @@
     : '/data-hub/assets/data/spotlights.json';
 
   const PAUSE_MS = 6000;
-  const SLIDE_MS = 1800;
+  const FADE_MS = 900;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -73,7 +73,7 @@
     return item.summary || item.detail || '';
   }
 
-  function renderHomeCard(item) {
+  function renderPreviewMarkup(item) {
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
     const expires = formatDate(item.expiration_date);
@@ -135,16 +135,10 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function renderPreviewFrame(target, currentItem, incomingItem) {
+  function renderPreview(target, item) {
     target.innerHTML = `
       <div class="spotlight-frame">
-        <article class="spotlight-card spotlight-card--current">
-          ${renderHomeCard(currentItem)}
-        </article>
-
-        <article class="spotlight-card spotlight-card--incoming">
-          ${renderHomeCard(incomingItem || currentItem)}
-        </article>
+        ${renderPreviewMarkup(item)}
       </div>
     `;
   }
@@ -154,39 +148,34 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    renderPreviewFrame(target, items[0], items[1] || items[0]);
+    let index = 0;
+    renderPreview(target, items[index]);
 
     if (items.length === 1 || reduceMotion) return;
 
-    let index = 0;
-    let animating = false;
-
-    const advance = () => {
-      if (animating) return;
-      animating = true;
-
+    const tick = () => {
       const nextIndex = (index + 1) % items.length;
-      const afterNextIndex = (index + 2) % items.length;
+      const currentFrame = target.querySelector('.spotlight-frame');
 
-      const frame = target.querySelector('.spotlight-frame');
-      const incoming = target.querySelector('.spotlight-card--incoming');
+      if (!currentFrame) return;
 
-      if (!frame || !incoming) {
-        animating = false;
-        return;
-      }
-
-      incoming.innerHTML = renderHomeCard(items[nextIndex]);
-      frame.classList.add('is-animating');
+      currentFrame.classList.add('is-fading-out');
 
       window.setTimeout(() => {
         index = nextIndex;
-        renderPreviewFrame(target, items[index], items[afterNextIndex]);
-        animating = false;
-      }, SLIDE_MS);
+        renderPreview(target, items[index]);
+
+        const newFrame = target.querySelector('.spotlight-frame');
+        if (newFrame) {
+          newFrame.classList.add('is-fading-in');
+          requestAnimationFrame(() => {
+            newFrame.classList.remove('is-fading-in');
+          });
+        }
+      }, FADE_MS);
     };
 
-    window.setInterval(advance, PAUSE_MS);
+    window.setInterval(tick, PAUSE_MS);
   }
 
   async function init() {
@@ -205,7 +194,15 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        startPreview(previewTarget, activeItems.slice(0, 3));
+        if (activeItems.length) {
+          startPreview(previewTarget, activeItems.slice(0, 3));
+        } else {
+          previewTarget.innerHTML = `
+            <div class="spotlight-empty">
+              No active spotlight items are available right now.
+            </div>
+          `;
+        }
       }
 
       if (listTarget) {
