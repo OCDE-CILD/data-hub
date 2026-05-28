@@ -4,8 +4,8 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
-  const PAUSE_MS = 5000;
-  const SLIDE_MS = 2600;
+  const PAUSE_MS = 6000;
+  const SLIDE_MS = 2400;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -186,21 +186,16 @@
         carousel.classList.add('is-animating');
       });
 
-      const onTransitionEnd = (event) => {
-        if (event.propertyName !== 'transform') return;
-
-        nextSlot.removeEventListener('transitionend', onTransitionEnd);
-
+      window.setTimeout(() => {
         index = nextIndex;
+
         currentSlot.innerHTML = renderHomeCard(items[index]);
         nextSlot.innerHTML = renderHomeCard(items[afterNextIndex]);
 
         carousel.classList.remove('is-animating');
         resetNextSlotInstantly();
         animating = false;
-      };
-
-      nextSlot.addEventListener('transitionend', onTransitionEnd);
+      }, SLIDE_MS);
     }
 
     window.setInterval(advance, PAUSE_MS);
