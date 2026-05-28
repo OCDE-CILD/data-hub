@@ -121,7 +121,7 @@ body.home-page .dash-preview {
 
 body.home-page .all-dashboards-footer,
 body.home-page .spotlight-footer {
-  margin-top: -28px;
+  margin-top: 0;
 }
 
 body.home-page .pager-dots {
