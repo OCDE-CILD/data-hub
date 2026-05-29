@@ -221,46 +221,8 @@
   }
 }
 
-/* Spotlight CTA */
-
 .spotlight-panel__cta-wrap {
   display: flex;
   justify-content: center;
   padding: 10px 0 4px;
-}
-
-.spotlight-panel__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 10px 18px;
-
-  border-radius: 12px;
-
-  background: linear-gradient(
-    180deg,
-    #5b93f8 0%,
-    #2462d4 100%
-  );
-
-  color: #ffffff;
-  text-decoration: none;
-
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-
-  box-shadow: 0 8px 16px rgba(19, 90, 214, 0.16);
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.spotlight-panel__cta:hover {
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 10px 20px rgba(19, 90, 214, 0.20);
 }
