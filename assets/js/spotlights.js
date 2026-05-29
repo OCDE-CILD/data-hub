@@ -4,9 +4,6 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
-  const ROTATION_MS = 6000;
-  const FADE_MS = 900;
-
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -73,23 +70,23 @@
     return item.summary || item.detail || '';
   }
 
-  function renderPreviewMarkup(item) {
+  function renderPreviewCard(item) {
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
     const expires = formatDate(item.expiration_date);
+    const category = item.category ? escapeHtml(item.category) : '';
 
     return `
-      <div class="spotlight-card">
-        <div class="spotlight-card__body">
-          <h3 class="spotlight-card__title">${title}</h3>
-          <p class="spotlight-card__summary">${summary}</p>
-          ${
-            expires
-              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
-              : ''
-          }
-        </div>
-      </div>
+      <article class="spotlight-feature-card">
+        ${category ? `<div class="spotlight-feature-card__chip">${category}</div>` : ''}
+        <h3 class="spotlight-feature-card__title">${title}</h3>
+        <p class="spotlight-feature-card__summary">${summary}</p>
+        ${
+          expires
+            ? `<div class="spotlight-feature-card__meta">Expires ${escapeHtml(expires)}</div>`
+            : ''
+        }
+      </article>
     `;
   }
 
@@ -136,46 +133,18 @@
   }
 
   function renderPreview(target, item) {
-    target.innerHTML = `
-      <div class="spotlight-frame">
-        ${renderPreviewMarkup(item)}
-      </div>
-    `;
-  }
+    if (!target) return;
 
-  function startPreview(target, items) {
-    if (!target || !items.length) return;
+    if (!item) {
+      target.innerHTML = `
+        <div class="spotlight-empty">
+          No active spotlight items are available right now.
+        </div>
+      `;
+      return;
+    }
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let index = 0;
-    renderPreview(target, items[index]);
-
-    if (items.length === 1 || reduceMotion) return;
-
-    const tick = () => {
-      const nextIndex = (index + 1) % items.length;
-      const frame = target.querySelector('.spotlight-frame');
-
-      if (!frame) return;
-
-      frame.classList.add('is-fading-out');
-
-      window.setTimeout(() => {
-        index = nextIndex;
-        renderPreview(target, items[index]);
-
-        const nextFrame = target.querySelector('.spotlight-frame');
-        if (nextFrame) {
-          nextFrame.classList.add('is-fading-in');
-          requestAnimationFrame(() => {
-            nextFrame.classList.remove('is-fading-in');
-          });
-        }
-      }, FADE_MS);
-    };
-
-    window.setInterval(tick, ROTATION_MS);
+    target.innerHTML = renderPreviewCard(item);
   }
 
   async function init() {
@@ -194,15 +163,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        if (activeItems.length) {
-          startPreview(previewTarget, activeItems.slice(0, 3));
-        } else {
-          previewTarget.innerHTML = `
-            <div class="spotlight-empty">
-              No active spotlight items are available right now.
-            </div>
-          `;
-        }
+        renderPreview(previewTarget, activeItems[0]);
       }
 
       if (listTarget) {
