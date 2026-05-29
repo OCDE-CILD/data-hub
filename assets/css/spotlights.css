@@ -243,3 +243,16 @@
   justify-content: center;
   padding: 10px 0 4px;
 }
+
+.spotlight-detail-card {
+  scroll-margin-top: 110px;
+}
+
+.spotlight-detail-card:target,
+.spotlight-detail-card.is-targeted {
+  outline: 2px solid rgba(91, 147, 248, 0.35);
+  outline-offset: 2px;
+  box-shadow:
+    0 10px 24px rgba(16, 35, 62, 0.08),
+    0 0 0 4px rgba(91, 147, 248, 0.08);
+}
