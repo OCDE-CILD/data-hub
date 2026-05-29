@@ -1587,3 +1587,150 @@ textarea {
     white-space: normal;
   }
 }
+
+@media (max-width: 900px) {
+  .topbar {
+    padding: 14px 0;
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .brand-block {
+    justify-content: flex-start;
+  }
+
+  .brand-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand {
+    font-size: 22px;
+    line-height: 1.05;
+  }
+
+  .sub {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .nav-menu {
+    width: 100%;
+  }
+
+  .nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  .dropdown {
+    position: static;
+    display: block;
+    min-width: 0;
+    margin-top: 6px;
+    padding: 8px 0 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .dropdown a {
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin: 2px 0;
+  }
+
+  .nav-menu:hover .dropdown,
+  .nav-menu:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .content {
+    padding-top: 14px;
+  }
+
+  .wrap {
+    padding: 0 12px 18px;
+  }
+
+  .section-shell {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .right-rail {
+    order: 3;
+  }
+
+  .shell-panel,
+  .featured-wrap,
+  .quick-links-panel,
+  .all-dashboards-shell,
+  .right-rail {
+    width: 100%;
+  }
+
+  .all-dashboards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 0;
+  }
+
+  .bottom-center,
+  .bottom-right {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-trigger {
+    font-size: 14px;
+  }
+
+  .dropdown a {
+    font-size: 14px;
+  }
+
+  .bottom-left span,
+  .bottom-center,
+  .bottom-right {
+    font-size: 13px;
+  }
+}
