@@ -77,10 +77,12 @@
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
     const expires = formatDate(item.expiration_date);
+    const category = item.category ? escapeHtml(item.category) : '';
 
     return `
       <div class="spotlight-card">
         <div class="spotlight-card__body">
+          ${category ? `<div class="spotlight-card__chip">${category}</div>` : ''}
           <h3 class="spotlight-card__title">${title}</h3>
           <p class="spotlight-card__summary">${summary}</p>
           ${
@@ -136,6 +138,17 @@
   }
 
   function renderPreview(target, item) {
+    if (!target) return;
+
+    if (!item) {
+      target.innerHTML = `
+        <div class="spotlight-empty">
+          No active spotlight items are available right now.
+        </div>
+      `;
+      return;
+    }
+
     target.innerHTML = `
       <div class="spotlight-frame">
         ${renderPreviewMarkup(item)}
@@ -149,17 +162,23 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let index = 0;
+    let animating = false;
+
     renderPreview(target, items[index]);
 
     if (items.length === 1 || reduceMotion) return;
 
     const tick = () => {
+      if (animating) return;
+
+      const currentFrame = target.querySelector('.spotlight-frame');
+      if (!currentFrame) return;
+
+      animating = true;
+
       const nextIndex = (index + 1) % items.length;
-      const frame = target.querySelector('.spotlight-frame');
 
-      if (!frame) return;
-
-      frame.classList.add('is-fading-out');
+      currentFrame.classList.add('is-fading-out');
 
       window.setTimeout(() => {
         index = nextIndex;
@@ -172,6 +191,8 @@
             nextFrame.classList.remove('is-fading-in');
           });
         }
+
+        animating = false;
       }, FADE_MS);
     };
 
@@ -194,15 +215,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        if (activeItems.length) {
-          startPreview(previewTarget, activeItems.slice(0, 3));
-        } else {
-          previewTarget.innerHTML = `
-            <div class="spotlight-empty">
-              No active spotlight items are available right now.
-            </div>
-          `;
-        }
+        startPreview(previewTarget, activeItems.slice(0, 3));
       }
 
       if (listTarget) {
