@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/spotlights.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OCDE Data Hub</title>
@@ -323,16 +324,15 @@
         </section>
           
           <aside class="right-rail">
-            <div class="spotlight-panel">
+            <a
+              class="spotlight-panel spotlight-panel--link"
+              href="/data-hub/pages/spotlight.html"
+              aria-label="Open the Spotlight page"
+            >
               <span class="spotlight-tag">Data Spotlight</span>
-              <h3 class="spotlight-title">New dashboards and insights continue to expand across OCDE.</h3>
-              <p class="spotlight-copy">Use this space to highlight a featured insight, county trend, or recently added data resource that supports the dashboard ecosystem.</p>
-            </div>
-            <div class="spotlight-footer">
-              <a class="view-all-link" href="#">View Spotlight →</a>
-            </div>
+              <div id="spotlight-preview" class="spotlight-stage"></div>
+            </a>
           </aside>
-
           <aside class="shell-panel quick-links-panel">
             <h2 class="shell-title">Quick Links</h2>
           <div class="links-list">
@@ -529,5 +529,6 @@
     populateSchools(districtSelect.value);
   </script> -->
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/spotlights.js"></script>
 </body>
 </html>

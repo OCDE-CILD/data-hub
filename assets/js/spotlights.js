@@ -1,12 +1,44 @@
-(function () {
-  const DATA_URL = '/data-hub/assets/data/spotlights.json';
+(() => {
+  const scriptUrl = document.currentScript?.src;
+  const DATA_URL = scriptUrl
+    ? new URL('../data/spotlights.json', scriptUrl).href
+    : '/data-hub/assets/data/spotlights.json';
+
+  const ROTATION_MS = 6000;
+  const FADE_MS = 900;
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
 
   function isValidDate(value) {
     return typeof value === 'string' && !Number.isNaN(Date.parse(value));
   }
 
   function toDate(value) {
-    return value ? new Date(value) : null;
+    return isValidDate(value) ? new Date(value) : null;
+  }
+
+  function formatDate(value) {
+    if (!isValidDate(value)) return '';
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(new Date(value));
+  }
+
+  function normalizeItems(payload) {
+    if (Array.isArray(payload)) return payload;
+    if (payload && Array.isArray(payload.items)) return payload.items;
+    if (payload && Array.isArray(payload.spotlights)) return payload.spotlights;
+    if (payload && Array.isArray(payload.data)) return payload.data;
+    return [];
   }
 
   function isActiveItem(item, now = new Date()) {
@@ -27,9 +59,9 @@
       const bPinned = b.pinned ? 0 : 1;
       if (aPinned !== bPinned) return aPinned - bPinned;
 
-      const aOrder = Number.isFinite(Number(a.priority)) ? Number(a.priority) : 9999;
-      const bOrder = Number.isFinite(Number(b.priority)) ? Number(b.priority) : 9999;
-      if (aOrder !== bOrder) return aOrder - bOrder;
+      const aPriority = Number.isFinite(Number(a.priority)) ? Number(a.priority) : 9999;
+      const bPriority = Number.isFinite(Number(b.priority)) ? Number(b.priority) : 9999;
+      if (aPriority !== bPriority) return aPriority - bPriority;
 
       const aPublish = isValidDate(a.publish_date) ? Date.parse(a.publish_date) : 0;
       const bPublish = isValidDate(b.publish_date) ? Date.parse(b.publish_date) : 0;
@@ -37,135 +69,175 @@
     });
   }
 
-  function escapeHtml(value) {
-    return String(value ?? '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+  function getSummary(item) {
+    return item.summary || item.detail || '';
   }
 
-  function formatDate(value) {
-    if (!isValidDate(value)) return '';
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    }).format(new Date(value));
+  function renderPreviewMarkup(item) {
+    const title = escapeHtml(item.title || '');
+    const summary = escapeHtml(getSummary(item));
+    const expires = formatDate(item.expiration_date);
+    const category = item.category ? escapeHtml(item.category) : '';
+
+    return `
+      <div class="spotlight-card">
+        <div class="spotlight-card__body">
+          ${category ? `<div class="spotlight-card__chip">${category}</div>` : ''}
+          <h3 class="spotlight-card__title">${title}</h3>
+          <p class="spotlight-card__summary">${summary}</p>
+          ${
+            expires
+              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
+              : ''
+          }
+        </div>
+      </div>
+    `;
   }
 
-  function renderPreview(target, item, allItems) {
-    if (!target || !item) return;
+  function renderDetailCard(item) {
+    const title = escapeHtml(item.title || '');
+    const detail = escapeHtml(item.detail || item.summary || '');
+    const published = formatDate(item.publish_date);
+    const expires = formatDate(item.expiration_date);
 
-    const initials = (item.category || 'Spotlight')
-      .split(/\s+/)
-      .map((part) => part[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase();
+    return `
+      <article class="spotlight-detail-card">
+        <h3 class="spotlight-detail-card__title">${title}</h3>
+        <p class="spotlight-detail-card__summary">${detail}</p>
 
-    target.innerHTML = `
-      <article class="spotlight-preview-card spotlight-fade-in" aria-live="polite">
-        <div class="spotlight-preview-header">
-          <span class="spotlight-badge">Data Spotlight</span>
-          ${item.category ? `<span class="spotlight-chip">${escapeHtml(item.category)}</span>` : ''}
+        <div class="spotlight-detail-card__meta">
+          ${published ? `<span>Published ${escapeHtml(published)}</span>` : ''}
+          ${expires ? `<span>Expires ${escapeHtml(expires)}</span>` : ''}
         </div>
-        <div class="spotlight-preview-body">
-          <div class="spotlight-icon" aria-hidden="true">${escapeHtml(initials)}</div>
-          <div class="spotlight-copy">
-            <h3 class="spotlight-title">${escapeHtml(item.title)}</h3>
-            <p class="spotlight-summary">${escapeHtml(item.summary)}</p>
-            <div class="spotlight-meta">
-              ${item.audience ? `<span>${escapeHtml(item.audience)}</span>` : ''}
-              ${formatDate(item.expiration_date) ? `<span>Expires ${escapeHtml(formatDate(item.expiration_date))}</span>` : ''}
-            </div>
-          </div>
-        </div>
-        <div class="spotlight-preview-footer">
-          ${item.link_url ? `<a class="spotlight-action" href="${escapeHtml(item.link_url)}">${escapeHtml(item.action_text || 'View more')}</a>` : ''}
-          <span class="spotlight-count">${allItems.length} active item${allItems.length === 1 ? '' : 's'}</span>
-        </div>
+
+        ${
+          item.link_url
+            ? `<a class="spotlight-detail-card__link" href="${escapeHtml(item.link_url)}">${
+                escapeHtml(item.link_label || 'Open resource')
+              }</a>`
+            : ''
+        }
       </article>
     `;
   }
 
-  function renderDetailList(target, items) {
+  function renderList(target, items) {
     if (!target) return;
 
     if (!items.length) {
-      target.innerHTML = '<div class="spotlight-empty">No active spotlight items are available right now.</div>';
+      target.innerHTML = `
+        <div class="spotlight-empty">
+          No active spotlight items are available right now.
+        </div>
+      `;
       return;
     }
 
-    target.innerHTML = items.map((item) => {
-      return `
-        <article class="spotlight-item">
-          <div class="spotlight-item-head">
-            <div>
-              <span class="spotlight-badge">Data Spotlight</span>
-              ${item.category ? `<span class="spotlight-chip">${escapeHtml(item.category)}</span>` : ''}
-              <h3>${escapeHtml(item.title)}</h3>
-            </div>
-            ${formatDate(item.publish_date) ? `<div class="spotlight-dates">Published ${escapeHtml(formatDate(item.publish_date))}</div>` : ''}
-          </div>
-          <p class="spotlight-summary">${escapeHtml(item.detail || item.summary)}</p>
-          <div class="spotlight-item-footer">
-            <div class="spotlight-meta">
-              ${item.audience ? `<span>${escapeHtml(item.audience)}</span>` : ''}
-              ${formatDate(item.expiration_date) ? `<span>Expires ${escapeHtml(formatDate(item.expiration_date))}</span>` : ''}
-            </div>
-            ${item.link_url ? `<a class="spotlight-action secondary" href="${escapeHtml(item.link_url)}">${escapeHtml(item.link_label || 'Open link')}</a>` : ''}
-          </div>
-        </article>
-      `;
-    }).join('');
+    target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function startRotation(target, items) {
-    if (!target || items.length < 2) return;
+  function renderPreview(target, item) {
+    if (!target) return;
+
+    if (!item) {
+      target.innerHTML = `
+        <div class="spotlight-empty">
+          No active spotlight items are available right now.
+        </div>
+      `;
+      return;
+    }
+
+    target.innerHTML = `
+      <div class="spotlight-frame">
+        ${renderPreviewMarkup(item)}
+      </div>
+    `;
+  }
+
+  function startPreview(target, items) {
+    if (!target || !items.length) return;
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
 
     let index = 0;
-    window.setInterval(() => {
-      index = (index + 1) % items.length;
-      target.classList.remove('spotlight-fade-in');
-      void target.offsetWidth;
-      renderPreview(target, items[index], items);
-      target.classList.add('spotlight-fade-in');
-    }, 9000);
+    let animating = false;
+
+    renderPreview(target, items[index]);
+
+    if (items.length === 1 || reduceMotion) return;
+
+    const tick = () => {
+      if (animating) return;
+
+      const currentFrame = target.querySelector('.spotlight-frame');
+      if (!currentFrame) return;
+
+      animating = true;
+
+      const nextIndex = (index + 1) % items.length;
+
+      currentFrame.classList.add('is-fading-out');
+
+      window.setTimeout(() => {
+        index = nextIndex;
+        renderPreview(target, items[index]);
+
+        const nextFrame = target.querySelector('.spotlight-frame');
+        if (nextFrame) {
+          nextFrame.classList.add('is-fading-in');
+          requestAnimationFrame(() => {
+            nextFrame.classList.remove('is-fading-in');
+          });
+        }
+
+        animating = false;
+      }, FADE_MS);
+    };
+
+    window.setInterval(tick, ROTATION_MS);
   }
 
   async function init() {
-    const previewTarget = document.querySelector('[data-spotlight-preview]') || document.querySelector('#spotlightPreview') || document.querySelector('.spotlight-panel');
+    const previewTarget = document.querySelector('#spotlight-preview');
     const listTarget = document.querySelector('[data-spotlight-list]') || document.querySelector('#spotlightList');
 
     if (!previewTarget && !listTarget) return;
 
     try {
       const response = await fetch(DATA_URL, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Failed to load spotlight data (${response.status})`);
+      if (!response.ok) {
+        throw new Error(`Failed to load spotlight data (${response.status})`);
+      }
 
       const payload = await response.json();
-      const allItems = Array.isArray(payload.items) ? payload.items : [];
-      const activeItems = sortItems(allItems.filter((item) => isActiveItem(item)));
+      const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        renderPreview(previewTarget, activeItems[0] || allItems[0] || null, activeItems);
-        startRotation(previewTarget, activeItems.slice(0, 3));
+        startPreview(previewTarget, activeItems.slice(0, 3));
       }
 
       if (listTarget) {
-        renderDetailList(listTarget, activeItems);
+        renderList(listTarget, activeItems);
       }
     } catch (error) {
       console.error(error);
+
       if (previewTarget) {
-        previewTarget.innerHTML = '<div class="spotlight-empty">Spotlight content could not be loaded.</div>';
+        previewTarget.innerHTML = `
+          <div class="spotlight-empty">
+            Spotlight content could not be loaded.
+          </div>
+        `;
       }
+
       if (listTarget) {
-        listTarget.innerHTML = '<div class="spotlight-empty">Spotlight content could not be loaded.</div>';
+        listTarget.innerHTML = `
+          <div class="spotlight-empty">
+            Spotlight content could not be loaded.
+          </div>
+        `;
       }
     }
   }
