@@ -17,12 +17,12 @@
 .spotlight-panel::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -16px 0 0 0;
 
   background-image: url("../images/spotlight-bg.png");
 
   background-size: cover;
-  background-position: center bottom;
+  background-position: center top;
   background-repeat: no-repeat;
 
   opacity: 1;
