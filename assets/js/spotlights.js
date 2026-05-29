@@ -4,6 +4,10 @@
     ? new URL('../data/spotlights.json', scriptUrl).href
     : '/data-hub/assets/data/spotlights.json';
 
+  const SPOTLIGHT_PAGE_URL = '/data-hub/pages/spotlight.html';
+  const ROTATION_MS = 9000;
+  const TRANSITION_MS = 480;
+
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -17,10 +21,6 @@
     return typeof value === 'string' && !Number.isNaN(Date.parse(value));
   }
 
-  function toDate(value) {
-    return isValidDate(value) ? new Date(value) : null;
-  }
-
   function formatDate(value) {
     if (!isValidDate(value)) return '';
     return new Intl.DateTimeFormat('en-US', {
@@ -30,11 +30,13 @@
     }).format(new Date(value));
   }
 
+  function toDate(value) {
+    return isValidDate(value) ? new Date(value) : null;
+  }
+
   function normalizeItems(payload) {
     if (Array.isArray(payload)) return payload;
     if (payload && Array.isArray(payload.items)) return payload.items;
-    if (payload && Array.isArray(payload.spotlights)) return payload.spotlights;
-    if (payload && Array.isArray(payload.data)) return payload.data;
     return [];
   }
 
@@ -74,18 +76,19 @@
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
     const expires = formatDate(item.expiration_date);
-    const category = item.category ? escapeHtml(item.category) : '';
 
     return `
-      <article class="spotlight-feature-card">
-        ${category ? `<div class="spotlight-feature-card__chip">${category}</div>` : ''}
-        <h3 class="spotlight-feature-card__title">${title}</h3>
-        <p class="spotlight-feature-card__summary">${summary}</p>
-        ${
-          expires
-            ? `<div class="spotlight-feature-card__meta">Expires ${escapeHtml(expires)}</div>`
-            : ''
-        }
+      <article class="spotlight-card">
+        <div class="spotlight-card__body">
+          <h3 class="spotlight-card__title">${title}</h3>
+          <p class="spotlight-card__summary">${summary}</p>
+
+          ${
+            expires
+              ? `<div class="spotlight-card__meta">Expires ${escapeHtml(expires)}</div>`
+              : ''
+          }
+        </div>
       </article>
     `;
   }
@@ -132,19 +135,69 @@
     target.innerHTML = items.map(renderDetailCard).join('');
   }
 
-  function renderPreview(target, item) {
-    if (!target) return;
+  function renderSteadyPreview(target, item) {
+    if (!target || !item) return;
 
-    if (!item) {
-      target.innerHTML = `
-        <div class="spotlight-empty">
-          No active spotlight items are available right now.
+    target.innerHTML = `
+      <div class="spotlight-viewport">
+        ${renderPreviewCard(item)}
+      </div>
+    `;
+  }
+
+  function renderAnimatedPreview(target, currentItem, nextItem) {
+    if (!target || !currentItem || !nextItem) return;
+
+    target.innerHTML = `
+      <div class="spotlight-viewport spotlight-viewport--animating">
+        <div class="spotlight-slide spotlight-slide--leave">
+          ${renderPreviewCard(currentItem)}
         </div>
-      `;
-      return;
-    }
+        <div class="spotlight-slide spotlight-slide--enter">
+          ${renderPreviewCard(nextItem)}
+        </div>
+      </div>
+    `;
 
-    target.innerHTML = renderPreviewCard(item);
+    requestAnimationFrame(() => {
+      const viewport = target.querySelector('.spotlight-viewport');
+      if (viewport) viewport.classList.add('is-animating');
+    });
+
+    window.setTimeout(() => {
+      renderSteadyPreview(target, nextItem);
+    }, TRANSITION_MS);
+  }
+
+  function initPreviewRotation(target, items) {
+    if (!target || items.length === 0) return;
+
+    let currentIndex = 0;
+    let paused = false;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    renderSteadyPreview(target, items[currentIndex]);
+
+    if (items.length === 1 || reduceMotion) return;
+
+    target.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+
+    target.addEventListener('mouseleave', () => {
+      paused = false;
+    });
+
+    window.setInterval(() => {
+      if (paused) return;
+
+      const currentItem = items[currentIndex];
+      const nextIndex = (currentIndex + 1) % items.length;
+      const nextItem = items[nextIndex];
+
+      renderAnimatedPreview(target, currentItem, nextItem);
+      currentIndex = nextIndex;
+    }, ROTATION_MS);
   }
 
   async function init() {
@@ -163,7 +216,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        renderPreview(previewTarget, activeItems[0]);
+        initPreviewRotation(previewTarget, activeItems.slice(0, 3));
       }
 
       if (listTarget) {
