@@ -1,7 +1,7 @@
 .spotlight-panel {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0px;
   height: 100%;
   padding: 12px 12px 10px;
   background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
@@ -46,6 +46,7 @@
   align-items: center;
   justify-content: center;
   padding: 7px 12px;
+  margin-bottom: 6px;
   border-radius: 999px;
   background: #eaf2ff;
   color: #1d4ed8;
