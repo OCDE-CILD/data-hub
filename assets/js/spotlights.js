@@ -73,6 +73,22 @@
     return item.summary || item.detail || '';
   }
 
+  function slugify(value) {
+    return String(value ?? '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'item';
+  }
+
+  function getItemAnchorId(item) {
+    return `spotlight-item-${slugify(item.id)}`;
+  }
+
+  function getItemHref(item) {
+    return `/data-hub/pages/spotlight.html#${getItemAnchorId(item)}`;
+  }
+
   function renderPreviewMarkup(item) {
     const title = escapeHtml(item.title || '');
     const summary = escapeHtml(getSummary(item));
@@ -100,9 +116,10 @@
     const detail = escapeHtml(item.detail || item.summary || '');
     const published = formatDate(item.publish_date);
     const expires = formatDate(item.expiration_date);
+    const anchorId = getItemAnchorId(item);
 
     return `
-      <article class="spotlight-detail-card">
+      <article class="spotlight-detail-card" id="${anchorId}" tabindex="-1">
         <h3 class="spotlight-detail-card__title">${title}</h3>
         <p class="spotlight-detail-card__summary">${detail}</p>
 
@@ -122,6 +139,21 @@
     `;
   }
 
+  function focusHashTarget() {
+    const hash = window.location.hash.replace(/^#/, '');
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (!target) return;
+
+    target.classList.add('is-targeted');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (typeof target.focus === 'function') {
+      target.focus({ preventScroll: true });
+    }
+  }
+
   function renderList(target, items) {
     if (!target) return;
 
@@ -135,6 +167,7 @@
     }
 
     target.innerHTML = items.map(renderDetailCard).join('');
+    requestAnimationFrame(focusHashTarget);
   }
 
   function renderPreview(target, item) {
@@ -156,6 +189,13 @@
     `;
   }
 
+  function updatePreviewButtonHref(item) {
+    const button = document.querySelector('#spotlight-cta');
+    if (!button) return;
+
+    button.href = item ? getItemHref(item) : '/data-hub/pages/spotlight.html';
+  }
+
   function startPreview(target, items) {
     if (!target || !items.length) return;
 
@@ -165,6 +205,7 @@
     let animating = false;
 
     renderPreview(target, items[index]);
+    updatePreviewButtonHref(items[index]);
 
     if (items.length === 1 || reduceMotion) return;
 
@@ -176,13 +217,14 @@
 
       animating = true;
 
-      const nextIndex = (index + 1) % items.length;
-
       currentFrame.classList.add('is-fading-out');
+
+      const nextIndex = (index + 1) % items.length;
 
       window.setTimeout(() => {
         index = nextIndex;
         renderPreview(target, items[index]);
+        updatePreviewButtonHref(items[index]);
 
         const nextFrame = target.querySelector('.spotlight-frame');
         if (nextFrame) {
@@ -215,7 +257,7 @@
       const activeItems = sortItems(normalizeItems(payload).filter((item) => isActiveItem(item)));
 
       if (previewTarget) {
-        startPreview(previewTarget, activeItems.slice(0, 3));
+        startPreview(previewTarget, activeItems.slice(0, 4));
       }
 
       if (listTarget) {
