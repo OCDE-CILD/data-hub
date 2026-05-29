@@ -70,6 +70,17 @@
       <path d="M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M12 4c2.8 2.3 4.4 5.1 4.4 8s-1.6 5.7-4.4 8c-2.8-2.3-4.4-5.1-4.4-8S9.2 6.3 12 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="i-spotlight" viewBox="0 0 24 24">
+      <path d="M12 3v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M12 18v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M3 12h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M18 12h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M6.5 6.5l2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M15.4 15.4l2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M17.5 6.5l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M8.6 15.4l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
   </svg>
 
   <div class="app-shell">
@@ -256,7 +267,7 @@
               <div class="topic-item"><div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div class="topic-text"><strong>Special Populations</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
               <!-- <div class="topic-item"><div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><div class="topic-text"><strong>Spotlight</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div> -->
             </div>
-            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>View All Dashboards</a></div>
+            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>View All Dashboards</a></div>
           </aside>
 
         <section class="shell-panel featured-wrap">
@@ -331,10 +342,8 @@
               <div id="spotlight-preview" class="spotlight-stage"></div>
           
             <div class="spotlight-panel__cta-wrap">
-              <a
-                class="button compact spotlight-panel__cta"
-                href="/data-hub/pages/spotlight.html"
-              >
+              <a class="button compact spotlight-panel__cta" href="/data-hub/pages/spotlight.html">
+                <svg class="icon" aria-hidden="true"><use href="#i-spotlight"></use></svg>
                 View Spotlight
               </a>
             </div>
