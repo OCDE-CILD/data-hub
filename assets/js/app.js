@@ -5,15 +5,16 @@ document.querySelectorAll('.nav-menu > .nav-trigger').forEach((button) => {
     event.preventDefault();
 
     const menu = button.closest('.nav-menu');
-
-    if (menu.classList.contains('is-open')) {
-      menu.classList.remove('is-open');
-      return;
-    }
+    const isOpen = menu.classList.contains('is-open');
 
     document.querySelectorAll('.nav-menu.is-open').forEach((openMenu) => {
       openMenu.classList.remove('is-open');
     });
+
+    if (isOpen) {
+      button.blur();
+      return;
+    }
 
     menu.classList.add('is-open');
   });
