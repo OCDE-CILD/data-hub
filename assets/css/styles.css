@@ -533,6 +533,7 @@ textarea {
   border: 0;
   box-shadow: none;
   overflow: hidden;
+  justify-content: center;
 }
 
 .tableauPlaceholder {
