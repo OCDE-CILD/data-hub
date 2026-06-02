@@ -532,6 +532,7 @@ textarea {
   background: transparent;
   border: 0;
   box-shadow: none;
+  overflow: hidden;
 }
 
 .tableauPlaceholder {
