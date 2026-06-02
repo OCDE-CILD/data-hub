@@ -812,7 +812,7 @@ textarea {
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr) 320px;
   grid-template-areas:
-    "explore featured spotlight"
+    "featured spotlight"
     "quick all spotlight";
   gap: 12px;
   align-items: stretch;
