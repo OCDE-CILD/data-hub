@@ -500,7 +500,7 @@ textarea {
 }
 
 .wrap {
-  max-width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 8px;
 }
@@ -525,7 +525,7 @@ textarea {
 }
 
 .tableau-frame {
-  width: 100%;
+  width: 1100px;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -533,7 +533,6 @@ textarea {
   border: 0;
   box-shadow: none;
   overflow: hidden;
-  justify-content: center;
 }
 
 .tableauPlaceholder {
