@@ -500,9 +500,9 @@ textarea {
 }
 
 .wrap {
-  max-width: 1600px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 8px;
 }
 
 .panel {
@@ -518,7 +518,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 1rem;
+  padding: 0;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
@@ -526,7 +526,7 @@ textarea {
 
 .tableau-frame {
   width: 100%;
-  max-width: 1110px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0;
   background: transparent;
