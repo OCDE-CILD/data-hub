@@ -518,8 +518,10 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 0;
+  padding: 0 1rem;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .tableau-frame {
