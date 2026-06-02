@@ -544,7 +544,7 @@ textarea {
   align-items: center;
   justify-content: center;
   background: #f8fbff;
-  border: 2px dashed #c7d6eb;
+  border: none !important;
 }
 
 .tableauViz {
