@@ -526,7 +526,7 @@ textarea {
 
 .tableau-frame {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0;
   background: transparent;
@@ -539,7 +539,7 @@ textarea {
   width: 100% !important;
   position: relative;
   margin: 0 auto;
-  min-height: 700px;
+  min-height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -549,7 +549,7 @@ textarea {
 
 .tableauViz {
   width: 100% !important;
-  min-height: 700px !important;
+  min-height: 800px !important;
   display: block;
 }
 
