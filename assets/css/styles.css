@@ -109,8 +109,8 @@ body.home-page .feature-preview img {
 }
 
 body.home-page .spotlight-panel {
-  min-height: 555px;
-  max-height: 555px;
+  min-height: 400px;
+  max-height: 400px;
 }
 
 body.home-page .dash-card {
@@ -810,7 +810,7 @@ textarea {
 .section-shell {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr) 240px;
+  grid-template-columns: 240px minmax(0, 1fr) 320px;
   grid-template-areas:
     "explore featured spotlight"
     "quick all spotlight";
@@ -1846,7 +1846,7 @@ body.home-page .topbar .nav {
   
   body.home-page .hero-grid,
   body.home-page .section-shell {
-    grid-template-columns: minmax(0, 1fr) 240px;
+    grid-template-columns: minmax(0, 1fr) 320px;
     grid-template-areas:
       "featured"
       "spotlight"
