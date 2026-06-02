@@ -108,11 +108,6 @@ body.home-page .feature-preview img {
   height: 142px;
 }
 
-body.home-page .spotlight-panel {
-  min-height: 555px;
-  max-height: 555px;
-}
-
 body.home-page .dash-card {
   min-height: 155px;
 }
@@ -810,12 +805,40 @@ textarea {
 .section-shell {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr) 240px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas:
-    "explore featured spotlight"
-    "quick all spotlight";
+    "featured spotlight"
+    "quick all";
   gap: 12px;
   align-items: stretch;
+}
+
+body.home-page .featured-wrap {
+  grid-area: featured;
+}
+
+body.home-page .right-rail {
+  grid-area: spotlight;
+  grid-row: auto;
+  align-self: stretch;
+  display: block;
+}
+
+body.home-page .spotlight-panel {
+  min-height: auto;
+  max-height: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+body.home-page .quick-links-panel {
+  grid-area: quick;
+}
+
+body.home-page .all-dashboards-shell {
+  grid-area: all;
 }
 
 .explore-panel {
@@ -1099,7 +1122,6 @@ textarea {
   flex-direction: column;
   gap: 9px;
   min-width: 0;
-  grid-row: 1 / span 2;
   align-self: start;
 }
 
@@ -1846,7 +1868,6 @@ body.home-page .topbar .nav {
   
   body.home-page .hero-grid,
   body.home-page .section-shell {
-    grid-template-columns: minmax(0, 1fr) 240px;
     grid-template-areas:
       "featured"
       "spotlight"
