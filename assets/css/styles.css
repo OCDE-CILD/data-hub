@@ -819,7 +819,7 @@ textarea {
 }
 
 .explore-panel {
-  grid-area: explore;
+  display: none;
 }
 
 .featured-wrap {
@@ -1846,13 +1846,11 @@ body.home-page .topbar .nav {
   
   body.home-page .hero-grid,
   body.home-page .section-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) 240px;
     grid-template-areas:
-      "explore"
       "featured"
       "spotlight"
-      "quick"
-      "all";
+      "quick";
     gap: 14px;
   }
 
