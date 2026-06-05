@@ -1,261 +1,71 @@
-.spotlight-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  height: 100%;
-  padding: 12px 12px 10px;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
-  border: 1px solid #d8e2ef;
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(16, 35, 62, 0.06);
-  color: inherit;
-  overflow: hidden;
-  position: relative;
-  overflow: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/spotlights.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotlight | OCDE Data Hub</title>
+</head>
 
-.spotlight-panel::before {
-  content: "";
-  position: absolute;
-  inset: -16px 0 0 0;
+<body>
+  <div class="app-shell">
 
-  background-image: url("../images/spotlight-bg.png");
+    <header class="site-header">
+      <div class="header-inner">
 
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+        <div class="brand-block">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
 
-  opacity: 1;
-  z-index: 0;
-  pointer-events: none;
-}
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Spotlight</div>
+          </div>
+        </div>
 
-.spotlight-panel > * {
-  position: relative;
-  z-index: 1;
-}
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="/data-hub/index.html">Home</a>
+          <a href="/data-hub/pages/attendance.html">Attendance & Engagement</a>
+          <a href="/data-hub/pages/college-career.html">College &amp; Career</a>
+          <a href="/data-hub/pages/academics.html">Academics</a>
+          <a href="/data-hub/pages/english-learners.html">English Learners</a>
+          <a href="/data-hub/pages/differentiated-assistance.html">Differentiated Assistance</a>
+          <a href="/data-hub/pages/spotlight.html" class="active">Spotlight</a>
+        </nav>
 
-.spotlight-panel--link {
-  text-decoration: none;
-  cursor: pointer;
-}
+      </div>
+    </header>
 
-.spotlight-tag {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 12px;
-  margin-bottom: 2px;
-  border-radius: 999px;
-  background: #eaf2ff;
-  color: #1d4ed8;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: 1;
-  white-space: nowrap;
-}
+    <main class="content">
+      <div class="wrap">
 
-.spotlight-stage {
-  position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-}
+        <section class="panel">
+          <div class="tableau-shell">
+            <div class="tableau-frame" style="padding: 18px;">
+              <div data-spotlight-list id="spotlightList"></div>
+            </div>
+          </div>
+        </section>
 
-.spotlight-frame {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  opacity: 1;
-  transform: translateX(0);
-  transition:
-    opacity 900ms ease,
-    transform 900ms ease;
-}
+      </div>
+    </main>
 
-.spotlight-frame.is-fading-out {
-  opacity: 0;
-  transform: translateX(-12px);
-}
+    <footer class="site-footer">
+      <div class="footer-inner">
 
-.spotlight-frame.is-fading-in {
-  opacity: 0;
-  transform: translateX(12px);
-}
+        <div class="footer-left">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="footer-logo" />
+          <span>Orange County Department of Education</span>
+        </div>
 
-.spotlight-card {
-  width: 100%;
-  flex: 1 1 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: 16px 14px 14px;
-  background: #ffffff;
-  border: 1px solid #d8e2ef;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(16, 35, 62, 0.04);
-}
+        <div class="footer-right">
+          Need data support? Contact our Research & Evaluation team
+        </div>
 
-.spotlight-card__body {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 0;
-}
-
-.spotlight-card__chip {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #f1f6ff;
-  color: #1d4ed8;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.spotlight-card__title {
-  margin: 0;
-  color: #10233e;
-  font-size: 19px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.spotlight-card__summary {
-  position: relative;
-
-  margin: 0;
-
-  color: #5b6b84;
-  font-size: 14px;
-  line-height: 1.45;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-
-  overflow: hidden;
-
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 75%,
-    rgba(0,0,0,0) 100%
-  );
-
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 75%,
-    rgba(0,0,0,0) 100%
-  );
-}
-
-.spotlight-card__meta {
-  margin-top: auto;
-  color: #5b6b84;
-  font-size: 12px;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.spotlight-empty {
-  padding: 18px 16px;
-  color: #5b6b84;
-  font-size: 14px;
-  line-height: 1.45;
-  background: #ffffff;
-  border: 1px dashed #c7d6eb;
-  border-radius: 14px;
-}
-
-.spotlight-detail-card {
-  background: #ffffff;
-  border: 1px solid #d8e2ef;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(16, 35, 62, 0.04);
-  padding: 18px 18px 16px;
-  margin-bottom: 14px;
-}
-
-.spotlight-detail-card__title {
-  margin: 0 0 8px;
-  color: #10233e;
-  font-size: 22px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-}
-
-.spotlight-detail-card__summary {
-  margin: 0;
-  color: #5b6b84;
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.spotlight-detail-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
-  margin-top: 12px;
-  color: #5b6b84;
-  font-size: 12px;
-}
-
-.spotlight-detail-card__link {
-  display: inline-flex;
-  margin-top: 14px;
-  color: #1d4ed8;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.spotlight-detail-card__link:hover {
-  text-decoration: underline;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spotlight-frame {
-    transition: none;
-    transform: none;
-  }
-}
-
-.spotlight-panel__cta-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0 4px;
-}
-
-.spotlight-detail-card {
-  scroll-margin-top: 110px;
-}
-
-.spotlight-detail-card:target,
-.spotlight-detail-card.is-targeted {
-  outline: 2px solid rgba(91, 147, 248, 0.35);
-  outline-offset: 2px;
-  box-shadow:
-    0 10px 24px rgba(16, 35, 62, 0.08),
-    0 0 0 4px rgba(91, 147, 248, 0.08);
-}
+      </div>
+    </footer>
+  </div>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/spotlights.js"></script>
+</body>
+</html>
