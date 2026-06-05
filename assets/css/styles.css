@@ -814,14 +814,6 @@ body.home-page .featured-wrap {
   grid-area: featured;
 }
 
-body.home-page .right-rail {
-  grid-area: spotlight;
-  grid-row: 1 / 3;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-}
-
 body.home-page .spotlight-panel {
   min-height: auto;
   max-height: none;
