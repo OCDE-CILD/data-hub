@@ -1154,7 +1154,7 @@ body.home-page .quick-links-panel {
 .update-item strong,
 .link-item strong {
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.05;
   margin-bottom: 1px;
   white-space: nowrap;
@@ -1166,7 +1166,7 @@ body.home-page .quick-links-panel {
 .update-item span,
 .link-item span {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.15;
   color: var(--muted);
   margin-top: 1px;
