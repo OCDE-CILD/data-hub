@@ -328,37 +328,45 @@
           </div>
         </section>
           
-          <div class="spotlight-panel" style="grid-area: spotlight; grid-row: 1 / 3;">
-          
-            <span class="spotlight-tag">Data Spotlight</span>
+          <section class="shell-panel featured-wrap spotlight-wrap" style="grid-area: spotlight; grid-row: 1 / 3;">
+            <div class="featured-header">
+              <h2 class="shell-title" style="margin-bottom:0;">Data Spotlight</h2>
+            </div>
+            <div class="featured-body">
+              <article class="feature-card primary spotlight-feature-card">
+                <a class="feature-link"
+                   href="/data-hub/pages/spotlight.html"
+                   aria-label="Open Data Spotlight">
 
-            <div class="spotlight-preview-placeholder">
-              <div class="spotlight-preview-placeholder__img">
-                Preview image coming soon
-              </div>
+                  <div class="feature-preview">
+                    <div class="spotlight-preview-placeholder__img">
+                      Preview image coming soon
+                    </div>
+                  </div>
+
+                  <div class="feature-meta">
+                    <span class="spotlight-card__chip" id="spotlight-chip"></span>
+                    <h3 id="spotlight-title">Graduation Rates Stay Above State Levels</h3>
+                    <p id="spotlight-summary">Orange County's graduation rate reached 93.1% in 2024–25, outpacing California by 4.4 points and holding steady near 93% over the past three years.</p>
+                    <div class="feature-updated">
+                      <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+                      <span id="spotlight-meta">Expires Dec 30, 2026</span>
+                    </div>
+                  </div>
+
+                </a>
+              </article>
             </div>
 
-            <div class="spotlight-card__body" style="padding: 12px 2px 0;">
-              <span class="spotlight-card__chip" id="spotlight-chip"></span>
-              <h3 class="spotlight-card__title" id="spotlight-title"></h3>
-              <p class="spotlight-card__summary" id="spotlight-summary"></p>
-              <p class="spotlight-card__meta" id="spotlight-meta"></p>
-            </div>
-          
-            <div id="spotlight-preview" class="spotlight-stage"></div>
-          
-            <div class="spotlight-panel__cta-wrap">
-              <a
-                id="spotlight-cta"
-                class="button compact spotlight-panel__cta"
-                href="/data-hub/pages/spotlight.html"
-              >
+            <!-- hidden stage kept for JS compatibility -->
+            <div id="spotlight-preview" class="spotlight-stage" style="display:none;"></div>
+            <div class="spotlight-panel__cta-wrap" style="display:none;">
+              <a id="spotlight-cta" class="button compact spotlight-panel__cta" href="/data-hub/pages/spotlight.html">
                 <svg class="icon" aria-hidden="true"><use href="#i-spotlight"></use></svg>
                 View Spotlight
               </a>
             </div>
-          
-          </div>
+          </section>
           <aside class="shell-panel quick-links-panel">
             <h2 class="shell-title">Quick Links</h2>
           <div class="links-list">
