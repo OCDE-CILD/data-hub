@@ -869,7 +869,7 @@ body.home-page .all-dashboards-shell {
 .quick-links-panel {
   padding: 10px 10px 10px;
   align-self: start;
-  min-height: 194px;
+  min-height: 200px;
 }
 
 .quick-links-panel .shell-title {
@@ -1132,14 +1132,16 @@ body.home-page .all-dashboards-shell {
 }
 
 .spotlight-panel {
-  padding: 12px;
-  min-height: 600px;
-  max-height: 600px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, #f9fcff);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  min-width: 0;
+  min-height: 550px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  height: auto;
 }
 
 .spotlight-footer {
@@ -1152,8 +1154,8 @@ body.home-page .all-dashboards-shell {
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
-  color: #2b5fae;
-  background: #eaf2ff;
+  color: #ffffff;
+  background: #ffffff;
   border-radius: 999px;
   padding: 5px 9px;
   letter-spacing: 0.02em;
