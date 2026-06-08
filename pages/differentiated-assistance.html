@@ -38,6 +38,16 @@
     <main class="content">
       <div class="wrap">
 
+        <div class="dash-about">
+          <h2 class="dash-about__title">About this Dashboard</h2>
+          <p class="dash-about__body">
+            <!-- REPLACE: Add a description of what this dashboard shows,
+                 what the data represents, and who it is intended for. -->
+            This dashboard provides an overview of key metrics for Orange County school districts.
+            Use the filters within the visualization to explore data by district, school, student group, and year.
+          </p>
+        </div>
+
         <section class="panel">
           <div class="tableau-shell">
             <div class="tableau-frame">
@@ -94,6 +104,41 @@
           </div>
         </section>
 
+
+        <div class="dash-supplements">
+          <div class="dash-supplement">
+            <h2 class="dash-supplement__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-file-notes"></use></svg>
+              Methodology &amp; Notes
+            </h2>
+            <p class="dash-supplement__body">
+              <!-- REPLACE: Add notes on data sources, calculation methods,
+                   suppression rules, and any caveats specific to this dashboard. -->
+              Data is sourced from the California Department of Education, but has been 
+              edited by OCDE's REDI team to prepare the data file for data visualization and analysis. 
+              Small student group sizes may be suppressed in accordance with privacy guidelines. 
+              All rates are calculated using the data file's respective cumulative enrollment number 
+              as the denominator unless otherwise noted. For questions or more information about
+              the methodology, please reach out to REDI@ocde.us
+            </p>
+          </div>
+
+          <div class="dash-supplement">
+            <h2 class="dash-supplement__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>
+              Download Data
+            </h2>
+            <p class="dash-supplement__body">
+              Download the underlying data file used to build this dashboard.
+            </p>
+            <div class="dash-supplement__action">
+              <a class="dash-download-btn" href="#" download>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v10m0 0l-3-3m3 3l3-3"/><path d="M4 17v1a2 2 0 002 2h12a2 2 0 002-2v-1"/></svg>
+                Download CSV
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
