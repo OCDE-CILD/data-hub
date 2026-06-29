@@ -408,12 +408,12 @@ textarea {
 
 .dropdown-section-label {
   display: block;
-  padding: 10px 12px 6px;
+  padding: 10px 10px 6px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text);
   cursor: default;
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
 .dropdown a.dropdown-sub-link {
