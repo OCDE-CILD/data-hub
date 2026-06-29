@@ -93,7 +93,7 @@
     let inner = '';
 
     // Attendance & Engagement section label + sub-links
-    inner += `<span class="dropdown-section-label">Attendance &amp; Engagement ▾</span>\n`;
+    inner += `<span class="dropdown-section-label">Attendance &amp; Engagement <span style="float:right">▾</span></span>\n`;
     for (const item of attendanceItems) {
       const isActive = item.key === activeKey;
       const cls = ['dropdown-sub-link', isActive ? 'active' : ''].filter(Boolean).join(' ');
