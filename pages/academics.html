@@ -4,70 +4,28 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Academics | OCDE Data Hub</title>
+  <title>Suspension | OCDE Data Hub</title>
 </head>
 
 <body>
   <div class="app-shell">
-
     <header class="site-header">
       <div class="header-inner">
-
         <div class="brand-block">
           <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
-
           <div class="brand-copy">
             <div class="brand">OCDE Data Hub</div>
-            <div class="sub">Student Academics</div>
+            <div class="sub">Suspension</div>
           </div>
         </div>
 
-        <nav class="nav" aria-label="Primary navigation">
-          <a href="/data-hub/index.html">Home</a>
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Dashboards ▾</button>
-            <div class="dropdown">
-              <div class="nav-menu">
-                <button class="nav-trigger" type="button">Attendance &amp; Engagement ▾</button>
-                <div class="dropdown">
-                  <a href="../pages/chronic-absenteeism.html">Chronic Absenteeism</a>
-                  <a href="../pages/suspension.html">Suspension</a>
-                </div>
-              </div>
-              <a href="../pages/college-career.html">College &amp; Career</a>
-              <a href="../pages/academics.html" class="active">Student Academics</a>
-              <a href="../pages/english-learners.html">English Learners</a>
-              <a href="../pages/differentiated-assistance.html">Differentiated Assistance</a>
-              <a href="../pages/spotlight.html">Spotlight</a>
-            </div>
-          </div>
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Resources ▾</button>
-            <div class="dropdown">
-              <a href="#">Methodology &amp; Notes</a>
-              <a href="#">Downloads</a>
-              <a href="#">Request Data</a>
-            </div>
-          </div>
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">About ▾</button>
-            <div class="dropdown">
-              <a href="../pages/purpose.html">Purpose</a>
-              <a href="../pages/faq.html">FAQ</a>
-            </div>
-          </div>
-          <div class="nav-menu">
-            <button class="nav-trigger" type="button">Contact Us</button>
-              <a href="URL HERE" target="_blank"></a>
-          </div>
-        </nav>
-
+        <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="suspension"></nav>
+        
       </div>
     </header>
 
     <main class="content">
       <div class="wrap">
-
         <div class="dash-about">
           <h2 class="dash-about__title">About this Dashboard</h2>
           <p class="dash-about__body">
@@ -81,25 +39,22 @@
         <section class="panel">
           <div class="tableau-shell">
             <div class="tableau-frame">
-
               <!-- Tableau Embed Placeholder -->
-              <div class="tableauPlaceholder" id="academicsPlaceholder">
+              <div class="tableauPlaceholder" id="suspensionPlaceholder">
                 <div class="placeholder-message">
-                  <h2>Student Academics Dashboard</h2>
+                  <h2>Suspension Dashboard</h2>
                   <p>
                     Tableau dashboard embed code will be added here once the
-                    Student Academics Tableau visualization has been published.
+                    Suspension Tableau visualization has been published.
                   </p>
                 </div>
               </div>
               <!-- End Tableau Embed Placeholder -->
 
               <!-- FUTURE TABLEAU EMBED CODE GOES HERE -->
-
             </div>
           </div>
         </section>
-
 
         <div class="dash-supplements">
           <div class="dash-supplement">
@@ -138,6 +93,7 @@
       </div>
     </main>
   </div>
+  <script src="../assets/js/nav.js"></script>
   <script src="../assets/js/app.js"></script>
 </body>
 </html>
