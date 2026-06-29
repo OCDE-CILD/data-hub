@@ -408,16 +408,16 @@ textarea {
 
 .dropdown-section-label {
   display: block;
-  padding: 8px 12px 4px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.03em;
+  padding: 10px 12px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
   cursor: default;
+  opacity: 0.55;
 }
 
-.dropdown-sub-link {
-  padding-left: 20px;
+.dropdown a.dropdown-sub-link {
+  padding-left: 24px;
 }
 
 .top-actions {
