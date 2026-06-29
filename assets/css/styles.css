@@ -406,6 +406,20 @@ textarea {
   text-decoration: none;
 }
 
+.dropdown-section-label {
+  display: block;
+  padding: 8px 12px 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  cursor: default;
+}
+
+.dropdown-sub-link {
+  padding-left: 20px;
+}
+
 .top-actions {
   display: flex;
   align-items: center;
