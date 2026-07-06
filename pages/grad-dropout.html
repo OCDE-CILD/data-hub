@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graduation & Dropout | OCDE Data Hub</title>
+
+  <!-- Tableau Embedding API v3. Consider moving this to a shared header include once all pages are migrated. -->
+  <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+  <style>
+    tableau-viz {
+      width: 100%;
+      height: 730px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-block">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Graduation & Dropout</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="grad-dropout"></nav>
+        
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrap">
+        <div class="dash-about">
+          <h2 class="dash-about__title">About this Dashboard</h2>
+          <p class="dash-about__body">
+            <!-- REPLACE: Add a description of what this dashboard shows,
+                 what the data represents, and who it is intended for. -->
+            This dashboard provides an overview of key metrics for Orange County school districts.
+            Use the filters within the visualization to explore data by district, school, student group, and year.
+          </p>
+        </div>
+
+        <section class="panel">
+          <div class="tableau-shell">
+            <div class="tableau-frame">
+              <tableau-viz
+                id="suspensionViz"
+                src="https://public.tableau.com/views/grad_dropout/dropout_dash"
+                toolbar="bottom"
+                hide-tabs>
+              </tableau-viz>
+            </div>
+          </div>
+        </section>
+
+        <div class="dash-supplements">
+          <div class="dash-supplement">
+            <h2 class="dash-supplement__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-file-notes"></use></svg>
+              Methodology &amp; Notes
+            </h2>
+            <p class="dash-supplement__body">
+              <!-- REPLACE: Add notes on data sources, calculation methods,
+                   suppression rules, and any caveats specific to this dashboard. -->
+              Data is sourced from the California Department of Education, but has been 
+              edited by OCDE's REDI team to prepare the data file for data visualization and analysis. 
+              Small student group sizes may be suppressed in accordance with privacy guidelines. 
+              All rates are calculated using the data file's respective cumulative enrollment number 
+              as the denominator unless otherwise noted. For questions or more information about
+              the methodology, please reach out to REDI@ocde.us
+            </p>
+          </div>
+
+         <div class="dash-supplement">
+            <h2 class="dash-supplement__title">
+              <svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>
+              Download Data
+            </h2>
+            <p class="dash-supplement__body">
+              Visit the California Dpartment of Education Webpage to download the underlying data file used to build this dashboard.
+            </p>
+            <div class="dash-supplement__action">
+              <a class="dash-download-btn" href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                  <path d="M15 3h6v6"/>
+                  <path d="M10 14L21 3"/>
+                </svg>
+                Visit CDE Data Page
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
