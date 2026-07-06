@@ -15,8 +15,9 @@
   const NAV_ITEMS = [
     { key: 'home',                    label: 'Home' },
     { key: 'dashboards',              label: 'Dashboards',              isDropdown: true },
-    { key: 'chronic-absenteeism',     label: 'Chronic Absenteeism',    file: 'chronic-absenteeism.html',    parent: 'dashboards', subParent: 'attendance' },
+    { key: 'chronic-absenteeism',     label: 'Chronic Absenteeism',     file: 'chronic-absenteeism.html',      parent: 'dashboards', subParent: 'attendance' },
     { key: 'suspension',              label: 'Suspension',              file: 'suspension.html',              parent: 'dashboards', subParent: 'attendance' },
+    { key: 'grad-dropout',            label: 'Graduation & Dropout',    file: 'grad-dropout.html',            parent: 'dashboards', subParent: 'attendance' },
     { key: 'college-career',          label: 'College &amp; Career',    file: 'college-career.html',          parent: 'dashboards' },
     { key: 'academics',               label: 'Student Academics',       file: 'academics.html',               parent: 'dashboards' },
     { key: 'english-learners',        label: 'English Learners',        file: 'english-learners.html',        parent: 'dashboards' },
