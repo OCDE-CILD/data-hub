@@ -19,105 +19,6 @@
 </head>
 
 <body>
- <div class="app-shell">
-    <header class="site-header">
-      <div class="header-inner">
-        <div class="brand-block">
-          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
-          <div class="brand-copy">
-            <div class="brand">OCDE Data Hub</div>
-            <div class="sub">Differentiated Assistance</div>
-          </div>
-        </div>
-
-        <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="differentiated-assistance"></nav>
-</head>
-<body>
-        
-      </div>
-    </header>
-      </div>
-    </header>
-
-    <main class="content">
-      <div class="wrap">
-
-        <div class="dash-about">
-          <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            This dashboard provides an overview of the California School Dashboard, a central system for accountability in the state. This dashboard can be used to gain a high level understanding of both the performance and growth of a respective school or district across the areas seen under the filter, "Select a Dashboard Indicator". This information is submitted by schools once per school year and therefore this data is not representative of the most current data for any respective school or district. To utilize this dashboard, use the filters on the right to explore data by district, school, student group, and year. To view data for an entire district, select "Overall District" under the "Select a School" filter. 
-            </p>
-          For more information on the California School Dashboard, you can visit: https://www.caschooldashboard.org/about/accountability/ 
-          </p>
-        </div>
-
-        <section class="panel">
-          <div class="tableau-shell">
-            <div class="tableau-frame">
-
-              <tableau-viz
-                id="differentiatedAssistanceViz"
-                src="https://public.tableau.com/views/da_viz/Dashboard1"
-                toolbar="bottom"
-                hide-tabs>
-              </tableau-viz>
-
-            </div>
-          </div>
-        </section>
-
-
-        <div class="dash-supplements">
-          <div class="dash-supplement">
-            <h2 class="dash-supplement__title">
-              <svg class="icon" aria-hidden="true"><use href="#i-file-notes"></use></svg>
-              Methodology &amp; Notes
-            </h2>
-            <p class="dash-supplement__body">
-              <!-- REPLACE: Add notes on data sources, calculation methods,
-                   suppression rules, and any caveats specific to this dashboard. -->
-              Data is sourced from the California Department of Education, but has been 
-              edited by OCDE's REDI team to prepare the data file for data visualization and analysis. 
-              For questions or more information about the methodology, please reach out to REDI@ocde.us
-            </p>
-          </div>
-
-          <div class="dash-supplement">
-            <h2 class="dash-supplement__title">
-              <svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>
-              Download Data
-            </h2>
-            <p class="dash-supplement__body">
-              Visit the California Dpartment of Education Webpage to download the underlying data file used to build this dashboard.
-            </p>
-            <div class="dash-supplement__action">
-              <a class="dash-download-btn" href="https://www.cde.ca.gov/ta/ac/cm/dashboardresources.asp#datafiles" target="_blank" rel="noopener noreferrer">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                  <path d="M15 3h6v6"/>
-                  <path d="M10 14L21 3"/>
-                </svg>
-                Visit CDE Data Page
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-  <script src="../assets/js/nav.js"></script>
-  <script src="../assets/js/app.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Differentiated Assistance | OCDE Data Hub</title>
-</head>
-
-<body>
   <div class="app-shell">
 
     <header class="site-header">
@@ -153,53 +54,12 @@
           <div class="tableau-shell">
             <div class="tableau-frame">
 
-              <div class='tableauPlaceholder' id='viz1779891881201' style='position: relative'>
-
-                <noscript>
-                  <a href='https://ocde-cild.github.io/'>
-                    <img
-                      alt='Dashboard 1'
-                      src='https://public.tableau.com/static/images/da/da_viz/Dashboard1/1_rss.png'
-                      style='border: none'
-                    />
-                  </a>
-                </noscript>
-
-                <object class='tableauViz' style='display:none;'>
-
-                  <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                  <param name='embed_code_version' value='3' />
-                  <param name='site_root' value='' />
-                  <param name='name' value='da_viz/Dashboard1' />
-                  <param name='tabs' value='no' />
-                  <param name='toolbar' value='yes' />
-                  <param name='static_image' value='https://public.tableau.com/static/images/da/da_viz/Dashboard1/1.png' />
-                  <param name='animate_transition' value='yes' />
-                  <param name='display_static_image' value='yes' />
-                  <param name='display_spinner' value='yes' />
-                  <param name='display_overlay' value='yes' />
-                  <param name='display_count' value='yes' />
-                  <param name='language' value='en-US' />
-
-                </object>
-              </div>
-
-              <script type='text/javascript'>
-                var divElement = document.getElementById('viz1779891881201');
-                var vizElement = divElement.getElementsByTagName('object')[0];
-                function resizeViz() {
-                  var container = divElement.parentElement;
-                  var w = container.offsetWidth;
-                  var h = Math.min(Math.round(w * (9 / 16)), window.innerHeight - 120);
-                  vizElement.style.width  = w + 'px';
-                  vizElement.style.height = h + 'px';
-                }
-            resizeViz();
-            window.addEventListener('resize', resizeViz);
-                var scriptElement = document.createElement('script');
-                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                vizElement.parentNode.insertBefore(scriptElement, vizElement);
-              </script>
+              <tableau-viz
+                id="differentiatedAssistanceViz"
+                src="https://public.tableau.com/views/da_viz/Dashboard1"
+                toolbar="bottom"
+                hide-tabs>
+              </tableau-viz>
 
             </div>
           </div>
