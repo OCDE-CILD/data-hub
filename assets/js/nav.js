@@ -27,7 +27,7 @@
     { key: 'spotlight',               label: 'Spotlight',               file: 'spotlight.html',               parent: 'dashboards' },
     { key: 'resources',               label: 'Resources',               isDropdown: true },
     { key: 'methodology',             label: 'Methodology &amp; Notes', href: '#',                            parent: 'resources' },
-    { key: 'downloads',               label: 'Downloads',               href: '#',                            parent: 'resources' },
+    { key: 'downloads',               label: 'Downloads',               href: 'downloads.html',                            parent: 'resources' },
     { key: 'about',                   label: 'About',                   isDropdown: true },
     { key: 'purpose',                 label: 'Purpose',                 file: 'purpose.html',                 parent: 'about' },
     { key: 'faq',                     label: 'FAQ',                     file: 'faq.html',                     parent: 'about' },
