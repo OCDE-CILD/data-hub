@@ -382,23 +382,21 @@
                 <p>
                   Source: CDE's Chronic Absenteeism data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesabd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesabd.asp</a>).
-                  Two related files go through the same pipeline: the primary Chronic Absenteeism
-                  file, and a companion Absenteeism Reason file that breaks absences down by
-                  cause. This section is based on a direct read of six years of cleaning scripts
+                  This section is based on a direct read of six years of cleaning scripts
                   (2018-19, 2020-21 through 2024-25); 2019-20 is not covered since CDE never
                   published that year's file.
                 </p>
                 <p>
-                  The raw files are tab-delimited text; because district and school names can
-                  contain accented characters, they're read using Latin-1 encoding rather than
+                  The raw file is tab-delimited text; because district and school names can
+                  contain accented characters, it's read using Latin-1 encoding rather than
                   UTF-8 in every year checked — worth knowing if you're reading CDE's original
                   text file yourself rather than our cleaned CSV, since reading it as UTF-8 can
                   garble accented names.
                 </p>
 
-                <p class="accordion-body__subhead">Column Reference — Chronic Absenteeism File</p>
+                <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name (2021-22 onward; see raw-name drift below for earlier years)</caption>
+                  <caption>Raw CDE column name → cleaned field name</caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Academic Year</td><td><code>year</code></td></tr>
                   <tr><td>Charter School</td><td><code>charter</code></td></tr>
@@ -409,34 +407,12 @@
                   <tr><td>Aggregate Level</td><td><code>org_level</code></td></tr>
                 </table>
 
-                <p class="accordion-body__subhead">Column Reference — Absenteeism Reason File</p>
-                <table class="code-table">
-                  <caption>Stable across all years checked (2018-19 through 2024-25)</caption>
-                  <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
-                  <tr><td>Eligible Cumulative Enrollment</td><td><code>enrollment_num</code></td></tr>
-                  <tr><td>Count of Students with One or More Absences</td><td><code>count_one_plus_abs</code></td></tr>
-                  <tr><td>Total Days Absent</td><td><code>total_days_absent</code></td></tr>
-                  <tr><td>Average Days Absent</td><td><code>average_days_absent</code> <em>(checked for suppression only — see note below)</em></td></tr>
-                  <tr><td>Excused Absences Percent / Count</td><td><code>excused_abs_percent</code> / <code>excused_abs_count</code></td></tr>
-                  <tr><td>Unexcused Absences Percent / Count</td><td><code>unexcused_abs_percent</code> / <code>unexcused_abs_count</code></td></tr>
-                  <tr><td>Out-of-School Suspension Absences Percent / Count</td><td><code>out_school_susp_percent</code> / <code>out_school_susp_count</code></td></tr>
-                  <tr><td>Incomplete Independent Study Absences Percent / Count</td><td><code>inc_IS_abs_percent</code> / <code>inc_IS_abs_count</code></td></tr>
-                </table>
-                <p>
-                  Note: <code>average_days_absent</code> is checked for the suppression marker
-                  and coerced to numeric like the other fields, but it is <strong>not</strong>
-                  one of the columns individually re-cast to integer — it's the only count-type
-                  field in this file left as a decimal, likely because an average isn't
-                  necessarily a whole number the way a count is.
-                </p>
-
                 <p class="accordion-body__subhead">Suppression</p>
                 <p>
                   Suppression is checked at the <strong>row level</strong>, not field-by-field. For
                   2018-19 through 2023-24, the columns checked were a fixed list written into the
-                  script for that file — <code>enrollment_num</code>, <code>chronic_count</code>,
-                  <code>chronic_rate</code> for the main file, and the twelve fields listed above
-                  for the Reason file. Starting with the 2024-25 refresh, both files switched to
+                  script — <code>enrollment_num</code>, <code>chronic_count</code>,
+                  <code>chronic_rate</code>. Starting with the 2024-25 refresh, this switched to
                   an automatic scan that checks every column for the asterisk marker rather than a
                   fixed list — functionally similar in most cases, but able to catch a newly
                   suppressed field that the fixed list wouldn't have anticipated. Either way, a
@@ -463,10 +439,8 @@
                 <p>
                   <code>year</code> is recoded from the raw label (e.g., &quot;2024-25&quot;) to a
                   two-digit integer (<code>25</code>). <strong><code>dass_num</code> is only
-                  present in the main Chronic Absenteeism file starting in 2021-22</strong> — it
-                  was absent in 2018-19 and explicitly confirmed absent in 2020-21 by the person
-                  maintaining that year's script. The Absenteeism Reason file, by contrast, has
-                  included <code>dass_num</code> in every year checked, including 2018-19.
+                  present starting in 2021-22</strong> — it was absent in 2018-19 and explicitly
+                  confirmed absent in 2020-21 by the person maintaining that year's script.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
@@ -494,44 +468,17 @@
                   <code>student_group</code> is mapped to the site's canonical
                   <code>demo_group_num</code> scheme and validated to confirm every group mapped
                   successfully. The fact table's primary key is <code>cds</code> +
-                  <code>demo_group_num</code> + <code>charter_num</code> — plus
-                  <code>dass_num</code> for every year that field exists (2021-22 onward for the
-                  main file; every year for the Reason file).
-                </p>
-
-                <p class="accordion-body__subhead">Raw Column Name &amp; Structural Drift</p>
-                <table class="coverage-table">
-                  <tr><th>Change</th><th>When</th></tr>
-                  <tr><td>Raw location columns rename from <code>CountyCode</code>/<code>DistrictCode</code>/<code>SchoolCode</code> (no space) to <code>County Code</code>/<code>District Code</code>/<code>School Code</code> (with space)</td><td>Between 2018-19 and 2020-21</td></tr>
-                  <tr><td>Raw charter column renames from <code>CharterYN</code> to <code>Charter School</code></td><td>Between 2018-19 and 2020-21</td></tr>
-                  <tr><td>Raw enrollment column name is truncated (<code>...Eligible Cumula[tive...]</code>) in the source file</td><td>2018-19 and 2020-21 only; full column name from 2021-22 onward</td></tr>
-                  <tr><td><code>dass_num</code> added to the main Chronic Absenteeism file (Reason file already had it)</td><td>Starting 2021-22</td></tr>
-                  <tr><td>Main file's schools dimension table switches from sorting by school name to sorting by school code, and adds integer coercion for district/school codes</td><td>Between 2018-19 and 2020-21</td></tr>
-                  <tr><td>Suppression column detection switches from a fixed list to an automatic asterisk scan (both files)</td><td>Starting with the 2024-25 refresh</td></tr>
-                </table>
-                <p>
-                  One inconsistency has been present in every year checked rather than changing
-                  over time: the Chronic Absenteeism file's own schools dimension table is sorted
-                  by school code, while the companion Absenteeism Reason file's schools dimension
-                  table is sorted by school name. This doesn't affect the data itself, only the
-                  row order of that particular lookup table.
-                </p>
-                <p>
-                  On the &quot;Nonpublic, Nonsectarian Schools&quot; exclusion mentioned in earlier
-                  notes: it appears exactly once, in the 2018-19 Absenteeism Reason file's schools
-                  dimension table only — it does not appear in the fact data for that year, in the
-                  main Chronic Absenteeism file for any year, or in the Reason file for any later
-                  year checked. In other words, this was a narrow, one-time exclusion from a
-                  lookup table, not an ongoing rule applied to the published data.
+                  <code>demo_group_num</code> + <code>charter_num</code>, plus
+                  <code>dass_num</code> starting in 2021-22 once that field exists.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
-                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology, no DASS field in main file</td></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology, no DASS field</td></tr>
                   <tr><td>2019-20</td><td class="status-gap">Not published by CDE (pandemic year)</td></tr>
-                  <tr><td>2020-21</td><td class="status-ok">Available — no DASS field in main file (confirmed by script comment); dimension-table sort/coercion changes begin here</td></tr>
-                  <tr><td>2021-22 – 2024-25</td><td class="status-ok">Available — DASS field present in main file; suppression detection becomes automatic starting 2024-25</td></tr>
+                  <tr><td>2020-21</td><td class="status-ok">Available — no DASS field (confirmed by script comment)</td></tr>
+                  <tr><td>2021-22 – 2024-25</td><td class="status-ok">Available — DASS field present; suppression detection becomes automatic starting 2024-25</td></tr>
                 </table>
 
               </div>
@@ -574,7 +521,7 @@
                   <code>dass_num</code> — meaning a single combination of school/district, student
                   group, charter status, and DASS status should never appear more than once in the
                   file. Separate entity/district/school dimension tables are built alongside the
-                  fact table, with districts sorted by name and schools sorted by code.
+                  fact table.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
@@ -637,8 +584,8 @@
                   is <code>cds</code> + <code>demo_group_num</code> + <code>charter_num</code> +
                   <code>dass_num</code>, matching the Suspension file's structure. Entity/district/
                   school dimension tables are built alongside it, with district and school codes
-                  coerced to integer and sorted (districts by name, schools by code) before
-                  primary keys are validated and the dimension objects are cleared from memory.
+                  coerced to integer before primary keys are validated and the dimension objects
+                  are cleared from memory.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
@@ -646,7 +593,7 @@
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
                   <tr><td>2019-20 – 2022-23</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
-                  <tr><td>2023-24</td><td class="status-partial">Available — same cleaning process, minor field-naming changes only</td></tr>
+                  <tr><td>2023-24</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
