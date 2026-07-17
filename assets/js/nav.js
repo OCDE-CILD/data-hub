@@ -26,7 +26,7 @@
     { key: 'differentiated-assistance', label: 'Differentiated Assistance', file: 'differentiated-assistance.html', parent: 'dashboards' },
     { key: 'spotlight',               label: 'Spotlight',               file: 'spotlight.html',               parent: 'dashboards' },
     { key: 'resources',               label: 'Resources',               isDropdown: true },
-    { key: 'methodology',             label: 'Methodology &amp; Notes', file: '#',                            parent: 'resources' },
+    { key: 'methodology',             label: 'Methodology &amp; Notes', file: 'methodology.html',                            parent: 'resources' },
     { key: 'downloads',               label: 'Downloads',               file: 'downloads.html',                            parent: 'resources' },
     { key: 'about',                   label: 'About',                   isDropdown: true },
     { key: 'purpose',                 label: 'Purpose',                 file: 'purpose.html',                 parent: 'about' },
