@@ -609,16 +609,50 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Graduation &amp; Dropout Rate
-                <span class="accordion-header__sub">2018-19 to 2023-24</span>
+                <span class="accordion-header__sub">7 years verified (18-19 to 24-25)</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
 
                 <p>
-                  Reflects CDE's official cohort graduation and dropout rate methodology. As with
-                  Suspension, each year's file is scanned for its suppression marker, flagged
-                  values are coerced to <code>NA</code>, and the school-year label is recoded to a
-                  two-digit integer (e.g., &quot;2018-19&quot; → <code>19</code>).
+                  Source: CDE's Adjusted Cohort Graduation Rate (ACGR) data file
+                  (<a href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesacgr.asp</a>).
+                  This section is based on a direct read of all seven years of cleaning scripts
+                  currently available, 2018-19 through 2024-25 — like Suspension, there is no
+                  coverage gap for this file.
+                </p>
+                <p>
+                  <!-- REPLACE -->
+                  A note on scope: despite the &quot;Grad Rate &amp; Dropout&quot; name, none of
+                  the seven scripts we reviewed explicitly rename a dropout-specific count or
+                  rate column — every explicitly renamed field relates to a graduation outcome
+                  (regular diploma, UC/CSU requirements met, Golden State Seal, adult education
+                  completion, and similar). It's possible a dropout-specific field exists in the
+                  raw file under its own default column name and simply wasn't touched by the
+                  rename step, but that hasn't been confirmed. Worth checking directly against the
+                  raw CDE file if you need a dropout-specific figure from this source.
+                </p>
+
+                <p class="accordion-body__subhead">Column Reference</p>
+                <table class="code-table">
+                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
+                  <tr><td>Academic Year</td><td><code>year</code></td></tr>
+                  <tr><td>Charter School</td><td><code>charter</code></td></tr>
+                  <tr><td>Reporting Category</td><td><code>student_group</code></td></tr>
+                  <tr><td>Aggregate Level</td><td><code>org_level</code></td></tr>
+                  <tr><td>Regular HS Diploma Graduates Count / Rate</td><td><code>graduated_count</code> / <code>graduated_rate</code></td></tr>
+                  <tr><td>Met UC/CSU Grad Reqs Count / Rate</td><td><code>met_uc_csu_count</code> / <code>met_uc_csu_rate</code></td></tr>
+                  <tr><td>Golden State Seal Merit Diploma Count / Rate</td><td><code>golden_state_seal_count</code> / <code>golden_state_seal_rate</code></td></tr>
+                  <tr><td>Adult Ed HS Diploma Count / Rate</td><td><code>adult_completer_count</code> / <code>adult_completer_rate</code></td></tr>
+                </table>
+
+                <p class="accordion-body__subhead">Suppression</p>
+                <p>
+                  Suppression is checked at the row level using the same automatic asterisk scan
+                  used by Suspension — not the fixed-list approach Chronic Absenteeism used before
+                  2024-25. This file has used the automatic scan in every year checked, back to
+                  2018-19.
                 </p>
 
                 <table class="code-table">
@@ -634,34 +668,58 @@
                   <tr><td>3</td><td>District</td></tr>
                   <tr><td>4</td><td>School</td></tr>
                 </table>
-
-                <p class="accordion-body__subhead">Gender Categories</p>
                 <p>
-                  CDE documentation indicates the <code>GX</code> gender code (non-binary) was not
-                  introduced until 2019-20. Rather than assume how a 2018-19 record would have been
-                  coded had the category existed, any 2018-19 record that would fall under
-                  <code>GX</code> is coded as missing for gender instead of being reassigned to an
-                  existing category — this avoids silently inflating or understating any gender
-                  category with data that predates its definition.
+                  Unlike Chronic Absenteeism, where <code>dass_num</code> wasn't added until
+                  2021-22, this file has included <code>dass_num</code> in every year checked,
+                  including 2018-19.
                 </p>
 
-                <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
+                <p class="accordion-body__subhead">Year-over-Year QA Checks</p>
                 <p>
-                  Demographic groups are mapped to the canonical <code>demo_group_num</code>
-                  scheme and validated the same way as other files. The fact table's primary key
-                  is <code>cds</code> + <code>demo_group_num</code> + <code>charter_num</code> +
-                  <code>dass_num</code>, matching the Suspension file's structure. Entity/district/
-                  school dimension tables are built alongside it, with district and school codes
-                  coerced to integer before primary keys are validated and the dimension objects
-                  are cleared from memory.
+                  Starting with the 2019-20 file, each new year's column names are compared
+                  against the prior year's before cleaning begins, the same first-line check used
+                  for Suspension. This file does not use the additional zero-value comparison
+                  check that Suspension used from 2019-20 through 2022-23 — that check appears to
+                  be specific to the Suspension pipeline.
+                </p>
+
+                <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
+                <p>
+                  <code>student_group</code> is mapped to the site's canonical
+                  <code>demo_group_num</code> scheme and validated the same way as other files.
+                  County-District-School (<code>cds</code>) codes follow the same
+                  construction-and-conflict-resolution process as the other files described on
+                  this page, including the same caveat: the fact table reflects the resolved
+                  codes, while the &quot;full&quot; CSV rebuilds <code>cds</code> afterward
+                  without reapplying that fix. The fact table's primary key is <code>cds</code> +
+                  <code>demo_group_num</code> + <code>charter_num</code> + <code>dass_num</code>.
+                </p>
+
+                <p class="accordion-body__subhead">2023-24: New Metric Added</p>
+                <p>
+                  Starting with the 2023-24 file, CDE added a new count/rate pair for students who
+                  graduated through a local requirements exemption, cleaned here as
+                  <code>grads_exemption_count</code> / <code>grads_exemption_rate</code>. This
+                  wasn't a renaming of an existing field — it's additional data that didn't exist
+                  in earlier years' files, so its absence in 2018-19 through 2022-23 reflects CDE
+                  not collecting it yet, not a suppression or data-quality issue.
+                </p>
+
+                <p class="accordion-body__subhead">2024-25: Data Quality Note</p>
+                <p>
+                  The 2024-25 schools dimension table excludes a row where the school code was
+                  <code>1</code> and the school name was listed as &quot;District Office&quot; —
+                  a district-level administrative record that had been showing up alongside actual
+                  schools in that lookup table. This is specific to the 2024-25 script; earlier
+                  years haven't been checked for the same issue.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-20 – 2022-23</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
-                  <tr><td>2023-24</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2019-20 – 2022-23</td><td class="status-ok">Available — same methodology as 2018-19</td></tr>
+                  <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — local requirements exemption metric added</td></tr>
                 </table>
 
               </div>
