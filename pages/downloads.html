@@ -77,8 +77,18 @@
       font-weight: 700;
     }
 
-    .download-card__action {
+    .download-card__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-top: 4px;
+    }
+
+    .dash-download-btn--secondary {
+      background: #ffffff;
+      color: var(--navy);
+      border: 1px solid var(--line);
+      box-shadow: none;
     }
 
     @media (max-width: 760px) {
@@ -118,9 +128,8 @@
                  it relates to the dashboards elsewhere on the site. -->
             The dashboards on the OCDE Data Hub are built from data files published by the
             California Department of Education and other official sources. This page links
-            directly to those original source files so you can download the raw data yourself.
-            Each entry below includes a brief description of what the file contains and where
-            it comes from.
+            directly to those original source files, and also provides the exact CSV used to
+            build each dashboard so you can download the data directly.
           </p>
         </div>
 
@@ -140,7 +149,7 @@
                 <span><strong>Source:</strong> CDE DataQuest</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -148,6 +157,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add chronic-absenteeism.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/chronic-absenteeism.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -163,7 +180,7 @@
                 <span><strong>Source:</strong> CDE DataQuest</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -171,6 +188,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add suspension.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/suspension.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -186,7 +211,7 @@
                 <span><strong>Source:</strong> CDE DataQuest</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -194,6 +219,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add graduation-dropout.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/graduation-dropout.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -217,7 +250,7 @@
                 <span><strong>Source:</strong> CAASPP / ETS Research Files</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -225,6 +258,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add caaspp-math-ela.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/caaspp-math-ela.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -240,7 +281,7 @@
                 <span><strong>Source:</strong> CAASPP / ETS Research Files</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -248,6 +289,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add science-assessment.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/science-assessment.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -271,7 +320,7 @@
                 <span><strong>Source:</strong> CDE DataQuest</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -279,6 +328,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add english-learner-progress.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/english-learner-progress.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -302,7 +359,7 @@
                 <span><strong>Source:</strong> CDE DataQuest</span>
                 <span><strong>Format:</strong> CSV</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -310,6 +367,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add college-career.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/college-career.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
@@ -333,7 +398,7 @@
                 <span><strong>Source:</strong> CDE / caschooldashboard.org</span>
                 <span><strong>Format:</strong> CSV / Excel</span>
               </div>
-              <div class="download-card__action">
+              <div class="download-card__actions">
                 <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -341,6 +406,14 @@
                     <path d="M10 14L21 3"/>
                   </svg>
                   Visit Source
+                </a>
+                <!-- REPLACE: add ca-school-dashboard.csv to /assets/data/downloads/ in the repo -->
+                <a class="dash-download-btn dash-download-btn--secondary" href="../assets/data/downloads/ca-school-dashboard.csv" download>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4"/>
+                    <path d="M5 19h14"/>
+                  </svg>
+                  Download Data
                 </a>
               </div>
             </div>
