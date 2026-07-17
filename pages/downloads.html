@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloads | OCDE Data Hub</title>
+
+  <style>
+    /* Scoped styles for the Downloads page.
+       Move these into styles.css if you'd like them shared across other pages. */
+
+    .downloads-intro {
+      margin-bottom: 4px;
+    }
+
+    .downloads-group {
+      margin-top: 28px;
+    }
+
+    .downloads-group:first-of-type {
+      margin-top: 0;
+    }
+
+    .downloads-group__title {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .download-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .download-card__title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .download-card__body {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      flex: 1 1 auto;
+    }
+
+    .download-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .download-card__meta strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .download-card__action {
+      margin-top: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .downloads-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="site-header">
+      <div class="header-inner">
+
+        <div class="brand-block">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Downloads</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="downloads"></nav>
+
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrap">
+
+        <div class="dash-about downloads-intro">
+          <h2 class="dash-about__title">Original Data Sources</h2>
+          <p class="dash-about__body">
+            <!-- REPLACE: Add a short overview of what this page provides and how
+                 it relates to the dashboards elsewhere on the site. -->
+            The dashboards on the OCDE Data Hub are built from data files published by the
+            California Department of Education and other official sources. This page links
+            directly to those original source files so you can download the raw data yourself.
+            Each entry below includes a brief description of what the file contains and where
+            it comes from.
+          </p>
+        </div>
+
+        <!-- ===== GROUP: Attendance & Engagement ===== -->
+        <section class="downloads-group">
+          <h2 class="downloads-group__title">Attendance &amp; Engagement</h2>
+          <div class="downloads-grid">
+
+            <div class="download-card">
+              <h3 class="download-card__title">Chronic Absenteeism Data File</h3>
+              <p class="download-card__body">
+                <!-- REPLACE: Describe what this file contains (grain, years covered, fields). -->
+                Student-group level chronic absenteeism rates by district and school, used to
+                build the Chronic Absenteeism dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CDE DataQuest</span>
+                <span><strong>Format:</strong> CSV</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+            <div class="download-card">
+              <h3 class="download-card__title">Suspension Rate Data File</h3>
+              <p class="download-card__body">
+                <!-- REPLACE -->
+                District- and school-level suspension counts and rates by student group, used to
+                build the Suspension dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CDE DataQuest</span>
+                <span><strong>Format:</strong> CSV</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: Student Academics ===== -->
+        <section class="downloads-group">
+          <h2 class="downloads-group__title">Student Academics</h2>
+          <div class="downloads-grid">
+
+            <div class="download-card">
+              <h3 class="download-card__title">CAASPP Research File</h3>
+              <p class="download-card__body">
+                <!-- REPLACE -->
+                ELA and Math assessment results by student group, used to build the Student
+                Academics dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CAASPP / ETS Research Files</span>
+                <span><strong>Format:</strong> CSV</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: College & Career ===== -->
+        <section class="downloads-group">
+          <h2 class="downloads-group__title">College &amp; Career</h2>
+          <div class="downloads-grid">
+
+            <div class="download-card">
+              <h3 class="download-card__title">College/Career Indicator File</h3>
+              <p class="download-card__body">
+                <!-- REPLACE -->
+                Prepared / Almost Prepared / Not Prepared outcomes by student group, used to
+                build the College &amp; Career Preparedness dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CDE DataQuest</span>
+                <span><strong>Format:</strong> CSV</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: English Learners ===== -->
+        <section class="downloads-group">
+          <h2 class="downloads-group__title">English Learners</h2>
+          <div class="downloads-grid">
+
+            <div class="download-card">
+              <h3 class="download-card__title">English Learner Progress File</h3>
+              <p class="download-card__body">
+                <!-- REPLACE -->
+                LTEL and At-Risk LTEL rates by district, used to build the English Learners
+                dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CDE DataQuest</span>
+                <span><strong>Format:</strong> CSV</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: Differentiated Assistance ===== -->
+        <section class="downloads-group">
+          <h2 class="downloads-group__title">Differentiated Assistance</h2>
+          <div class="downloads-grid">
+
+            <div class="download-card">
+              <h3 class="download-card__title">California School Dashboard Data Files</h3>
+              <p class="download-card__body">
+                <!-- REPLACE -->
+                Underlying indicator-level files behind the California School Dashboard, used to
+                build the Differentiated Assistance dashboard.
+              </p>
+              <div class="download-card__meta">
+                <span><strong>Source:</strong> CDE / caschooldashboard.org</span>
+                <span><strong>Format:</strong> CSV / Excel</span>
+              </div>
+              <div class="download-card__action">
+                <a class="dash-download-btn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <path d="M15 3h6v6"/>
+                    <path d="M10 14L21 3"/>
+                  </svg>
+                  Visit Source
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="footer-logo" />
+          <span>Orange County Department of Education</span>
+        </div>
+        <div class="footer-right">Looking for data-driven insights? Our Research &amp; Evaluation team can help.</div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
