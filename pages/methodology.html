@@ -374,7 +374,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Chronic Absenteeism
-                <span class="accordion-header__sub">2018-19, 2021-2025</span>
+                <span class="accordion-header__sub">6 years verified (19, 21–25)</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -487,53 +487,121 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Suspension
-                <span class="accordion-header__sub">2018-19 to 2023-24</span>
+                <span class="accordion-header__sub">7 years verified (18-19 to 24-25)</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
 
                 <p>
-                  Each year's suspension file is scanned column-by-column for suppression markers,
-                  and only the columns found to contain them are treated as suppressible for that
-                  year — the same adaptive approach described in General Data Handling. Flagged
-                  values are coerced to <code>NA</code>, and remaining numeric columns are coerced
-                  to integer when whole or numeric when decimals appear.
+                  Source: CDE's Suspension data file
+                  (<a href="https://www.cde.ca.gov/ds/ad/filessd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filessd.asp</a>).
+                  This section is based on a direct read of all seven years of cleaning scripts
+                  currently available, 2018-19 through 2024-25 — the only Attendance &amp;
+                  Engagement file on this site with no coverage gap.
                 </p>
 
+                <p class="accordion-body__subhead">Column Reference</p>
+                <table class="code-table">
+                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
+                  <tr><td>Academic Year</td><td><code>year</code></td></tr>
+                  <tr><td>Reporting Category</td><td><code>student_group</code></td></tr>
+                  <tr><td>Aggregate Level</td><td><code>org_level</code></td></tr>
+                  <tr><td>Unduplicated Count of Students Suspended – Total</td><td><code>upc_suspensions_total</code></td></tr>
+                  <tr><td>Unduplicated Count of Students Suspended – Defiance Only</td><td><code>upc_suspensions_defiance_only</code></td></tr>
+                  <tr><td>Suspension Count – Violent Incident (Injury)</td><td><code>suspension_count_violence_injury</code></td></tr>
+                  <tr><td>Suspension Count – Violent Incident (No Injury)</td><td><code>suspension_count_violence_no_injury</code></td></tr>
+                  <tr><td>Suspension Count – Weapons Possession</td><td><code>suspension_count_weapon</code></td></tr>
+                  <tr><td>Suspension Count – Illicit Drug-Related</td><td><code>suspension_count_drug</code></td></tr>
+                  <tr><td>Suspension Count – Defiance Only</td><td><code>suspension_count_defiance</code></td></tr>
+                  <tr><td>Suspension Count – Other Reasons</td><td><code>suspension_count_other</code></td></tr>
+                </table>
+                <p>
+                  The raw file also includes a Cumulative Enrollment column (used as the
+                  denominator, and referenced during year-over-year comparison checks) that isn't
+                  given a friendlier name in this pipeline the way it is in the Chronic
+                  Absenteeism file, so it's carried through under its default lowercase column
+                  name rather than something like <code>enrollment_num</code>.
+                </p>
+
+                <p class="accordion-body__subhead">Suppression</p>
+                <p>
+                  Suppression is checked at the <strong>row level</strong>, the same as other
+                  files on this site. Unlike Chronic Absenteeism, the Suspension file has used an
+                  automatic asterisk scan across every column — rather than a fixed, named list —
+                  in every year checked, 2018-19 onward. Once suppressible columns are identified,
+                  a shared cleaning-package function handles converting them to numeric or integer
+                  in one step, rather than each column being cast individually.
+                </p>
+
+                <p class="accordion-body__subhead">Year-over-Year QA Checks</p>
+                <p>
+                  Starting with the 2019-20 file, each new year is compared against the prior
+                  year's before cleaning begins: column names are checked for changes, and the set
+                  of columns subject to suppression is compared to catch any that were newly added
+                  or removed. From 2019-20 through 2022-23, an additional check compared the share
+                  of zero values for each field between the two years, flagging any field whose
+                  proportion of zeros shifted by more than 5 percentage points — a way of catching
+                  a meaningful change in reporting patterns beyond just suppression or renamed
+                  columns. This additional zero-value check was dropped starting with the 2023-24
+                  script; the column-name and suppression-column comparisons continue every year.
+                  In every year checked, these comparisons found no differences from the prior
+                  year serious enough to require a change to the cleaning process.
+                </p>
+
+                <p class="accordion-body__subhead">Encoding</p>
                 <table class="code-table">
                   <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
                   <tr><td rowspan="3"><code>charter_num</code></td><td>1</td><td>Yes</td></tr>
                   <tr><td>0</td><td>No</td></tr>
                   <tr><td>2</td><td>All schools</td></tr>
-                  <tr><td rowspan="4"><code>org_level_num</code></td><td>1</td><td>State</td></tr>
-                  <tr><td>2</td><td>County</td></tr>
-                  <tr><td>3</td><td>District</td></tr>
-                  <tr><td>4</td><td>School</td></tr>
+                  <tr><td rowspan="4"><code>org_level_num</code></td><td>1</td><td>State (raw code <code>T</code>)</td></tr>
+                  <tr><td>2</td><td>County (<code>C</code>)</td></tr>
+                  <tr><td>3</td><td>District (<code>D</code>)</td></tr>
+                  <tr><td>4</td><td>School (<code>S</code>)</td></tr>
                 </table>
-
-                <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
                 <p>
-                  The school-year label (e.g., &quot;2018-19&quot;) is recoded to a two-digit
-                  integer (<code>19</code>) for easier sorting and filtering. Records receive the
-                  standard canonical demographic mapping and <code>cds</code> construction
-                  described above. The fact table's primary key is the combination of
-                  <code>cds</code>, <code>demo_group_num</code>, <code>charter_num</code>, and
-                  <code>dass_num</code> — meaning a single combination of school/district, student
-                  group, charter status, and DASS status should never appear more than once in the
-                  file. Separate entity/district/school dimension tables are built alongside the
-                  fact table.
+                  <strong>There is no <code>dass_num</code> field in the Suspension file, in any
+                  year checked.</strong> This is a genuine difference from Chronic Absenteeism,
+                  which gained a DASS (alternative accountability) field starting in 2021-22 — the
+                  Suspension file has never had an equivalent field, so charter status is the only
+                  school-type distinction available here.
+                </p>
+
+                <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
+                <p>
+                  County-District-School (<code>cds</code>) codes follow the same construction and
+                  conflict-resolution process described for Chronic Absenteeism, and the same
+                  caveat applies: the resolution is reflected in the fact table used for the
+                  dashboard, but the &quot;full&quot; CSV rebuilds <code>cds</code> afterward
+                  without reapplying it.
+                </p>
+                <p>
+                  <code>student_group</code> is mapped to the site's canonical
+                  <code>demo_group_num</code> scheme and validated the same way as other files.
+                  The fact table's primary key is <code>cds</code> + <code>demo_group_num</code> +
+                  <code>charter_num</code> — three fields, not four; since there's no
+                  <code>dass_num</code> in this file, it isn't part of the key.
+                </p>
+
+                <p class="accordion-body__subhead">2024-25: A Data Quality Fix</p>
+                <p>
+                  The 2024-25 script excludes three schools — Delta Charter Online, Insight @ San
+                  Joaquin, and California Virtual Academy @ San Joaquin — that all shared a single
+                  CDS code with identical data, apparently representing the same underlying school
+                  reported under multiple names. Each had only one student total, so rather than
+                  count that school's small population multiple times, all but one version were
+                  removed. This is specific to the 2024-25 file; it hasn't been checked against
+                  earlier years' raw data to know whether the same duplication exists further
+                  back.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-20 – 2023-24</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
+                  <tr><td>2019-20 – 2024-25</td><td class="status-ok">Available — no gap, unlike Chronic Absenteeism</td></tr>
                 </table>
-                <p>
-                  Unlike Chronic Absenteeism, CDE published suspension data for 2019-20 without
-                  interruption.
-                </p>
 
               </div>
             </details>
