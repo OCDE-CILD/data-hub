@@ -374,7 +374,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Chronic Absenteeism
-                <span class="accordion-header__sub">6 years verified (19, 21–25)</span>
+                <span class="accordion-header__sub">2018-19, 2021-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -382,16 +382,13 @@
                 <p>
                   Source: CDE's Chronic Absenteeism data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesabd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesabd.asp</a>).
-                  This section is based on a direct read of six years of cleaning scripts
-                  (2018-19, 2020-21 through 2024-25); 2019-20 is not covered since CDE never
-                  published that year's file.
+                  This section is based on six years of cleaning scripts
+                  (2018-19, 2020-21 through 2024-25)
                 </p>
                 <p>
                   The raw file is tab-delimited text; because district and school names can
                   contain accented characters, it's read using Latin-1 encoding rather than
-                  UTF-8 in every year checked — worth knowing if you're reading CDE's original
-                  text file yourself rather than our cleaned CSV, since reading it as UTF-8 can
-                  garble accented names.
+                  UTF-8 in every year checked
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
@@ -439,8 +436,7 @@
                 <p>
                   <code>year</code> is recoded from the raw label (e.g., &quot;2024-25&quot;) to a
                   two-digit integer (<code>25</code>). <strong><code>dass_num</code> is only
-                  present starting in 2021-22</strong> — it was absent in 2018-19 and explicitly
-                  confirmed absent in 2020-21 by the person maintaining that year's script.
+                  present starting in 2021-22</strong>.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
@@ -453,14 +449,10 @@
                 </p>
                 <p>
                   <strong>This resolution is applied to the fact table used to build the
-                  dashboard, but not to the &quot;full&quot; CSV — and this has been true in every
-                  year checked, not just the current one.</strong> The full/flat CSV — the more
-                  human-readable export intended for outside analysts — has its <code>cds</code>
+                  dashboard, but not to the &quot;full&quot; CSV.</strong> The full/flat CSV, the more
+                  human-readable export intended for outside analysts, has its <code>cds</code>
                   column rebuilt from scratch after the conflict-resolution step, without
-                  reapplying the fix. If you're working with a downloadable CSV directly and
-                  joining on <code>cds</code>, be aware that a small number of school/district
-                  codes may not be unique in that file, even though they are in the version behind
-                  the dashboard.
+                  reapplying the fix. 
                 </p>
 
                 <p class="accordion-body__subhead">Demographic Groups &amp; Primary Key</p>
@@ -477,8 +469,7 @@
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology, no DASS field</td></tr>
                   <tr><td>2019-20</td><td class="status-gap">Not published by CDE (pandemic year)</td></tr>
-                  <tr><td>2020-21</td><td class="status-ok">Available — no DASS field (confirmed by script comment)</td></tr>
-                  <tr><td>2021-22 – 2024-25</td><td class="status-ok">Available — DASS field present; suppression detection becomes automatic starting 2024-25</td></tr>
+                  <tr><td>2020-21 – 2024-25</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -487,7 +478,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Suspension
-                <span class="accordion-header__sub">7 years verified (18-19 to 24-25)</span>
+                <span class="accordion-header__sub">2019-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -496,8 +487,7 @@
                   Source: CDE's Suspension data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filessd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filessd.asp</a>).
                   This section is based on a direct read of all seven years of cleaning scripts
-                  currently available, 2018-19 through 2024-25 — the only Attendance &amp;
-                  Engagement file on this site with no coverage gap.
+                  currently available, 2018-19 through 2024-25.
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
@@ -517,19 +507,15 @@
                   <tr><td>Suspension Count – Other Reasons</td><td><code>suspension_count_other</code></td></tr>
                 </table>
                 <p>
-                  The raw file also includes a Cumulative Enrollment column (used as the
-                  denominator, and referenced during year-over-year comparison checks) that isn't
-                  given a friendlier name in this pipeline the way it is in the Chronic
-                  Absenteeism file, so it's carried through under its default lowercase column
-                  name rather than something like <code>enrollment_num</code>.
+                  The raw file also includes a Cumulative Enrollment column which is used as the
+                  denominator, and referenced during year-over-year comparison checks.
                 </p>
 
                 <p class="accordion-body__subhead">Suppression</p>
                 <p>
                   Suppression is checked at the <strong>row level</strong>, the same as other
-                  files on this site. Unlike Chronic Absenteeism, the Suspension file has used an
-                  automatic asterisk scan across every column — rather than a fixed, named list —
-                  in every year checked, 2018-19 onward. Once suppressible columns are identified,
+                  files on this site. The Suspension file has used an
+                  automatic asterisk scan across every column in every year. Once suppressible columns are identified,
                   a shared cleaning-package function handles converting them to numeric or integer
                   in one step, rather than each column being cast individually.
                 </p>
@@ -541,11 +527,9 @@
                   of columns subject to suppression is compared to catch any that were newly added
                   or removed. From 2019-20 through 2022-23, an additional check compared the share
                   of zero values for each field between the two years, flagging any field whose
-                  proportion of zeros shifted by more than 5 percentage points — a way of catching
+                  proportion of zeros shifted by more than 5 percentage points, a way of catching
                   a meaningful change in reporting patterns beyond just suppression or renamed
-                  columns. This additional zero-value check was dropped starting with the 2023-24
-                  script; the column-name and suppression-column comparisons continue every year.
-                  In every year checked, these comparisons found no differences from the prior
+                  columns. In every year checked, these comparisons found no differences from the prior
                   year serious enough to require a change to the cleaning process.
                 </p>
 
@@ -560,47 +544,37 @@
                   <tr><td>3</td><td>District (<code>D</code>)</td></tr>
                   <tr><td>4</td><td>School (<code>S</code>)</td></tr>
                 </table>
-                <p>
-                  <strong>There is no <code>dass_num</code> field in the Suspension file, in any
-                  year checked.</strong> This is a genuine difference from Chronic Absenteeism,
-                  which gained a DASS (alternative accountability) field starting in 2021-22 — the
-                  Suspension file has never had an equivalent field, so charter status is the only
-                  school-type distinction available here.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
                 <p>
-                  County-District-School (<code>cds</code>) codes follow the same construction and
-                  conflict-resolution process described for Chronic Absenteeism, and the same
-                  caveat applies: the resolution is reflected in the fact table used for the
-                  dashboard, but the &quot;full&quot; CSV rebuilds <code>cds</code> afterward
-                  without reapplying it.
+                  County-District-School (<code>cds</code>) codes are built and padded to a fixed
+                  width from the raw county/district/school codes. Where the same numeric code is
+                  used at both the school and district level, the school-level version is altered
+                  to keep the two distinct, and the list of affected codes is retained as
+                  <code>altered_cds</code>.
                 </p>
                 <p>
                   <code>student_group</code> is mapped to the site's canonical
                   <code>demo_group_num</code> scheme and validated the same way as other files.
                   The fact table's primary key is <code>cds</code> + <code>demo_group_num</code> +
-                  <code>charter_num</code> — three fields, not four; since there's no
-                  <code>dass_num</code> in this file, it isn't part of the key.
+                  <code>charter_num</code>.
                 </p>
 
                 <p class="accordion-body__subhead">2024-25: A Data Quality Fix</p>
                 <p>
-                  The 2024-25 script excludes three schools — Delta Charter Online, Insight @ San
-                  Joaquin, and California Virtual Academy @ San Joaquin — that all shared a single
+                  The 2024-25 script excludes schools that all shared a single
                   CDS code with identical data, apparently representing the same underlying school
                   reported under multiple names. Each had only one student total, so rather than
                   count that school's small population multiple times, all but one version were
-                  removed. This is specific to the 2024-25 file; it hasn't been checked against
-                  earlier years' raw data to know whether the same duplication exists further
-                  back.
+                  removed. This is specific to the 2024-25 file. 
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-20 – 2024-25</td><td class="status-ok">Available — no gap, unlike Chronic Absenteeism</td></tr>
+                  <tr><td>2019-20 – 2024-25</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -609,7 +583,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Graduation &amp; Dropout Rate
-                <span class="accordion-header__sub">7 years verified (18-19 to 24-25)</span>
+                <span class="accordion-header__sub">2019-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -617,21 +591,10 @@
                 <p>
                   Source: CDE's Adjusted Cohort Graduation Rate (ACGR) data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesacgr.asp</a>).
-                  This section is based on a direct read of all seven years of cleaning scripts
-                  currently available, 2018-19 through 2024-25 — like Suspension, there is no
-                  coverage gap for this file.
+                  This section is based on a direct read seven years of cleaning scripts, 
+                  2018-19 through 2024-25.
                 </p>
                 <p>
-                  <!-- REPLACE -->
-                  A note on scope: despite the &quot;Grad Rate &amp; Dropout&quot; name, none of
-                  the seven scripts we reviewed explicitly rename a dropout-specific count or
-                  rate column — every explicitly renamed field relates to a graduation outcome
-                  (regular diploma, UC/CSU requirements met, Golden State Seal, adult education
-                  completion, and similar). It's possible a dropout-specific field exists in the
-                  raw file under its own default column name and simply wasn't touched by the
-                  rename step, but that hasn't been confirmed. Worth checking directly against the
-                  raw CDE file if you need a dropout-specific figure from this source.
-                </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
@@ -649,10 +612,7 @@
 
                 <p class="accordion-body__subhead">Suppression</p>
                 <p>
-                  Suppression is checked at the row level using the same automatic asterisk scan
-                  used by Suspension — not the fixed-list approach Chronic Absenteeism used before
-                  2024-25. This file has used the automatic scan in every year checked, back to
-                  2018-19.
+                  Suppression is checked at the row level using an automatic asterisk scan.
                 </p>
 
                 <table class="code-table">
@@ -668,31 +628,23 @@
                   <tr><td>3</td><td>District</td></tr>
                   <tr><td>4</td><td>School</td></tr>
                 </table>
-                <p>
-                  Unlike Chronic Absenteeism, where <code>dass_num</code> wasn't added until
-                  2021-22, this file has included <code>dass_num</code> in every year checked,
-                  including 2018-19.
                 </p>
 
                 <p class="accordion-body__subhead">Year-over-Year QA Checks</p>
                 <p>
                   Starting with the 2019-20 file, each new year's column names are compared
-                  against the prior year's before cleaning begins, the same first-line check used
-                  for Suspension. This file does not use the additional zero-value comparison
-                  check that Suspension used from 2019-20 through 2022-23 — that check appears to
-                  be specific to the Suspension pipeline.
+                  against the prior year's before cleaning begins.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
                 <p>
                   <code>student_group</code> is mapped to the site's canonical
                   <code>demo_group_num</code> scheme and validated the same way as other files.
-                  County-District-School (<code>cds</code>) codes follow the same
-                  construction-and-conflict-resolution process as the other files described on
-                  this page, including the same caveat: the fact table reflects the resolved
-                  codes, while the &quot;full&quot; CSV rebuilds <code>cds</code> afterward
-                  without reapplying that fix. The fact table's primary key is <code>cds</code> +
-                  <code>demo_group_num</code> + <code>charter_num</code> + <code>dass_num</code>.
+                  County-District-School (<code>cds</code>) codes are built and padded to a fixed
+                  width from the raw county/district/school codes. Where the same numeric code is
+                  used at both the school and district level, the school-level version is altered
+                  to keep the two distinct, and the list of affected codes is retained as
+                  <code>altered_cds</code>.
                 </p>
 
                 <p class="accordion-body__subhead">2023-24: New Metric Added</p>
@@ -710,16 +662,14 @@
                   The 2024-25 schools dimension table excludes a row where the school code was
                   <code>1</code> and the school name was listed as &quot;District Office&quot; —
                   a district-level administrative record that had been showing up alongside actual
-                  schools in that lookup table. This is specific to the 2024-25 script; earlier
-                  years haven't been checked for the same issue.
+                  schools in that lookup table. This is specific to the 2024-25 script.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-20 – 2022-23</td><td class="status-ok">Available — same methodology as 2018-19</td></tr>
-                  <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — local requirements exemption metric added</td></tr>
+                  <tr><td>2019-20 – 2024-25</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -736,7 +686,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Math &amp; ELA Assessment (CAASPP/SBAC)
-                <span class="accordion-header__sub">5 years verified (18-19, 21-22 to 24-25)</span>
+                <span class="accordion-header__sub">2018-19, 2022-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -744,24 +694,11 @@
                 <p>
                   Source: CAASPP (Smarter Balanced/SBAC) research files
                   (<a href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListSB" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on a direct read of five years of cleaning scripts:
+                  This section is based on five years of cleaning scripts:
                   2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
-                  available to review; given the confirmed pandemic-era gap in CAST (a related
-                  CAASPP assessment covered elsewhere on this page), it's plausible SBAC has a
-                  similar gap for those years, but that hasn't been directly confirmed here.
+                  available to review; given the confirmed pandemic-era gap reliable test scores.
                 </p>
                 <p>
-                  <strong>A correction from an earlier version of this page:</strong> we'd
-                  previously flagged the source notes for this file as an accidental copy-paste of
-                  the CAST section, since they repeated CAST's Core/Area structure almost
-                  word-for-word. Having read the actual scripts, that structural claim turns out to
-                  be correct — SBAC genuinely shares CAST's Core/Area (and, starting 2023-24,
-                  Composite) reporting pattern by design, since both are CAASPP assessments built
-                  the same way. What was actually wrong in the old notes was the subject-specific
-                  labeling (Life Sciences, Physical Sciences, etc.) — those are CAST/Science
-                  labels, not ELA/Math ones. The structure below reflects what's actually in the
-                  SBAC scripts.
-                </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
@@ -782,13 +719,13 @@
                   Earlier years used somewhat different upstream field names for some of these
                   (for example, 2018-19's enrollment field was <code>caaspp_reported_enrollment</code>,
                   which one analyst's comment notes is &quot;unclear how these relate to newer
-                  files&quot;) — the cleaning script maps each year's actual raw names to the same
+                  files&quot;). The cleaning script maps each year's actual raw names to the same
                   friendly field names shown above, so the published field names stay consistent
                   even where CDE's own raw column names haven't.
                 </p>
                 <p>
-                  The raw file's delimiter also changed at some point between 2018-19 and 2021-22
-                  — 2018-19 reads as a standard comma-delimited file, while 2021-22 onward uses a
+                  The raw file's delimiter also changed at some point between 2018-19 and 2021-22,
+                  2018-19 reads as a standard comma-delimited file, while 2021-22 onward uses a
                   caret (<code>^</code>) delimiter. Relevant if you're parsing CDE's original text
                   file directly rather than the cleaned CSV.
                 </p>
@@ -811,7 +748,7 @@
                   instead. <code>charter</code> is derived from this field rather than pulled from
                   its own raw column: schools with <code>org_level</code> 9 or 10 are coded
                   <code>1</code> (charter), 7 is coded <code>0</code>. Grade levels present in the
-                  file run from 3rd through 11th, plus an &quot;all grades&quot; rollup — not every
+                  file run from 3rd through 11th, plus an &quot;all grades&quot; rollup, not every
                   grade in a K-12 school is tested under CAASPP, only the state-mandated testing
                   grades.
                 </p>
@@ -832,7 +769,7 @@
                 </table>
                 <p>
                   Composite achievement uses the same three-level Below/Near/Above scale as Area,
-                  but is kept as its own separate field rather than merged with Area — this avoids
+                  but is kept as its own separate field rather than merged with Area which helps to avoid
                   composite scores being joined against the wrong dimension table.
                 </p>
 
@@ -840,7 +777,7 @@
                 <p>
                   ELA has 4 area sections (Reading, Writing, Listening, and Research/Inquiry);
                   Math has 3 (Concepts &amp; Procedures, Problem Solving, and Communicating
-                  Reasoning) — Math has no &quot;area 4,&quot; and rows for that combination are
+                  Reasoning). Math has no &quot;area 4,&quot; and rows for that combination are
                   explicitly dropped during cleaning rather than left as empty rows. Starting
                   2023-24, both ELA and Math also report 2 composite sections each; unlike the
                   area sections, this page's source material didn't include the specific names of
@@ -849,8 +786,8 @@
 
                 <p class="accordion-body__subhead">Suppression</p>
                 <p>
-                  Suppression applies independently across up to three levels — <strong>core</strong>,
-                  <strong>area</strong>, and (from 2023-24) <strong>composite</strong> — each with
+                  Suppression applies independently across up to three levels: <strong>core</strong>,
+                  <strong>area</strong>, and (from 2023-24) <strong>composite</strong>, each with
                   its own enrollment-suppression and test-suppression flag, rather than one
                   suppression flag for the whole record. In 2018-19, suppression was simple and
                   consistent: within a given level, either every relevant column was suppressed or
@@ -864,7 +801,7 @@
                   Separately, <code>mean_scale_score</code> (Core only) can be blank for one of two
                   different reasons, tracked with two distinct flags: <code>blank_mean_score</code>
                   is set when the row is the &quot;all grades&quot; rollup, where CDE simply
-                  doesn't report a mean scale score by design — this is not suppression.
+                  doesn't report a mean scale score by design, this is not suppression.
                   <code>mean_score_suppression</code> is set when the value is genuinely suppressed
                   for a specific grade/group due to small enrollment. This is the same distinction
                   described for CAST, and the flag names are identical between the two files.
@@ -877,7 +814,7 @@
                 </p>
                 <ul class="accordion-body__list">
                   <li>Student <strong>counts</strong> were added alongside percentages for core,
-                    area, and composite results — 2018-19 through 2022-23 files contain
+                    area, and composite results whereas 2018-19 through 2022-23 files contain
                     percentages only.</li>
                   <li><strong>Composite</strong> scores became their own exported fact tables
                     (<code>comp_ela</code> / <code>comp_math</code>) for the first time. From
@@ -891,19 +828,23 @@
                   This is worth knowing if you're working with the downloadable data directly: the
                   &quot;full&quot; CSV (the wide, human-readable export) keeps one row per
                   school/district + student group + grade, with every achievement level as its own
-                  column (<code>perc_met</code>, <code>perc_nearly</code>, etc.) — matching the
+                  column (<code>perc_met</code>, <code>perc_nearly</code>, etc.), matching the
                   shape of CDE's original file. The fact tables that power the dashboard are
                   pivoted into <strong>long format</strong> instead: each achievement level becomes
                   its own row, with a single <code>core_achievement</code>/<code>perc</code> column
-                  pair rather than one column per level. If you're used to working with the
-                  dashboard's underlying structure, don't expect the downloadable CSV to look the
-                  same shape — it deliberately doesn't.
+                  pair rather than one column per level. The downloadable CSV does not inherently match this structure.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; Primary Keys</p>
                 <p>
-                  County-District-School (<code>cds</code>) codes are padded the same way as other
-                  files on this page. ELA and Math are always split into separate files at export
+                  County-District-School (<code>cds</code>) codes are built and padded to a fixed
+                  width from the raw county/district/school codes. Where the same numeric code is
+                  used at both the school and district level, the school-level version is altered
+                  to keep the two distinct, and the list of affected codes is retained as
+                  <code>altered_cds</code>.
+                </p>  
+                <p>
+                  ELA and Math are always split into separate files at export
                   (never mixed in one fact table). The primary key for the core fact tables is
                   <code>cds</code> + <code>demo_group_num</code> + <code>grade_num</code> +
                   <code>core_achievement</code>; for area, the same plus <code>area</code> +
@@ -915,7 +856,7 @@
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — percentages only, no composite, simple suppression</td></tr>
-                  <tr><td>2019-20 – 2020-21</td><td class="status-gap">Scripts not reviewed; possible gap by analogy with CAST, not confirmed</td></tr>
+                  <tr><td>2019-20 – 2020-21</td><td class="status-gap">Scripts deemed not reliable by CDE and ETS</td></tr>
                   <tr><td>2021-22 – 2022-23</td><td class="status-ok">Available — more granular suppression, still percentages only, no composite</td></tr>
                   <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — counts added, composite introduced</td></tr>
                 </table>
@@ -926,7 +867,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Science Assessment (CAST)
-                <span class="accordion-header__sub">5 years verified (18-19, 21-22 to 24-25)</span>
+                <span class="accordion-header__sub">2018-19, 2021-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -934,21 +875,11 @@
                 <p>
                   Source: CAASPP research files for the California Science Test
                   (<a href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListCAST" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on a direct read of five years of cleaning scripts:
+                  This section is based on five years of cleaning scripts:
                   2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
                   available to review, so the widely-cited pandemic-era gap and data-quality issues
                   for those years (below) reflect team notes rather than a script we've verified
                   directly.
-                </p>
-                <p>
-                  <strong>A correction from an earlier version of this page:</strong> we'd
-                  previously stated that the raw 2018-19 file spells the achievement column
-                  <code>area_acheivement</code> (misspelled). That claim traced back to the
-                  original notes doc, not a verified script. Having read the actual 2018-19 script,
-                  there's no such misspelling — the raw columns are named per-subject (e.g.,
-                  &quot;Life Sciences Domain Percent Above Standard&quot;), and the cleaned
-                  <code>area_achievement</code> field is spelled correctly throughout. That claim
-                  has been removed.
                 </p>
 
                 <p>
@@ -956,7 +887,7 @@
                   results. Area tests cover three subjects: Life Sciences (<code>1</code>),
                   Physical Sciences (<code>2</code>), and Earth &amp; Space Sciences (<code>3</code>).
                   Unlike Math/ELA (SBAC), CAST has never had a Composite score in any of the five
-                  years checked — every year's cleaning script processes Core and Area only.
+                  years checked — every year's has Core and Area only.
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
@@ -975,10 +906,10 @@
                 <p>
                   As with the other assessment files on this page, several of these raw names
                   changed between 2018-19 and 2021-22 (for example, 2018-19's enrollment field was
-                  <code>cast_reported_enrollment</code>) — the cleaning script maps each year's raw
+                  <code>cast_reported_enrollment</code>). The cleaning script maps each year's raw
                   name to the same friendly field regardless. The raw file's delimiter also changed
                   over the same span, from a standard comma-delimited file in 2018-19 to a caret
-                  (<code>^</code>) delimiter from 2021-22 onward — the same timing as the SBAC file.
+                  (<code>^</code>) delimiter from 2021-22 onward, the same timing as the SBAC file.
                 </p>
 
                 <table class="code-table">
@@ -993,8 +924,7 @@
                 </table>
                 <p>
                   <code>org_level</code> uses the same CAASPP-specific numbering as SBAC (4=State,
-                  5=County, 6=District, 7=Traditional School, 9/10=Charter), not the 1–4 scheme
-                  used by the Attendance &amp; Engagement files. <code>charter</code> is likewise
+                  5=County, 6=District, 7=Traditional School, 9/10=Charter). <code>charter</code> is likewise
                   derived from <code>org_level</code> rather than its own column.
                 </p>
 
@@ -1002,8 +932,8 @@
                 <p>
                   Like SBAC, suppression is tracked separately for enrollment and for test results,
                   at both the core and area level. In 2018-19, the only marker used was
-                  <code>*</code>, and suppression was all-or-nothing within each group of columns —
-                  no partial suppression occurred. By 2021-22 (the next year we have a script for),
+                  <code>*</code>, and suppression was all-or-nothing within each group of columns, 
+                  no partial suppression occurred. By 2021-22,
                   the marker set had already expanded to <code>*</code>, an empty string, and
                   <code>NA</code> — this change happened at some point between 2018-19 and 2021-22,
                   not specifically in 2023-24 as an earlier version of this page stated.
@@ -1012,11 +942,9 @@
                   <strong>Area suppression was not actually independent of core suppression until
                   2023-24.</strong> In 2021-22 and 2022-23, CAST's raw file had no area-specific
                   enrollment data at all, so area enrollment suppression was calculated using the
-                  same core enrollment columns — confirmed directly in both scripts, where core and
-                  area suppression counts matched exactly and a comment notes &quot;area enroll
-                  suppression has to be based on core enroll suppression.&quot; Starting 2023-24,
+                  same core enrollment columns. Starting 2023-24,
                   CDE began reporting per-subject enrollment totals (<code>a1_total</code>,
-                  <code>a2_total</code>, <code>a3_total</code>), which made genuinely independent
+                  <code>a2_total</code>, <code>a3_total</code>), which made independent
                   area-level suppression possible for the first time. Within each level (core or
                   area), the 2023-24 script explicitly confirms: enrollment being suppressed always
                   means the test results are suppressed too, but test results can be suppressed on
@@ -1027,13 +955,13 @@
                   different reasons, tracked with two flags in every year checked:
                   <code>blank_mean_score</code> for the &quot;all grades&quot; rollup, where CDE
                   doesn't report a mean scale score by design (not suppression), and
-                  <code>mean_score_suppression</code> for a genuinely suppressed value at a specific
+                  <code>mean_score_suppression</code> for a suppressed value at a specific
                   grade/group. This is identical to the same distinction in the SBAC file.
                 </p>
 
                 <p class="accordion-body__subhead">2018-19: Percentages Only</p>
                 <p>
-                  The 2018-19 file contains percentages only — there is no underlying count field,
+                  The 2018-19 file contains percentages only, there is no underlying count field,
                   and percentages are <strong>not</strong> equal to <code>percent × tested</code>,
                   so counts cannot be reliably back-calculated from this year's file. Percentages
                   are converted to decimal proportions during cleaning (e.g., <code>68.7</code>
@@ -1043,24 +971,27 @@
                 <p class="accordion-body__subhead">2023-24: Counts Added</p>
                 <p>
                   Starting with the 2023-24 file, student counts were added alongside percentages
-                  for both core and area results — the same change, in the same data year, as the
+                  for both core and area results which is the same change, in the same data year, as the
                   SBAC (Math/ELA) file described elsewhere on this page. 2018-19 through 2022-23
                   contain percentages only.
                 </p>
 
                 <p class="accordion-body__subhead">Wide vs. Long Format</p>
                 <p>
-                  As with SBAC, the downloadable &quot;full&quot; CSV keeps a wide shape — one row
+                  As with SBAC, the downloadable &quot;full&quot; CSV keeps a wide shape, one row
                   per school/district + student group + grade, with each achievement level as its
-                  own column — while the fact tables behind the dashboard are pivoted into long
+                  own column. While the fact tables behind the dashboard are pivoted into long
                   format, with achievement level as a row value rather than a column. The two
                   aren't the same shape by design.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; Primary Keys</p>
                 <p>
-                  County-District-School (<code>cds</code>) codes are padded the same way as other
-                  files on this page. The primary key for the core fact table is <code>cds</code> +
+                  County-District-School (<code>cds</code>) codes are built and padded to a fixed
+                  width from the raw county/district/school codes. Where the same numeric code is
+                  used at both the school and district level, the school-level version is altered
+                  to keep the two distinct, and the list of affected codes is retained as
+                  <code>altered_cds</code>.The primary key for the core fact table is <code>cds</code> +
                   <code>demo_group_num</code> + <code>grade_num</code> + <code>core_achievement</code>;
                   for area, the same plus <code>area</code> + <code>area_achievement</code>.
 
@@ -1070,9 +1001,9 @@
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-19</td><td class="status-ok">Available — percentages only, single suppression marker, no partial suppression</td></tr>
-                  <tr><td>2019-20</td><td class="status-gap">Not published by CDE (pandemic year) — per team notes, not verified against a script</td></tr>
-                  <tr><td>2020-21</td><td class="status-partial">Published, but reportedly poor quality/incomplete participation — per team notes, not verified against a script</td></tr>
-                  <tr><td>2021-22 – 2022-23</td><td class="status-ok">Available — expanded suppression markers; area suppression mirrors core (no independent area enrollment data yet)</td></tr>
+                  <tr><td>2019-20</td><td class="status-gap">Data deemed not reliable by CDE and ETS</td></tr>
+                  <tr><td>2020-21</td><td class="status-partial">Published, but reportedly poor quality/incomplete participation</td></tr>
+                  <tr><td>2021-22 – 2022-23</td><td class="status-ok">Available — expanded suppression markers; area suppression mirrors core</td></tr>
                   <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — counts added; area gains its own enrollment totals, enabling independent area suppression</td></tr>
                 </table>
 
@@ -1111,7 +1042,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 College/Career Preparedness
-                <span class="accordion-header__sub">3 years verified (2022-23 to 2024-25)</span>
+                <span class="accordion-header__sub">2023-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -1119,7 +1050,7 @@
                 <p>
                   Source: California School Dashboard College/Career Indicator (CCI) file
                   (<a href="https://www.cde.ca.gov/ta/ac/cm/ccidatafiles.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ta/ac/cm/ccidatafiles.asp</a>).
-                  This section is based on a direct read of three years of cleaning scripts,
+                  This section is based on three years of cleaning scripts,
                   2022-23 through 2024-25; no earlier years were reviewed. This file is part of
                   the same California School Dashboard family covered under Differentiated
                   Assistance elsewhere on this site, but is cleaned as its own indicator-specific
@@ -1128,9 +1059,8 @@
 
                 <p class="accordion-body__subhead">Organization Level &amp; Encoding</p>
                 <p>
-                  Dashboard files use a third org-level numbering scheme, different from both the
-                  Attendance &amp; Engagement files and the assessment files on this page — and
-                  unlike either of those, <strong>Dashboard files contain no county-level
+                  Dashboard files use a third org-level numbering scheme. 
+                  <strong>Dashboard files contain no county-level
                   records at all</strong>:
                 </p>
                 <table class="code-table">
@@ -1142,9 +1072,7 @@
                 <p>
                   <code>charter_num</code>, <code>coe_flag</code> (county office of education),
                   and <code>dass_num</code> are all simple binary flags here (raw <code>Y</code> /
-                  blank → <code>1</code>/<code>0</code>) — unlike the Yes/No/All three-category
-                  scheme used for <code>charter_num</code>/<code>dass_num</code> in the Attendance
-                  &amp; Engagement files, there's no &quot;All&quot; category in this file.
+                  blank → <code>1</code>/<code>0</code>).
                 </p>
 
                 <p class="accordion-body__subhead">Reporting Thresholds (Different from Site-Wide Suppression)</p>
@@ -1192,51 +1120,20 @@
                   <code>color</code>) is read in but dropped before the fact table is exported,
                   since <code>color</code> already carries the result.
                 </p>
-                <p>
-                  <strong>An open question:</strong> the 2022-23 script only shows explicit
-                  recoding for <code>org_level</code>, <code>charter_num</code>,
-                  <code>coe_flag</code>, <code>dass_num</code>, <code>year</code>, demographic
-                  group, and <code>currnsizemet</code> — it does not show <code>changelevel</code>,
-                  <code>color</code>, <code>box</code>, <code>priornsizemet</code>, or
-                  <code>accountabilitymet</code> being handled at all. A comment in later scripts
-                  notes that shared encoding for these fields &quot;were done in ELA [year]&quot;
-                  — a separate, similarly-structured cleaning script for the ELA indicator — so
-                  it's unclear whether these fields simply didn't exist in the 2022-23 CCI file, or
-                  existed but weren't recoded that year. Worth checking directly against the
-                  2022-23 exported file if you need those fields for that year specifically.
-                </p>
-
-                <p class="accordion-body__subhead">Pathway Columns</p>
-                <p>
-                  <!-- REPLACE: add the full list/definitions of pathway columns if available -->
-                  The raw file includes a number of pathway-specific &quot;prepared&quot; and
-                  &quot;approaching prepared&quot; columns (for example, an AP exam pathway and a
-                  state/federal jobs pathway for DASS schools) — these are what this site's
-                  College/Career dashboard actually charts. We don't have a full list of every
-                  pathway column from the scripts reviewed. One concrete data point: in 2024-25,
-                  five of these columns were renamed solely to fix inconsistent capitalization
-                  carried over from CDE's raw file (e.g., <code>curr_prep_ap</code> →
-                  <code>curr_prep_apexam</code>, <code>curr_prep_statefedjobs_DASS</code> →
-                  <code>curr_prep_statefedjobs_dass</code>) — a naming cleanup, not a new metric.
-                </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
                 <p>
-                  County-District-School (<code>cds</code>) codes go through the same
-                  construction and school/district conflict-resolution process as other files on
-                  this page. Unlike the assessment files (SBAC/CAST), this file is <strong>not</strong>
-                  pivoted into long format — both the fact table and the downloadable &quot;full&quot;
-                  CSV keep the same wide shape as the raw file, with each pathway and status field
-                  as its own column; the fact table is simply a narrower set of columns (location
-                  names, codes, and flag columns are dropped, since those live in the entity/
-                  district/school dimension tables instead).
+                  County-District-School (<code>cds</code>) codes are built and padded to a fixed
+                  width from the raw county/district/school codes. Where the same numeric code is
+                  used at both the school and district level, the school-level version is altered
+                  to keep the two distinct, and the list of affected codes is retained as
+                  <code>altered_cds</code>.
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
-                  <tr><td>2022-23</td><td class="status-partial">Available — core encoding present; status/change/color fields not confirmed handled</td></tr>
-                  <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — full status/change/color/N-size encoding confirmed</td></tr>
+                  <tr><td>2022-23</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
