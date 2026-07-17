@@ -65,6 +65,16 @@
       background: linear-gradient(180deg, #0d3567 0%, #0b2f57 100%);
     }
 
+    .accordion-header__sub {
+      margin-left: auto;
+      margin-right: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
     .accordion-icon {
       position: relative;
       width: 16px;
@@ -99,7 +109,7 @@
     }
 
     .accordion-body {
-      padding: 18px 20px 20px;
+      padding: 20px 22px 24px;
       background: var(--card);
     }
 
@@ -115,7 +125,7 @@
     }
 
     .accordion-body__list {
-      margin: 0 0 10px;
+      margin: 0 0 14px;
       padding-left: 18px;
       font-size: 14px;
       line-height: 1.65;
@@ -125,25 +135,121 @@
       gap: 6px;
     }
 
-    .accordion-body__list:last-child {
-      margin-bottom: 0;
-    }
-
     .accordion-body__list li::marker {
       color: #94a3b8;
     }
 
     .accordion-body__subhead {
-      margin: 14px 0 6px;
-      font-size: 12px;
+      margin: 20px 0 8px;
+      font-size: 12.5px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--muted);
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
     }
 
     .accordion-body__subhead:first-child {
       margin-top: 0;
+    }
+
+    .accordion-body code {
+      background: #eef3fb;
+      border: 1px solid #dce6f5;
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-size: 12.5px;
+      color: #1d4ed8;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    .code-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 14px;
+      font-size: 13px;
+    }
+
+    .code-table caption {
+      text-align: left;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .code-table th,
+    .code-table td {
+      text-align: left;
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .code-table th {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .code-table td:first-child,
+    .code-table th:first-child {
+      white-space: nowrap;
+    }
+
+    .coverage-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 6px;
+      font-size: 13px;
+    }
+
+    .coverage-table th,
+    .coverage-table td {
+      text-align: left;
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .coverage-table th {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .coverage-table td.status-ok::before {
+      content: "●";
+      color: #16803c;
+      margin-right: 6px;
+      font-size: 10px;
+    }
+
+    .coverage-table td.status-gap::before {
+      content: "●";
+      color: #b91c1c;
+      margin-right: 6px;
+      font-size: 10px;
+    }
+
+    .coverage-table td.status-partial::before {
+      content: "●";
+      color: #d97706;
+      margin-right: 6px;
+      font-size: 10px;
+    }
+
+    .placeholder-callout {
+      padding: 10px 12px;
+      background: #fff7e6;
+      border: 1px solid #f5dfa3;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #7a5c1e;
     }
   </style>
 </head>
@@ -191,42 +297,66 @@
 
             <h2>General Data Handling</h2>
             <p>
-              <!-- REPLACE -->
-              A few conventions apply across every file on this site, regardless of topic:
+              A handful of conventions are shared across nearly every file on this site:
             </p>
             <ul>
               <li>
-                <strong>Suppression.</strong> To protect student privacy, data for student
-                groups with fewer than 11 students is suppressed and will appear blank or
-                unavailable, consistent with California Department of Education reporting
-                standards. In the original CDE source files, suppressed values are marked in a
-                few different ways depending on the file and year (most often an asterisk, but
-                sometimes a blank or &quot;NA&quot; value) — these are standardized before being
-                used to build a dashboard.
+                <strong>Suppression detection.</strong> Rather than assuming a fixed list of
+                suppressible columns, each year's raw file is scanned for the suppression marker
+                used by CDE that year (most commonly an asterisk, <code>*</code>) across every
+                column. Whichever columns are found to contain it are treated as suppressible for
+                that file, and a companion suppression-flag column (<code>1</code>/<code>0</code>)
+                is generated before the flagged values are coerced to <code>NA</code>. This
+                approach adapts automatically to files where CDE changes which fields are subject
+                to suppression from year to year, rather than relying on a hardcoded list that
+                could miss a newly suppressed field.
               </li>
               <li>
-                <strong>Demographic groups.</strong> Student group and demographic labels are
-                mapped to a single, canonical set of categories used across every file on this
-                site, so a group like &quot;English Learner&quot; or &quot;Foster Youth&quot;
-                means the same thing whether you're looking at attendance, academics, or another
-                dashboard.
+                <strong>Type coercion.</strong> Once suppressed values are set aside, remaining
+                fields are coerced to numeric or integer types (integer when a column's non-missing
+                values are all whole numbers, numeric when decimals are present), so downstream
+                analysis doesn't have to first parse strings.
               </li>
               <li>
-                <strong>Reporting level.</strong> Every file distinguishes state, county,
-                district, and school-level records using a consistent set of codes, so the same
-                file can support comparisons at any of those levels.
+                <strong>Demographic group standardization.</strong> Each source file uses its own
+                internal numeric codes for student groups. These are remapped to a single
+                canonical set of group labels and numeric codes (<code>demo_group_num</code>) used
+                consistently across every file on this site, and the mapping is validated against
+                a cross-tabulation of raw-to-canonical values to catch any group that fails to map
+                cleanly. This is what lets you compare, say, English Learner outcomes across
+                Chronic Absenteeism and Suspension files with confidence that "English Learner"
+                means the same underlying group in both.
               </li>
               <li>
-                <strong>School and district codes.</strong> Location codes are standardized to a
-                fixed format across files. Where the same numeric code happens to be used at both
-                the school and district level — an occasional artifact of how CDE issues codes —
-                the conflict is identified and resolved so figures aren't crossed between levels.
+                <strong>Organization level encoding.</strong> Records are tagged with a standard
+                reporting-level code — <code>org_level_num</code>: State (<code>1</code>), County
+                (<code>2</code>), District (<code>3</code>), School (<code>4</code>) — so the same
+                file can support state-, county-, district-, or school-level analysis without
+                separate files per level.
               </li>
               <li>
-                <strong>Charter and alternative-school status.</strong> Charter status (yes/no/
-                all schools) and, where applicable, alternative accountability status (DASS) are
-                standardized so that traditional and non-traditional schools can be reported on
-                separately.
+                <strong>Charter &amp; DASS status.</strong> Charter status is standardized as
+                <code>charter_num</code>: Yes (<code>1</code>), No (<code>0</code>), All schools
+                (<code>2</code>). Where a file distinguishes schools under alternative
+                accountability status, the same pattern is used for <code>dass_num</code>.
+              </li>
+              <li>
+                <strong>County-District-School (CDS) codes.</strong> Location identifiers are
+                padded to CDE's standard fixed-width CDS format and combined into a single
+                <code>cds</code> field. Occasionally the same numeric code is issued at both the
+                school and district level — an artifact of how CDE assigns codes, not a data
+                error. When this happens, <code>99999</code> is added to the affected
+                school-level code to disambiguate it from the district-level record, and the full
+                list of altered codes is retained so the substitution can be traced back if
+                needed.
+              </li>
+              <li>
+                <strong>Published file structure.</strong> The CSV available for download on this
+                site is a user-facing version of the underlying fact table: internal
+                modeling-only fields (alternate demographic group IDs, the pre-conflict-resolution
+                CDS values) are removed, while the padded, usable identifiers (<code>cds</code>,
+                the canonical demographic code) are retained so the file is still fully joinable
+                to CDE's own published files.
               </li>
             </ul>
 
@@ -241,83 +371,177 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Chronic Absenteeism
+                <span class="accordion-header__sub">2018-19 to 2024-25</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE -->
-                  Chronic absenteeism counts, rates, and enrollment figures are checked field by
-                  field for suppressed values, which are flagged and set aside before the
-                  remaining figures are converted to usable numeric values for analysis.
-                </p>
-                <p class="accordion-body__subhead">Companion File</p>
+
                 <p>
-                  A companion file breaks absenteeism down by reason (for example, excused vs.
-                  unexcused absence). It's cleaned using the same suppression and demographic
-                  group rules as the main chronic absenteeism figures, and separately identifies
-                  schools operating under alternative accountability (DASS) status. Nonpublic,
-                  Nonsectarian Schools are excluded from school-level reporting in this file.
+                  The Chronic Absenteeism dashboard is built from two related CDE files that go
+                  through the same standardization pipeline: the primary Chronic Absenteeism file,
+                  and a companion Absenteeism Reason file that breaks absences down by cause.
                 </p>
-                <p class="accordion-body__subhead">Coverage</p>
+
+                <p class="accordion-body__subhead">Suppression</p>
                 <p>
-                  This process has been applied consistently to every year from 2018-19 through
-                  2024-25, with one exception: <strong>no chronic absenteeism data is available
-                  for 2019-20</strong>, as CDE did not publish this file for the pandemic year.
+                  In the primary file, suppression is detected across <code>enrollment_num</code>,
+                  <code>chronic_count</code>, and <code>chronic_rate</code>, producing a
+                  suppression flag before those columns are coerced to numeric/integer. The
+                  companion Absenteeism Reason file checks a broader set of count and percent
+                  columns, since it reports multiple absence categories per record rather than a
+                  single rate.
                 </p>
+
+                <table class="code-table">
+                  <caption>Shared encoding — both files</caption>
+                  <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
+                  <tr><td rowspan="3"><code>charter_num</code></td><td>1</td><td>Yes (charter school)</td></tr>
+                  <tr><td>0</td><td>No</td></tr>
+                  <tr><td>2</td><td>All schools</td></tr>
+                  <tr><td rowspan="4"><code>org_level_num</code></td><td>1</td><td>State (T)</td></tr>
+                  <tr><td>2</td><td>County (C)</td></tr>
+                  <tr><td>3</td><td>District (D)</td></tr>
+                  <tr><td>4</td><td>School (S)</td></tr>
+                </table>
+                <p>
+                  The Absenteeism Reason file additionally encodes <code>dass_num</code> using the
+                  same Yes=1 / No=0 / All=2 pattern, since that file distinguishes schools under
+                  alternative accountability status.
+                </p>
+
+                <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
+                <p>
+                  Both files receive the standard <code>cds</code> construction and duplicate-code
+                  resolution described in General Data Handling above. The Absenteeism Reason file
+                  additionally builds separate entity/district/school dimension tables (with
+                  district and school codes coerced to integer), explicitly excludes
+                  &quot;Nonpublic, Nonsectarian Schools&quot; from the school dimension, and
+                  validates that its primary keys are unique before writing the final file.
+                </p>
+
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
+                  <tr><td>2019-20</td><td class="status-gap">Not published by CDE (pandemic year)</td></tr>
+                  <tr><td>2020-21 – 2024-25</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
+                </table>
+
               </div>
             </details>
 
             <details class="accordion-item">
               <summary class="accordion-header">
                 Suspension
+                <span class="accordion-header__sub">2018-19 to 2023-24</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE -->
-                  Suspension counts, rates, and enrollment figures go through the same cleaning
-                  approach as Chronic Absenteeism: suppressed values are detected and flagged,
-                  demographic groups are mapped to the site's canonical set of labels, and
-                  school/district codes are standardized and checked for conflicts.
-                </p>
-                <p class="accordion-body__subhead">Coverage</p>
+
                 <p>
-                  This process has been applied consistently across every available year, 2018-19
-                  through 2023-24. Unlike Chronic Absenteeism, <strong>2019-20 suspension data is
-                  available</strong> and was published by CDE for that year.
+                  Each year's suspension file is scanned column-by-column for suppression markers,
+                  and only the columns found to contain them are treated as suppressible for that
+                  year — the same adaptive approach described in General Data Handling. Flagged
+                  values are coerced to <code>NA</code>, and remaining numeric columns are coerced
+                  to integer when whole or numeric when decimals appear.
                 </p>
+
+                <table class="code-table">
+                  <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
+                  <tr><td rowspan="3"><code>charter_num</code></td><td>1</td><td>Yes</td></tr>
+                  <tr><td>0</td><td>No</td></tr>
+                  <tr><td>2</td><td>All schools</td></tr>
+                  <tr><td rowspan="4"><code>org_level_num</code></td><td>1</td><td>State</td></tr>
+                  <tr><td>2</td><td>County</td></tr>
+                  <tr><td>3</td><td>District</td></tr>
+                  <tr><td>4</td><td>School</td></tr>
+                </table>
+
+                <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
+                <p>
+                  The school-year label (e.g., &quot;2018-19&quot;) is recoded to a two-digit
+                  integer (<code>19</code>) for easier sorting and filtering. Records receive the
+                  standard canonical demographic mapping and <code>cds</code> construction
+                  described above. The fact table's primary key is the combination of
+                  <code>cds</code>, <code>demo_group_num</code>, <code>charter_num</code>, and
+                  <code>dass_num</code> — meaning a single combination of school/district, student
+                  group, charter status, and DASS status should never appear more than once in the
+                  file. Separate entity/district/school dimension tables are built alongside the
+                  fact table, with districts sorted by name and schools sorted by code.
+                </p>
+
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
+                  <tr><td>2019-20 – 2023-24</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
+                </table>
+                <p>
+                  Unlike Chronic Absenteeism, CDE published suspension data for 2019-20 without
+                  interruption.
+                </p>
+
               </div>
             </details>
 
             <details class="accordion-item">
               <summary class="accordion-header">
                 Graduation &amp; Dropout Rate
+                <span class="accordion-header__sub">2018-19 to 2023-24</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE -->
-                  Graduation and dropout figures reflect CDE's official four-year and five-year
-                  cohort methodology. As with the other Attendance &amp; Engagement files,
-                  suppressed values are detected and flagged, and school/district codes are
-                  standardized.
-                </p>
-                <p class="accordion-body__subhead">Charter &amp; DASS Reporting</p>
+
                 <p>
-                  Rates are reported separately for charter and non-charter schools, and
-                  separately identify schools operating under alternative accountability status
-                  (DASS), so traditional and alternative-school outcomes aren't blended together.
+                  Reflects CDE's official cohort graduation and dropout rate methodology. As with
+                  Suspension, each year's file is scanned for its suppression marker, flagged
+                  values are coerced to <code>NA</code>, and the school-year label is recoded to a
+                  two-digit integer (e.g., &quot;2018-19&quot; → <code>19</code>).
                 </p>
+
+                <table class="code-table">
+                  <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
+                  <tr><td rowspan="3"><code>charter_num</code></td><td>1</td><td>Yes</td></tr>
+                  <tr><td>0</td><td>No</td></tr>
+                  <tr><td>2</td><td>All schools</td></tr>
+                  <tr><td rowspan="3"><code>dass_num</code></td><td>1</td><td>Yes (alternative accountability)</td></tr>
+                  <tr><td>0</td><td>No</td></tr>
+                  <tr><td>2</td><td>All schools</td></tr>
+                  <tr><td rowspan="4"><code>org_level_num</code></td><td>1</td><td>State</td></tr>
+                  <tr><td>2</td><td>County</td></tr>
+                  <tr><td>3</td><td>District</td></tr>
+                  <tr><td>4</td><td>School</td></tr>
+                </table>
+
                 <p class="accordion-body__subhead">Gender Categories</p>
                 <p>
-                  CDE introduced a &quot;Non-Binary&quot; gender category starting in 2019-20.
-                  Because that category did not exist in 2018-19, records from that year that
-                  would otherwise fall into it are coded as missing for gender rather than being
-                  assumed or reassigned to another category.
+                  CDE documentation indicates the <code>GX</code> gender code (non-binary) was not
+                  introduced until 2019-20. Rather than assume how a 2018-19 record would have been
+                  coded had the category existed, any 2018-19 record that would fall under
+                  <code>GX</code> is coded as missing for gender instead of being reassigned to an
+                  existing category — this avoids silently inflating or understating any gender
+                  category with data that predates its definition.
                 </p>
-                <p class="accordion-body__subhead">Coverage</p>
+
+                <p class="accordion-body__subhead">Identifiers &amp; Structure</p>
                 <p>
-                  Methodology has remained consistent from 2018-19 through 2022-23. The 2023-24
-                  file uses an almost identical process, with only minor field-naming differences
-                  that do not affect the calculated rates themselves.
+                  Demographic groups are mapped to the canonical <code>demo_group_num</code>
+                  scheme and validated the same way as other files. The fact table's primary key
+                  is <code>cds</code> + <code>demo_group_num</code> + <code>charter_num</code> +
+                  <code>dass_num</code>, matching the Suspension file's structure. Entity/district/
+                  school dimension tables are built alongside it, with district and school codes
+                  coerced to integer and sorted (districts by name, schools by code) before
+                  primary keys are validated and the dimension objects are cleared from memory.
                 </p>
+
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology</td></tr>
+                  <tr><td>2019-20 – 2022-23</td><td class="status-ok">Available — identical methodology to 2018-19</td></tr>
+                  <tr><td>2023-24</td><td class="status-partial">Available — same cleaning process, minor field-naming changes only</td></tr>
+                </table>
+
               </div>
             </details>
 
@@ -335,58 +559,125 @@
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE -->
-                  Math and ELA results come from the CAASPP (Smarter Balanced) assessments.
-                  Achievement levels are standardized to a four-level scale: Not Met (1), Nearly
-                  Met (2), Met (3), and Exceeded (4).
-                </p>
-                <p class="accordion-body__subhead">2018-19 Limitations</p>
-                <p>
-                  The 2018-19 file contains percentages only — underlying student counts were not
-                  published that year. Percentage figures from 2018-19 should not be used to
-                  back-calculate a count of students (multiplying a percentage by the number of
-                  students tested does not reproduce the correct count).
-                </p>
-                <p class="accordion-body__subhead">Reading the Numbers</p>
-                <p>
-                  Percentages are stored as decimal proportions in the downloadable data (for
-                  example, 68.7% is stored as 0.687). A blank average scale score on the
-                  &quot;all grades&quot; summary row is expected by design and is not a sign of
-                  suppression; scale scores are suppressed individually only for specific grades
-                  or groups with small enrollment.
-                </p>
+
+                <div class="placeholder-callout">
+                  <strong>Note on this section:</strong> the source notes for the Math/ELA
+                  (SBAC) files we were given appear to be an incomplete draft — they open with
+                  &quot;Whole section needs cleaning&quot; and then repeat the CAST section's
+                  bullets verbatim (core/area test columns, Life/Physical/Earth-Space Sciences,
+                  etc.), none of which describe an ELA/Math file. Rather than publish that as
+                  verified detail, we've left it out below. The one fact we can carry over with
+                  confidence is the achievement-level scale, since the CAST notes explicitly
+                  state that CAST's Core achievement level &quot;matches SBAC levels&quot; —
+                  meaning this scale is shared by design across CAASPP assessments, not something
+                  specific to CAST.
+                  <!-- REPLACE: once corrected SBAC-specific notes are available, replace this callout with the full write-up (suppression fields, primary key, year-by-year coverage) matching the depth of the other cards. -->
+                </div>
+
+                <p class="accordion-body__subhead">Achievement Levels</p>
+                <table class="code-table">
+                  <tr><th>Code</th><th>Meaning</th></tr>
+                  <tr><td>1</td><td>Not Met</td></tr>
+                  <tr><td>2</td><td>Nearly Met</td></tr>
+                  <tr><td>3</td><td>Met</td></tr>
+                  <tr><td>4</td><td>Exceeded</td></tr>
+                </table>
+
               </div>
             </details>
 
             <details class="accordion-item">
               <summary class="accordion-header">
                 Science Assessment (CAST)
+                <span class="accordion-header__sub">2018-19, 2021-22 to 2023-24</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE -->
-                  The California Science Test (CAST) reports two types of results: an overall
-                  &quot;Core&quot; result, and three &quot;Area&quot; results (Life Sciences,
-                  Physical Sciences, and Earth &amp; Space Sciences). Core achievement levels use
-                  the same four-level scale as Math/ELA (Not Met, Nearly Met, Met, Exceeded), while
-                  Area results use a separate three-level scale (Below, Near, Above). Unlike
-                  Math/ELA, CAST does not report a combined Core + Area composite score.
-                </p>
-                <p class="accordion-body__subhead">Pandemic-Era Gaps</p>
+
                 <p>
-                  No CAST data is available for 2019-20. 2020-21 data is available but limited in
-                  quality — not all districts participated that year — so year-over-year
-                  comparisons involving 2020-21 should be made with caution.
+                  The California Science Test (CAST) file separates <strong>Core</strong> test
+                  results from <strong>Area</strong> test results, which arrive in separate
+                  source files entirely. Area tests cover three subjects, each with its own
+                  numeric code: Life Sciences (<code>1</code>), Physical Sciences (<code>2</code>),
+                  and Earth &amp; Space Sciences (<code>3</code>).
                 </p>
-                <p class="accordion-body__subhead">2023-24 Changes</p>
+
+                <table class="code-table">
+                  <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
+                  <tr><td rowspan="4"><code>core_achievement</code></td><td>1</td><td>Not Met</td></tr>
+                  <tr><td>2</td><td>Nearly Met</td></tr>
+                  <tr><td>3</td><td>Met</td></tr>
+                  <tr><td>4</td><td>Exceeded</td></tr>
+                  <tr><td rowspan="3"><code>area_achievement</code></td><td>1</td><td>Below</td></tr>
+                  <tr><td>2</td><td>Near</td></tr>
+                  <tr><td>3</td><td>Above</td></tr>
+                </table>
                 <p>
-                  Starting in 2023-24, CAST files began including student counts alongside
-                  percentages, and suppression logic became more detailed. Enrollment, testing,
-                  and Area-test results can each be suppressed independently of one another — for
-                  example, it's possible for enrollment figures to be visible while related test
-                  results are suppressed, or for Area-test results to be suppressed even when
-                  Area enrollment is not.
+                  Note: in the 2018-19 source file this column is literally spelled
+                  <code>area_acheivement</code> (sic) — worth knowing if you're writing code
+                  against the raw file rather than the cleaned CSV, since the corrected spelling
+                  used elsewhere on this site won't match the original column name.
                 </p>
+                <p>
+                  Unlike Math/ELA (SBAC), CAST does not report a combined Core + Area composite
+                  score column, as of the most recent file structure.
+                </p>
+
+                <p class="accordion-body__subhead">2018-19: Percentages Only</p>
+                <p>
+                  The 2018-19 file contains percentages only — there is no underlying count field,
+                  and percentages are <strong>not</strong> equal to <code>percent × tested</code>,
+                  so counts cannot be reliably back-calculated from this year's file. All
+                  suppression in 2018-19 is marked with a single symbol, <code>*</code>.
+                  Percentages are converted to decimal proportions during cleaning (e.g.,
+                  <code>68.7</code> becomes <code>.687</code>).
+                </p>
+                <p>
+                  A blank <code>mean_scale_score</code> when <code>grade = 13</code> (the
+                  &quot;all grades&quot; rollup) is expected and is <strong>not</strong>
+                  suppression — CDE simply does not report a mean scale score for that combined
+                  row. True suppression of <code>mean_scale_score</code> for small groups/grades is
+                  tracked separately via two flag columns, <code>blank_mean_score</code> and
+                  <code>mean_score_suppression</code>, so the two cases (not applicable vs.
+                  suppressed) can be told apart programmatically.
+                </p>
+
+                <p class="accordion-body__subhead">2023-24: Structural Changes</p>
+                <p>
+                  Several changes were introduced in the 2023-24 file relative to 2018-19:
+                </p>
+                <ul class="accordion-body__list">
+                  <li>A <code>count</code> field was added for every achievement level in both the
+                    core and area test columns.</li>
+                  <li>New <code>_total</code> columns were added; reported percentages are
+                    calculated as <code>count / _total</code>.</li>
+                  <li>Suppression markers are more varied — values may appear as <code>*</code>,
+                    an empty string <code>""</code>, or <code>NA</code>, rather than a single
+                    consistent symbol.</li>
+                  <li>Suppression follows a clear hierarchical pattern, but it is <em>not</em>
+                    strictly one-directional:
+                    <ul class="accordion-body__list">
+                      <li>Whenever core enrollment is suppressed, all core testing and area
+                        enrollment data are suppressed as well.</li>
+                      <li>Core enrollment can be reported while core testing and area data are
+                        still suppressed.</li>
+                      <li>Core data can be fully reported while area enrollment and area test data
+                        are suppressed.</li>
+                      <li>Area test data can be suppressed even when area enrollment data is not.</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — baseline methodology, percentages only</td></tr>
+                  <tr><td>2019-20</td><td class="status-gap">Not published by CDE (pandemic year)</td></tr>
+                  <tr><td>2020-21</td><td class="status-partial">Published, but poor quality — not all districts participated; excluded from the data warehouse and not used on this site</td></tr>
+                  <tr><td>2021-22 – 2022-23</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2023-24</td><td class="status-ok">Available — structural changes described above</td></tr>
+                </table>
+
               </div>
             </details>
 
@@ -404,7 +695,10 @@
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+                <div class="placeholder-callout">
+                  <!-- REPLACE: add detailed methodology notes for this dashboard (suppression fields, encoding, primary key, year-by-year coverage) -->
+                  No cleaning notes were provided for this dataset yet.
+                </div>
               </div>
             </details>
 
@@ -422,7 +716,10 @@
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+                <div class="placeholder-callout">
+                  <!-- REPLACE: add detailed methodology notes for this dashboard -->
+                  No cleaning notes were provided for this dataset yet.
+                </div>
               </div>
             </details>
 
@@ -440,7 +737,10 @@
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+                <div class="placeholder-callout">
+                  <!-- REPLACE: add detailed methodology notes for this dashboard -->
+                  No cleaning notes were provided for this dataset yet.
+                </div>
               </div>
             </details>
 
@@ -454,7 +754,7 @@
             <p>
               If you have questions about how a metric is calculated, notice something that
               looks incorrect, or want more detail on the cleaning process behind a specific
-              dashboard, reach out to OCDE's Research, Evaluation, and Data Inquiry team at
+              dashboard, reach out to OCDE's Research, Evaluation, and Data Insights team at
               REDI@ocde.us.
             </p>
           </div>
