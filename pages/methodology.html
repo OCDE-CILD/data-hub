@@ -286,14 +286,17 @@
             <p>
               <!-- REPLACE: adjust to match your team's actual process -->
               Every dashboard on the OCDE Data Hub is built from data files published by the
-              California Department of Education. Before those files reach a dashboard, OCDE's
-              Research, Evaluation, and Data Insights (REDI) team runs each source file through a
+              California Department of Education or ETS. Before those files reach a dashboard, OCDE's
+              Research, Evaluation, and Data Iquiry (REDI) team runs each source file through a
               standardized cleaning pipeline: detecting and flagging suppressed values,
               standardizing school and district identifiers, mapping demographic groups to a
               consistent set of labels, and validating the result before it's published. This
-              page documents that process in detail — including field-level suppression logic,
-              encoding schemes, and known quirks or limitations by year — for anyone working
-              directly with the downloadable data files. Click on any topic below to expand its
+              page documents that process in detail, including field-level suppression logic,
+              encoding schemes, and known quirks or limitations by year, for anyone working
+              directly with the downloadable data files. Importantly, these notes are not exhaustive
+              of the entire cleaning process and instead document high-level data cleaning practices
+              instead. For anyone interested in the R scripts or specific processes, please click the
+              Contact Us button in the top right, or email REDI@ocde. us. Click on any topic below to expand its
               notes.
             </p>
 
@@ -354,13 +357,6 @@
                 needed.
               </li>
               <li>
-                <strong>Published file structure.</strong> The CSV available for download on this
-                site is a user-facing version of the underlying fact table: internal
-                modeling-only fields (alternate demographic group IDs, the pre-conflict-resolution
-                CDS values) are removed, while the padded, usable identifiers (<code>cds</code>,
-                the canonical demographic code) are retained so the file is still fully joinable
-                to CDE's own published files.
-              </li>
             </ul>
 
           </div>
