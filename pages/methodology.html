@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methodology &amp; Notes | OCDE Data Hub</title>
+
+  <style>
+    /* Scoped styles for the Methodology & Notes page.
+       Move these into styles.css if you'd like them shared across other pages. */
+
+    .methodology-group {
+      margin-top: 28px;
+    }
+
+    .methodology-group:first-of-type {
+      margin-top: 0;
+    }
+
+    .methodology-group__title {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    /* Accordion container */
+    .accordion {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .accordion-item:last-of-type {
+      border-bottom: 0;
+    }
+
+    .accordion-item > summary.accordion-header {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, #0a2b57 0%, #092748 100%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      user-select: none;
+    }
+
+    .accordion-item > summary.accordion-header::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-item > summary.accordion-header:hover {
+      background: linear-gradient(180deg, #0d3567 0%, #0b2f57 100%);
+    }
+
+    .accordion-icon {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #fff;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .accordion-icon::before {
+      width: 14px;
+      height: 2px;
+    }
+
+    .accordion-icon::after {
+      width: 2px;
+      height: 14px;
+    }
+
+    .accordion-item[open] > summary.accordion-header .accordion-icon::after {
+      transform: translate(-50%, -50%) scaleY(0);
+      opacity: 0;
+    }
+
+    .accordion-body {
+      padding: 18px 20px 20px;
+      background: var(--card);
+    }
+
+    .accordion-body p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .accordion-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .accordion-body__list {
+      margin: 0 0 10px;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .accordion-body__list:last-child {
+      margin-bottom: 0;
+    }
+
+    .accordion-body__list li::marker {
+      color: #94a3b8;
+    }
+
+    .accordion-body__subhead {
+      margin: 14px 0 6px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .accordion-body__subhead:first-child {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="site-header">
+      <div class="header-inner">
+
+        <div class="brand-block">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
+          <div class="brand-copy">
+            <div class="brand">OCDE Data Hub</div>
+            <div class="sub">Methodology &amp; Notes</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="methodology"></nav>
+
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrap">
+
+        <!-- ===== OVERVIEW ===== -->
+        <section class="panel prose-panel">
+          <div class="prose-header">
+            <h1 class="prose-title">Methodology &amp; Notes</h1>
+          </div>
+          <div class="prose-body">
+
+            <p>
+              <!-- REPLACE: adjust to match your team's actual process -->
+              Every dashboard on the OCDE Data Hub is built from data files published by the
+              California Department of Education. Before those files reach a dashboard, OCDE's
+              Research, Evaluation, and Data Insights (REDI) team cleans, standardizes, and
+              validates them so that figures are comparable across districts, schools, and years.
+              This page documents the rules and conventions used across that process, along with
+              detailed notes on how each individual dataset is handled. Click on any topic below
+              to expand its notes.
+            </p>
+
+            <h2>General Data Handling</h2>
+            <p>
+              <!-- REPLACE -->
+              A few conventions apply across every file on this site, regardless of topic:
+            </p>
+            <ul>
+              <li>
+                <strong>Suppression.</strong> To protect student privacy, data for student
+                groups with fewer than 11 students is suppressed and will appear blank or
+                unavailable, consistent with California Department of Education reporting
+                standards. In the original CDE source files, suppressed values are marked in a
+                few different ways depending on the file and year (most often an asterisk, but
+                sometimes a blank or &quot;NA&quot; value) — these are standardized before being
+                used to build a dashboard.
+              </li>
+              <li>
+                <strong>Demographic groups.</strong> Student group and demographic labels are
+                mapped to a single, canonical set of categories used across every file on this
+                site, so a group like &quot;English Learner&quot; or &quot;Foster Youth&quot;
+                means the same thing whether you're looking at attendance, academics, or another
+                dashboard.
+              </li>
+              <li>
+                <strong>Reporting level.</strong> Every file distinguishes state, county,
+                district, and school-level records using a consistent set of codes, so the same
+                file can support comparisons at any of those levels.
+              </li>
+              <li>
+                <strong>School and district codes.</strong> Location codes are standardized to a
+                fixed format across files. Where the same numeric code happens to be used at both
+                the school and district level — an occasional artifact of how CDE issues codes —
+                the conflict is identified and resolved so figures aren't crossed between levels.
+              </li>
+              <li>
+                <strong>Charter and alternative-school status.</strong> Charter status (yes/no/
+                all schools) and, where applicable, alternative accountability status (DASS) are
+                standardized so that traditional and non-traditional schools can be reported on
+                separately.
+              </li>
+            </ul>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: Attendance & Engagement ===== -->
+        <section class="methodology-group">
+          <h2 class="methodology-group__title">Attendance &amp; Engagement</h2>
+          <div class="accordion">
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Chronic Absenteeism
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE -->
+                  Chronic absenteeism counts, rates, and enrollment figures are checked field by
+                  field for suppressed values, which are flagged and set aside before the
+                  remaining figures are converted to usable numeric values for analysis.
+                </p>
+                <p class="accordion-body__subhead">Companion File</p>
+                <p>
+                  A companion file breaks absenteeism down by reason (for example, excused vs.
+                  unexcused absence). It's cleaned using the same suppression and demographic
+                  group rules as the main chronic absenteeism figures, and separately identifies
+                  schools operating under alternative accountability (DASS) status. Nonpublic,
+                  Nonsectarian Schools are excluded from school-level reporting in this file.
+                </p>
+                <p class="accordion-body__subhead">Coverage</p>
+                <p>
+                  This process has been applied consistently to every year from 2018-19 through
+                  2024-25, with one exception: <strong>no chronic absenteeism data is available
+                  for 2019-20</strong>, as CDE did not publish this file for the pandemic year.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Suspension
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE -->
+                  Suspension counts, rates, and enrollment figures go through the same cleaning
+                  approach as Chronic Absenteeism: suppressed values are detected and flagged,
+                  demographic groups are mapped to the site's canonical set of labels, and
+                  school/district codes are standardized and checked for conflicts.
+                </p>
+                <p class="accordion-body__subhead">Coverage</p>
+                <p>
+                  This process has been applied consistently across every available year, 2018-19
+                  through 2023-24. Unlike Chronic Absenteeism, <strong>2019-20 suspension data is
+                  available</strong> and was published by CDE for that year.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Graduation &amp; Dropout Rate
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE -->
+                  Graduation and dropout figures reflect CDE's official four-year and five-year
+                  cohort methodology. As with the other Attendance &amp; Engagement files,
+                  suppressed values are detected and flagged, and school/district codes are
+                  standardized.
+                </p>
+                <p class="accordion-body__subhead">Charter &amp; DASS Reporting</p>
+                <p>
+                  Rates are reported separately for charter and non-charter schools, and
+                  separately identify schools operating under alternative accountability status
+                  (DASS), so traditional and alternative-school outcomes aren't blended together.
+                </p>
+                <p class="accordion-body__subhead">Gender Categories</p>
+                <p>
+                  CDE introduced a &quot;Non-Binary&quot; gender category starting in 2019-20.
+                  Because that category did not exist in 2018-19, records from that year that
+                  would otherwise fall into it are coded as missing for gender rather than being
+                  assumed or reassigned to another category.
+                </p>
+                <p class="accordion-body__subhead">Coverage</p>
+                <p>
+                  Methodology has remained consistent from 2018-19 through 2022-23. The 2023-24
+                  file uses an almost identical process, with only minor field-naming differences
+                  that do not affect the calculated rates themselves.
+                </p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: Student Academics ===== -->
+        <section class="methodology-group">
+          <h2 class="methodology-group__title">Student Academics</h2>
+          <div class="accordion">
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Math &amp; ELA Assessment (CAASPP)
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE -->
+                  Math and ELA results come from the CAASPP (Smarter Balanced) assessments.
+                  Achievement levels are standardized to a four-level scale: Not Met (1), Nearly
+                  Met (2), Met (3), and Exceeded (4).
+                </p>
+                <p class="accordion-body__subhead">2018-19 Limitations</p>
+                <p>
+                  The 2018-19 file contains percentages only — underlying student counts were not
+                  published that year. Percentage figures from 2018-19 should not be used to
+                  back-calculate a count of students (multiplying a percentage by the number of
+                  students tested does not reproduce the correct count).
+                </p>
+                <p class="accordion-body__subhead">Reading the Numbers</p>
+                <p>
+                  Percentages are stored as decimal proportions in the downloadable data (for
+                  example, 68.7% is stored as 0.687). A blank average scale score on the
+                  &quot;all grades&quot; summary row is expected by design and is not a sign of
+                  suppression; scale scores are suppressed individually only for specific grades
+                  or groups with small enrollment.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Science Assessment (CAST)
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE -->
+                  The California Science Test (CAST) reports two types of results: an overall
+                  &quot;Core&quot; result, and three &quot;Area&quot; results (Life Sciences,
+                  Physical Sciences, and Earth &amp; Space Sciences). Core achievement levels use
+                  the same four-level scale as Math/ELA (Not Met, Nearly Met, Met, Exceeded), while
+                  Area results use a separate three-level scale (Below, Near, Above). Unlike
+                  Math/ELA, CAST does not report a combined Core + Area composite score.
+                </p>
+                <p class="accordion-body__subhead">Pandemic-Era Gaps</p>
+                <p>
+                  No CAST data is available for 2019-20. 2020-21 data is available but limited in
+                  quality — not all districts participated that year — so year-over-year
+                  comparisons involving 2020-21 should be made with caution.
+                </p>
+                <p class="accordion-body__subhead">2023-24 Changes</p>
+                <p>
+                  Starting in 2023-24, CAST files began including student counts alongside
+                  percentages, and suppression logic became more detailed. Enrollment, testing,
+                  and Area-test results can each be suppressed independently of one another — for
+                  example, it's possible for enrollment figures to be visible while related test
+                  results are suppressed, or for Area-test results to be suppressed even when
+                  Area enrollment is not.
+                </p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: English Learners ===== -->
+        <section class="methodology-group">
+          <h2 class="methodology-group__title">English Learners</h2>
+          <div class="accordion">
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                English Learner Progress
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: College & Career ===== -->
+        <section class="methodology-group">
+          <h2 class="methodology-group__title">College &amp; Career</h2>
+          <div class="accordion">
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                College/Career Preparedness
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ===== GROUP: Differentiated Assistance ===== -->
+        <section class="methodology-group">
+          <h2 class="methodology-group__title">Differentiated Assistance</h2>
+          <div class="accordion">
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                California School Dashboard
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+                <p><!-- REPLACE: add methodology notes for this dashboard --></p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ===== QUESTIONS ===== -->
+        <section class="panel prose-panel" style="margin-top: 12px;">
+          <div class="prose-body" style="padding-top: 32px;">
+            <h2>Questions About the Data?</h2>
+            <p>
+              If you have questions about how a metric is calculated, notice something that
+              looks incorrect, or want more detail on the cleaning process behind a specific
+              dashboard, reach out to OCDE's Research, Evaluation, and Data Insights team at
+              REDI@ocde.us.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="footer-logo" />
+          <span>Orange County Department of Education</span>
+        </div>
+        <div class="footer-right">Looking for data-driven insights? Our Research &amp; Evaluation team can help.</div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
