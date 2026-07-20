@@ -199,6 +199,17 @@
       white-space: nowrap;
     }
 
+        .code-table__section th {
+      background: linear-gradient(180deg, #163e73 0%, #0f2f5c 100%);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 12px;
+      border-bottom: none;
+    }
+
     .coverage-table {
       width: 100%;
       border-collapse: collapse;
@@ -284,7 +295,6 @@
           <div class="prose-body">
 
             <p>
-              <!-- REPLACE: adjust to match your team's actual process -->
               Every dashboard on the OCDE Data Hub is built from data files published by the
               California Department of Education or ETS. Before those files reach a dashboard, OCDE's
               Research, Evaluation, and Data Iquiry (REDI) team runs each source file through a
@@ -1008,23 +1018,142 @@
         </section>
 
         <!-- ===== GROUP: English Learners ===== -->
-        <section class="methodology-group">
+                <section class="methodology-group">
           <h2 class="methodology-group__title">English Learners</h2>
           <div class="accordion">
-
+ 
             <details class="accordion-item">
               <summary class="accordion-header">
                 English Learner Progress
+                <span class="accordion-header__sub">18-19, 2021-2025</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <div class="placeholder-callout">
-                  <!-- REPLACE: add detailed methodology notes for this dashboard (suppression fields, encoding, primary key, year-by-year coverage) -->
-                  No cleaning notes were provided for this dataset yet.
-                </div>
+ 
+                <p>
+                  Source: Summative ELPAC (English Language Proficiency Assessment for
+                  California) research files
+                  (<a href="https://caaspp-elpac.ets.org/elpac/ResearchFilesSA" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
+                  This section is based on a direct read of five years of cleaning scripts:
+                  2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
+                  available to review.
+                </p>
+                <p>
+                  <strong>Not the same file as ELPI.</strong> This is the underlying ELPAC
+                  assessment where actual proficiency test results by domain and performance level.
+                  The English Learner Progress Indicator (ELPI) documented under Differentiated
+                  Assistance elsewhere on this page is a separate California School Dashboard
+                  accountability file that measures year-over-year reclassification progress.
+                </p>
+ 
+                <p class="accordion-body__subhead">Column Reference</p>
+                <table class="code-table">
+                  <caption>Raw CDE column name → cleaned field name (stable across all five years checked)</caption>
+                  <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
+                  <tr><td>TestYear</td><td><code>year</code></td></tr>
+                  <tr><td>StudentGroupID</td><td><code>demo_group</code></td></tr>
+                  <tr><td>RecordType</td><td><code>org_level</code></td></tr>
+                  <tr><td>AssessmentType</td><td><code>test</code> (Summative ELPAC is always <code>21</code>)</td></tr>
+                  <tr><td>TotalEnrolled / TotalTested / TotalTestedWithScores</td><td><code>test_enrollment</code> / <code>tested</code> / <code>tested_scores</code></td></tr>
+                  <tr><td>OralLang_* / WritLang_*</td><td><code>oral_*</code> / <code>writ_*</code></td></tr>
+                  <tr><td>[Overall/Oral/Written] PerfLvl[1-4]Pcnt/Count</td><td><code>lvl[1-4]_perc</code> / <code>lvl[1-4]_count</code></td></tr>
+                  <tr><td>MeanSclScr</td><td><code>mean_score</code></td></tr>
+                  <tr><td>ListeningDomain_ / SpeakingDomain_ / ReadingDomain_ / WritingDomain_</td><td><code>d1_</code> / <code>d2_</code> / <code>d3_</code> / <code>d4_</code></td></tr>
+                </table>
+ 
+                <p class="accordion-body__subhead">Test, Org Level &amp; Area Encoding</p>
+                <table class="code-table">
+                  <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
+                  <tr><td rowspan="3"><code>core_area</code></td><td>1</td><td>Overall</td></tr>
+                  <tr><td>2</td><td>Oral</td></tr>
+                  <tr><td>3</td><td>Written</td></tr>
+                  <tr><td rowspan="4"><code>domain_area</code></td><td>1</td><td>Listening</td></tr>
+                  <tr><td>2</td><td>Speaking</td></tr>
+                  <tr><td>3</td><td>Reading</td></tr>
+                  <tr><td>4</td><td>Writing</td></tr>
+                  <tr><td rowspan="3"><code>domain_performance</code></td><td>1</td><td>Begin</td></tr>
+                  <tr><td>2</td><td>Moderate</td></tr>
+                  <tr><td>3</td><td>Developed</td></tr>
+                </table>
+                <p>
+                  <code>core_performance</code> runs 1 through 4 (matching ELPAC's standard
+                  performance-level scale for Overall/Oral/Written scores); we do not
+                  attach text labels to these four levels like the three domain
+                  performance levels above.
+                </p>
+                <p>
+                  <code>org_level</code> reuses the same universal scheme documented for CAST and
+                  SBAC elsewhere on this page (5=County, 6=District, 7=Traditional School, 9/10=
+                  Charter), however ELPAC's own raw <code>RecordType</code> field numbers these
+                  differently (1/2/3), so the cleaning script remaps raw 1→7, 2→6, 3→5 before it
+                  matches the shared scheme. Charter codes (9/10) already match the shared scheme
+                  natively and pass through unchanged.
+                </p>
+ 
+                <p class="accordion-body__subhead">Suppression</p>
+                <p>
+                  Suppression works the same way for both Core and Domain results: enrollment
+                  suppression and test-result suppression are checked separately, and in every
+                  year reviewed, suppression is all-or-nothing within each group of columns meaning if
+                  one core column is suppressed, all core columns are; same for domain. Where this
+                  file goes further than Core/Area files elsewhere on this page: alongside the
+                  combined <code>domain_test_suppress</code> flag, it also tracks suppression
+                  <strong>separately for each of the four domains</strong>
+                  (<code>d1_test_suppress</code> through <code>d4_test_suppress</code>), so you
+                  can tell whether it was, say, only the Writing domain suppressed for a record
+                  versus all four.
+                </p>
+                <p>
+                  <code>mean_score</code> (Core only) follows the same blank-vs-suppressed pattern
+                  described for CAST and SBAC: <code>blank_mean_score</code> for the &quot;all
+                  grades&quot; rollup (not suppression, just not reported by design), and
+                  <code>mean_score_suppression</code> for a genuinely suppressed value.
+                </p>
+ 
+                <p class="accordion-body__subhead">Data Structure is Consistent</p>
+                <p>
+                  Unlike CAST and SBAC where both changed delimiters, expanded suppression
+                  markers, and added counts or composite scores partway through the years
+                  reviewed, ELPAC's structure hasn't changed at all across the five years
+                  checked. Every year uses the same caret (<code>^</code>) delimiter, the same
+                  column names, the same suppression columns, and percentages <em>and</em> counts
+                  together from the very first year (2018-19). CAST and SBAC didn't gain counts
+                  until 2023-24. <code>compare_variable_names()</code> between each consecutive
+                  pair of years we have scripts for reports no differences.
+                </p>
+                <p>
+                  One genuine exception, since fixed: in 2018-19 through 2022-23, the raw file's
+                  <code>AssessmentType</code> field incorrectly contained <code>2</code> instead
+                  of the correct Summative ELPAC test code, <code>21</code>, each year. The cleaning
+                  scripts manually corrects it. Starting with the 2023-24 file, the raw value is
+                  already correct at the source, and the manual fix is no longer present in the
+                  script as CDE appears to have corrected this on their end.
+                </p>
+ 
+                <p class="accordion-body__subhead">Wide vs. Long Format &amp; Primary Keys</p>
+                <p>
+                  Same pattern as CAST and SBAC: the downloadable &quot;full&quot; CSV stays wide
+                  (one row per school/district + student group + grade, with domain names spelled
+                  out — Listening/Speaking/Reading/Writing — instead of the <code>d1</code>–
+                  <code>d4</code> codes used internally), while the fact tables behind the
+                  dashboard are pivoted into long format. The Core fact table's primary key is
+                  <code>cds</code> + <code>demo_group_num</code> + <code>grade_num</code> +
+                  <code>core_area</code> + <code>core_performance</code>; the Domain fact table's
+                  is the same pattern with <code>domain_area</code> + <code>domain_performance</code>.
+                </p>
+ 
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-19</td><td class="status-ok">Available — includes the AssessmentType data-quality workaround described above</td></tr>
+                  <tr><td>2019-20 – 2020-21</td><td class="status-gap">Unavailable</td></tr>
+                  <tr><td>2021-22 – 2022-23</td><td class="status-ok">Available — structurally identical to 2018-19, including the same data-quality correction</td></tr>
+                  <tr><td>2023-24 – 2024-25</td><td class="status-ok">Available — AssessmentType data-quality issue no longer present in the raw file</td></tr>
+                </table>
+ 
               </div>
             </details>
-
+ 
           </div>
         </section>
 
@@ -1137,23 +1266,118 @@
         </section>
 
         <!-- ===== GROUP: Differentiated Assistance ===== -->
-        <section class="methodology-group">
+                <section class="methodology-group">
           <h2 class="methodology-group__title">Differentiated Assistance</h2>
           <div class="accordion">
-
+ 
             <details class="accordion-item">
               <summary class="accordion-header">
                 California School Dashboard
+                <span class="accordion-header__sub">2024-25</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
-                <div class="placeholder-callout">
-                  <!-- REPLACE: add detailed methodology notes for this dashboard -->
-                  No cleaning notes were provided for this dataset yet.
-                </div>
+ 
+                <p>
+                  Unlike every other file on this page, the Differentiated Assistance data isn't
+                  built from one source file instead it's assembled from <strong>several separately
+                  cleaned per-indicator files</strong>, each pulled from its own CDE Dashboard
+                  data release, then joined together on <code>cds</code> into the combined file
+                  this site uses. This section is based on a direct read of six of those
+                  indicator scripts, all from the 2024-25 refresh: English Learner Progress
+                  (ELPI), Math, ELA, Suspension, Chronic Absenteeism, and Graduation. A seventh,
+                  College/Career (CCI), is documented separately under the College &amp; Career
+                  section above, since it's also offered as its own standalone download on this
+                  site. The final join step itself is simple and isn't detailed further here.
+                </p>
+                <p>
+                  <strong>Important distinction:</strong> these are not the same source files as
+                  the standalone Suspension, Chronic Absenteeism, and Graduation &amp; Dropout
+                  files documented under Attendance &amp; Engagement elsewhere on this page. Those
+                  come from CDE's ad-hoc data files (<code>filessd.asp</code>,
+                  <code>filesabd.asp</code>, <code>filesacgr.asp</code>). The versions described
+                  here come from CDE's separate California School Dashboard release for each
+                  indicator, with their own file structure, encoding, and accountability-specific
+                  fields (status/change/color levels, N-size thresholds) that don't exist in the
+                  ad-hoc versions at all.
+                </p>
+ 
+                <p class="accordion-body__subhead">Shared Architecture</p>
+                <p>
+                  Rather than every indicator file rebuilding the same lookup tables, two of the
+                  six scripts serve as the canonical source for dimensions the others just reuse:
+                </p>
+                <ul class="accordion-body__list">
+                  <li><strong>ELA's script</strong> is where <code>org_level</code>, <code>color</code>,
+                    <code>coe_flag</code>, the N-size flags (<code>currnsizemet</code>/
+                    <code>priornsizemet</code>/<code>accountabilitymet</code>), and the
+                    &quot;ascending&quot; <code>change_level</code>/<code>status_level</code>
+                    dimensions are built. Math, CCI, and (per one of its own comments) Graduation
+                    all reuse these rather than rebuilding them.</li>
+                  <li><strong>Chronic Absenteeism's script</strong> is where the &quot;reverse&quot;
+                    <code>change_level_neg</code>/<code>status_level_neg</code> dimensions,
+                    <code>smalldenom</code>, and the certification/data-error flag dimension are
+                    built — explicitly documented in that script as being &quot;used for
+                    absenteeism and suspension.&quot;</li>
+                </ul>
+                <p>
+                  Org level and charter/COE/DASS encoding are identical across all six files, and
+                  match what's already described for College/Career: <code>org_level</code> as
+                  1=State/3=District/4=School (no county), and <code>charter_num</code>/
+                  <code>coe_flag</code>/<code>dass_num</code> as simple Yes/No binary flags.
+                </p>
+ 
+                <p class="accordion-body__subhead">Status & Change Level Direction Differences</p>
+                <p>
+                  The numeric codes for <code>statuslevel</code> and <code>changelevel</code> mean
+                  <strong>opposite things depending on the indicator</strong>
+                </p>
+                <table class="code-table">
+                  <tr class="code-table__section"><th colspan="4">Status Level </th></tr>
+                  <tr><th>Indicator</th><th>Direction</th><th>1 means…</th><th>5 means…</th></tr>
+                  <tr><td>ELA<br>Math<br>College/Career (CCI)</td><td>Ascending</td><td>Very Low status</td><td>Very High status</td></tr>
+                  <tr><td>Suspension<br>Graduation Rate<br>Chronic Absenteeism<br>English Learner Progress (ELPI)</td><td>Reverse</td><td>Very High status</td><td>Very Low status</td></tr>
+                  <tr class="code-table__section"><th colspan="4">Change Level </th></tr>
+                  <tr><th>Indicator</th><th>Direction</th><th>1 means…</th><th>5 means…</th></tr>
+                  <tr><td>ELA<br>Math<br>College/Career (CCI)<br>English Learner Progress (ELPI)</td><td>Ascending</td><td>Decreased Significantly</td><td>Increased Significantly</td></tr>
+                  <tr><td>Absenteeism<br>Suspension</td><td>Descending</td><td>Increased Significantly</td><td>Decreased Significantly</td></tr>
+                </table>
+ 
+                <p class="accordion-body__subhead">Indicator-Specific Fields</p>
+                <table class="code-table">
+                  <tr><th>Indicator</th><th>Fields not shared with the others</th></tr>
+                  <tr><td>ELA / Math</td><td><code>hscutpoints</code> (whether high school cut points applied), <code>pairshare_method</code> (raw codes <code>DA</code>/<code>CA</code>/<code>WA</code> → 1/2/3, exact meaning not documented in the script), participation-rate fields (<code>currprate_enrolled</code>/<code>_tested</code>/<code>_rate</code> and prior-year equivalents), and several <code>PRLOSS</code>-prefixed columns dropped before export (meaning not documented).</td></tr>
+                  <tr><td>Suspension</td><td><code>type</code> (school/district type: 1=ED, 2=ES, 3=MS, 4=HD, 5=HS, 6=UD), <code>smalldenom</code>, <code>certifyflag</code>/<code>priorcertifyflag</code>.</td></tr>
+                  <tr><td>Chronic Absenteeism</td><td><code>smalldenom</code>, <code>certifyflag</code>/<code>priorcertifyflag</code>, and <code>dataerrorflag</code> (flags CALPADS data submitted with errors or misaligned with enrollment data)</td></tr>
+                  <tr><td>Graduation</td><td><code>smalldenom</code> only</td></tr>
+                  <tr><td>English Learner Progress (ELPI)</td><td>Scoped to only two demographic groups (EL and Long-Term EL) rather than the full set used elsewhere — explicitly called out in the script. Also carries its own progress-category fields (e.g., progressed, maintained at the highest level, maintained at another level, declined — each with a separate &quot;Alternate&quot; version for the alternate ELPAC scoring path) and a 95%-participation flag not present in the other five files.</td></tr>
+                </table>
+                <p>
+                  <code>smalldenom</code> reflects CDE's rule that populations under 150 students
+                  use a 3×5 color grid instead of the standard grid; <code>certifyflag</code> and
+                  <code>dataerrorflag</code> reflect CDE's rule that districts/schools with
+                  uncertified or erroneous CALPADS submissions are automatically assigned an
+                  Orange Performance Level regardless of their actual numbers.
+                </p>
+ 
+                <p class="accordion-body__subhead">Structure</p>
+                <p>
+                  Like College/Career, none of these six files are pivoted into long format —
+                  each stays in the same wide shape as the raw file, with the fact table simply
+                  dropping name/code/flag columns that live in the entity, district, and school
+                  dimension tables instead. <code>cds</code> construction and school/district
+                  conflict resolution follow the same process as every other file on this page.
+                </p>
+ 
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2024-25</td><td class="status-ok">Available — six indicator scripts (ELPI, Math, ELA, Suspension, Absenteeism, Graduation)</td></tr>
+                </table>
+ 
               </div>
             </details>
-
+ 
           </div>
         </section>
 
