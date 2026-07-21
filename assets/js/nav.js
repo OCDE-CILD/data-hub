@@ -31,7 +31,7 @@
     { key: 'about',                   label: 'About',                   isDropdown: true },
     { key: 'purpose',                 label: 'Purpose',                 file: 'purpose.html',                 parent: 'about' },
     { key: 'faq',                     label: 'FAQ',                     file: 'faq.html',                     parent: 'about' },
-    { key: 'contact',                 label: 'Contact Us',              href: '#' },
+    { key: 'contact',                 label: 'Contact Us',              href: 'mailto:redi@ocde.us' },
   ];
 
   // ─── Path helper ─────────────────────────────────────────────────────────────
