@@ -1,39 +1,21 @@
 (() => {
-  function isMobile() {
-    return window.matchMedia('(max-width: 900px)').matches;
-  }
-
-  // Delegated listener on document — works no matter when nav.js
-  // injects the .nav-menu / .nav-trigger buttons into the DOM.
   document.addEventListener('click', (event) => {
-    const trigger = event.target.closest('.nav-menu > .nav-trigger');
+    if (event.target.closest('.mobile-nav-toggle')) return;
 
-    if (trigger) {
-      if (!isMobile()) return;
+    // Clicks inside a nav menu are handled by nav.js itself — don't interfere.
+    if (event.target.closest('.nav-menu')) return;
 
-      event.preventDefault();
+    // Click outside: close any open dropdown
+    document.querySelectorAll('.nav-menu.is-open').forEach((menu) => {
+      menu.classList.remove('is-open');
+    });
 
-      const menu = trigger.closest('.nav-menu');
-      const isOpen = menu.classList.contains('is-open');
-
-      document.querySelectorAll('.nav-menu.is-open').forEach((openMenu) => {
-        openMenu.classList.remove('is-open');
-      });
-
-      if (isOpen) {
-        trigger.blur();
-        return;
-      }
-
-      menu.classList.add('is-open');
-      return;
-    }
-
-    // Click outside any nav menu closes whatever is open
-    if (!event.target.closest('.nav-menu')) {
-      document.querySelectorAll('.nav-menu.is-open').forEach((menu) => {
-        menu.classList.remove('is-open');
-      });
+    // And collapse the whole mobile menu if the click was outside it
+    const navEl = document.querySelector('[data-nav]');
+    if (navEl && !event.target.closest('[data-nav]') && navEl.classList.contains('is-open')) {
+      navEl.classList.remove('is-open');
+      const toggle = document.querySelector('.mobile-nav-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
     }
   });
 })();
