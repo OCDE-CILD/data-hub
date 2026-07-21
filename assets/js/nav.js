@@ -178,17 +178,34 @@
   // ─── Inject ──────────────────────────────────────────────────────────────────
 
   function init() {
-    const navEl = document.querySelector('[data-nav]');
-    if (!navEl) return;
+  const navEl = document.querySelector('[data-nav]');
+  if (!navEl) return;
 
-    const activeKey = navEl.dataset.navActive || '';
-    navEl.innerHTML = buildNav(activeKey);
-    ensureMobileToggle(navEl);
-  }
+  const activeKey = navEl.dataset.navActive || '';
+  navEl.innerHTML = buildNav(activeKey);
+  ensureMobileToggle(navEl);
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  navEl.addEventListener('click', (event) => {
+    const trigger = event.target.closest('.nav-menu > .nav-trigger');
+    if (!trigger) return;
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
+
+    event.preventDefault();
+
+    const menu = trigger.closest('.nav-menu');
+    const isOpen = menu.classList.contains('is-open');
+
+    navEl.querySelectorAll('.nav-menu.is-open').forEach((openMenu) => {
+      openMenu.classList.remove('is-open');
+    });
+
+    if (!isOpen) {
+      menu.classList.add('is-open');
+    } else {
+      trigger.blur();
+    }
+  });
+}
+
+init();
 })();
