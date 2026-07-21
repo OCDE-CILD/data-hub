@@ -1950,21 +1950,15 @@ body.home-page .quick-links-panel {
     padding: 8px 0;
   }
 
-  .dropdown {
-    display: none;
+.dropdown {
     position: static;
-    width: 100%;
+    display: none;
     min-width: 0;
-    margin: 4px 0 0;
-    padding: 8px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 8px 18px rgba(16, 35, 62, 0.10);
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    pointer-events: auto;
+    margin-top: 6px;
+    padding: 8px 0 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
   }
 
   .nav-menu.is-open .dropdown {
@@ -1972,7 +1966,7 @@ body.home-page .quick-links-panel {
   }
 
   .dropdown a {
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: 10px;
     margin: 2px 0;
   }
@@ -1982,7 +1976,9 @@ body.home-page .quick-links-panel {
     display: none;
   }
 
-  .nav-menu.is-open .dropdown {
+  .nav-menu.is-open .dropdown,
+  .nav-menu.is-open:hover .dropdown,
+  .nav-menu.is-open:focus-within .dropdown {
     display: block;
   }
 
