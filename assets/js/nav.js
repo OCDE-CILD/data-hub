@@ -144,6 +144,37 @@
 </div>\n`;
   }
 
+  // ─── Mobile hamburger toggle ─────────────────────────────────────────────────
+  // Inserts a hamburger button right before the <nav> element (once per page)
+  // and wires it up to show/hide the whole nav on small screens via the
+  // `.is-open` class that styles.css keys off of.
+
+  function ensureMobileToggle(navEl) {
+    const parent = navEl.parentElement;
+    if (!parent || parent.querySelector('.mobile-nav-toggle')) return;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'mobile-nav-toggle';
+    toggle.setAttribute('aria-label', 'Toggle navigation menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<span class="mobile-nav-toggle__bars" aria-hidden="true"></span>';
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navEl.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+
+      // Closing the whole menu should also close any open dropdown inside it.
+      if (!isOpen) {
+        navEl.querySelectorAll('.nav-menu.is-open').forEach((menu) => {
+          menu.classList.remove('is-open');
+        });
+      }
+    });
+
+    navEl.insertAdjacentElement('beforebegin', toggle);
+  }
+
   // ─── Inject ──────────────────────────────────────────────────────────────────
 
   function init() {
@@ -152,6 +183,7 @@
 
     const activeKey = navEl.dataset.navActive || '';
     navEl.innerHTML = buildNav(activeKey);
+    ensureMobileToggle(navEl);
   }
 
   if (document.readyState === 'loading') {

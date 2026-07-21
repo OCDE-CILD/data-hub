@@ -355,6 +355,49 @@ textarea {
   text-decoration: underline;
 }
 
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+  padding: 0;
+}
+
+.mobile-nav-toggle__bars {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.mobile-nav-toggle__bars::before,
+.mobile-nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.mobile-nav-toggle__bars::before {
+  top: -6px;
+}
+
+.mobile-nav-toggle__bars::after {
+  top: 6px;
+}
+
 .nav-menu {
   position: relative;
   display: inline-flex;
@@ -1838,9 +1881,11 @@ body.home-page .quick-links-panel {
 
   .topbar-inner,
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .brand-logo {
@@ -1858,12 +1903,25 @@ body.home-page .quick-links-panel {
     line-height: 1.2;
   }
 
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
   .nav {
+    display: none;
     width: 100%;
+    flex-basis: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     padding-right: 0;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .nav.is-open {
+    display: flex;
   }
 
   .nav-menu {
