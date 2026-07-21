@@ -2010,6 +2010,15 @@ body.home-page .quick-links-panel {
     padding: 10px 12px;
     border-radius: 10px;
     margin: 2px 0;
+    color: #fff;
+  }
+
+  .dropdown a:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .dropdown-section-label {
+    color: rgba(255, 255, 255, 0.72);
   }
 
   .nav-menu:hover .dropdown,
