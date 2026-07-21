@@ -377,6 +377,7 @@ textarea {
   height: 2px;
   background: #fff;
   border-radius: 2px;
+  transition: background 0.15s ease;
 }
 
 .mobile-nav-toggle__bars::before,
@@ -388,6 +389,7 @@ textarea {
   height: 2px;
   background: #fff;
   border-radius: 2px;
+  transition: transform 0.15s ease, top 0.15s ease;
 }
 
 .mobile-nav-toggle__bars::before {
@@ -396,6 +398,20 @@ textarea {
 
 .mobile-nav-toggle__bars::after {
   top: 6px;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars {
+  background: transparent;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::after {
+  top: 0;
+  transform: rotate(-45deg);
 }
 
 .nav-menu {
@@ -485,47 +501,6 @@ textarea {
 
 .search-action:hover {
   text-decoration: underline;
-}
-
-.mobile-nav-toggle {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  flex: 0 0 auto;
-}
-
-.mobile-nav-toggle__bars,
-.mobile-nav-toggle__bars::before,
-.mobile-nav-toggle__bars::after {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #fff;
-  border-radius: 2px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.mobile-nav-toggle__bars::before { margin-bottom: 5px; }
-.mobile-nav-toggle__bars::after { margin-top: 5px; }
-
-.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars {
-  background: transparent;
-}
-
-.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::before {
-  transform: translateY(3.5px) rotate(45deg);
-}
-
-.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::after {
-  transform: translateY(-3.5px) rotate(-45deg);
 }
 
 .district-control {
@@ -1885,13 +1860,15 @@ body.home-page .quick-links-panel {
    tap-to-open menu (toggled by nav.js adding .is-open), instead of a
    permanently-fixed header with every dropdown forced open. */
 @media (max-width: 900px) {
-  body {
+  body,
+  body.home-page {
     overflow: auto;
   }
 
-  .app-shell {
+  .app-shell,
+  body.home-page .app-shell {
     height: auto;
-    min-height: 100vh;
+    min-height: 0;
   }
 
   .topbar,
