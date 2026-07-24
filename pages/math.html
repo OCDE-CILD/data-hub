@@ -43,10 +43,9 @@
         <div class="dash-about">
           <h2 class="dash-about__title">About this Dashboard</h2>
           <p class="dash-about__body">
-            <!-- REPLACE: Add a description of what this dashboard shows,
-                 what the data represents, and who it is intended for. -->
-            This dashboard provides an overview of key metrics for Orange County school districts.
-            Use the filters within the visualization to explore data by district, school, student group, and year.
+            This dashboard provides an interactive view of The California Assessment of Student Performance and Progress (CAASPP) Math assessment results across Orange County schools and districts. Users can view 3 different versions of the dashboard to explore Math percent met/exceeded rates, test participation rates, year-over-year trends, and outcomes across student groups. Users can use the clickable tabs at the top of the dashboard to view either County, District or School-level data. By identifying patterns in student performance and disparities among student populations, the dashboard helps educators target educational interventions, monitor progress over time, and support strategies that improve student academic success.
+            </p>
+            When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
           </p>
         </div>
 
@@ -59,8 +58,8 @@
                 https://public.tableau.com/views/ChronicAbsenteeismDashboard-OC/Dashboard1
               -->
               <tableau-viz
-                id="chronicAbsenteeismViz"
-                src="https://public.tableau.com/views/ChronicAbsenteeismDashboard-OC/Dashboard1"
+                id="mathViz"
+                src="https://public.tableau.com/views/math_dashboard/county#1"
                 toolbar="bottom"
                 hide-tabs>
               </tableau-viz>
@@ -95,7 +94,7 @@
               Visit the California Department of Education Webpage to download the underlying data file used to build this dashboard.
             </p>
             <div class="dash-supplement__action">
-              <a class="dash-download-btn" href="https://www.cde.ca.gov/ds/ad/filesabd.asp" target="_blank" rel="noopener noreferrer">
+              <a class="dash-download-btn" href="https://caaspp-elpac.ets.org/caaspp/DashViewReportSB?ps=true&lstTestYear=2025&lstTestType=B&lstGroup=1&lstSubGroup=1&lstGrade=13&lstSchoolType=A&lstCounty=30&lstDistrict=00000&lstSchool=0000000&lstFocus=a" target="_blank" rel="noopener noreferrer">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
                   <path d="M15 3h6v6"/>
