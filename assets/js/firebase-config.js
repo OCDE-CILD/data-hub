@@ -15,6 +15,15 @@ export const firebaseConfig = {
   appId: "1:695805489729:web:d7b21c5abae22a5f3c0cc0",
 };
 
+// 2. Google Identity Services client ID (used for sign-in directly via
+//    Google's own library, bypassing Firebase's popup/redirect flow so the
+//    site's URL and hosting can stay on GitHub Pages).
+//    Firebase Console → Authentication → Sign-in method → Google →
+//    Web SDK configuration → Web client ID.
+export const GOOGLE_CLIENT_ID =
+  "695805489729-4ch7erkgcoeg85vvnn23am9ca6j3ogg8.apps.googleusercontent.com";
+
+// 3. Who's allowed in. Leave an array empty to skip that check entirely.
 //
 //    ALLOWED_DOMAINS  – Google Workspace domains to accept, e.g. ["ocde.us"].
 //                        Anyone signing in with a matching domain gets in.
@@ -27,11 +36,12 @@ export const firebaseConfig = {
 export const ALLOWED_DOMAINS = [];
 
 export const ALLOWED_EMAILS = [
-  "jaubele@ocde.us"
+  "jaubele@ocde.us",
+  "ctrejo@ocde.us",
   // add one address per line
 ];
 
-// 3. Where the login page lives, relative to the site root. Used by
+// 4. Where the login page lives, relative to the site root. Used by
 //    auth-check.js to build the correct redirect path from any page depth.
 export const LOGIN_PATH_FROM_ROOT = "login.html";
 
