@@ -50,7 +50,8 @@ export const ALLOWED_EMAILS = [
   "kshillito@ocde.us",
   "jalberts@ocde.us",
   "lmakely@ocde.us",
-  "spreciado@ocde.us"
+  "spreciado@ocde.us",
+  "lduran@ocde.us"
   // add one address per line
 ];
 
