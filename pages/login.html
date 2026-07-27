@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sign In | OCDE Data Hub</title>
+  <style>
+    :root {
+      --navy: #0b2f5b;
+      --blue: #135ad6;
+      --blue-2: #0f4fbf;
+      --bg: #f4f8fd;
+      --text: #10233e;
+      --muted: #5b6b84;
+      --line: #d8e2ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 20% 8%, rgba(46, 118, 214, 0.14), transparent 32%),
+        radial-gradient(circle at 85% 90%, rgba(120, 170, 255, 0.14), transparent 30%),
+        linear-gradient(180deg, #0a2b57 0%, #092748 55%, #0b2f5b 100%);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(6, 20, 43, 0.35);
+      padding: 36px 32px 30px;
+      text-align: center;
+    }
+
+    .brand-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      margin: 0 auto 14px;
+      display: block;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: #eaf2ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      margin: 0 0 26px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .signin-button {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(16, 35, 62, 0.06);
+      transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .signin-button:hover {
+      border-color: #bcd0ea;
+      box-shadow: 0 6px 16px rgba(16, 35, 62, 0.1);
+    }
+
+    .signin-button:active {
+      transform: translateY(1px);
+    }
+
+    .signin-button:disabled {
+      opacity: 0.6;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .signin-button svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .status {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 18px;
+    }
+
+    .status.error {
+      color: #c0362c;
+    }
+
+    .status.info {
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .footer-note a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img src="assets/images/Logo-WHITE" alt="OCDE logo" class="brand-logo" />
+    <div class="eyebrow">Preview Access</div>
+    <h1>OCDE Data Hub</h1>
+    <p class="subtitle">This site is under development and limited to authorized reviewers. Sign in with your work Google account to continue.</p>
+
+    <button id="google-signin" class="signin-button" type="button">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+        <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+        <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+        <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+      </svg>
+      Sign in with Google
+    </button>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <div class="footer-note">
+      Not seeing access after signing in? Reach out to the Research &amp; Evaluation team to be added to the reviewer list.
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      onAuthStateChanged,
+      signOut,
+    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import { firebaseConfig, isAuthorized } from "./assets/js/firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const button = document.getElementById("google-signin");
+    const status = document.getElementById("status");
+
+    function setStatus(message, type) {
+      status.textContent = message || "";
+      status.className = "status" + (type ? ` ${type}` : "");
+    }
+
+    function getNextUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("next") || "index.html";
+    }
+
+    // Surface why the person landed here, if auth-check.js sent them.
+    const reason = new URLSearchParams(window.location.search).get("reason");
+    if (reason === "unauthorized") {
+      setStatus("That Google account isn't on the reviewer list yet. Try a different account or contact the team below.", "error");
+    }
+
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      setStatus("Opening Google sign-in…", "info");
+      try {
+        const result = await signInWithPopup(auth, provider);
+        if (!isAuthorized(result.user)) {
+          await signOut(auth);
+          setStatus("That Google account isn't on the reviewer list yet. Try a different account or contact the team below.", "error");
+          button.disabled = false;
+          return;
+        }
+        setStatus("Signed in — redirecting…", "info");
+        window.location.replace(getNextUrl());
+      } catch (err) {
+        console.error(err);
+        setStatus("Sign-in didn't go through. Please try again.", "error");
+        button.disabled = false;
+      }
+    });
+
+    // Already signed in and authorized? Skip straight through.
+    onAuthStateChanged(auth, (user) => {
+      if (user && isAuthorized(user)) {
+        window.location.replace(getNextUrl());
+      }
+    });
+  </script>
+</body>
+</html>
