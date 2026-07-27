@@ -38,6 +38,19 @@ export const ALLOWED_DOMAINS = [];
 export const ALLOWED_EMAILS = [
   "jaubele@ocde.us",
   "ctrejo@ocde.us",
+  "cmitchell@ocde.us",
+  "aroy@ocde.us",
+  "DBalasuriya@ocde.us",
+  "DEhrle@ocde.us",
+  "kbenaraw@ocde.us",
+  "shlee@ocde.us",
+  "jswanson@ocde.us",
+  "sbean@ocde.us",
+  "CMunoz@ocde.us",
+  "kshillito@ocde.us",
+  "jalberts@ocde.us",
+  "lmakely@ocde.us",
+  "spreciado@ocde.us"
   // add one address per line
 ];
 
