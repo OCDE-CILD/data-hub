@@ -7,21 +7,32 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English Learners | OCDE Data Hub</title>
+  <title>Chronic Absenteeism | OCDE Data Hub</title>
+
+  <!-- Tableau Embedding API v3. Load once per site (e.g. move to a shared header include) if used on multiple pages. -->
+  <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+  <style>
+    /* v3 web component handles its own internal layout, but we set an explicit
+       height because tableau-viz doesn't auto-size to content like the classic
+       embed's JS-driven resize did. Adjust to taste. */
+    tableau-viz {
+      width: 100%;
+      height: 730px;
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
   <div class="app-shell">
-
     <header class="site-header">
       <div class="header-inner">
-
         <div class="brand-block">
           <img src="../assets/images/Logo-WHITE" alt="OCDE logo" class="brand-logo" />
-
           <div class="brand-copy">
             <div class="brand">OCDE Data Hub</div>
-            <div class="sub">English Learners</div>
+            <div class="sub">Student Academics: English Learner Progress Assessment</div>
           </div>
         </div>
 
@@ -32,44 +43,28 @@
 
     <main class="content">
       <div class="wrap">
-
         <div class="dash-about">
           <h2 class="dash-about__title">About this Dashboard</h2>
           <p class="dash-about__body">
-            <!-- REPLACE: Add a description of what this dashboard shows,
-                 what the data represents, and who it is intended for. -->
-            This dashboard provides an overview of key metrics for Orange County school districts.
-            Use the filters within the visualization to explore data by district, school, student group, and year.
+            This dashboard provides an interactive view of The English Learner Proficiency Assessment for California (ELPAC) results across Orange County schools and districts. Users can view 3 different versions of the dashboard to explore ELPAC percent moderately/well developed rates, test participation rates, year-over-year trends, and outcomes across student groups. Users can use the clickable tabs at the top of the dashboard to view either County, District or School-level data. By identifying patterns in student performance and disparities among student populations, the dashboard helps educators target educational interventions, monitor progress over time, and support strategies that improve english learners academic success.
+          <p>  
           </p>
+            When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+           </p>
         </div>
 
         <section class="panel">
           <div class="tableau-shell">
             <div class="tableau-frame">
-
-              <!-- Tableau Embed Placeholder -->
-              <div class="tableauPlaceholder" id="englishLearnersPlaceholder">
-
-                <div class="placeholder-message">
-                  <h2>English Learners Dashboard</h2>
-
-                  <p>
-                    Tableau dashboard embed code will be added here once the
-                    English Learners Tableau visualization has been published.
-                  </p>
-                </div>
-
-              </div>
-              <!-- End Tableau Embed Placeholder -->
-
-              <!--
-                FUTURE TABLEAU EMBED CODE GOES HERE
-              -->
-
+              <tableau-viz
+                id="englearnerViz"
+                src="https://public.tableau.com/views/englearner_dashboard/county"
+                toolbar="bottom"
+                hide-tabs>
+              </tableau-viz>
             </div>
           </div>
         </section>
-
 
         <div class="dash-supplements">
           <div class="dash-supplement">
@@ -80,10 +75,10 @@
             <p class="dash-supplement__body">
               <!-- REPLACE: Add notes on data sources, calculation methods,
                    suppression rules, and any caveats specific to this dashboard. -->
-              Data is sourced from the California Department of Education, but has been 
-              edited by OCDE's REDI team to prepare the data file for data visualization and analysis. 
-              Small student group sizes may be suppressed in accordance with privacy guidelines. 
-              All rates are calculated using the data file's respective cumulative enrollment number 
+              Data is sourced from the California Department of Education, but has been
+              edited by OCDE's REDI team to prepare the data file for data visualization and analysis.
+              Small student group sizes may be suppressed in accordance with privacy guidelines.
+              All rates are calculated using the data file's respective cumulative enrollment number
               as the denominator unless otherwise noted. For questions or more information about
               the methodology, please reach out to REDI@ocde.us
             </p>
@@ -98,7 +93,7 @@
               Visit the California Department of Education Webpage to download the underlying data file used to build this dashboard.
             </p>
             <div class="dash-supplement__action">
-              <a class="dash-download-btn" href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListSB?ps=true&lstTestYear=2025&lstTestType=B&lstCounty=00&lstDistrict=00000&lstFocus=a" target="_blank" rel="noopener noreferrer">
+              <a class="dash-download-btn" href="https://caaspp-elpac.ets.org/elpac/DashViewReportSA?ps=true&lstTestYear=2025&lstTestType=SA&lstGroup=1&lstSubGroup=001&lstGrade=13&lstSchoolType=A&lstCounty=30&lstDistrict=00000&lstSchool=0000000" target="_blank" rel="noopener noreferrer">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
                   <path d="M15 3h6v6"/>
@@ -111,20 +106,6 @@
         </div>
       </div>
     </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-
-        <div class="footer-left">
-          <img src="../assets/images/ocde-logo.png" alt="OCDE logo" class="footer-logo" />
-          <span>Orange County Department of Education</span>
-        </div>
-        <div class="footer-right">
-          Need data support? Contact our Research & Evaluation team
-        </div>
-
-      </div>
-    </footer>
   </div>
   <script src="../assets/js/nav.js"></script>
   <script src="../assets/js/app.js"></script>
