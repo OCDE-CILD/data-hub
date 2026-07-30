@@ -22,7 +22,7 @@
     { key: 'math',                    label: 'Math Assessment',         file: 'math.html',                    parent: 'dashboards', subParent: 'academics' },
     { key: 'ela',                    label: 'English Language Arts Assessment',         file: 'ela.html',                    parent: 'dashboards', subParent: 'academics' },
     { key: 'science',                    label: 'Science Assessment',         file: 'science.html',                    parent: 'dashboards', subParent: 'academics' },
-    { key: 'english-learners',        label: 'English Learners',        file: 'english-learners.html',        parent: 'dashboards' },
+    { key: 'english-learners',        label: 'English Learners',        file: 'english-learners.html',        parent: 'dashboards', subParent: 'academics' },
     { key: 'differentiated-assistance', label: 'Differentiated Assistance', file: 'differentiated-assistance.html', parent: 'dashboards' },
     { key: 'spotlight',               label: 'Spotlight',               file: 'spotlight.html',               parent: 'dashboards' },
     { key: 'resources',               label: 'Resources',               isDropdown: true },
