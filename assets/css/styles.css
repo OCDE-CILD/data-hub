@@ -9,7 +9,7 @@
   --line: #d8e2ef;
   --shadow: 0 10px 28px rgba(16, 35, 62, 0.06);
   --shadow-soft: 0 8px 20px rgba(16, 35, 62, 0.04);
-  --header-h: 92px;
+  --header-h: 74px;
   --footer-h: 44px;
 }
 
@@ -57,7 +57,7 @@ body.home-page .hero-band {
 }
 
 body.home-page .hero-grid {
-  gap: 12px;
+  gap: 8px;
 }
 
 body.home-page .hero-copy h1 {
@@ -75,17 +75,17 @@ body.home-page .demo-note {
 }
 
 body.home-page .kpi {
-  min-height: 108px;
-  padding: 10px 11px 9px;
+  min-height: 92px;
+  padding: 8px 10px 7px;
 }
 
 body.home-page .kpi-value {
-  font-size: 27px;
+  font-size: 24px;
 }
 
 body.home-page .section-shell {
-  margin-top: 10px;
-  gap: 10px;
+  margin-top: 6px;
+  gap: 8px;
 }
 
 body.home-page .shell-panel {
@@ -101,7 +101,7 @@ body.home-page .featured-body {
 }
 
 body.home-page .feature-card {
-  min-height: 210px;
+  min-height: 200px;
   height: 100%;
 }
 
@@ -213,7 +213,7 @@ textarea {
 }
 
 .topbar {
-  padding: 8px 22px 6px;
+  padding: 6px 22px 4px;
 }
 
 .site-header {
@@ -249,8 +249,8 @@ textarea {
 }
 
 .brand-logo {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   flex: 0 0 auto;
   margin-left: 2px;
@@ -881,12 +881,12 @@ textarea {
 }
 
 .kpi-icon {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #fff;
   flex: 0 0 auto;
@@ -912,7 +912,7 @@ textarea {
   font-size: 31px;
   line-height: 1;
   font-weight: 800;
-  color: #10233e;
+  color: var(--navy);
   margin-top: 4px;
   margin-bottom: 4px;
   letter-spacing: -0.03em;
@@ -921,7 +921,7 @@ textarea {
 .kpi-label {
   font-size: 13px;
   line-height: 1.2;
-  color: #10233e;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -1110,7 +1110,7 @@ body.home-page .quick-links-panel {
 .quick-links-panel {
   padding: 10px 10px 10px;
   align-self: start;
-  min-height: 194px;
+  min-height: 180px;
 }
 
 .quick-links-panel .shell-title {
