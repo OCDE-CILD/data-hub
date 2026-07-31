@@ -60,15 +60,25 @@ export const ALLOWED_EMAILS = [
 export const LOGIN_PATH_FROM_ROOT = "login.html";
 
 // ─────────────────────────────────────────────────────────────────────────
-// Shared helper — do not need to edit below this line.
+// Shared helpers — do not need to edit below this line.
 // ─────────────────────────────────────────────────────────────────────────
-export function isAuthorized(user) {
-  if (!user || !user.email) return false;
-  const email = user.email.toLowerCase();
-  const domain = email.split("@")[1] || "";
 
-  if (ALLOWED_EMAILS.map((e) => e.toLowerCase()).includes(email)) return true;
+// Checks a raw email address (string) against the allowlist. Used both
+// before we send a sign-in link (so we don't email someone not on the list)
+// and after any sign-in method completes.
+export function isEmailAllowed(email) {
+  if (!email) return false;
+  const normalized = email.toLowerCase();
+  const domain = normalized.split("@")[1] || "";
+
+  if (ALLOWED_EMAILS.map((e) => e.toLowerCase()).includes(normalized)) return true;
   if (ALLOWED_DOMAINS.map((d) => d.toLowerCase()).includes(domain)) return true;
 
   return false;
+}
+
+// Checks a signed-in Firebase user object.
+export function isAuthorized(user) {
+  if (!user || !user.email) return false;
+  return isEmailAllowed(user.email);
 }

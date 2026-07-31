@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" type="image/png" href="assets/images/Mark-COLOR.png" />
   <title>Sign In | OCDE Data Hub</title>
   <style>
     :root {
@@ -158,12 +157,53 @@
     .footer-note a:hover {
       text-decoration: underline;
     }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1 1 auto;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .email-form input[type="email"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 13px;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .email-form input[type="email"]:focus {
+      border-color: #a7c3ea;
+      box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.08);
+    }
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <main class="card">
-    <img src="assets/images/Logo-WHITE" alt="OCDE logo" class="brand-logo" />
+    <img src="assets/images/ocde-logo.png" alt="OCDE logo" class="brand-logo" />
     <div class="eyebrow">Preview Access</div>
     <h1>OCDE Data Hub</h1>
     <p class="subtitle">This site is in preview and limited to authorized reviewers. Sign in with your Google account to continue.</p>
@@ -172,6 +212,14 @@
     <button id="fallback-note" class="signin-button" type="button" style="display: none;" disabled>
       Loading sign-in…
     </button>
+
+    <div class="divider">or</div>
+
+    <form id="email-form" class="email-form">
+      <label for="email-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Email address</label>
+      <input id="email-input" type="email" placeholder="you@example.com" autocomplete="email" required />
+      <button id="email-submit" class="signin-button" type="submit">Email me a sign-in link</button>
+    </form>
 
     <p id="status" class="status" role="status" aria-live="polite"></p>
 
@@ -186,10 +234,13 @@
       getAuth,
       GoogleAuthProvider,
       signInWithCredential,
+      sendSignInLinkToEmail,
+      isSignInWithEmailLink,
+      signInWithEmailLink,
       onAuthStateChanged,
       signOut,
     } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-    import { firebaseConfig, GOOGLE_CLIENT_ID, isAuthorized } from "./assets/js/firebase-config.js";
+    import { firebaseConfig, GOOGLE_CLIENT_ID, isAuthorized, isEmailAllowed } from "./assets/js/firebase-config.js";
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -265,6 +316,88 @@
     }
 
     initGis();
+
+    // ── Email link (magic link) sign-in ─────────────────────────────────
+    // For reviewers without a Google account. No backend needed: Firebase
+    // emails a link back to this same page with a one-time code attached.
+    const emailForm = document.getElementById("email-form");
+    const emailInput = document.getElementById("email-input");
+    const emailSubmit = document.getElementById("email-submit");
+    const STORAGE_KEY = "ocdeDataHubEmailForSignIn";
+
+    emailForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = emailInput.value.trim();
+
+      if (!isEmailAllowed(email)) {
+        setStatus("That email isn't on the reviewer list yet. Contact the team below to be added.", "error");
+        return;
+      }
+
+      emailSubmit.disabled = true;
+      setStatus("Sending link…", "info");
+
+      try {
+        // The link Firebase emails points back to this exact page (this
+        // origin, no cross-domain hop), with the sign-in details appended.
+        const continueUrl = new URL(window.location.href);
+        continueUrl.searchParams.set("next", getNextUrl());
+
+        await sendSignInLinkToEmail(auth, email, {
+          url: continueUrl.toString(),
+          handleCodeInApp: true,
+        });
+
+        window.localStorage.setItem(STORAGE_KEY, email);
+        setStatus(`Check ${email} for a sign-in link. It may take a minute to arrive.`, "info");
+        emailForm.reset();
+      } catch (err) {
+        console.error(err);
+        setStatus("Couldn't send the link. Please try again.", "error");
+        emailSubmit.disabled = false;
+      }
+    });
+
+    // If this page load is someone arriving back via the emailed link,
+    // complete the sign-in automatically.
+    async function completeEmailLinkSignInIfPresent() {
+      if (!isSignInWithEmailLink(auth, window.location.href)) return;
+
+      let email = window.localStorage.getItem(STORAGE_KEY);
+      if (!email) {
+        // Link opened in a different browser/device than it was requested
+        // from — ask them to confirm the address before completing sign-in.
+        email = window.prompt("Confirm the email address this link was sent to:");
+      }
+      if (!email || !isEmailAllowed(email)) {
+        setStatus("That email isn't on the reviewer list yet. Contact the team below to be added.", "error");
+        return;
+      }
+
+      setStatus("Signing in…", "info");
+      try {
+        const result = await signInWithEmailLink(auth, email, window.location.href);
+        window.localStorage.removeItem(STORAGE_KEY);
+
+        // Clean the one-time sign-in params out of the URL so a page
+        // refresh doesn't try to reuse an already-consumed link.
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        if (!isAuthorized(result.user)) {
+          await signOut(auth);
+          setStatus("That Google account isn't on the reviewer list yet. Try a different account or contact the team below.", "error");
+          return;
+        }
+
+        setStatus("Signed in — redirecting…", "info");
+        window.location.replace(getNextUrl());
+      } catch (err) {
+        console.error(err);
+        setStatus("That sign-in link didn't work — it may have expired. Please request a new one.", "error");
+      }
+    }
+
+    completeEmailLinkSignInIfPresent();
 
     // Already signed in and authorized? Skip straight through.
     onAuthStateChanged(auth, (user) => {
