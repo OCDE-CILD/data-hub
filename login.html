@@ -198,6 +198,14 @@
       border-color: #a7c3ea;
       box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.08);
     }
+
+    .confirm-email-note {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      text-align: left;
+    }
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -219,6 +227,13 @@
       <label for="email-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Email address</label>
       <input id="email-input" type="email" placeholder="you@example.com" autocomplete="email" required />
       <button id="email-submit" class="signin-button" type="submit">Email me a sign-in link</button>
+    </form>
+
+    <form id="confirm-email-form" class="email-form" style="display: none;">
+      <p class="confirm-email-note">This link doesn't recognize this browser. Confirm the email address it was sent to:</p>
+      <label for="confirm-email-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Confirm email address</label>
+      <input id="confirm-email-input" type="email" placeholder="you@example.com" autocomplete="email" required />
+      <button id="confirm-email-submit" class="signin-button" type="submit">Continue</button>
     </form>
 
     <p id="status" class="status" role="status" aria-live="polite"></p>
@@ -360,15 +375,11 @@
 
     // If this page load is someone arriving back via the emailed link,
     // complete the sign-in automatically.
-    async function completeEmailLinkSignInIfPresent() {
-      if (!isSignInWithEmailLink(auth, window.location.href)) return;
+    const confirmEmailForm = document.getElementById("confirm-email-form");
+    const confirmEmailInput = document.getElementById("confirm-email-input");
+    const confirmEmailSubmit = document.getElementById("confirm-email-submit");
 
-      let email = window.localStorage.getItem(STORAGE_KEY);
-      if (!email) {
-        // Link opened in a different browser/device than it was requested
-        // from — ask them to confirm the address before completing sign-in.
-        email = window.prompt("Confirm the email address this link was sent to:");
-      }
+    async function finishEmailLinkSignIn(email) {
       if (!email || !isEmailAllowed(email)) {
         setStatus("That email isn't on the reviewer list yet. Contact the team below to be added.", "error");
         return;
@@ -378,6 +389,7 @@
       try {
         const result = await signInWithEmailLink(auth, email, window.location.href);
         window.localStorage.removeItem(STORAGE_KEY);
+        confirmEmailForm.style.display = "none";
 
         // Clean the one-time sign-in params out of the URL so a page
         // refresh doesn't try to reuse an already-consumed link.
@@ -385,7 +397,7 @@
 
         if (!isAuthorized(result.user)) {
           await signOut(auth);
-          setStatus("That Google account isn't on the reviewer list yet. Try a different account or contact the team below.", "error");
+          setStatus("That email isn't on the reviewer list yet. Contact the team below to be added.", "error");
           return;
         }
 
@@ -393,8 +405,33 @@
         window.location.replace(getNextUrl());
       } catch (err) {
         console.error(err);
+        confirmEmailForm.style.display = "none";
         setStatus("That sign-in link didn't work — it may have expired. Please request a new one.", "error");
       }
+    }
+
+    confirmEmailForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      confirmEmailSubmit.disabled = true;
+      finishEmailLinkSignIn(confirmEmailInput.value.trim());
+    });
+
+    function completeEmailLinkSignInIfPresent() {
+      if (!isSignInWithEmailLink(auth, window.location.href)) return;
+
+      const storedEmail = window.localStorage.getItem(STORAGE_KEY);
+      if (storedEmail) {
+        finishEmailLinkSignIn(storedEmail);
+        return;
+      }
+
+      // Link opened in a different browser/device than it was requested
+      // from — show an inline form instead of a native prompt() dialog.
+      gisButton.style.display = "none";
+      fallbackNote.style.display = "none";
+      document.querySelector(".divider").style.display = "none";
+      emailForm.style.display = "none";
+      confirmEmailForm.style.display = "flex";
     }
 
     completeEmailLinkSignInIfPresent();
