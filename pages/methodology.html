@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
@@ -310,8 +310,10 @@
               directly with the downloadable data files. Importantly, these notes are not exhaustive
               of the entire cleaning process and instead document high-level data cleaning practices
               instead. For anyone interested in the R scripts or specific processes, please click the
-              Contact Us button in the top right, or email REDI@ocde. us. Click on any topic below to expand its
-              notes.
+              Contact Us button in the top right, or email REDI@ocde.us. 
+              </p>
+              <strong>Click on any topic below to expand its
+              notes.</strong>
             </p>
 
             <h2>General Data Handling</h2>
@@ -401,7 +403,9 @@
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <caption>Raw CDE column name → cleaned field name
+                    <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
+                  </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Academic Year</td><td><code>year</code></td></tr>
                   <tr><td>Charter School</td><td><code>charter</code></td></tr>
@@ -419,7 +423,7 @@
                   script — <code>enrollment_num</code>, <code>chronic_count</code>,
                   <code>chronic_rate</code>. Starting with the 2024-25 refresh, this switched to
                   an automatic scan that checks every column for the asterisk marker rather than a
-                  fixed list — functionally similar in most cases, but able to catch a newly
+                  fixed list which is functionally similar in most cases, but able to catch a newly
                   suppressed field that the fixed list wouldn't have anticipated. Either way, a
                   single flag column, <code>suppression</code> (<code>1</code>/<code>0</code>), is
                   set to <code>1</code> for a record if any checked column for that record
@@ -443,8 +447,8 @@
                 </table>
                 <p>
                   <code>year</code> is recoded from the raw label (e.g., &quot;2024-25&quot;) to a
-                  two-digit integer (<code>25</code>). <strong><code>dass_num</code> is only
-                  present starting in 2021-22</strong>.
+                  two-digit integer (<code>25</code>). <code>dass_num</code> is only
+                  present starting in 2021-22.
                 </p>
 
                 <p class="accordion-body__subhead">Identifiers &amp; CDS Codes</p>
@@ -454,13 +458,6 @@
                   used at both the school and district level, the school-level version is altered
                   to keep the two distinct, and the list of affected codes is retained as
                   <code>altered_cds</code>.
-                </p>
-                <p>
-                  <strong>This resolution is applied to the fact table used to build the
-                  dashboard, but not to the &quot;full&quot; CSV.</strong> The full/flat CSV, the more
-                  human-readable export intended for outside analysts, has its <code>cds</code>
-                  column rebuilt from scratch after the conflict-resolution step, without
-                  reapplying the fix. 
                 </p>
 
                 <p class="accordion-body__subhead">Demographic Groups &amp; Primary Key</p>
@@ -494,13 +491,15 @@
                 <p>
                   Source: CDE's Suspension data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filessd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filessd.asp</a>).
-                  This section is based on a direct read of all seven years of cleaning scripts
-                  currently available, 2018-19 through 2024-25.
+                  This section is based on a direct read of all seven years of REDI's data cleaning scripts
+                  2018-19 through 2024-25.
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <caption>Raw CDE column name → cleaned field name
+                    <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
+                  </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Academic Year</td><td><code>year</code></td></tr>
                   <tr><td>Reporting Category</td><td><code>student_group</code></td></tr>
@@ -599,14 +598,16 @@
                 <p>
                   Source: CDE's Adjusted Cohort Graduation Rate (ACGR) data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesacgr.asp</a>).
-                  This section is based on a direct read seven years of cleaning scripts, 
+                  This section is based on a direct read of all seven years of REDI's data cleaning scripts
                   2018-19 through 2024-25.
                 </p>
                 <p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <caption>Raw CDE column name → cleaned field name
+                    <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
+                  </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Academic Year</td><td><code>year</code></td></tr>
                   <tr><td>Charter School</td><td><code>charter</code></td></tr>
@@ -668,9 +669,9 @@
                 <p class="accordion-body__subhead">2024-2025: Data Quality Note</p>
                 <p>
                   The 2024-25 schools dimension table excludes a row where the school code was
-                  <code>1</code> and the school name was listed as &quot;District Office&quot; —
+                  <code>1</code> and the school name was listed as &quot;District Office&quot;,
                   a district-level administrative record that had been showing up alongside actual
-                  schools in that lookup table. This is specific to the 2024-25 script.
+                  schools in that lookup table. This is specific to the 2024-25 script. To account for the removal, in the data visualization a calculated field is created to represent district level out of the null school code entries for district-level data. 
                 </p>
 
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
@@ -710,7 +711,9 @@
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name (2023-24 / 2024-25 structure)</caption>
+                  <caption>Raw CDE column name → cleaned field name (2023-24 / 2024-25 structure)
+                    <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
+                  </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Test Year</td><td><code>year</code></td></tr>
                   <tr><td>Type ID</td><td><code>org_level</code></td></tr>
@@ -881,9 +884,9 @@
               <div class="accordion-body">
 
                 <p>
-                  Source: CAASPP research files for the California Science Test
+                  Source: CAST research files for the California Science Test
                   (<a href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListCAST" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on five years of cleaning scripts:
+                  This section is based on five years of REDI's cleaning scripts:
                   2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
                   available to review, so the widely-cited pandemic-era gap and data-quality issues
                   for those years (below) reflect team notes rather than a script we've verified
@@ -895,12 +898,14 @@
                   results. Area tests cover three subjects: Life Sciences (<code>1</code>),
                   Physical Sciences (<code>2</code>), and Earth &amp; Space Sciences (<code>3</code>).
                   Unlike Math/ELA (SBAC), CAST has never had a Composite score in any of the five
-                  years checked — every year's has Core and Area only.
+                  years checked.
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name (2023-24 / 2024-25 structure)</caption>
+                  <caption>Raw CDE column name → cleaned field name (2023-24 / 2024-25 structure)
+                    <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
+                  </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>Test Year</td><td><code>year</code></td></tr>
                   <tr><td>Type ID</td><td><code>org_level</code></td></tr>
@@ -943,7 +948,7 @@
                   <code>*</code>, and suppression was all-or-nothing within each group of columns, 
                   no partial suppression occurred. By 2021-22,
                   the marker set had already expanded to <code>*</code>, an empty string, and
-                  <code>NA</code> — this change happened at some point between 2018-19 and 2021-22,
+                  <code>NA</code>. This change happened at some point between 2018-19 and 2021-22,
                   not specifically in 2023-24 as an earlier version of this page stated.
                 </p>
                 <p>
@@ -1038,7 +1043,7 @@
                   Source: Summative ELPAC (English Language Proficiency Assessment for
                   California) research files
                   (<a href="https://caaspp-elpac.ets.org/elpac/ResearchFilesSA" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on a direct read of five years of cleaning scripts:
+                  This section is based on a direct read of five years of REDI's data cleaning scripts:
                   2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
                   available to review.
                 </p>
@@ -1177,7 +1182,7 @@
                 <p>
                   Source: California School Dashboard College/Career Indicator (CCI) file
                   (<a href="https://www.cde.ca.gov/ta/ac/cm/ccidatafiles.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ta/ac/cm/ccidatafiles.asp</a>).
-                  This section is based on three years of cleaning scripts,
+                  This section is based on three years of REDI's data cleaning scripts,
                   2022-23 through 2024-25; no earlier years were reviewed. This file is part of
                   the same California School Dashboard family covered under Differentiated
                   Assistance elsewhere on this site, but is cleaned as its own indicator-specific
