@@ -1162,6 +1162,96 @@
  
               </div>
             </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                Reclassification Rate (RFEP)
+                <span class="accordion-header__sub">2018-2019 – 2020-2021, 2024-2025</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="accordion-body">
+
+                <p>
+                  Source: two different CDE releases depending on year. For 2018-19 through
+                  2020-21, CDE's downloadable reclassification demographic files
+                  (<code>https://www3.cde.ca.gov/demo-downloads/reclass/reclass[YY].txt</code>),
+                  pulled directly by the script. For 2024-25, CDE's Annual RFEP Rate report,
+                  distributed as an Excel workbook (e.g. <code>rfep2425-4.xlsx</code>, sheet
+                  &quot;2024-25 Annual RFEP Rates&quot;) that has to be downloaded manually rather
+                  than fetched programmatically like the older text files.
+                </p>
+                <p>
+                  <strong>Not the same file as ELPI.</strong> This measures the share of English
+                  Learners reclassified as Fluent English Proficient (RFEP) in a given year. The
+                  English Learner Progress Indicator (ELPI) documented under Differentiated
+                  Assistance elsewhere on this page is a related but distinct California School
+                  Dashboard accountability metric.
+                </p>
+
+                <p class="accordion-body__subhead">Column Reference</p>
+                <table class="code-table">
+                  <caption>Raw CDE column name → cleaned field name</caption>
+                  <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
+                  <tr><td><code>el</code> (2018-19 to 2020-21 text files)</td><td><code>el_count</code></td></tr>
+                  <tr><td><code>reclass</code> (2018-19 to 2020-21 text files)</td><td><code>reclass_count</code></td></tr>
+                  <tr><td><code>fep</code> (2018-19 to 2020-21 text files)</td><td><code>fep_count</code> (dropped before the final combined file is written)</td></tr>
+                  <tr><td><code>EnglishLearnerCount</code> (2024-25 workbook)</td><td><code>el_count</code></td></tr>
+                  <tr><td><code>ReclassifiedStudentCount</code> (2024-25 workbook)</td><td><code>reclass_count</code></td></tr>
+                  <tr><td><code>AnnualReclassificationRate</code> (2024-25 workbook)</td><td><code>reclass_rate</code></td></tr>
+                  <tr><td><code>AggType</code> (2024-25 workbook)</td><td><code>org_level_num</code> (T=1, C=2, D=3, S=4)</td></tr>
+                  <tr><td><code>CharterAllYN</code> / <code>DassAllYN</code> (2024-25 workbook)</td><td><code>charter_num</code> / <code>dass_num</code> (Y=1, N=0, ALL=2)</td></tr>
+                </table>
+
+                <p class="accordion-body__subhead">How the Reclassification Rate is Derived</p>
+                <p>
+                  The two source types handle the rate differently. The 2024-25 workbook already
+                  publishes a finished annual reclassification rate, so the script simply renames
+                  <code>AnnualReclassificationRate</code> to <code>reclass_rate</code> without
+                  recalculating anything. The 2018-19 through 2020-21 text files don't include a
+                  precomputed rate at all, sothe script calculates <code>reclass_rate</code> itself
+                  for those years as <code>reclass_count / el_count</code>. This manually
+                  calculated rate is confirmed each year by cross-referencing the result against
+                  CDE's own published reclassification data before it's accepted into the final
+                  file.
+                </p>
+                <p>
+                  As a data-quality check on the manually calculated years, any row where the
+                  computed rate comes out to 100% or higher is dropped. A reclassified count
+                  equal to or exceeding the EL count isn't a valid rate, so these are treated as
+                  source-data errors rather than real values.
+                </p>
+
+                <p class="accordion-body__subhead">Org Level, Charter &amp; DASS Coverage</p>
+                <p>
+                  The combined file is limited to school-level records (<code>org_level_num</code>
+                  = 4) across all years. For 2018-19 through 2020-21, the source files only contain
+                  school-level rows to begin with, so <code>org_level_num</code> is simply set to 4
+                  rather than derived from a raw column. The 2024-25 workbook is broader — it
+                  includes County, District, School, and Total aggregations via <code>AggType</code>
+                  — so only the School-level rows are kept, to stay consistent with the earlier
+                  years. Charter and DASS breakdowns (<code>charter_num</code>, <code>dass_num</code>)
+                  are only available starting with the 2024-25 file; the older text files don't
+                  carry that distinction.
+                </p>
+
+                <p class="accordion-body__subhead">County Filtering</p>
+                <p>
+                  Both source types are filtered down to this county before the years are combined,
+                  but the filter differs by format: the older text files are filtered on the county
+                  name text field (<code>county == "Orange"</code>), while the 2024-25 workbook is
+                  filtered on the numeric <code>county_code == 30</code>.
+                </p>
+
+                <p class="accordion-body__subhead">Year-by-Year Coverage</p>
+                <table class="coverage-table">
+                  <tr><th>Year</th><th>Status</th></tr>
+                  <tr><td>2018-2021</td><td class="status-ok">Available — from CDE's downloadable reclassification text file; rate manually calculated and cross-checked against CDE data</td></tr>
+                  <tr><td>2021-2022 – 2023-2024</td><td class="status-gap">Unavailable — CDE did not post reclassification data for these years</td></tr>
+                  <tr><td>2024-2025</td><td class="status-ok">Available — sourced from CDE's new Annual RFEP Rate Excel workbook, which reports the rate directly rather than requiring it to be calculated</td></tr>
+                </table>
+
+              </div>
+            </details>
  
           </div>
         </section>

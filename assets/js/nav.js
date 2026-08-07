@@ -22,7 +22,8 @@
     { key: 'math',                    label: 'Math Assessment',         file: 'math.html',                    parent: 'dashboards', subParent: 'academics' },
     { key: 'ela',                    label: 'English Language Arts Assessment',         file: 'ela.html',                    parent: 'dashboards', subParent: 'academics' },
     { key: 'science',                    label: 'Science Assessment',         file: 'science.html',                    parent: 'dashboards', subParent: 'academics' },
-    { key: 'english-learners',        label: 'English Learner Assessment',        file: 'english-learners.html',        parent: 'dashboards', subParent: 'academics' },
+    { key: 'english-learners',        label: 'English Learner Assessment',        file: 'english-learners.html',        parent: 'dashboards', subParent: 'english-learners' },
+    { key: 'reclassification',        label: 'Reclassification Rate',        file: 'reclassification.html',        parent: 'dashboards', subParent: 'english-learners' },
     { key: 'differentiated-assistance', label: 'California School Dashboard', file: 'differentiated-assistance.html', parent: 'dashboards' },
     { key: 'spotlight',               label: 'Spotlight',               file: 'spotlight.html',               parent: 'dashboards' },
     { key: 'resources',               label: 'Resources',               isDropdown: true },
@@ -89,6 +90,7 @@
     const dashItems = NAV_ITEMS.filter(i => i.parent === 'dashboards');
     const attendanceItems = dashItems.filter(i => i.subParent === 'attendance');
     const academicsItems = dashItems.filter(i => i.subParent === 'academics');
+    const englishLearnersItems = dashItems.filter(i => i.subParent === 'english-learners');
     const otherItems = dashItems.filter(i => !i.subParent);
 
     const isDashboardActive = dashItems.some(i => i.key === activeKey);
@@ -106,6 +108,14 @@
     // Academics section label + sub-links
     inner += `<span class="dropdown-section-label">Academics <span style="float:right">▾</span></span>\n`;
     for (const item of academicsItems) {
+      const isActive = item.key === activeKey;
+      const cls = ['dropdown-sub-link', isActive ? 'active' : ''].filter(Boolean).join(' ');
+      inner += `<a href="${resolveHref(item, prefix)}" class="${cls}">${item.label}</a>\n`;
+    }
+
+    // English Learners section label + sub-links
+    inner += `<span class="dropdown-section-label">English Learners <span style="float:right">▾</span></span>\n`;
+    for (const item of englishLearnersItems) {
       const isActive = item.key === activeKey;
       const cls = ['dropdown-sub-link', isActive ? 'active' : ''].filter(Boolean).join(' ');
       inner += `<a href="${resolveHref(item, prefix)}" class="${cls}">${item.label}</a>\n`;
