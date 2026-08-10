@@ -130,7 +130,13 @@ export const ALLOWED_EMAILS = [
   "esther_s_kim@myfsd.org",
   "jjackson@ljsd.org",
   "shaol@orangeusd.org",
-  "AmyA@UnitedWayOC.org"
+  "AmyA@UnitedWayOC.org",
+  "sherie.hopson@caloptima.org",
+  "apedroza@orangeusd.org",
+  "JParsons@ocde.us",
+  "SDeeble-Reynolds@ocde.us",
+  "twalsh@ocde.us",
+  "rmundschau@ocde.us"
   // add one address per line
 ];
 
