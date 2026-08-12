@@ -136,7 +136,18 @@ export const ALLOWED_EMAILS = [
   "JParsons@ocde.us",
   "SDeeble-Reynolds@ocde.us",
   "twalsh@ocde.us",
-  "rmundschau@ocde.us"
+  "rmundschau@ocde.us",
+  "RHendrick@ocde.us",
+  "CFong@ocde.us",
+  "mpoulin@ocde.us",
+  "IHanigan@ocde.us",
+  "DWest@ocde.us",
+  "AConstantino@ocde.us",
+  "dgiordano@ocde.us",
+  "grolen@ocde.us",
+  "DCole@ocde.us",
+  "acloke@ocde.us",
+  "GLance@ocde.us"
   // add one address per line
 ];
 
