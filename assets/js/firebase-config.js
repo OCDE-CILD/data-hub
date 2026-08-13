@@ -147,7 +147,8 @@ export const ALLOWED_EMAILS = [
   "grolen@ocde.us",
   "DCole@ocde.us",
   "acloke@ocde.us",
-  "GLance@ocde.us"
+  "GLance@ocde.us",
+  "wgray@choc.org"
   // add one address per line
 ];
 
