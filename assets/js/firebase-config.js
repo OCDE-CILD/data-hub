@@ -148,7 +148,11 @@ export const ALLOWED_EMAILS = [
   "DCole@ocde.us",
   "acloke@ocde.us",
   "GLance@ocde.us",
-  "wgray@choc.org"
+  "wendy.gray@choc.org",
+  "jeslopez@choc.org",
+  "terri.iler@choc.org",
+  "smodir@choc.org",
+  "kathryn.moffa@choc.org"
   // add one address per line
 ];
 
