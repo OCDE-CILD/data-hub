@@ -152,8 +152,9 @@ export const ALLOWED_EMAILS = [
   "jeslopez@choc.org",
   "terri.iler@choc.org",
   "smodir@choc.org",
-  "kathryn.moffa@choc.org"
-  // add one address per line
+  "kathryn.moffa@choc.org",
+  "LRowell@ocde.us",
+  "twalker@ocde.us"
 ];
 
 // 4. Where the login page lives, relative to the site root. Used by
