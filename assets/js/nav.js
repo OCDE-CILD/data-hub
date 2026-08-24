@@ -81,7 +81,7 @@
 
     // Contact Us
     const contactItem = NAV_ITEMS.find(i => i.key === 'contact');
-    html += `<a href="${contactItem.href || '#'}" class="nav-trigger" style="border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:#fff;padding:9px 0 7px;">Contact Us</a>\n`;
+    html += `<a href="${contactItem.href || '#'}" class="nav-trigger" style="border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:#fff;padding:9px 0 7px;" ${contactItem.target ? `target="${contactItem.target}"` : ''}>Contact Us</a>\n`;
 
     return html;
   }
