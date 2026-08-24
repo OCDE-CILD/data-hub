@@ -33,7 +33,7 @@ export const GOOGLE_CLIENT_ID =
 //
 //    A signed-in user is authorized if EITHER list matches. If both lists
 //    are empty, anyone with a Google account can get in (not recommended).
-export const ALLOWED_DOMAINS = [];
+export const ALLOWED_DOMAINS = ["ocde.us"];
 
 export const ALLOWED_EMAILS = [
   "jaubele@ocde.us",
