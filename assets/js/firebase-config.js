@@ -155,7 +155,8 @@ export const ALLOWED_EMAILS = [
   "kathryn.moffa@choc.org",
   "LRowell@ocde.us",
   "twalker@ocde.us",
-  "christinarsepulveda79@gmail.com"
+  "christinarsepulveda79@gmail.com",
+  "ljb@lisajburke.com"
 ];
 
 // 4. Where the login page lives, relative to the site root. Used by
