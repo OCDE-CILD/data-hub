@@ -81,8 +81,13 @@
     html += buildSimpleDropdown('about', 'About', activeKey, prefix);
 
     // Contact Us
-    const contactItem = NAV_ITEMS.find(i => i.key === 'contact');
-    html += `<a href="${contactItem.href || '#'}" class="nav-trigger" style="border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:#fff;padding:9px 0 7px;" ${contactItem.target ? `target="${contactItem.target}"` : ''}>Contact Us</a>\n`;
+    const otherTopLevel = NAV_ITEMS.filter(i => !i.parent && !i.isDropdown && i.key !== 'home');
+    for (const item of otherTopLevel) {
+      const isActive = item.key === activeKey;
+      const cls = isActive ? ' class="active"' : '';
+      const target = item.target ? ` target="${item.target}" rel="noopener noreferrer"` : '';
+      html += `<a href="${resolveHref(item, prefix)}"${cls}${target} style="border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:#fff;padding:9px 0 7px;">${item.label}</a>\n`;
+    }
 
     return html;
   }
