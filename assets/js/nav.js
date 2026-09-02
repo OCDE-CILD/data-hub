@@ -32,7 +32,8 @@
     { key: 'about',                   label: 'About',                   isDropdown: true },
     { key: 'purpose',                 label: 'Purpose',                 file: 'purpose.html',                 parent: 'about' },
     { key: 'faq',                     label: 'FAQ',                     file: 'faq.html',                     parent: 'about' },
-    { key: 'contact',                 label: 'Contact Us',              href: 'https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771', target: "_blank"},
+    { key: 'contact',                 label: 'Email Us',              href: 'mailto:redi@ocde.us', target: "_blank"},
+    { key: 'work',                 label: 'Work With Us',              href: 'https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771', target: "_blank"}
   ];
 
   // ─── Path helper ─────────────────────────────────────────────────────────────
