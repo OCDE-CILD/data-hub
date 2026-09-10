@@ -44,15 +44,75 @@
 
     <main class="content">
       <div class="wrap">
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            This dashboard provides an interactive view of The California Assessment of Student Performance and Progress (CAASPP) Math assessment results across Orange County schools and districts. Users can view 3 different versions of the dashboard to explore Math percent met/exceeded rates, test participation rates, year-over-year trends, and outcomes across student groups. Users can use the clickable tabs at the top of the dashboard to view either County, District or School-level data. By identifying patterns in student performance and disparities among student populations, the dashboard helps educators target educational interventions, monitor progress over time, and support strategies that improve student academic success.
-          <p>
-          <p class="dash-about__body">
-            When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
-          <p>
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              This dashboard provides an interactive view of The California Assessment of Student Performance and Progress (CAASPP) Math assessment results across Orange County schools and districts. Users can view 3 different versions of the dashboard to explore Math percent met/exceeded rates, test participation rates, year-over-year trends, and outcomes across student groups. Users can use the clickable tabs at the top of the dashboard to view either County, District or School-level data. By identifying patterns in student performance and disparities among student populations, the dashboard helps educators target educational interventions, monitor progress over time, and support strategies that improve student academic success.
+            <p>
+            <p class="dash-about__body">
+              When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+            <p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">Standard Not Met / Nearly Met / Met / Exceeded</td>
+                  <td class="def">CAASPP results are reported using four performance levels. <strong>Not Met</strong> and <strong>Nearly Met</strong> reflect achievement below the expected level for the grade/subject. <strong>Met</strong> reflects the expected level of achievement, and <strong>Exceeded</strong> reflects achievement above the expected level.</td>
+                </tr>
+                <tr>
+                  <td class="term">% Met or Exceeded</td>
+                  <td class="def">This figure combines the <strong>Standard Met</strong> and <strong>Standard Exceeded</strong> performance levels into a single rate. It does not include students in the Nearly Met or Not Met levels. This is the standard proficiency figure used in most state and federal reporting.</td>
+                </tr>
+                <tr>
+                  <td class="term">Grade 12 vs. Graduating Class</td>
+                  <td class="def"><strong>Grade 12</strong> reflects students enrolled in 12th grade during a given school year — a single-year snapshot. <strong>Graduating Class</strong> (cohort) follows one group of students from their first entry into 9th grade through graduation, transfer, or dropout. These use different populations and should not be compared directly.</td>
+                </tr>
+                <tr>
+                  <td class="term">Parent Education Level</td>
+                  <td class="def">Reflects the highest level of schooling completed by a student's parent(s)/guardian(s), as self-reported at the time of testing: Not a High School Graduate, High School Graduate, Some College, College Graduate, Graduate School/Post-Graduate, or Declined to State. Totals may not sum to the full student count due to non-response.</td>
+                </tr>
+                <tr>
+                  <td class="term">Data Suppression</td>
+                  <td class="def">To protect student privacy, results for any student group with fewer than 11 students at the selected level are not reported. A group may appear at the district level but disappear when filtering to a specific school or year if it falls below this threshold — this does not mean there is no data, only that it can't be shown.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">
