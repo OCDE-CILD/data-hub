@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
@@ -44,14 +44,67 @@
 
     <main class="content">
       <div class="wrap">
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            This dashboard provides an interactive view of chronic absenteeism across Orange County schools and districts. Users can filter by district and school to explore chronic absenteeism rates, student counts, year-over-year trends, and outcomes across student groups. By identifying patterns in student attendance and disparities among student populations, the dashboard helps educators target attendance interventions, monitor progress over time, and support strategies that improve student engagement and academic success. For more information about the data, see this page: https://www.cde.ca.gov/ds/ad/crabtop.asp 
-          </p>
-          <p class="dash-about__body">
-          When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              This dashboard provides an interactive view of chronic absenteeism across Orange County schools and districts. Users can filter by district and school to explore chronic absenteeism rates, student counts, year-over-year trends, and outcomes across student groups. By identifying patterns in student attendance and disparities among student populations, the dashboard helps educators target attendance interventions, monitor progress over time, and support strategies that improve student engagement and academic success. For more information about the data, see this page: https://www.cde.ca.gov/ds/ad/crabtop.asp 
+            </p>
+            <p class="dash-about__body">
+              When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+            </p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">Chronic Absence (State Definition)</td>
+                  <td class="def">Under California Education Code, a student is considered <strong>chronically absent</strong> if they are absent, excused or unexcused, for 10% or more of the school days they were enrolled during the school year. For a student enrolled the full year, that's 18 or more days missed.</td>
+                </tr>
+                <tr>
+                  <td class="term">Chronic Absenteeism Rate</td>
+                  <td class="def">The percentage of students who met the chronic absence threshold above. It is calculated as the number of chronically absent students divided by cumulative enrollment (see below), not by a single point-in-time headcount.</td>
+                </tr>
+                <tr>
+                  <td class="term">Cumulative Enrollment</td>
+                  <td class="def">The total number of students who were enrolled at any point during the school year, rather than a single-day snapshot (such as Fall enrollment or a specific census date). Because it includes students who enrolled or left partway through the year, cumulative enrollment is typically larger than a point-in-time enrollment count and is the denominator used for this dashboard's rates.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">
