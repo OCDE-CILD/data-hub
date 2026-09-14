@@ -41,17 +41,73 @@
 
     <main class="content">
       <div class="wrap">
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            <!-- REPLACE: Add a description of what this dashboard shows,
-                 what the data represents, and who it is intended for. -->
-            This dashboard provides an interactive view of student suspension outcomes across Orange County schools and districts. Users can filter by district and school to examine suspension rates, suspended student counts, year-over-year trends, and outcomes across student groups. By highlighting patterns and disparities in exclusionary discipline, the dashboard helps educators identify student populations that may require additional supports, evaluate the impact of discipline practices over time, and inform strategies to promote equitable, inclusive learning environments.
-          <p>
-          <p class="dash-about__body">
-          When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
-          <p>
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              <!-- REPLACE: Add a description of what this dashboard shows,
+                   what the data represents, and who it is intended for. -->
+              This dashboard provides an interactive view of student suspension outcomes across Orange County schools and districts. Users can filter by district and school to examine suspension rates, suspended student counts, year-over-year trends, and outcomes across student groups. By highlighting patterns and disparities in exclusionary discipline, the dashboard helps educators identify student populations that may require additional supports, evaluate the impact of discipline practices over time, and inform strategies to promote equitable, inclusive learning environments.
+            <p>
+            <p class="dash-about__body">
+              When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+            <p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">Suspension</td>
+                  <td class="def">A <strong>suspension</strong> is the removal of a student from regular classroom instruction for disciplinary reasons, for one or more school days, as authorized under California Education Code. State reporting is based on <strong>out-of-school suspensions</strong> or instances where a student was removed from school entirely — rather than in-school disciplinary actions that keep the student on campus.</td>
+                </tr>
+                <tr>
+                  <td class="term">Suspension Rate</td>
+                  <td class="def">The percentage of enrolled students who received one or more suspensions during the school year. This is an <strong>unduplicated</strong> count, a student suspended multiple times in the same year is only counted once, divided by cumulative enrollment.</td>
+                </tr>
+                <tr>
+                  <td class="term">Unduplicated Pupil Count (UPC)</td>
+                  <td class="def">The Unduplicated Pupil Count reflects the number of students who are English Learners, eligible for Free or Reduced-Price Meals (socioeconomically disadvantaged), and/or in Foster Youth, counted only <strong>once</strong> per student even if they qualify under more than one category. UPC is used statewide for Local Control Funding Formula (LCFF) purposes and is often reported alongside other student group breakdowns to give context on a school or district's overall student population.</td>
+                </tr>
+                <tr>
+                  <td class="term">Data Suppression</td>
+                  <td class="def">To protect student privacy, results for any student group with fewer than 11 students are not reported. A group may appear at the district level but disappear when filtering to a specific school or year if it falls below this threshold — this does not mean there is no data, only that it can't be shown.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">
