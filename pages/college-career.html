@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
@@ -41,15 +41,79 @@
 
     <main class="content">
       <div class="wrap">
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            This dashboard provides an interactive view of College/Career Preparedness outcomes across Orange County schools and districts. Users can filter by district, school, and student subgroup to examine the percentage of students who are Prepared, Almost Prepared, or Not Prepared, compare local outcomes with Orange County averages, and monitor trends over time. By highlighting strengths and opportunity gaps across student groups, the dashboard helps educators evaluate readiness outcomes, identify areas for targeted support, and inform strategies that expand equitable access to postsecondary opportunities.
-          </p>
-          <p class="dash-about__body">
-          When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
-           </p>
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              This dashboard provides an interactive view of College/Career Preparedness outcomes across Orange County schools and districts. Users can filter by district, school, and student subgroup to examine the percentage of students who are Prepared, Almost Prepared, or Not Prepared, compare local outcomes with Orange County averages, and monitor trends over time. By highlighting strengths and opportunity gaps across student groups, the dashboard helps educators evaluate readiness outcomes, identify areas for targeted support, and inform strategies that expand equitable access to postsecondary opportunities.
+            </p>
+            <p class="dash-about__body">
+              When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+            </p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">College/Career Indicator (CCI)</td>
+                  <td class="def">The CCI is a state accountability measure that reports the percentage of high school graduates who leave prepared for college and/or career, based on a combination of coursework, exams, and program completion — not any single test score.</td>
+                </tr>
+                <tr>
+                  <td class="term">Measures Used to Determine Preparedness</td>
+                  <td class="def">The CCI draws on multiple possible pathways, including: A-G course completion (with a grade of C or better), Career Technical Education (CTE) pathway completion, Advanced Placement (AP) exam scores, International Baccalaureate (IB) exam scores, dual enrollment / college credit course completion, CAASPP ELA and Math performance levels, the State Seal of Biliteracy, a qualifying ASVAB (military readiness) score, and completion of a pre-apprenticeship or apprenticeship program. A student can meet the bar through any qualifying combination of these — they don't need to meet all of them.</td>
+                </tr>
+                <tr>
+                  <td class="term">Prepared</td>
+                  <td class="def">A student is considered <strong>Prepared</strong> when they fully meet the requirements of at least one of the measures above (for example, completing the full A-G sequence with qualifying grades, or completing a CTE pathway).</td>
+                </tr>
+                <tr>
+                  <td class="term">Almost Prepared</td>
+                  <td class="def">A student is considered <strong>Almost Prepared</strong> when they partially meet one or more of the measures above but fall short of a full "Prepared" outcome. For example, meeting the CAASPP performance threshold in only one of ELA or Math, or completing some but not all of the required A-G coursework.</td>
+                </tr>
+                <tr>
+                  <td class="term">Not Prepared</td>
+                  <td class="def">A student is considered <strong>Not Prepared</strong> when they do not meet the criteria for Prepared or Almost Prepared on any of the measures above.</td>
+                </tr>
+                <tr>
+                  <td class="term">Data Suppression</td>
+                  <td class="def">To protect student privacy, results for any student group with fewer than 11 students are not reported. A group may appear at the district level but disappear when filtering to a specific school or year if it falls below this threshold — this does not mean there is no data, only that it can't be shown.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">

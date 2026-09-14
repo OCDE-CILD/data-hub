@@ -480,6 +480,72 @@ textarea {
   color: var(--text);
 }
 
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.mobile-nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-nav-toggle__bars,
+.mobile-nav-toggle__bars::before,
+.mobile-nav-toggle__bars::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-nav-toggle__bars {
+  position: relative;
+}
+
+.mobile-nav-toggle__bars::before {
+  position: absolute;
+  top: -7px;
+  left: 0;
+}
+
+.mobile-nav-toggle__bars::after {
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars {
+  background: transparent;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .mobile-nav-toggle__bars::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+}
+
 /* Shared content area */
 .content {
   flex: 1 1 auto;
