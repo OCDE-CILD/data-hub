@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
@@ -45,20 +45,72 @@
     <main class="content">
       <div class="wrap">
 
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            This dashboard provides an overview of the California School Dashboard, a central system for accountability in the state. This dashboard can be used to gain a high level understanding of both the performance and growth of a respective school or district across the areas seen under the filter, "Select a Dashboard Indicator". This information is submitted by schools once per school year and therefore this data is not representative of the most current data for any respective school or district. To utilize this dashboard, use the filters on the right to explore data by district, school, student group, and year. To view data for an entire district, select "Overall District" under the "Select a School" filter. 
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              This dashboard provides an overview of the California School Dashboard, a central system for accountability in the state. This dashboard can be used to gain a high level understanding of both the performance and growth of a respective school or district across the areas seen under the filter, "Select a Dashboard Indicator". This information is submitted by schools once per school year and therefore this data is not representative of the most current data for any respective school or district. To utilize this dashboard, use the filters on the right to explore data by district, school, student group, and year. To view data for an entire district, select "Overall District" under the "Select a School" filter. 
+              </p>
+              <p>
+              <p class="dash-about__body">
+            For more information on the California School Dashboard, you can visit: https://www.caschooldashboard.org/about/accountability/. Note that For Chronic Absenteeism, College/Career Indicator, and Graduation Rate, respectively, data may be unavailable for specific schools since these indicators do not apply to all schools in the County. For more information, you can read the State Flyer Indicators: https://www.cde.ca.gov/ta/ac/cm/dashboardtoolkit.asp
             </p>
             <p>
             <p class="dash-about__body">
-          For more information on the California School Dashboard, you can visit: https://www.caschooldashboard.org/about/accountability/. Note that For Chronic Absenteeism, College/Career Indicator, and Graduation Rate, respectively, data may be unavailable for specific schools since these indicators do not apply to all schools in the County. For more information, you can read the State Flyer Indicators: https://www.cde.ca.gov/ta/ac/cm/dashboardtoolkit.asp
-          </p>
-          <p>
-          <p class="dash-about__body">
-          When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
-           </p>
+            When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+             </p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">What is Differentiated Assistance?</td>
+                  <td class="def">Differentiated Assistance (DA) is the support and accountability process under California's Local Control Funding Formula (LCFF) for districts identified as needing assistance. A district is typically identified for DA when one or more student groups perform in the Red or Orange color levels on the same two or more state indicators on the Dashboard in 3 consecutive years. County Offices of Education, like OCDE, provide support to identified districts, which can include data analysis, root cause discussions, and technical assistance in developing improvement strategies.</td>
+                </tr>
+                <tr>
+                  <td class="term">Color-Coded Performance Levels</td>
+                  <td class="def">Each indicator is assigned one of five performance colors, from lowest to highest: <strong>Red</strong>, <strong>Orange</strong>, <strong>Yellow</strong>, <strong>Green</strong>, and <strong>Blue</strong>. These colors are based on a school or district's combined Status and Change, and are used to identify strengths and areas needing support across student groups.</td>
+                </tr>
+                <tr>
+                  <td class="term">Data Suppression</td>
+                  <td class="def">To protect student privacy, results for any student group with fewer than 11 students are not reported. A group may appear at the district level but disappear when filtering to a specific school or year if it falls below this threshold — this does not mean there is no data, only that it can't be shown.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">
