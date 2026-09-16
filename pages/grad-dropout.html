@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
@@ -41,15 +41,79 @@
 
     <main class="content">
       <div class="wrap">
-        <div class="dash-about">
+        <div class="dash-about dash-about--collapsible" id="dashAbout">
           <h2 class="dash-about__title">About this Dashboard</h2>
-          <p class="dash-about__body">
-            These dashboards provide an interactive view of graduation rates and dropout rates, respectively across Orange County schools and districts. Users can filter by district and school to explore graduation or dropout rates, student counts, year-over-year trends, and outcomes across student groups. Users can view 2 different dashboards on this page, one for Graduation related data and another for dropout related data. Users can use the clickable tabs at the top of the dashboard to view either one of of those dashboards. By identifying patterns in student graduation and dropout rates, respectively and disparities among student populations, the dashboard helps educators target interventions, monitor progress over time, and support strategies that improve student engagement and academic success. For more information about the data, see this page: https://www.cde.ca.gov/ds/ad/filesacgr.asp 
-          <p>
-          <p class="dash-about__body">
-          When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
-           <p>
+
+          <div class="dash-about__collapse" id="dashAboutCollapse">
+            <p class="dash-about__body">
+              These dashboards provide an interactive view of graduation rates and dropout rates, respectively across Orange County schools and districts. Users can filter by district and school to explore graduation or dropout rates, student counts, year-over-year trends, and outcomes across student groups. Users can view 2 different dashboards on this page, one for Graduation related data and another for dropout related data. Users can use the clickable tabs at the top of the dashboard to view either one of of those dashboards. By identifying patterns in student graduation and dropout rates, respectively and disparities among student populations, the dashboard helps educators target interventions, monitor progress over time, and support strategies that improve student engagement and academic success. For more information about the data, see this page: https://www.cde.ca.gov/ds/ad/filesacgr.asp 
+            <p>
+            <p class="dash-about__body">
+              When viewing and interacting with the visualization on a laptop screen, we recommend clicking the "see this in full screen" button in the bottom right under the visualization. 
+            <p>
+
+            <div class="dash-keyterms">
+              <div class="dash-keyterms__label">Key Terms</div>
+              <table>
+                <tr>
+                  <td class="term">Eligible Cohort / Graduation Rate</td>
+                  <td class="def">The <strong>Eligible Cohort</strong> is the group of students who first entered 9th grade together in a given year, adjusted for students who transferred in or out during that time (this is the same 4-Year Adjusted Cohort Graduation Rate, or ACGR, methodology used statewide). The <strong>Graduation Rate</strong> is the percentage of that cohort who earned a diploma within four years. Because it tracks one group of students over time, this is a different population than a single-year "Grade 12" enrollment count.</td>
+                </tr>
+                <tr>
+                  <td class="term">Dropout Rate</td>
+                  <td class="def">The percentage of the same eligible cohort (see above) who left school without graduating and did not transfer to another school, GED program, or otherwise complete their education, as determined at the end of the four-year tracking period.</td>
+                </tr>
+                <tr>
+                  <td class="term">Met UC/CSU Requirements (A-G)</td>
+                  <td class="def">The percentage of graduates who completed the full A-G course sequence with a grade of C or better in each course, the minimum coursework requirement for admission eligibility to the University of California (UC) and California State University (CSU) systems.</td>
+                </tr>
+                <tr>
+                  <td class="term">Golden State Seal Merit Diploma</td>
+                  <td class="def">A state recognition awarded to graduating seniors who demonstrate a high level of achievement across a range of academic subject areas, based on state-defined criteria.</td>
+                </tr>
+                <tr>
+                  <td class="term">State Seal of Biliteracy</td>
+                  <td class="def">A state recognition awarded to graduating seniors who have attained a high level of proficiency in both English and one or more other languages by the time they graduate.</td>
+                </tr>
+                <tr>
+                  <td class="term">"Suppressed" Cells</td>
+                  <td class="def">On this dashboard, cells that would otherwise show a rate may instead display the word <strong>"Suppressed"</strong> directly. This means the underlying student group had fewer than 11 students, so the value cannot be reported to protect student privacy, however it does not mean the value is zero or that no data exists for that group.</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" class="dash-about__toggle" id="dashAboutToggle" aria-expanded="false" aria-controls="dashAboutCollapse" aria-label="Expand About this Dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
+
+        <script>
+          (function () {
+            var wrap = document.getElementById('dashAbout');
+            var collapse = document.getElementById('dashAboutCollapse');
+            var toggle = document.getElementById('dashAboutToggle');
+            var collapsedHeight = 96;
+
+            collapse.style.maxHeight = collapsedHeight + 'px';
+
+            toggle.addEventListener('click', function () {
+              var expanding = !wrap.classList.contains('is-expanded');
+
+              if (expanding) {
+                collapse.style.maxHeight = collapse.scrollHeight + 'px';
+              } else {
+                collapse.style.maxHeight = collapsedHeight + 'px';
+              }
+
+              wrap.classList.toggle('is-expanded', expanding);
+              toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
+              toggle.setAttribute('aria-label', expanding ? 'Collapse About this Dashboard' : 'Expand About this Dashboard');
+            });
+          })();
+        </script>
 
         <section class="panel">
           <div class="tableau-shell">
