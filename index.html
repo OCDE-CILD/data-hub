@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="assets/js/auth-check.js"></script>
+  <script type="module" src="assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/spotlights.css">
+  <link rel="stylesheet" href="assets/css/home.css">
   <link rel="icon" type="image/png" href="assets/images/Mark-COLOR.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OCDE Data Hub</title>
 </head>
-  
+
 <body class="home-page">
   <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
     <symbol id="i-search" viewBox="0 0 24 24">
@@ -25,6 +26,9 @@
       <path d="M9 7V5h6v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-link" viewBox="0 0 24 24"><path d="M9 12a4 4 0 014-4h3a4 4 0 010 8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 12a4 4 0 01-4 4H8a4 4 0 010-8h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 4h7l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
@@ -33,19 +37,16 @@
       <path d="M13 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M10 13h4M10 16h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
     </symbol>
-    
     <symbol id="i-file-notes" viewBox="0 0 24 24">
       <path d="M7 4h6l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M13 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M10 12h1.2M10 15h1.2M13.2 12h1.2M13.2 15h1.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
     </symbol>
-    
     <symbol id="i-file-chart" viewBox="0 0 24 24">
       <path d="M7 4h6l4 4v12H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M13 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M10 16l2-3 2 2 2-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-    
     <symbol id="i-mail" viewBox="0 0 24 24">
       <rect x="4" y="5" width="16" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M5.5 7.5l6.5 5 6.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -56,7 +57,6 @@
       <circle cx="12" cy="7.2" r="3.1" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <circle cx="6.2" cy="8.2" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <circle cx="17.8" cy="8.2" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    
       <rect x="9.2" y="11.2" width="5.6" height="10.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <rect x="3.8" y="12" width="4.8" height="8.8" rx="1.1" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <rect x="15.4" y="12" width="4.8" height="8.8" rx="1.1" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -101,274 +101,227 @@
         </div>
 
         <nav class="nav" aria-label="Primary navigation" data-nav data-nav-active="home"></nav>
-
-          <!--
-          <div class="top-actions">
-            <a class="search-action" href="#" aria-label="Search dashboards">
-              <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
-              Search
-            </a>
-            <label class="district-control">
-              <svg aria-hidden="true"><use href="#i-building"></use></svg>
-              <span class="sr-only">Select School</span>
-              <select id="districtSelect" aria-label="Select School">
-                <option value="all">Select School</option>
-                <option value="anaheim-elementary">Anaheim Elementary</option>
-                <option value="anaheim-union-high">Anaheim Union High</option>
-                <option value="brea-olinda-unified">Brea Olinda Unified</option>
-                <option value="buena-park">Buena Park</option>
-                <option value="capistrano-unified">Capistrano Unified</option>
-                <option value="centralia-elementary">Centralia Elementary</option>
-                <option value="cypress">Cypress</option>
-                <option value="fountain-valley">Fountain Valley</option>
-                <option value="fullerton-joint-union-high">Fullerton Joint Union High</option>
-                <option value="fullerton">Fullerton</option>
-                <option value="garden-grove-unified">Garden Grove Unified</option>
-                <option value="huntington-beach-city">Huntington Beach City</option>
-                <option value="huntington-beach-union-high">Huntington Beach Union High</option>
-                <option value="irvine-unified">Irvine Unified</option>
-                <option value="la-habra-city">La Habra City</option>
-                <option value="laguna-beach-unified">Laguna Beach Unified</option>
-                <option value="los-alamitos-unified">Los Alamitos Unified</option>
-                <option value="lowell-joint">Lowell Joint</option>
-                <option value="magnolia">Magnolia</option>
-                <option value="newport-mesa-unified">Newport-Mesa Unified</option>
-                <option value="ocean-view">Ocean View</option>
-                <option value="orange-unified">Orange Unified</option>
-                <option value="placentia-yorba-linda-unified">Placentia-Yorba Linda Unified</option>
-                <option value="saddleback-valley-unified">Saddleback Valley Unified</option>
-                <option value="santa-ana-unified">Santa Ana Unified</option>
-                <option value="savanna">Savanna</option>
-                <option value="tustin-unified">Tustin Unified</option>
-                <option value="westminster">Westminster</option>
-              </select>
-            </label>
-          </div>
-          -->
       </div>
     </header>
 
     <main class="content">
       <div class="wrap">
+
+        <!-- ========== HERO + KPI ROW ========== -->
         <section class="hero-band">
           <div class="hero-grid">
             <div class="hero-copy">
               <h1>Welcome to the OCDE Data Hub</h1>
               <p>Your source for data and insights on student success. Explore dashboards, trends, and resources that support data-informed decisions.</p>
             </div>
+
             <div class="kpi-grid" aria-label="Key performance indicators">
+
+              <!-- Not linked on purpose -->
               <div class="kpi">
                 <div class="kpi-top"><div class="kpi-icon blue"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div></div>
                 <div class="kpi-value">422,351</div>
                 <div class="kpi-label">Total Students</div>
                 <div class="kpi-sub">(2024-25 Orange County)</div>
               </div>
-              <div class="kpi">
-                <div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div>
-                <div class="kpi-value">55%</div>
-                <div class="kpi-label">Met A—G</div>
+
+              <a class="kpi" href="pages/chronic-absenteeism.html" aria-label="Chronic Absenteeism, 14.3 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
+                <div class="kpi-top"><div class="kpi-icon teal"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div></div>
+                <div class="kpi-value">14.3%</div>
+                <div class="kpi-label">Chronic Absenteeism</div>
                 <div class="kpi-sub">(2024-25 Orange County)</div>
-              </div>
-              <div class="kpi">
+              </a>
+
+              <a class="kpi" href="pages/suspension.html" aria-label="Suspension Rate, 1.8 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
                 <div class="kpi-top"><div class="kpi-icon orange"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div></div>
                 <div class="kpi-value">1.8%</div>
                 <div class="kpi-label">Suspension Rate</div>
                 <div class="kpi-sub">(2024-25 Orange County)</div>
-              </div>
-              <div class="kpi">
+              </a>
+
+              <a class="kpi" href="pages/college-career.html" aria-label="College and Career Prepared, 55 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
+                <div class="kpi-top"><div class="kpi-icon green"><svg class="icon" aria-hidden="true"><use href="#i-arrow-trend"></use></svg></div></div>
+                <div class="kpi-value">55%</div>
+                <div class="kpi-label">College/Career Prepared</div>
+                <div class="kpi-sub">(2024-25 Orange County)</div>
+              </a>
+
+              <a class="kpi" href="pages/college-career.html" aria-label="Graduation Rate, 93 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
                 <div class="kpi-top"><div class="kpi-icon purple"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div></div>
-                <div class="kpi-value">36,895</div>
-                <div class="kpi-label">Graduates</div>
-                <div class="kpi-sub">(2024-25 Five-Year Cohort)</div>
-              </div>
+                <div class="kpi-value">93%</div>
+                <div class="kpi-label">Graduation Rate</div>
+                <div class="kpi-sub">(2024-25 Orange County)</div>
+              </a>
+
+              <a class="kpi" href="pages/academics.html" aria-label="Math Met or Exceeded Standard, 49.2 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
+                <div class="kpi-top"><div class="kpi-icon indigo"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></div></div>
+                <div class="kpi-value">49.2%</div>
+                <div class="kpi-label">Math Met/Exceeded</div>
+                <div class="kpi-sub">(2024-25 Orange County)</div>
+              </a>
+
+              <a class="kpi" href="pages/academics.html" aria-label="ELA Met or Exceeded Standard, 58.9 percent. Open dashboard">
+                <span class="kpi-go" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></span>
+                <div class="kpi-top"><div class="kpi-icon gold"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div></div>
+                <div class="kpi-value">58.9%</div>
+                <div class="kpi-label">ELA Met/Exceeded</div>
+                <div class="kpi-sub">(2024-25 Orange County)</div>
+              </a>
+
             </div>
           </div>
         </section>
 
-        <!-- <section class="search-strip">
-          <div class="search-row">
-            <div class="field">
-              <label class="field-label" for="dashboardSearch">Search dashboards</label>
-              <div class="search-input-wrap">
-                <span class="search-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
-                <input id="dashboardSearch" type="text" placeholder="Search dashboards..." />
+        <div class="home-sections">
+
+          <!-- ========== CAROUSEL: dashboards + spotlight ========== -->
+          <section class="shell-panel carousel-panel"
+                   data-carousel
+                   aria-roledescription="carousel"
+                   aria-label="Featured dashboards and data spotlight">
+
+            <div class="carousel-header">
+              <h2 class="shell-title">Featured Dashboards &amp; Spotlight</h2>
+              <div class="carousel-controls">
+                <button class="carousel-btn" type="button" data-carousel-prev aria-label="Previous slide">
+                  <svg aria-hidden="true"><use href="#i-chevron-left"></use></svg>
+                </button>
+                <button class="carousel-btn" type="button" data-carousel-toggle data-playing="true" aria-label="Pause automatic rotation">
+                  <svg class="icon-pause" aria-hidden="true"><use href="#i-pause"></use></svg>
+                  <svg class="icon-play" aria-hidden="true"><use href="#i-play"></use></svg>
+                </button>
+                <button class="carousel-btn" type="button" data-carousel-next aria-label="Next slide">
+                  <svg aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+                </button>
               </div>
             </div>
-            <div class="field">
-              <label class="field-label" for="schoolSelect">School</label>
-              <select id="schoolSelect" aria-label="Select School"></select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="yearSelect">School Year</label>
-              <select id="yearSelect" aria-label="School Year">
-                <option>2025-26</option>
-                <option>2024-25</option>
-                <option>2023-24</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="groupSelect">Student Group</label>
-              <select id="groupSelect" aria-label="Student Group">
-                <option>All Students</option>
-                <option>English Learners</option>
-                <option>Students with Disabilities</option>
-                <option>Socioeconomically Disadvantaged</option>
-              </select>
-            </div>
-            <button class="button small" type="button">
-              <svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>
-              Apply Filters
-            </button>
-          </div>
-        </section> -->
 
-        <section class="section-shell">
-          <aside class="shell-panel explore-panel">
-            <h2 class="shell-title">Explore by Topic</h2>
-            <div class="topic-list">
-              <div class="topic-item"><div class="topic-icon topic-green"><svg class="icon" aria-hidden="true"><use href="#i-people"></use></svg></div><div class="topic-text"><strong>Attendance</strong><span>6 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <div class="topic-item"><div class="topic-icon topic-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation"></use></svg></div><div class="topic-text"><strong>College &amp; Career</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <div class="topic-item"><div class="topic-icon topic-purple"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></div><div class="topic-text"><strong>Student Academics</strong><span>8 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <div class="topic-item"><div class="topic-icon topic-teal"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></div><div class="topic-text"><strong>English Learners</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <div class="topic-item"><div class="topic-icon topic-orange"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div><div class="topic-text"><strong>Special Populations</strong><span>4 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div>
-              <!-- <div class="topic-item"><div class="topic-icon topic-gold"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><div class="topic-text"><strong>Spotlight</strong><span>5 dashboards</span></div><div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div></div> -->
-            </div>
-            <div style="margin-top:10px;"><a class="button full compact" href="#"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>View All Dashboards</a></div>
-          </aside>
+            <div class="carousel-viewport">
+              <div class="carousel-track" aria-live="off">
 
-        <section class="shell-panel featured-wrap">
-          <div class="featured-header">
-            <h2 class="shell-title" style="margin-bottom:0;">Featured Dashboards</h2>
-          </div>
-        
-          <div class="featured-body">
-            <div class="featured-grid">
-              <article class="feature-card primary">
-                <a class="feature-link"
-                   href="pages/chronic-absenteeism.html"
-                   aria-label="Open Chronic Absenteeism dashboard">
-              
-                  <div class="feature-preview">
-                    <img src="assets/images/chronic-absenteeism.png"
-                         alt="Chronic Absenteeism dashboard preview">
-                  </div>
-              
-                  <div class="feature-meta">
-                    <h3>Chronic Absenteeism</h3>
-                    <p>
-                      Explore chronic absenteeism rates, trends, and student group patterns across schools and time.
-                    </p>
-                  </div>
-              
-                </a>
-              </article>    
-              
-              <article class="feature-card">
-                <a class="feature-link"
-                   href="pages/differentiated-assistance.html"
-                   aria-label="Open CA School Dashboard">
-              
-                  <div class="feature-preview">
-                    <img src="assets/images/diff-assist-preview.png"
-                         alt="CA School Dashboard preview">
-                  </div>
-              
-                  <div class="feature-meta">
-                    <h3>California School Dashboard</h3>
-              
-                    <p>
-                      Explore the data related to the California School Dashboard by district and school across Orange County.
-                    </p>
-                  </div>
-              
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
-          
-          <section class="shell-panel featured-wrap spotlight-wrap" style="grid-area: spotlight; grid-row: 1 / 3;">
-            <div class="featured-header">
-              <h2 class="shell-title" style="margin-bottom:0;">Data Spotlight</h2>
-            </div>
-            <div class="featured-body">
-              <article class="feature-card primary spotlight-feature-card">
-                <a class="feature-link"
-                   href="/data-hub/pages/spotlight.html"
-                   aria-label="Open Data Spotlight">
+                <article class="feature-card primary" aria-roledescription="slide">
+                  <a class="feature-link" href="pages/chronic-absenteeism.html" aria-label="Open Chronic Absenteeism dashboard">
+                    <div class="feature-preview" data-label="Chronic Absenteeism preview">
+                      <img src="assets/images/chronic-absenteeism.png" alt="Chronic Absenteeism dashboard preview">
+                    </div>
+                    <div class="feature-meta">
+                      <h3>Chronic Absenteeism</h3>
+                      <p>Explore chronic absenteeism rates, trends, and student group patterns across schools and time.</p>
+                    </div>
+                  </a>
+                </article>
 
-                  <div class="feature-preview">
-                    <img src="assets/images/spotlight_pic.png"
-                         alt="Spotlight preview">
-                  </div>
-                  <div class="feature-meta">
-                    <h3 id="spotlight-title">The Relationship Between Student Satisfaction with Environments and Academic Outcomes</h3>
-                    <p id="spotlight-summary">Read about the importance of student satisfaction with their neighborhood, family and school and how that is related to important academic and engagement outcomes. </p>
-                </a>
-              </article>
+                <article class="feature-card" aria-roledescription="slide">
+                  <a class="feature-link" href="pages/differentiated-assistance.html" aria-label="Open California School Dashboard">
+                    <div class="feature-preview" data-label="California School Dashboard preview">
+                      <img src="assets/images/diff-assist-preview.png" alt="California School Dashboard preview">
+                    </div>
+                    <div class="feature-meta">
+                      <h3>California School Dashboard</h3>
+                      <p>Explore the data related to the California School Dashboard by district and school across Orange County.</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="feature-card primary spotlight-card" aria-roledescription="slide">
+                  <a class="feature-link" href="/data-hub/pages/spotlight.html" aria-label="Open Data Spotlight">
+                    <div class="feature-preview" data-label="Data Spotlight preview">
+                      <span class="carousel-badge">Data Spotlight</span>
+                      <img src="assets/images/spotlight_pic.png" alt="Data Spotlight preview">
+                    </div>
+                    <div class="feature-meta">
+                      <h3>The Relationship Between Student Satisfaction with Environments and Academic Outcomes</h3>
+                      <p>Read about the importance of student satisfaction with their neighborhood, family and school and how that is related to important academic and engagement outcomes.</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="feature-card" aria-roledescription="slide">
+                  <a class="feature-link" href="pages/college-career.html" aria-label="Open College and Career Preparedness dashboard">
+                    <div class="feature-preview" data-label="College &amp; Career preview">
+                      <img src="assets/images/college-career-prep.png" alt="College and Career Preparedness dashboard preview">
+                    </div>
+                    <div class="feature-meta">
+                      <h3>College &amp; Career Preparedness</h3>
+                      <p>See how many students are prepared, almost prepared, or not yet prepared, by student group and over time.</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="feature-card" aria-roledescription="slide">
+                  <a class="feature-link" href="pages/suspension.html" aria-label="Open Suspension dashboard">
+                    <div class="feature-preview" data-label="Suspension preview">
+                      <img src="assets/images/suspension-preview.png" alt="Suspension dashboard preview">
+                    </div>
+                    <div class="feature-meta">
+                      <h3>Suspension</h3>
+                      <p>Explore suspension rates and trends by district, school, and student group across Orange County.</p>
+                    </div>
+                  </a>
+                </article>
+
+              </div>
             </div>
 
-            <!-- hidden stage kept for JS compatibility -->
-            <div id="spotlight-preview" class="spotlight-stage" style="display:none;"></div>
-            <div class="spotlight-panel__cta-wrap" style="display:none;">
-              <a id="spotlight-cta" class="button compact spotlight-panel__cta" href="/data-hub/pages/spotlight.html">
-                <svg class="icon" aria-hidden="true"><use href="#i-spotlight"></use></svg>
-                View Spotlight
+            <div class="carousel-dots" data-carousel-dots></div>
+          </section>
+
+          <!-- ========== QUICK LINKS ========== -->
+          <nav class="quick-links-row" aria-label="Quick links">
+            <div class="links-list">
+              <a class="link-item" href="pages/purpose.html">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Purpose</strong>
+                  <span>About the website and its intention</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+
+              <a class="link-item" href="pages/faq.html">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-notes"></use></svg></div>
+                <div class="link-copy">
+                  <strong>FAQ</strong>
+                  <span>Commonly asked questions, answered</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+
+              <a class="link-item" href="pages/downloads.html">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-chart"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Downloads</strong>
+                  <span>Files and exports</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+
+              <a class="link-item" href="pages/methodology.html">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-chart"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Methodology</strong>
+                  <span>Notes on data cleaning</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
+              </a>
+
+              <a class="link-item" href="https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></div>
+                <div class="link-copy">
+                  <strong>Contact Us</strong>
+                  <span>Reach the team</span>
+                </div>
+                <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
               </a>
             </div>
-          </section>
-          <aside class="shell-panel quick-links-panel">
-            <h2 class="shell-title">Quick Links</h2>
-          <div class="links-list">
-            <a class="link-item" href="pages/purpose.html">
-              <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></div>
-              <div class="link-copy">
-                <strong>Purpose</strong>
-                <span>Read about the website and its intention</span>
-              </div>
-              <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-            </a>
-          
-            <a class="link-item" href="pages/faq.html">
-              <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-notes"></use></svg></div>
-              <div class="link-copy">
-                <strong>Frequently Asked Questions</strong>
-                <span>Commonly asked questions, answered</span>
-              </div>
-              <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-            </a>
-          
-            <a class="link-item" href="pages/downloads.html">
-              <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-chart"></use></svg></div>
-              <div class="link-copy">
-                <strong>Downloads</strong>
-                <span>Files and exports</span>
-              </div>
-              <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-            </a>
+          </nav>
 
-            <a class="link-item" href="pages/methodology.html">
-              <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-file-chart"></use></svg></div>
-              <div class="link-copy">
-                <strong>Methodology</strong>
-                <span>Notes on data cleaning</span>
-              </div>
-              <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-            </a>
-          
-            <a class="link-item" href="https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771" target="_blank">
-              <div class="link-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></div>
-              <div class="link-copy">
-                <strong>Contact Us</strong>
-                <span>Reach the team</span>
-              </div>
-              <div class="topic-arrow"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></div>
-            </a>
-          </div>
-          </aside>
-
-
-        </section>
+        </div>
       </div>
     </main>
 
@@ -377,65 +330,14 @@
         <div class="footer-left">
           <img src="assets/images/Logo-WHITE" alt="OCDE logo" class="footer-logo" />
           <span>Orange County Department of Education</span>
-         </div>
-        <a class="footer-right" href="https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771" target="_blank">Looking for data-driven insights? Our Research &amp; Evaluation team can help</a>
+        </div>
+        <a class="footer-right" href="https://form.asana.com/?k=FPztxN3MWCxoKTl6R6Ey7A&d=32468375920771" target="_blank" rel="noopener noreferrer">Looking for data-driven insights? Our Research &amp; Evaluation team can help</a>
       </div>
     </footer>
   </div>
 
-  <!-- <script>
-    const districtSelect = document.getElementById('districtSelect');
-    const schoolSelect = document.getElementById('schoolSelect');
-    const districtSchoolMap = {
-      all: ['All Schools'],
-      'anaheim-elementary': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'anaheim-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'brea-olinda-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'buena-park': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'capistrano-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'centralia-elementary': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      cypress: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'fountain-valley': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'fullerton-joint-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      fullerton: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'garden-grove-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'huntington-beach-city': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'huntington-beach-union-high': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'irvine-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'la-habra-city': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'laguna-beach-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'los-alamitos-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'lowell-joint': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      magnolia: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'newport-mesa-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'ocean-view': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'orange-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'placentia-yorba-linda-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'saddleback-valley-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'santa-ana-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      savanna: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      'tustin-unified': ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C'],
-      westminster: ['All Schools', 'Sample School A', 'Sample School B', 'Sample School C']
-    };
-
-    function populateSchools(districtKey) {
-      const options = districtSchoolMap[districtKey] || districtSchoolMap.all;
-      schoolSelect.innerHTML = '';
-      options.forEach((label) => {
-        const opt = document.createElement('option');
-        opt.textContent = label;
-        schoolSelect.appendChild(opt);
-      });
-    }
-
-    districtSelect.addEventListener('change', (e) => {
-      populateSchools(e.target.value);
-    });
-
-    populateSchools(districtSelect.value);
-  </script> -->
   <script src="assets/js/nav.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/spotlights.js"></script>
+  <script src="assets/js/carousel.js"></script>
 </body>
 </html>
