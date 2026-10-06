@@ -15,7 +15,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   let index = 0;
-  let perView = 3;
+  let perView = 4;
   let maxIndex = 0;
   let timer = null;
   let userPaused = reduceMotion.matches;
