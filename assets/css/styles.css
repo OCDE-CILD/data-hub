@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 :root {
+  --font-main: "Poppins", "Segoe UI", Arial, sans-serif;
   --navy: #0b2f5b;
   --blue: #135ad6;
   --blue-2: #0f4fbf;
@@ -149,7 +152,7 @@ body {
 }
 
 body {
-  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-family: var(--font-main);
   background: var(--bg);
   color: var(--text);
 }
@@ -268,7 +271,7 @@ textarea {
 
 .brand {
   margin: 0;
-  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-main);
   line-height: 1;
   white-space: nowrap;
 }
@@ -287,7 +290,7 @@ textarea {
 
 .sub {
   margin-top: 4px;
-  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-main);
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
 }
@@ -1854,6 +1857,37 @@ body.home-page .quick-links-panel {
 .bottom-right {
   color: rgba(255, 255, 255, 0.88);
   white-space: nowrap;
+}
+
+a.footer-right {
+  padding: 4px 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+a.footer-right:hover {
+  background: #fff;
+  color: var(--navy);
+  border-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+a.footer-right:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.footer-right {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* Shared page footer/header width helpers */

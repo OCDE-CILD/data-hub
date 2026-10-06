@@ -10,7 +10,7 @@
   const toggleBtn = root.querySelector('[data-carousel-toggle]');
   const dotsWrap = root.querySelector('[data-carousel-dots]');
 
-  const AUTOPLAY_MS = 6000;
+  const AUTOPLAY_MS = 4000;
   const SWIPE_PX = 40;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 

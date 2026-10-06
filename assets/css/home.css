@@ -49,6 +49,17 @@ body.home-page .kpi-grid .kpi {
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
+/* Top-align content so the big numbers line up even when a label wraps;
+   the year/source line stays pinned to the bottom of each tile */
+body.home-page .kpi-grid .kpi {
+  justify-content: flex-start;
+}
+
+body.home-page .kpi-grid .kpi-sub {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
 body.home-page .kpi-grid .kpi-top {
   margin-bottom: 6px;
 }
@@ -124,6 +135,9 @@ body.home-page .home-sections {
 body.home-page .carousel-panel {
   --per-view: 3;
   --carousel-gap: 12px;
+  --carousel-title-size: 17px;
+  --carousel-desc-size: 14px;
+  --carousel-desc-lines: 3;
   padding: 12px 14px 10px;
   overflow: hidden;
 }
@@ -228,13 +242,14 @@ body.home-page .carousel-track .feature-card {
 }
 
 .carousel-track .feature-meta h3 {
-  font-size: 17px;
+  font-size: var(--carousel-title-size);
 }
 
 .carousel-track .feature-meta p {
+  font-size: var(--carousel-desc-size);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: var(--carousel-desc-lines);
+  line-clamp: var(--carousel-desc-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -261,7 +276,7 @@ body.home-page .carousel-track .feature-card {
   box-shadow: 0 2px 8px rgba(16, 35, 62, 0.12);
 }
 
-.carousel-track .spotlight-card .feature-preview img {
+.carousel-track .carousel-spotlight .feature-preview img {
   object-position: center;
 }
 
@@ -387,4 +402,36 @@ body.home-page .quick-links-row .link-item span {
 .carousel-controls [hidden],
 .carousel-dots[hidden] {
   display: none !important;
+}
+
+/* ---------- Footer call-to-action: outlined pill with hover animation ---------- */
+a.footer-right {
+  padding: 4px 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+a.footer-right:hover {
+  background: #fff;
+  color: var(--navy);
+  border-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+a.footer-right:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.footer-right {
+    transition: none;
+    transform: none;
+  }
 }
