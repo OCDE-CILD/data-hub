@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('auth-pending');</script>
+  <!--<script>document.documentElement.classList.add('auth-pending');</script>
   <style>html.auth-pending body { visibility: hidden; }</style>
-  <script type="module" src="../assets/js/auth-check.js"></script>
+  <script type="module" src="../assets/js/auth-check.js"></script>-->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/spotlights.css">
   <link rel="icon" type="image/png" href="../assets/images/Mark-COLOR.png" />
@@ -65,6 +65,89 @@
       margin-right: 4px;
     }
 
+    /* Collapsible key terms / how to read r */
+    .spotlight-report__glossary {
+      max-width: 900px;
+      margin: 0 auto 28px;
+      border: 1px solid #d8e2ef;
+      border-radius: 14px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .spotlight-report__glossary > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b2f5b;
+      background: #f3f7fd;
+      user-select: none;
+    }
+
+    .spotlight-report__glossary > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .spotlight-report__glossary > summary::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid #0b2f5b;
+      border-bottom: 2px solid #0b2f5b;
+      transform: rotate(45deg);
+      transition: transform 0.15s ease;
+      flex: 0 0 auto;
+      margin-right: 4px;
+    }
+
+    .spotlight-report__glossary[open] > summary::after {
+      transform: rotate(-135deg);
+    }
+
+    .spotlight-report__glossary > summary:hover {
+      background: #eaf2ff;
+    }
+
+    .spotlight-report__glossary > summary:focus-visible {
+      outline: 2px solid #135ad6;
+      outline-offset: -2px;
+    }
+
+    .spotlight-report__glossary-body {
+      padding: 6px 18px 18px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #1f2937;
+    }
+
+    .spotlight-report__glossary-body h3 {
+      margin: 18px 0 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b2f5b;
+    }
+
+    .spotlight-report__glossary-body p {
+      margin: 0 0 12px;
+    }
+
+    .spotlight-report__table td.is-term {
+      font-weight: 700;
+      color: #0b2f5b;
+      width: 28%;
+      vertical-align: top;
+    }
+
+    .spotlight-report__table td.is-top {
+      vertical-align: top;
+    }
+
     .spotlight-report__narrative {
       max-width: 900px;
       margin-left: auto;
@@ -89,6 +172,93 @@
       margin: 24px 0 12px;
       font-weight: 700;
       line-height: 1.3;
+    }
+
+    .spotlight-report__narrative h2:first-child {
+      margin-top: 0;
+    }
+
+    .spotlight-report__narrative h3 {
+      font-size: 1.1rem;
+    }
+
+    .spotlight-report__narrative h4 {
+      margin: 20px 0 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .spotlight-report__narrative ul {
+      padding-left: 22px;
+      margin: 0 0 16px;
+    }
+
+    .spotlight-report__narrative li {
+      margin-bottom: 8px;
+    }
+
+    /* Executive summary tables */
+    .spotlight-report__table-wrap {
+      overflow-x: auto;
+      margin: 0 0 20px;
+    }
+
+    .spotlight-report__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .spotlight-report__table th,
+    .spotlight-report__table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid #e5edf7;
+    }
+
+    .spotlight-report__table thead th {
+      background: #f3f7fd;
+      color: #0b2f5b;
+      font-weight: 700;
+      border-bottom: 2px solid #d8e2ef;
+    }
+
+    .spotlight-report__table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .spotlight-report__table td.is-num,
+    .spotlight-report__table th.is-num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .spotlight-report__table td.is-muted {
+      color: #6b7280;
+      font-style: italic;
+    }
+
+    .spotlight-report__takeaway {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: #f3f7fd;
+      border-left: 4px solid #135ad6;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .spotlight-report__takeaway p {
+      margin: 0;
+    }
+
+    .spotlight-report__takeaway ul {
+      margin: 0;
+    }
+
+    .spotlight-report__takeaway li:last-child {
+      margin-bottom: 0;
     }
 
     .spotlight-report__viz-section {
@@ -150,6 +320,19 @@
       .spotlight-report__subtitle {
         font-size: 1rem;
       }
+      .spotlight-report__table th,
+      .spotlight-report__table td {
+        padding: 8px 10px;
+      }
+      .spotlight-report__table td.is-term {
+        width: auto;
+      }
+      .spotlight-report__glossary > summary {
+        padding: 12px 14px;
+      }
+      .spotlight-report__glossary-body {
+        padding: 4px 14px 14px;
+      }
     }
   </style>
 </head>
@@ -185,11 +368,193 @@
               </div>
             </header>
 
-            <!-- ===== NARRATIVE (above viz) ===== -->
+            <!-- ===== COLLAPSIBLE: KEY TERMS & HOW TO READ r ===== -->
+            <details class="spotlight-report__glossary">
+              <summary>Key Terms &amp; How to Read Correlation (r) Values</summary>
+              <div class="spotlight-report__glossary-body">
+
+                <h3>Key Terms</h3>
+                <div class="spotlight-report__table-wrap">
+                  <table class="spotlight-report__table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Term</th>
+                        <th scope="col">What it means</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="is-term">Correlation</td>
+                        <td>A measure of how closely two things move together. For example, whether schools with higher satisfaction also tend to have higher test scores.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Pearson's r</td>
+                        <td>The correlation coefficient used in this analysis. It is a single number between -1 and +1 that describes the direction and strength of a relationship.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">School-level analysis</td>
+                        <td>Each school is one data point (the circles in Figure 1). Results describe patterns across schools, not the experiences of individual students.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">California Healthy Kids Survey (CHKS)</td>
+                        <td>A statewide student survey that asks about school climate, health, and well-being, including how satisfied students are with different environments in their lives.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Met or exceeded standards</td>
+                        <td>The percent of students scoring at or above the standard on the California state assessments in Math or English Language Arts (ELA), respectively.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Chronic absenteeism</td>
+                        <td>A measure of students who are absent 10% or more of the school days they were enrolled.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>How to Read Correlations</h3>
+                <p>
+                  The <strong>sign (+ or -)</strong> tells you the direction of the relationship. The <strong>distance from zero</strong> tells you its strength.
+                </p>
+                <div class="spotlight-report__table-wrap">
+                  <table class="spotlight-report__table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Value of r</th>
+                        <th scope="col">How to interpret it</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="is-term">Positive (+)</td>
+                        <td>As one measure goes up, the other tends to go up. Example: schools with higher satisfaction tend to have higher Math scores.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Negative (-)</td>
+                        <td>As one measure goes up, the other tends to go down. Example: schools with higher satisfaction tend to have lower chronic absenteeism.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Close to 0</td>
+                        <td>Little to no relationship between the two measures.</td>
+                      </tr>
+                      <tr>
+                        <td class="is-term">Close to -1 or +1</td>
+                        <td>A very strong relationship. A value of exactly -1 or +1 would mean the measures move perfectly together.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Rule of Thumb for Strength</h3>
+                <div class="spotlight-report__table-wrap">
+                  <table class="spotlight-report__table">
+                    <thead>
+                      <tr>
+                        <th scope="col">r value</th>
+                        <th scope="col">Typical description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td class="is-term">0.00 to 0.29</td><td>Weak</td></tr>
+                      <tr><td class="is-term">0.30 to 0.49</td><td>Moderate</td></tr>
+                      <tr><td class="is-term">0.50 to 0.69</td><td>Strong</td></tr>
+                      <tr><td class="is-term">0.70 and above</td><td>Very strong</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  These cutoffs are general guidelines, and different fields have different interpretations. <br>
+                
+                  Note that correlation shows that two measures are related, not that one causes the other. These results describe patterns across schools and should not be read as predictions for any individual student.
+                </p>
+
+              </div>
+            </details>
+
+            <!-- ===== EXECUTIVE SUMMARY ===== -->
+            <section class="spotlight-report__narrative">
+              <h2>Executive Summary</h2>
+              <div class="spotlight-report__takeaway">
+                <p>
+                  <strong>Takeaway:</strong> Orange County students feel satisfied about their environments outside school but are noticeably less satisfied with school itself. When looking at the relationship between satisfaction with different environments and academic outcomes, satisfaction with family and neighborhood are more closely related to academic and attendance outcomes than satisfaction with school. School experience was still positively related to outcomes but had the weakest relationship of the three. Ultimately, student success depends on more than what happens in the classroom.
+                </p>
+              </div>
+
+              <h3>Key Findings</h3>
+              <h4>Orange County Student Satisfaction with Different Environments</h4>
+              <div class="spotlight-report__table-wrap">
+                <table class="spotlight-report__table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Environment</th>
+                      <th scope="col" class="is-num">Percent Satisfied</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Where I live</td><td class="is-num">81%</td></tr>
+                    <tr><td>Family</td><td class="is-num">77%</td></tr>
+                    <tr><td>School</td><td class="is-num">46%</td></tr>
+                  </tbody>
+                </table>
+                <p class="spotlight-report__viz-caption">
+                    Source: California Healthy Kids Survey
+                </p>
+              </div>
+
+              <h4><a class="spotlight-report__jump" href="#correlation-viz">School-Level Correlations (146 schools)</a></h4>
+              <div class="spotlight-report__table-wrap">
+                <table class="spotlight-report__table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Satisfaction with&hellip;</th>
+                      <th scope="col" class="is-num">Math</th>
+                      <th scope="col" class="is-num">ELA</th>
+                      <th scope="col" class="is-num">Chronic absenteeism</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Where I live</td>
+                      <td class="is-num">r = 0.742</td>
+                      <td class="is-num">r = 0.728</td>
+                      <td class="is-num">r = -0.512</td>
+                    </tr>
+                    <tr>
+                      <td>Family</td>
+                      <td class="is-num">r = 0.616</td>
+                      <td class="is-num">r = 0.601</td>
+                      <td class="is-num">r = -0.598</td>
+                    </tr>
+                    <tr>
+                      <td>School</td>
+                      <td class="is-num">r = 0.411</td>
+                      <td class="is-num">r = 0.405</td>
+                      <td class="is-num">r = -0.307</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="spotlight-report__viz-caption">
+                    Source: Author analysis of California Healthy Kids Survey and California state assessment data
+                </p>
+              </div>
+
+              <h3>Implications</h3>
+              <div class="spotlight-report__takeaway">
+                <ul>
+                  <li><strong>School experience is the clearest opportunity.</strong> Lower satisfaction points to room to strengthen belonging, engagement, and support during the school day.</li>
+                  <li><strong>Collaboration is essential.</strong> Schools should engage families, partner with community organizations, and align supports across settings.</li>
+                  <li><strong>Student, family, and community voice should inform decisions.</strong></li>
+                </ul>
+              </div>
+            </section>
+
+            <hr class="spotlight-report__divider">
+
+            <!-- ===== NARRATIVE ===== -->
             <div class="spotlight-report__narrative">
+              <h2>Full Report</h2>
               <p>
-                This year’s State of the Student report highlights both encouraging progress and important areas where
-                continued focus is needed. Our spotlight this year adds an important layer by examining how students’ own
+                This year’s State of the Student report, produced by REDI, highlights both encouraging progress and important areas where
+                continued focus is needed. The spotlight examines how students’ own
                 experiences relate to key academic and engagement outcomes.
               </p>
               <p>
@@ -201,6 +566,7 @@
                 lower ratings, along with a smaller share of students reporting being “very satisfied,” point to an opportunity
                 for schools to strengthen students’ sense of belonging, engagement, and support during the school day.
               </p>
+              
               <p>
                 Looking beyond individual responses, the school-level data reveal a clear pattern: students’ experiences outside of school are
                 strongly connected to how well they do in school. Using a school-level correlation analysis of 146 schools, results showed that
@@ -211,9 +577,10 @@
                 (Math r = 0.616; ELA r = 0.601) and fewer students missing school regularly (r = -0.598). These were among the strongest
                 relationships observed in the data. However, satisfaction with school experience, although still positively correlated with
                 academic outcomes, had the weakest relationship (Math r=0.411; ELA r=0.405). 
+              </p>
 
-                 <!-- ===== TABLEAU EMBED ===== -->
-            <section class="spotlight-report__viz-section">
+              <!-- ===== TABLEAU EMBED ===== -->
+            <section class="spotlight-report__viz-section" id="correlation-viz">
               <div class="tableau-shell">
                 <div class="tableau-frame">
                   <div class="tableau-embed-wrap">
@@ -230,8 +597,7 @@
                 </div>
               </div>
             </section>
-              
-              </p>
+            
               <p>
                 Although these findings may not be surprising, they reinforce an important message: student success is shaped by more than what
                 happens inside the classroom. Positive school experiences matter, but the conditions in students’ homes and communities
@@ -251,6 +617,7 @@
                 Orange County’s progress is real and worth celebrating. Ensuring that every student shares in that success, however, will depend on how well 
                 communities and schools work together. By strengthening connections across school, home, and community, and by centering the voices of those most 
                 impacted, we can build on this progress and create more equitable outcomes for all students.
+              </p>
             </div>
 
             <!-- ===== NOTES & RESOURCES ===== -->

@@ -1580,6 +1580,44 @@ body.home-page .quick-links-panel {
   text-decoration: underline;
 }
 
+.spotlight-report__divider {
+  max-width: 900px;
+  margin: 40px auto 0;
+  border: 0;
+  border-top: 6px solid rgba(9, 39, 72, 0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keeps the figure from landing underneath the fixed site header */
+.spotlight-report__viz-section {
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.spotlight-report__jump {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.spotlight-report__jump::after {
+  content: " \2193";
+  text-decoration: none;
+  display: inline-block;
+}
+
+.spotlight-report__jump:hover {
+  color: #0f4fbf;
+}
+
 .all-dashboards-shell {
   display: flex;
   flex-direction: column;
