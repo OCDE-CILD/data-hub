@@ -36,7 +36,6 @@ export const GOOGLE_CLIENT_ID =
 export const ALLOWED_DOMAINS = ["ocde.us"];
 
 export const ALLOWED_EMAILS = [
-  "jaubele@ocde.us",
   "ctrejo@ocde.us",
   "cmitchell@ocde.us",
   "aroy@ocde.us",
@@ -159,7 +158,8 @@ export const ALLOWED_EMAILS = [
   "ljb@lisajburke.com",
   "Cris.blevins@gmail.com",
   "mblazy@nmusd.us",
-  "jgargus@hbcsd.us"
+  "jgargus@hbcsd.us",
+  "hangel@orangeusd.org"
 ];
 
 // 4. Where the login page lives, relative to the site root. Used by
