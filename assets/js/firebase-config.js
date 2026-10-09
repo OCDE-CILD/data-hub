@@ -43,8 +43,6 @@ export const ALLOWED_EMAILS = [
   "esther_s_kim@myfsd.org",
   "jjackson@ljsd.org",
   "shaol@orangeusd.org",
-  "AmyA@UnitedWayOC.org",
-  "sherie.hopson@caloptima.org",
   "apedroza@orangeusd.org",
   "mblazy@nmusd.us",
   "jgargus@hbcsd.us",
