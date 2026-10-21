@@ -384,7 +384,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Chronic Absenteeism
-                <span class="accordion-header__sub">2018-2019, 2021-2025</span>
+                <span class="accordion-header__sub">2018-2019, 2021-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -392,13 +392,8 @@
                 <p>
                   Source: CDE's Chronic Absenteeism data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesabd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesabd.asp</a>).
-                  This section is based on six years of cleaning scripts
-                  (2018-2019, 2020-2021 through 2024-2025)
-                </p>
-                <p>
-                  The raw file is tab-delimited text; because district and school names can
-                  contain accented characters, it's read using Latin-1 encoding rather than
-                  UTF-8 in every year checked
+                  This section is based on seven years of cleaning scripts
+                  (2018-2019, 2020-2021 through 2024-2026)
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
@@ -419,9 +414,9 @@
                 <p class="accordion-body__subhead">Suppression</p>
                 <p>
                   Suppression is checked at the <strong>row level</strong>, not field-by-field. For
-                  2018-19 through 2023-24, the columns checked were a fixed list written into the
+                  2018-19 through 2025-26, the columns checked were a fixed list written into the
                   script — <code>enrollment_num</code>, <code>chronic_count</code>,
-                  <code>chronic_rate</code>. Starting with the 2024-25 refresh, this switched to
+                  <code>chronic_rate</code>. Starting with 2024-25 , this switched to
                   an automatic scan that checks every column for the asterisk marker rather than a
                   fixed list which is functionally similar in most cases, but able to catch a newly
                   suppressed field that the fixed list wouldn't have anticipated. Either way, a
@@ -446,8 +441,8 @@
                   <tr><td>4</td><td>School (<code>S</code>)</td></tr>
                 </table>
                 <p>
-                  <code>year</code> is recoded from the raw label (e.g., &quot;2024-25&quot;) to a
-                  two-digit integer (<code>25</code>). <code>dass_num</code> is only
+                  <code>year</code> is recoded from the raw label (e.g., &quot;2025-26&quot;) to a
+                  two-digit integer (<code>26</code>). <code>dass_num</code> is only
                   present starting in 2021-22.
                 </p>
 
@@ -474,7 +469,7 @@
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-2019</td><td class="status-ok">Available — baseline methodology, no DASS field</td></tr>
                   <tr><td>2019-2020</td><td class="status-gap">Not published by CDE (pandemic year)</td></tr>
-                  <tr><td>2020-2021 – 2024-2025</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2020-2021 – 2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -491,8 +486,8 @@
                 <p>
                   Source: CDE's Suspension data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filessd.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filessd.asp</a>).
-                  This section is based on a direct read of all seven years of REDI's data cleaning scripts
-                  2018-19 through 2024-25.
+                  This section is based on a direct read of eight years of data cleaning scripts
+                  2018-19 through 2025-26.
                 </p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
@@ -532,7 +527,7 @@
                   Starting with the 2019-20 file, each new year is compared against the prior
                   year's before cleaning begins: column names are checked for changes, and the set
                   of columns subject to suppression is compared to catch any that were newly added
-                  or removed. From 2019-20 through 2022-23, an additional check compared the share
+                  or removed. From 2019-20 through 2025-26, an additional check compared the share
                   of zero values for each field between the two years, flagging any field whose
                   proportion of zeros shifted by more than 5 percentage points, a way of catching
                   a meaningful change in reporting patterns beyond just suppression or renamed
@@ -581,7 +576,7 @@
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-2019</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-2020 – 2024-2025</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2019-2020 – 2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -590,7 +585,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Graduation &amp; Dropout Rate
-                <span class="accordion-header__sub">2019-2025</span>
+                <span class="accordion-header__sub">2019-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -598,8 +593,8 @@
                 <p>
                   Source: CDE's Adjusted Cohort Graduation Rate (ACGR) data file
                   (<a href="https://www.cde.ca.gov/ds/ad/filesacgr.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ds/ad/filesacgr.asp</a>).
-                  This section is based on a direct read of all seven years of REDI's data cleaning scripts
-                  2018-19 through 2024-25.
+                  This section is based on a direct read of all eight years of REDI's data cleaning scripts
+                  2018-19 through 2025-26.
                 </p>
                 <p>
 
@@ -678,7 +673,7 @@
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-2019</td><td class="status-ok">Available — baseline methodology</td></tr>
-                  <tr><td>2019-2020 – 2024-2025</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2019-2020 – 2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -695,7 +690,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Math &amp; ELA Assessment (CAASPP/SBAC)
-                <span class="accordion-header__sub">2018-2019, 2022-2025</span>
+                <span class="accordion-header__sub">2018-2019, 2022-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -703,15 +698,15 @@
                 <p>
                   Source: CAASPP (Smarter Balanced/SBAC) research files
                   (<a href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListSB" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on five years of cleaning scripts:
-                  2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
+                  This section is based on six years of cleaning scripts:
+                  2018-19, then 2021-22 through 2025-26. Scripts for 2019-20 and 2020-21 weren't
                   available to review; given the confirmed pandemic-era gap reliable test scores.
                 </p>
                 <p>
 
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name (2023-24 / 2024-25 structure)
+                  <caption>Raw CDE column name → cleaned field name
                     <br>Note that other columns exist in the data, but the names were concise enough to not require renaming. The table below only lists the columns that were renamed in the cleaning process.</br>
                   </caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
@@ -767,10 +762,10 @@
                 <p class="accordion-body__subhead">Achievement Levels</p>
                 <table class="code-table">
                   <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
-                  <tr><td rowspan="4"><code>core_achievement</code></td><td>1</td><td>Not Met</td></tr>
-                  <tr><td>2</td><td>Nearly Met</td></tr>
-                  <tr><td>3</td><td>Met</td></tr>
-                  <tr><td>4</td><td>Exceeded</td></tr>
+                  <tr><td rowspan="4"><code>core_achievement</code></td><td>1</td><td>Minimal</td></tr>
+                  <tr><td>2</td><td>Developing</td></tr>
+                  <tr><td>3</td><td>Proficient</td></tr>
+                  <tr><td>4</td><td>Advanced</td></tr>
                   <tr><td rowspan="3"><code>area_achievement</code></td><td>1</td><td>Below</td></tr>
                   <tr><td>2</td><td>Near</td></tr>
                   <tr><td>3</td><td>Above</td></tr>
@@ -870,6 +865,7 @@
                   <tr><td>2019-2020 – 2020-2021</td><td class="status-gap">Scripts deemed not reliable by CDE and ETS</td></tr>
                   <tr><td>2021-2022 – 2022-2023</td><td class="status-ok">Available — more granular suppression, still percentages only, no composite</td></tr>
                   <tr><td>2023-2024 – 2024-2025</td><td class="status-ok">Available — counts added, composite introduced</td></tr>
+                  <tr><td>2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -878,7 +874,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Science Assessment (CAST)
-                <span class="accordion-header__sub">2018-2019, 2021-2025</span>
+                <span class="accordion-header__sub">2018-2019, 2021-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -886,11 +882,9 @@
                 <p>
                   Source: CAST research files for the California Science Test
                   (<a href="https://caaspp-elpac.ets.org/caaspp/ResearchFileListCAST" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on five years of REDI's cleaning scripts:
-                  2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
-                  available to review, so the widely-cited pandemic-era gap and data-quality issues
-                  for those years (below) reflect team notes rather than a script we've verified
-                  directly.
+                  This section is based on six years of cleaning scripts:
+                  2018-19, then 2021-22 through 2025-26. Scripts for 2019-20 and 2020-21 weren't
+                  available to review because of the COVID-19 pandemic, which disrupted testing and reporting for those years.
                 </p>
 
                 <p>
@@ -927,10 +921,10 @@
 
                 <table class="code-table">
                   <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
-                  <tr><td rowspan="4"><code>core_achievement</code></td><td>1</td><td>Not Met</td></tr>
-                  <tr><td>2</td><td>Nearly Met</td></tr>
-                  <tr><td>3</td><td>Met</td></tr>
-                  <tr><td>4</td><td>Exceeded</td></tr>
+                  <tr><td rowspan="4"><code>core_achievement</code></td><td>1</td><td>Minimal</td></tr>
+                  <tr><td>2</td><td>Developing</td></tr>
+                  <tr><td>3</td><td>Proficient</td></tr>
+                  <tr><td>4</td><td>Advanced</td></tr>
                   <tr><td rowspan="3"><code>area_achievement</code></td><td>1</td><td>Below</td></tr>
                   <tr><td>2</td><td>Near</td></tr>
                   <tr><td>3</td><td>Above</td></tr>
@@ -1018,6 +1012,7 @@
                   <tr><td>2020-2021</td><td class="status-partial">Published, but reportedly poor quality/incomplete participation</td></tr>
                   <tr><td>2021-2022 – 2022-2023</td><td class="status-ok">Available — expanded suppression markers; area suppression mirrors core</td></tr>
                   <tr><td>2023-2024 – 2024-2025</td><td class="status-ok">Available — counts added; area gains its own enrollment totals, enabling independent area suppression</td></tr>
+                  <tr><td>2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -1034,7 +1029,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 English Learner Progress
-                <span class="accordion-header__sub">2018-2019, 2021-2025</span>
+                <span class="accordion-header__sub">2018-2019, 2021-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -1043,9 +1038,8 @@
                   Source: Summative ELPAC (English Language Proficiency Assessment for
                   California) research files
                   (<a href="https://caaspp-elpac.ets.org/elpac/ResearchFilesSA" target="_blank" rel="noopener noreferrer">caaspp-elpac.ets.org research file list</a>).
-                  This section is based on a direct read of five years of REDI's data cleaning scripts:
-                  2018-19, then 2021-22 through 2024-25. Scripts for 2019-20 and 2020-21 weren't
-                  available to review.
+                  This section is based on a direct read of six years data cleaning scripts:
+                  2018-19, then 2021-22 through 2025-26.
                 </p>
                 <p>
                   <strong>Not the same file as ELPI.</strong> This is the underlying ELPAC
@@ -1057,12 +1051,12 @@
  
                 <p class="accordion-body__subhead">Column Reference</p>
                 <table class="code-table">
-                  <caption>Raw CDE column name → cleaned field name (stable across all five years checked)</caption>
+                  <caption>Raw CDE column name → cleaned field name (stable across all six years checked)</caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
                   <tr><td>TestYear</td><td><code>year</code></td></tr>
                   <tr><td>StudentGroupID</td><td><code>demo_group</code></td></tr>
                   <tr><td>RecordType</td><td><code>org_level</code></td></tr>
-                  <tr><td>AssessmentType</td><td><code>test</code> (Summative ELPAC is always <code>21</code>)</td></tr>
+                  <tr><td>AssessmentType</td><td><code>test</code></td></tr>
                   <tr><td>TotalEnrolled / TotalTested / TotalTestedWithScores</td><td><code>test_enrollment</code> / <code>tested</code> / <code>tested_scores</code></td></tr>
                   <tr><td>OralLang_* / WritLang_*</td><td><code>oral_*</code> / <code>writ_*</code></td></tr>
                   <tr><td>[Overall/Oral/Written] PerfLvl[1-4]Pcnt/Count</td><td><code>lvl[1-4]_perc</code> / <code>lvl[1-4]_count</code></td></tr>
@@ -1158,6 +1152,7 @@
                   <tr><td>2019-2020 – 2020-2021</td><td class="status-gap">Unavailable</td></tr>
                   <tr><td>2021-2022 – 2022-2023</td><td class="status-ok">Available — structurally identical to 2018-2019, including the same data-quality correction</td></tr>
                   <tr><td>2023-2024 – 2024-2025</td><td class="status-ok">Available — AssessmentType data-quality issue no longer present in the raw file</td></tr>
+                  <tr><td>2025-2026</td><td class="status-ok">Available</td></tr>
                 </table>
  
               </div>
@@ -1166,7 +1161,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 Reclassification Rate (RFEP)
-                <span class="accordion-header__sub">2018-2019 – 2020-2021, 2024-2025</span>
+                <span class="accordion-header__sub">2018-2019 – 2020-2021, 2024-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -1175,7 +1170,7 @@
                   Source: two different CDE releases depending on year. For 2018-19 through
                   2020-21, CDE's downloadable reclassification demographic files
                   (<code>https://www3.cde.ca.gov/demo-downloads/reclass/reclass[YY].txt</code>),
-                  pulled directly by the script. For 2024-25, CDE's Annual RFEP Rate report,
+                  pulled directly by the script. Starting in 2024-25, CDE's Annual RFEP Rate report,
                   distributed as an Excel workbook (e.g. <code>rfep2425-4.xlsx</code>, sheet
                   &quot;2024-25 Annual RFEP Rates&quot;) that has to be downloaded manually rather
                   than fetched programmatically like the older text files.
@@ -1192,19 +1187,19 @@
                 <table class="code-table">
                   <caption>Raw CDE column name → cleaned field name</caption>
                   <tr><th>Raw CDE Column</th><th>Cleaned Field</th></tr>
-                  <tr><td><code>el</code> (2018-19 to 2020-21 text files)</td><td><code>el_count</code></td></tr>
-                  <tr><td><code>reclass</code> (2018-19 to 2020-21 text files)</td><td><code>reclass_count</code></td></tr>
-                  <tr><td><code>fep</code> (2018-19 to 2020-21 text files)</td><td><code>fep_count</code> (dropped before the final combined file is written)</td></tr>
-                  <tr><td><code>EnglishLearnerCount</code> (2024-25 workbook)</td><td><code>el_count</code></td></tr>
-                  <tr><td><code>ReclassifiedStudentCount</code> (2024-25 workbook)</td><td><code>reclass_count</code></td></tr>
-                  <tr><td><code>AnnualReclassificationRate</code> (2024-25 workbook)</td><td><code>reclass_rate</code></td></tr>
-                  <tr><td><code>AggType</code> (2024-25 workbook)</td><td><code>org_level_num</code> (T=1, C=2, D=3, S=4)</td></tr>
-                  <tr><td><code>CharterAllYN</code> / <code>DassAllYN</code> (2024-25 workbook)</td><td><code>charter_num</code> / <code>dass_num</code> (Y=1, N=0, ALL=2)</td></tr>
+                  <tr><td><code>el</code> </td><td><code>el_count</code></td></tr>
+                  <tr><td><code>reclass</code> </td><td><code>reclass_count</code></td></tr>
+                  <tr><td><code>fep</code> </td><td><code>fep_count</code> (dropped before the final combined file is written)</td></tr>
+                  <tr><td><code>EnglishLearnerCount</code> </td><td><code>el_count</code></td></tr>
+                  <tr><td><code>ReclassifiedStudentCount</code></td><td><code>reclass_count</code></td></tr>
+                  <tr><td><code>AnnualReclassificationRate</code> </td><td><code>reclass_rate</code></td></tr>
+                  <tr><td><code>AggType</code> </td><td><code>org_level_num</code> (T=1, C=2, D=3, S=4)</td></tr>
+                  <tr><td><code>CharterAllYN</code> / <code>DassAllYN</code> </td><td><code>charter_num</code> / <code>dass_num</code> (Y=1, N=0, ALL=2)</td></tr>
                 </table>
 
                 <p class="accordion-body__subhead">How the Reclassification Rate is Derived</p>
                 <p>
-                  The two source types handle the rate differently. The 2024-25 workbook already
+                  The two source types handle the rate differently. Starting in 2024-25, the workbook already
                   publishes a finished annual reclassification rate, so the script simply renames
                   <code>AnnualReclassificationRate</code> to <code>reclass_rate</code> without
                   recalculating anything. The 2018-19 through 2020-21 text files don't include a
@@ -1238,7 +1233,7 @@
                 <p>
                   Both source types are filtered down to this county before the years are combined,
                   but the filter differs by format: the older text files are filtered on the county
-                  name text field (<code>county == "Orange"</code>), while the 2024-25 workbook is
+                  name text field (<code>county == "Orange"</code>), however starting with the 2024-25 workbook, this field is
                   filtered on the numeric <code>county_code == 30</code>.
                 </p>
 
@@ -1247,7 +1242,7 @@
                   <tr><th>Year</th><th>Status</th></tr>
                   <tr><td>2018-2021</td><td class="status-ok">Available — from CDE's downloadable reclassification text file; rate manually calculated and cross-checked against CDE data</td></tr>
                   <tr><td>2021-2022 – 2023-2024</td><td class="status-gap">Unavailable — CDE did not post reclassification data for these years</td></tr>
-                  <tr><td>2024-2025</td><td class="status-ok">Available — sourced from CDE's new Annual RFEP Rate Excel workbook, which reports the rate directly rather than requiring it to be calculated</td></tr>
+                  <tr><td>2024-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -1264,7 +1259,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 College/Career Preparedness
-                <span class="accordion-header__sub">2023-2025</span>
+                <span class="accordion-header__sub">2023-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -1272,8 +1267,8 @@
                 <p>
                   Source: California School Dashboard College/Career Indicator (CCI) file
                   (<a href="https://www.cde.ca.gov/ta/ac/cm/ccidatafiles.asp" target="_blank" rel="noopener noreferrer">cde.ca.gov/ta/ac/cm/ccidatafiles.asp</a>).
-                  This section is based on three years of REDI's data cleaning scripts,
-                  2022-23 through 2024-25; no earlier years were reviewed. This file is part of
+                  This section is based on four years of data cleaning scripts,
+                  2022-23 through 2024-26; no earlier years were reviewed. This file is part of
                   the same California School Dashboard family covered under Differentiated
                   Assistance elsewhere on this site, but is cleaned as its own indicator-specific
                   file rather than the multi-indicator dashboard export.
@@ -1314,7 +1309,7 @@
                 <p>
                   Beyond the Prepared/Approaching Prepared/Not Prepared breakdown shown on this
                   site's dashboard, the raw file also carries the state's standard five-level
-                  Dashboard accountability scale, confirmed in the 2023-24 and 2024-25 scripts:
+                  Dashboard accountability scale:
                 </p>
                 <table class="code-table">
                   <tr><th>Field</th><th>Code</th><th>Meaning</th></tr>
@@ -1355,7 +1350,7 @@
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
-                  <tr><td>2023-2025</td><td class="status-ok">Available</td></tr>
+                  <tr><td>2023-2026</td><td class="status-ok">Available</td></tr>
                 </table>
 
               </div>
@@ -1372,7 +1367,7 @@
             <details class="accordion-item">
               <summary class="accordion-header">
                 California School Dashboard
-                <span class="accordion-header__sub">2024-2025</span>
+                <span class="accordion-header__sub">2025-2026</span>
                 <span class="accordion-icon" aria-hidden="true"></span>
               </summary>
               <div class="accordion-body">
@@ -1383,7 +1378,7 @@
                   cleaned per-indicator files</strong>, each pulled from its own CDE Dashboard
                   data release, then joined together on <code>cds</code> into the combined file
                   this site uses. This section is based on a direct read of six of those
-                  indicator scripts, all from the 2024-25 refresh: English Learner Progress
+                  indicator scripts, all from the 2025-26 refresh: English Learner Progress
                   (ELPI), Math, ELA, Suspension, Chronic Absenteeism, and Graduation. A seventh,
                   College/Career (CCI), is documented separately under the College &amp; Career
                   section above, since it's also offered as its own standalone download on this
@@ -1407,13 +1402,13 @@
                   six scripts serve as the canonical source for dimensions the others just reuse:
                 </p>
                 <ul class="accordion-body__list">
-                  <li><strong>ELA's script</strong> is where <code>org_level</code>, <code>color</code>,
+                  <li><strong>A universal 'Dashboard' script</strong> is where <code>org_level</code>, <code>color</code>,
                     <code>coe_flag</code>, the N-size flags (<code>currnsizemet</code>/
                     <code>priornsizemet</code>/<code>accountabilitymet</code>), and the
                     &quot;ascending&quot; <code>change_level</code>/<code>status_level</code>
                     dimensions are built. Math, CCI, and (per one of its own comments) Graduation
                     all reuse these rather than rebuilding them.</li>
-                  <li><strong>Chronic Absenteeism's script</strong> is where the &quot;reverse&quot;
+                  <li>This same script is where the &quot;reverse&quot;
                     <code>change_level_neg</code>/<code>status_level_neg</code> dimensions,
                     <code>smalldenom</code>, and the certification/data-error flag dimension are
                     built — explicitly documented in that script as being &quot;used for
@@ -1471,7 +1466,7 @@
                 <p class="accordion-body__subhead">Year-by-Year Coverage</p>
                 <table class="coverage-table">
                   <tr><th>Year</th><th>Status</th></tr>
-                  <tr><td>2024-25</td><td class="status-ok">Available — six indicator scripts (ELPI, Math, ELA, Suspension, Absenteeism, Graduation)</td></tr>
+                  <tr><td>2025-26</td><td class="status-ok">Available — six indicator scripts </td></tr>
                 </table>
  
               </div>
