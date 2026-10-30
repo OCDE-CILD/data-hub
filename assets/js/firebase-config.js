@@ -100,7 +100,10 @@ export const ALLOWED_DOMAINS = [
   "iciacademy.org"
 ];
 
-export const ALLOWED_EMAILS = [];
+export const ALLOWED_EMAILS = [
+  "novari320@hotmail.com",
+  "jcmartone@gmail.com"
+];
 
 // 4. Where the login page lives, relative to the site root. Used by
 //    auth-check.js to build the correct redirect path from any page depth.
