@@ -105,7 +105,8 @@ export const ALLOWED_EMAILS = [
   "mscheiber@wsdk8.us",
   "dalvarado@wsdk8.us",
   "mkim@wsdk8.us",
-  "rmontgomery@wsdk8.us"
+  "rmontgomery@wsdk8.us",
+  "joseph.aubele@gmail.com"
 ];
 
 // 4. Where the login page lives, relative to the site root. Used by
