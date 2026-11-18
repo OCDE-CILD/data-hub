@@ -1,9 +1,9 @@
 (() => {
   // Replace with your GA4 Measurement ID (Google Analytics → Admin → Data streams → your stream).
-  // It looks like G-ABC123XYZ9. Until this is set, the script does nothing.
+  // It looks like G-ABC123XYZ9.
   const MEASUREMENT_ID = 'G-WZSH6VDMGP';
 
-  if (!/^G-[A-Z0-9]+$/.test(MEASUREMENT_ID) || MEASUREMENT_ID === 'G-WZSH6VDMGP') return;
+  if (!/^G-[A-Z0-9]+$/.test(MEASUREMENT_ID)) return;
 
   // Don't count local development
   if (['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)) return;
