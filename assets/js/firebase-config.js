@@ -98,7 +98,8 @@ export const ALLOWED_DOMAINS = [
   "suncoastcharter.org",
   "sycamorecreekcharter.org",
   "tlccharter.org",
-  "vibrantminds.us"
+  "vibrantminds.us",
+  "communityrootsacademy.org "
 ];
 
 export const ALLOWED_EMAILS = [
