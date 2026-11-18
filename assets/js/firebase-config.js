@@ -99,7 +99,7 @@ export const ALLOWED_DOMAINS = [
   "sycamorecreekcharter.org",
   "tlccharter.org",
   "vibrantminds.us",
-  "communityrootsacademy.org "
+  "communityrootsacademy.org"
 ];
 
 export const ALLOWED_EMAILS = [
@@ -107,7 +107,8 @@ export const ALLOWED_EMAILS = [
   "dalvarado@wsdk8.us",
   "mkim@wsdk8.us",
   "rmontgomery@wsdk8.us",
-  "joseph.aubele@gmail.com"
+  "joseph.aubele@gmail.com",
+  "aurdanivia@communityrootsacademy.org"
 ];
 
 // 4. Where the login page lives, relative to the site root. Used by
